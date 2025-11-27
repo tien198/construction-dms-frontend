@@ -3,6 +3,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { Form } from "react-router";
 import ConF from "./comp/ConstructionFormFields";
+import "dayjs/locale/vi";
 
 export default function ConstructionPage() {
   // Get only formData from store; individual components use the store for updates

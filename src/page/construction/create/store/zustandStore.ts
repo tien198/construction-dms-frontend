@@ -1,9 +1,9 @@
 import { createStore } from "zustand";
 import type { ConstructionStore } from "./store.type";
-import type { Construction } from "../type/construction";
+import type { Construction } from "../../type/construction";
 
 export const initialFormData: Construction = {
-  documentNo: 0,
+  documentNo: "",
   name: "",
   dateOfSigning: null,
   budget: 0,

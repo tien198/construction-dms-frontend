@@ -8,14 +8,14 @@ export default function DocumentNo() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setField(name as any, Number(value));
+    setField(name as any, value);
   };
   return (
     <TextField
       fullWidth
       label="Số hiệu"
       name="documentNo"
-      type="number"
+      type="text"
       value={documentNo}
       onChange={handleChange}
     />
