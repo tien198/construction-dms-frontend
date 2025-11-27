@@ -101,9 +101,9 @@ export default function ConstructionPage() {
           </Typography>
 
           <form onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
               {/* --- Thông tin chung --- */}
-              <Grid item xs={12} md={2}>
+              <Grid size={{ xs: 12, md: 2 }}>
                 <TextField
                   fullWidth
                   label="Số hiệu"
@@ -113,7 +113,7 @@ export default function ConstructionPage() {
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12} md={7}>
+              <Grid size={{ xs: 12, md: 7 }}>
                 <TextField
                   fullWidth
                   label="Tên công trình"
@@ -123,7 +123,7 @@ export default function ConstructionPage() {
                   required
                 />
               </Grid>
-              <Grid item xs={12} md={3}>
+              <Grid size={{ xs: 12, md: 3 }}>
                 <DatePicker
                   label="Ngày ký kết"
                   value={
@@ -137,7 +137,7 @@ export default function ConstructionPage() {
               </Grid>
 
               {/* --- Ngân sách --- */}
-              <Grid item xs={12} md={4}>
+              <Grid size={{ xs: 12, md: 4 }}>
                 <TextField
                   fullWidth
                   label="Ngân sách (VNĐ)"
@@ -145,9 +145,11 @@ export default function ConstructionPage() {
                   type="number"
                   value={formData.budget}
                   onChange={handleChange}
+                  // helperText={"loi"}
+                  // error={true}
                 />
               </Grid>
-              <Grid item xs={12} md={8}>
+              <Grid size={{ xs: 12, md: 8 }}>
                 <TextField
                   fullWidth
                   label="Bằng chữ"
@@ -158,12 +160,12 @@ export default function ConstructionPage() {
                 />
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Divider sx={{ my: 1 }}>Thời gian thi công</Divider>
               </Grid>
 
               {/* --- Thời gian thi công (Nested Object) --- */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <DatePicker
                   label="Ngày bắt đầu"
                   value={
@@ -181,7 +183,7 @@ export default function ConstructionPage() {
                   slotProps={{ textField: { fullWidth: true } }}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <DatePicker
                   label="Ngày kết thúc"
                   value={
@@ -200,12 +202,12 @@ export default function ConstructionPage() {
                 />
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Divider sx={{ my: 1 }}>Quyết định phê duyệt</Divider>
               </Grid>
 
               {/* --- Quyết định (Nested Object) --- */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <TextField
                   fullWidth
                   label="Số quyết định"
@@ -219,7 +221,7 @@ export default function ConstructionPage() {
                   }
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <DatePicker
                   label="Ngày quyết định"
                   value={
@@ -234,12 +236,12 @@ export default function ConstructionPage() {
                 />
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Divider sx={{ my: 1 }}>Thông tin kỹ thuật</Divider>
               </Grid>
 
               {/* --- Thông tin mô tả --- */}
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <TextField
                   fullWidth
                   multiline
@@ -250,7 +252,7 @@ export default function ConstructionPage() {
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <TextField
                   fullWidth
                   multiline
@@ -264,8 +266,7 @@ export default function ConstructionPage() {
 
               {/* --- Button Submit --- */}
               <Grid
-                item
-                xs={12}
+                size={12}
                 sx={{ mt: 2, display: "flex", justifyContent: "flex-end" }}
               >
                 <Button variant="contained" size="large" type="submit">
