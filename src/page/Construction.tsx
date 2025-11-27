@@ -245,7 +245,7 @@ export default function ConstructionPage() {
                 <TextField
                   fullWidth
                   multiline
-                  rows={3}
+                  minRows={3}
                   label="Hiện trạng kết cấu"
                   name="existingConditionOfTheStructure"
                   value={formData.existingConditionOfTheStructure}
@@ -256,7 +256,7 @@ export default function ConstructionPage() {
                 <TextField
                   fullWidth
                   multiline
-                  rows={3}
+                  minRows={3}
                   label="Phạm vi sửa chữa"
                   name="repairScope"
                   value={formData.repairScope}
