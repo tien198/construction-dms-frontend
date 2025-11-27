@@ -1,21 +1,11 @@
-import { createBrowserRouter, Outlet } from "react-router";
+import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import ConstructionPage from "./page/Construction";
+import { constructionRoute } from "./route/constructionRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <div>
-        <Outlet />
-      </div>
-    ),
-    children: [
-      {
-        path: "/them-cong-trinh",
-        element: <ConstructionPage />,
-      },
-    ],
+    children: [constructionRoute],
   },
 ]);
 

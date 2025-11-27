@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   TextField,
   Button,
@@ -13,80 +13,67 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/vi";
-import type { Construction } from "../type/construction";
+import type { Construction } from "./type/construction";
+import { useConstructionStore } from "./store/zustandStore";
+import { Form } from "react-router";
 
 export default function ConstructionPage() {
   // Khởi tạo state ban đầu
-  const [formData, setFormData] = useState<Construction>({
-    number: 0,
-    name: "",
-    dateOfSigning: null,
-    budget: 0,
-    stringBudget: "",
-    constructionExecutionTime: {
-      startDate: null,
-      endDate: null,
-    },
-    existingConditionOfTheStructure: "",
-    repairScope: "",
-    decision: {
-      decisionNumber: "",
-      decisionDate: null,
-    },
-  });
+  const { setField, setNestedField, setDateField, setNestedDateField } =
+    useConstructionStore();
+  // const [formData, setFormData] = useState<Construction>({
+  //   number: 0,
+  //   name: "",
+  //   dateOfSigning: null,
+  //   budget: 0,
+  //   stringBudget: "",
+  //   constructionExecutionTime: {
+  //     startDate: null,
+  //     endDate: null,
+  //   },
+  //   existingConditionOfTheStructure: "",
+  //   repairScope: "",
+  //   decision: {
+  //     decisionNumber: "",
+  //     decisionDate: null,
+  //   },
+  // });
 
-  // Xử lý thay đổi input ở cấp 1 (root level)
+  /// --- Wrapper xử lý Event Input thông thường ---
+  // Bạn có thể viết inline hoặc tạo hàm wrapper nhỏ này
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    // Ép kiểu name về keyof Construction để TS không báo lỗi
+    setField(name as any, value);
   };
 
-  // Xử lý thay đổi input cho object lồng nhau (nested object)
-  const handleNestedChange = (
-    parentField: keyof Construction,
-    childField: string,
-    value: any
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [parentField]: {
-        ...(prev[parentField] as object),
-        [childField]: value,
-      },
-    }));
-  };
+  // Xử lý thay đổi input cho object lồng nhau
+  const handleNestedChange = useCallback(
+    (parentField: keyof Construction, childField: string, value: any) => {
+      setNestedField(parentField, childField, value);
+    },
+    [setNestedField]
+  );
 
-  // Xử lý thay đổi Date (MUI DatePicker trả về object Dayjs)
-  const handleDateChange = (name: keyof Construction, value: Dayjs | null) => {
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value ? value.toDate() : null,
-    }));
-  };
+  // Xử lý thay đổi Date (Cấp 1)
+  const handleDateChange = useCallback(
+    (name: keyof Construction, value: Dayjs | null) => {
+      setDateField(name, value);
+    },
+    [setDateField]
+  );
 
   // Xử lý thay đổi Date trong object lồng nhau
-  const handleNestedDateChange = (
-    parentField: keyof Construction,
-    childField: string,
-    value: Dayjs | null
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [parentField]: {
-        ...(prev[parentField] as object),
-        [childField]: value ? value.toDate() : null,
-      },
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Dữ liệu form:", formData);
-    alert("Đã gửi dữ liệu! (Kiểm tra console)");
-  };
+  const handleNestedDateChange = useCallback(
+    (
+      parentField: keyof Construction,
+      childField: string,
+      value: Dayjs | null
+    ) => {
+      setNestedDateField(parentField, childField, value);
+    },
+    [setNestedDateField]
+  );
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="vi">
@@ -100,7 +87,7 @@ export default function ConstructionPage() {
             Thông Tin Công Trình
           </Typography>
 
-          <form onSubmit={handleSubmit}>
+          <Form method="post">
             <Grid container spacing={2}>
               {/* --- Thông tin chung --- */}
               <Grid size={{ xs: 12, md: 2 }}>
@@ -274,7 +261,7 @@ export default function ConstructionPage() {
                 </Button>
               </Grid>
             </Grid>
-          </form>
+          </Form>
         </Paper>
       </Box>
     </LocalizationProvider>
