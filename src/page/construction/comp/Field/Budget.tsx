@@ -1,22 +1,23 @@
 import { TextField } from "@mui/material";
-import { constructionStore } from "../store/zustandStore";
+import { constructionStore } from "../../store/zustandStore";
 import { useStore } from "zustand";
 
-export default function DocumentNo() {
-  const documentNo = useStore(constructionStore, (s) => s.formData.documentNo);
+export default function BudgetField() {
+  const value = useStore(constructionStore, (s) => s.formData.budget);
   const setField = useStore(constructionStore, (s) => s.setField);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setField(name as any, Number(value));
   };
+
   return (
     <TextField
       fullWidth
-      label="Số hiệu"
-      name="documentNo"
+      label="Ngân sách (VNĐ)"
+      name="budget"
       type="number"
-      value={documentNo}
+      value={value}
       onChange={handleChange}
     />
   );

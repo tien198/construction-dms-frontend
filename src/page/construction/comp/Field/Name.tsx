@@ -1,12 +1,9 @@
 import { TextField } from "@mui/material";
-import { constructionStore } from "../store/zustandStore";
+import { constructionStore } from "../../store/zustandStore";
 import { useStore } from "zustand";
 
-export default function ExistingConditionField() {
-  const value = useStore(
-    constructionStore,
-    (s) => s.formData.existingConditionOfTheStructure
-  );
+export default function NameField() {
+  const value = useStore(constructionStore, (s) => s.formData.name);
   const setField = useStore(constructionStore, (s) => s.setField);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,12 +14,11 @@ export default function ExistingConditionField() {
   return (
     <TextField
       fullWidth
-      multiline
-      minRows={3}
-      label="Hiện trạng kết cấu"
-      name="existingConditionOfTheStructure"
+      label="Tên công trình"
+      name="name"
       value={value}
       onChange={handleChange}
+      required
     />
   );
 }

@@ -2,17 +2,7 @@ import { Button, Grid, Paper, Typography, Box, Divider } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { Form } from "react-router";
-import DocumentNo from "./comp/DocumentNo";
-import NameField from "./comp/Name";
-import DateOfSigning from "./comp/DateOfSigning";
-import BudgetField from "./comp/Budget";
-import StringBudgetField from "./comp/StringBudget";
-import StartDate from "./comp/StartDate";
-import EndDate from "./comp/EndDate";
-import DecisionNumberField from "./comp/DecisionNumber";
-import DecisionDateField from "./comp/DecisionDate";
-import ExistingConditionField from "./comp/ExistingCondition";
-import RepairScopeField from "./comp/RepairScope";
+import ConF from "./comp/ConstructionFormFields";
 
 export default function ConstructionPage() {
   // Get only formData from store; individual components use the store for updates
@@ -34,21 +24,21 @@ export default function ConstructionPage() {
             <Grid container spacing={2}>
               {/* --- Thông tin chung --- */}
               <Grid size={{ xs: 12, md: 2 }}>
-                <DocumentNo />
+                <ConF.DocumentNo />
               </Grid>
               <Grid size={{ xs: 12, md: 7 }}>
-                <NameField />
+                <ConF.NameField />
               </Grid>
               <Grid size={{ xs: 12, md: 3 }}>
-                <DateOfSigning />
+                <ConF.DateOfSigning />
               </Grid>
 
               {/* --- Ngân sách --- */}
               <Grid size={{ xs: 12, md: 4 }}>
-                <BudgetField />
+                <ConF.BudgetField />
               </Grid>
               <Grid size={{ xs: 12, md: 8 }}>
-                <StringBudgetField />
+                <ConF.StringBudgetField />
               </Grid>
 
               <Grid size={12}>
@@ -57,10 +47,10 @@ export default function ConstructionPage() {
 
               {/* --- Thời gian thi công (Nested Object) --- */}
               <Grid size={{ xs: 12, md: 6 }}>
-                <StartDate />
+                <ConF.StartDate />
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
-                <EndDate />
+                <ConF.EndDate />
               </Grid>
 
               <Grid size={12}>
@@ -69,10 +59,10 @@ export default function ConstructionPage() {
 
               {/* --- Quyết định (Nested Object) --- */}
               <Grid size={{ xs: 12, md: 6 }}>
-                <DecisionNumberField />
+                <ConF.DecisionNumberField />
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
-                <DecisionDateField />
+                <ConF.DecisionDateField />
               </Grid>
 
               <Grid size={12}>
@@ -81,10 +71,10 @@ export default function ConstructionPage() {
 
               {/* --- Thông tin mô tả --- */}
               <Grid size={12}>
-                <ExistingConditionField />
+                <ConF.ExistingConditionField />
               </Grid>
               <Grid size={12}>
-                <RepairScopeField />
+                <ConF.RepairScopeField />
               </Grid>
 
               {/* --- Button Submit --- */}

@@ -1,9 +1,12 @@
 import { TextField } from "@mui/material";
+import { constructionStore } from "../../store/zustandStore";
 import { useStore } from "zustand";
-import { constructionStore } from "../store/zustandStore";
 
-export default function RepairScopeField() {
-  const value = useStore(constructionStore, (s) => s.formData.repairScope);
+export default function ExistingConditionField() {
+  const value = useStore(
+    constructionStore,
+    (s) => s.formData.existingConditionOfTheStructure
+  );
   const setField = useStore(constructionStore, (s) => s.setField);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,8 +19,8 @@ export default function RepairScopeField() {
       fullWidth
       multiline
       minRows={3}
-      label="Phạm vi sửa chữa"
-      name="repairScope"
+      label="Hiện trạng kết cấu"
+      name="existingConditionOfTheStructure"
       value={value}
       onChange={handleChange}
     />

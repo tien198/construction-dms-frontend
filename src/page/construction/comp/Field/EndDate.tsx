@@ -1,12 +1,12 @@
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-import { constructionStore } from "../store/zustandStore";
+import { constructionStore } from "../../store/zustandStore";
 import { useStore } from "zustand";
 
-export default function DecisionDateField() {
+export default function EndDate() {
   const value = useStore(
     constructionStore,
-    (s) => s.formData.decision.decisionDate
+    (s) => s.formData.constructionExecutionTime.endDate
   );
   const setNestedDateField = useStore(
     constructionStore,
@@ -15,9 +15,11 @@ export default function DecisionDateField() {
 
   return (
     <DatePicker
-      label="Ngày quyết định"
+      label="Ngày kết thúc"
       value={value ? dayjs(value) : null}
-      onChange={(val) => setNestedDateField("decision", "decisionDate", val)}
+      onChange={(val) =>
+        setNestedDateField("constructionExecutionTime", "endDate", val)
+      }
       slotProps={{ textField: { fullWidth: true } }}
     />
   );

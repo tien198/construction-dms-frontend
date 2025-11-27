@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import { constructionStore } from "../store/zustandStore";
+import { constructionStore } from "../../store/zustandStore";
 import { useStore } from "zustand";
 
 export default function DecisionNumberField() {
