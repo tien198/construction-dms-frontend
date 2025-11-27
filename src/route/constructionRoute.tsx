@@ -8,8 +8,10 @@ export const constructionRoute: RouteObject = {
     {
       path: "them",
       element: <ConstructionPage />,
-      action: () =>
-        import("../page/construction/action").then((m) => m.addConstruction()),
+      action: (args) =>
+        import("../page/construction/action").then((m) =>
+          m.addConstruction(args)
+        ),
     },
   ],
 };

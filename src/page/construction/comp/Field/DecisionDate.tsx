@@ -17,6 +17,7 @@ export default function DecisionDateField() {
     <DatePicker
       label="Ngày quyết định"
       value={value ? dayjs(value) : null}
+      name="decisionDate"
       onChange={(val) => setNestedDateField("decision", "decisionDate", val)}
       slotProps={{ textField: { fullWidth: true } }}
     />

@@ -18,6 +18,7 @@ export default function DecisionNumberField() {
     <TextField
       fullWidth
       label="Số quyết định"
+      name="decisionNumber"
       value={value}
       onChange={handleChange}
     />

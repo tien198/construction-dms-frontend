@@ -17,6 +17,7 @@ export default function EndDate() {
     <DatePicker
       label="Ngày kết thúc"
       value={value ? dayjs(value) : null}
+      name="endDate"
       onChange={(val) =>
         setNestedDateField("constructionExecutionTime", "endDate", val)
       }
