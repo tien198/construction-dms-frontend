@@ -1,5 +1,5 @@
 export interface Construction {
-  number: number;
+  documentNo: number;
   name: string;
   dateOfSigning: Date | null; // Cho phép null khi khởi tạo
   budget: number;

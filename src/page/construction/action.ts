@@ -1,9 +1,8 @@
-import type { ActionFunctionArgs } from "react-router";
+import { constructionStore } from "./store/zustandStore";
 
-export async function addConstruction(args: ActionFunctionArgs) {
-  const formData = await args.request.formData();
-  const data = Object.fromEntries(formData);
+export async function addConstruction() {
+  // const formData = await args.request.formData();
   console.log("--------------");
-
+  const data = constructionStore.getState().formData;
   console.log(data);
 }

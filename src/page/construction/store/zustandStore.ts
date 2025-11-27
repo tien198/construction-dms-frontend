@@ -1,9 +1,9 @@
-import { create } from "zustand";
+import { createStore } from "zustand";
 import type { ConstructionStore } from "./store.type";
 import type { Construction } from "../type/construction";
 
 export const initialFormData: Construction = {
-  number: 0,
+  documentNo: 0,
   name: "",
   dateOfSigning: null,
   budget: 0,
@@ -20,7 +20,7 @@ export const initialFormData: Construction = {
   },
 };
 
-export const useConstructionStore = create<ConstructionStore>()((set) => ({
+export const constructionStore = createStore<ConstructionStore>()((set) => ({
   formData: initialFormData,
 
   // Tương đương handleChange (nhưng nhận value trực tiếp thay vì event)
