@@ -1,8 +1,28 @@
+import type { ActionFunctionArgs } from "react-router";
 import { constructionStore } from "./store/zustandStore";
 
-export async function addConstruction() {
+export async function addConstruction(args: ActionFunctionArgs) {
   // const formData = await args.request.formData();
   console.log("--------------");
+  console.log(import.meta.env.VITE_API_URL);
+
   const data = constructionStore.getState().formData;
-  console.log(data);
+
+  try {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/construction`, {
+      method: args.request.method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      alert("Lỗi");
+      return await res.json();
+    }
+  } catch {
+    alert("Lỗi kết nối đến server");
+  }
+  return null;
 }

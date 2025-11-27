@@ -17,6 +17,7 @@ export default function StartDate() {
     <DatePicker
       label="Ngày bắt đầu"
       value={value ? dayjs(value) : null}
+      name="startDate"
       onChange={(val) =>
         setNestedDateField("constructionExecutionTime", "startDate", val)
       }
