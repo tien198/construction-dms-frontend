@@ -1,8 +1,6 @@
 import type { LoaderFunctionArgs } from "react-router";
 
 export async function loader(args: LoaderFunctionArgs) {
-  console.log(import.meta.env.VITE_API_URL + `/construction/${args.params.id}`);
-
   try {
     const res = await fetch(
       import.meta.env.VITE_API_URL + `/construction/${args.params.id}`

@@ -36,6 +36,10 @@ export const constructionRoute: RouteObject = {
         import("../page/construction/detail/loader").then((m) =>
           m.loader(args)
         ),
+      action: (args) =>
+        import("../page/construction/detail/action").then((m) =>
+          m.action(args)
+        ),
     },
     {
       path: "them",
