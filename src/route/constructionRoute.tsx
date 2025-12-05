@@ -1,7 +1,15 @@
 import type { RouteObject } from "react-router";
-import ConstructionPage from "../page/construction/create/ConstructionCreate";
-import ConstructionList from "../page/construction/list/ConstructionList";
-import ConstructionDetail from "../page/construction/detail/ConstructionDetail";
+import { lazy, Suspense } from "react";
+
+const ConstructionPage = lazy(
+  () => import("../page/construction/create/ConstructionCreate")
+);
+const ConstructionList = lazy(
+  () => import("../page/construction/list/ConstructionList")
+);
+const ConstructionDetail = lazy(
+  () => import("../page/construction/detail/ConstructionDetail")
+);
 
 export const constructionRoute: RouteObject = {
   path: "cong-trinh",
@@ -9,13 +17,21 @@ export const constructionRoute: RouteObject = {
   children: [
     {
       index: true,
-      element: <ConstructionList />,
+      element: (
+        <Suspense fallback={<div>loading ...</div>}>
+          <ConstructionList />
+        </Suspense>
+      ),
       loader: () =>
         import("../page/construction/list/loader").then((m) => m.loader()),
     },
     {
       path: ":id",
-      element: <ConstructionDetail />,
+      element: (
+        <Suspense fallback={<div>loading ...</div>}>
+          <ConstructionDetail />
+        </Suspense>
+      ),
       loader: (args) =>
         import("../page/construction/detail/loader").then((m) =>
           m.loader(args)
