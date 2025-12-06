@@ -132,21 +132,12 @@ export default function ConstructionForm() {
           <Divider />
           <CardContent>
             <Grid container spacing={2}>
-              <Grid size={{ xs: 12, md: 6 }}>
+              <Grid size={{ xs: 12, md: 4 }}>
                 <TextField
                   fullWidth
-                  label="Số văn bản (Document No)"
+                  label="Số hiệu"
                   value={formData.documentNo}
                   onChange={handleChange("documentNo")}
-                  required
-                />
-              </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <TextField
-                  fullWidth
-                  label="Tên công trình"
-                  value={formData.name}
-                  onChange={handleChange("name")}
                   required
                 />
               </Grid>
@@ -163,21 +154,31 @@ export default function ConstructionForm() {
               <Grid size={{ xs: 12, md: 4 }}>
                 <TextField
                   fullWidth
+                  label="Nguồn vốn"
+                  value={formData.sourceOfFunds}
+                  onChange={handleChange("sourceOfFunds")}
+                />
+              </Grid>
+              <Grid size={{ xs: 12 }}>
+                <TextField
+                  fullWidth
+                  label="Tên công trình"
+                  value={formData.name}
+                  onChange={handleChange("name")}
+                  required
+                />
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 4 }}>
+                <TextField
+                  fullWidth
                   type="number"
                   label="Ngân sách (Budget)"
                   value={formData.budget}
                   onChange={handleChange("budget")}
                 />
               </Grid>
-              <Grid size={{ xs: 12, md: 4 }}>
-                <TextField
-                  fullWidth
-                  label="Nguồn vốn"
-                  value={formData.sourceOfFunds}
-                  onChange={handleChange("sourceOfFunds")}
-                />
-              </Grid>
-              <Grid size={{ xs: 12, md: 4 }}>
+              <Grid size={{ xs: 12, md: 8 }}>
                 <TextField
                   fullWidth
                   label="Ngân sách bằng chữ"
@@ -192,89 +193,85 @@ export default function ConstructionForm() {
         {/* --- Phần 2: Chi tiết thực hiện & Quyết định --- */}
         <Card>
           <CardHeader title="Chi tiết thực hiện & Quyết định" />
-          <Divider />
           <CardContent>
+            <Divider>Thời gian thi công</Divider>
             <Grid container spacing={3}>
               {/* Thời gian thực hiện */}
               <Grid size={{ xs: 12, md: 6 }}>
-                <Typography variant="subtitle2" gutterBottom>
-                  Thời gian thực hiện
-                </Typography>
-                <Stack spacing={2}>
-                  <TextField
-                    fullWidth
-                    type="date"
-                    label="Ngày bắt đầu"
-                    InputLabelProps={{ shrink: true }}
-                    value={formatDateForInput(
-                      formData.constructionExecutionTime.startDate
-                    )}
-                    onChange={handleNestedChange(
-                      "constructionExecutionTime",
-                      "startDate",
-                      true
-                    )}
-                  />
-                  <TextField
-                    fullWidth
-                    type="date"
-                    label="Ngày kết thúc"
-                    InputLabelProps={{ shrink: true }}
-                    value={formatDateForInput(
-                      formData.constructionExecutionTime.endDate
-                    )}
-                    onChange={handleNestedChange(
-                      "constructionExecutionTime",
-                      "endDate",
-                      true
-                    )}
-                  />
-                </Stack>
-              </Grid>
-
-              {/* Quyết định */}
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Typography variant="subtitle2" gutterBottom>
-                  Quyết định phê duyệt
-                </Typography>
-                <Stack spacing={2}>
-                  <TextField
-                    fullWidth
-                    label="Số quyết định"
-                    value={formData.decision.number}
-                    onChange={handleNestedChange("decision", "number")}
-                  />
-                  <TextField
-                    fullWidth
-                    type="date"
-                    label="Ngày quyết định"
-                    InputLabelProps={{ shrink: true }}
-                    value={formatDateForInput(formData.decision.date)}
-                    onChange={handleNestedChange("decision", "date", true)}
-                  />
-                </Stack>
-              </Grid>
-
-              <Grid size={{ xs: 12, md: 6 }}>
                 <TextField
                   fullWidth
-                  multiline
-                  minRows={2}
-                  label="Hiện trạng kết cấu"
-                  value={formData.existingConditionOfTheStructure}
-                  onChange={handleChange("existingConditionOfTheStructure")}
+                  type="date"
+                  label="Ngày bắt đầu"
+                  InputLabelProps={{ shrink: true }}
+                  value={formatDateForInput(
+                    formData.constructionExecutionTime.startDate
+                  )}
+                  onChange={handleNestedChange(
+                    "constructionExecutionTime",
+                    "startDate",
+                    true
+                  )}
                 />
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
                 <TextField
                   fullWidth
-                  multiline
-                  minRows={2}
-                  label="Phạm vi sửa chữa"
-                  value={formData.repairScope}
-                  onChange={handleChange("repairScope")}
+                  type="date"
+                  label="Ngày kết thúc"
+                  InputLabelProps={{ shrink: true }}
+                  value={formatDateForInput(
+                    formData.constructionExecutionTime.endDate
+                  )}
+                  onChange={handleNestedChange(
+                    "constructionExecutionTime",
+                    "endDate",
+                    true
+                  )}
                 />
               </Grid>
+            </Grid>
+            {/* Quyết định */}
+            <Divider>Quyết định phê duyệt</Divider>
+            <Grid container spacing={3}>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
+                  label="Số quyết định"
+                  value={formData.decision.number}
+                  onChange={handleNestedChange("decision", "number")}
+                />
+              </Grid>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
+                  type="date"
+                  label="Ngày quyết định"
+                  InputLabelProps={{ shrink: true }}
+                  value={formatDateForInput(formData.decision.date)}
+                  onChange={handleNestedChange("decision", "date", true)}
+                />
+              </Grid>
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 6 }}>
+              <TextField
+                fullWidth
+                multiline
+                minRows={2}
+                label="Hiện trạng kết cấu"
+                value={formData.existingConditionOfTheStructure}
+                onChange={handleChange("existingConditionOfTheStructure")}
+              />
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <TextField
+                fullWidth
+                multiline
+                minRows={2}
+                label="Phạm vi sửa chữa"
+                value={formData.repairScope}
+                onChange={handleChange("repairScope")}
+              />
             </Grid>
           </CardContent>
         </Card>
