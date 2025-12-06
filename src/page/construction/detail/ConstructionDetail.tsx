@@ -71,8 +71,8 @@ export default function ConstructionDetail() {
             <Stack direction="row" alignItems="center" spacing={1}>
               <GavelOutlined sx={{ fontSize: 16, color: "text.secondary" }} />
               <Typography variant="body2" color="text.secondary">
-                QĐ số: <b>{data.decision.decisionNumber}</b> (
-                {formatDate(data.decision.decisionDate)})
+                QĐ số: <b>{data.decision.number}</b> (
+                {formatDate(data.decision.date)})
               </Typography>
             </Stack>
           </Box>

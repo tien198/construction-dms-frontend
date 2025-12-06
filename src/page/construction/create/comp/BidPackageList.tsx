@@ -1,16 +1,14 @@
 import { Grid, MenuItem, Paper, TextField, Typography } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { BidPackageDefaultValue as defVal } from "./BidPackageList.Default";
-import { useStore } from "zustand";
-import { constructionStore } from "../store/zustandStore";
+import type { BidPackage } from "../../type/construction";
 
 // Gợi ý cấu trúc Grid cho item của gói thầu (để bạn implement vào BidPackagesList)
-export default function BidPackagesList() {
-  const package = useStore(
-    constructionStore,
-    (state) => state.formData.packages[0]
-  );
-
+export default function BidPackagesComp({
+  bidPackage,
+}: {
+  bidPackage: BidPackage;
+}) {
   return (
     <Paper variant="outlined" sx={{ p: 2, mb: 2 }}>
       <Grid container spacing={2}>
@@ -21,16 +19,12 @@ export default function BidPackagesList() {
         </Grid>
 
         <Grid size={{ xs: 12, md: 6 }}>
-          <TextField
-            label="Chủ đầu tư"
-            name="packages[0].projectOwner"
-            fullWidth
-          />
+          <TextField label="Chủ đầu tư" name="package.projectOwner" fullWidth />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
           <TextField
             label="Tên gói thầu"
-            name="packages[0].bidPackageName"
+            name="package.bidPackageName"
             fullWidth
           />
         </Grid>
@@ -39,20 +33,20 @@ export default function BidPackagesList() {
           <TextField
             label="Giá gói thầu"
             type="number"
-            name="packages[0].price"
+            name="package.price"
             fullWidth
           />
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
           <DatePicker
             label="Thời gian chọn thầu"
-            name="packages[0].contractorSelectionTime"
+            name="package.contractorSelectionTime"
           />
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
           <TextField
             label="Thời gian thực hiện"
-            name="packages[0].implementDuration"
+            name="package.implementDuration"
             placeholder="10 ngày"
             fullWidth
           />
@@ -62,19 +56,19 @@ export default function BidPackagesList() {
           <TextField
             select
             label="Hình thức lựa chọn"
-            name="packages[0].contractorSelectionMethod"
-            value={}
+            name="package.contractorSelectionMethod"
+            value={bidPackage.contractorSelectionMethod}
             fullWidth
           >
             {defVal.contractorSelectionMethod.map((i) => (
-              <MenuItem value="Chỉ định thầu rút gọn">{i}</MenuItem>
+              <MenuItem value={i}>{i}</MenuItem>
             ))}
           </TextField>
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
           <TextField
             label="Loại hợp đồng"
-            name="packages[0].contractType"
+            name="package.contractType"
             fullWidth
           />
         </Grid>
@@ -82,7 +76,7 @@ export default function BidPackagesList() {
         <Grid size={12}>
           <TextField
             label="Tóm tắt công việc"
-            name="packages[0].shortDescription"
+            name="package.shortDescription"
             multiline
             minRows={2}
             fullWidth

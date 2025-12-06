@@ -1,26 +1,6 @@
 import { createStore } from "zustand";
 import type { ConstructionStore } from "./store.type";
-import type { Construction } from "../../type/construction";
-
-export const initialFormData: Construction = {
-  documentNo: "",
-  name: "",
-  dateOfSigning: null,
-  budget: 0,
-  stringBudget: "",
-  sourceOfFunds: new Date(Date.now()).getFullYear().toString(),
-  constructionExecutionTime: {
-    startDate: null,
-    endDate: null,
-  },
-  existingConditionOfTheStructure: "",
-  repairScope: "",
-  decision: {
-    number: "",
-    date: null,
-  },
-  packages: new Array(3).fill(null),
-};
+import { initialFormData } from "../constant/initialData";
 
 export const constructionStore = createStore<ConstructionStore>()((set) => ({
   formData: initialFormData,

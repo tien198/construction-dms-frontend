@@ -4,6 +4,7 @@ import { constructionStore } from "./store/zustandStore";
 export async function addConstruction(args: ActionFunctionArgs) {
   // const formData = await args.request.formData();
   const data = constructionStore.getState().formData;
+  console.log(data);
 
   try {
     const res = await fetch(`${import.meta.env.VITE_API_URL}/construction`, {
