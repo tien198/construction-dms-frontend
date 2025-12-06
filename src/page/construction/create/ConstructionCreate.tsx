@@ -4,11 +4,13 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { Form } from "react-router";
 import ConF from "./comp/ConstructionFormFields";
 import "dayjs/locale/vi";
+import BidPackagesList from "./comp/BidPackageList";
 
 export default function ConstructionPage() {
-  // Get only formData from store; individual components use the store for updates
+  // Store logic (giữ nguyên comment của bạn)
   // const { setField, setNestedField, setDateField, setNestedDateField } =
   //   useConstructionStore();
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="vi">
       <Box sx={{ p: 4, maxWidth: 900, mx: "auto" }}>
@@ -34,11 +36,18 @@ export default function ConstructionPage() {
                 <ConF.DateOfSigning />
               </Grid>
 
-              {/* --- Ngân sách --- */}
+              {/* --- Ngân sách & Nguồn vốn --- */}
+              <Grid size={12}>
+                <Divider sx={{ my: 1 }}>Ngân sách & Nguồn vốn</Divider>
+              </Grid>
               <Grid size={{ xs: 12, md: 4 }}>
                 <ConF.BudgetField />
               </Grid>
               <Grid size={{ xs: 12, md: 8 }}>
+                {/* [NEW] Thêm trường Nguồn vốn */}
+                <ConF.SourceOfFundsField />
+              </Grid>
+              <Grid size={{ xs: 12 }}>
                 <ConF.StringBudgetField />
               </Grid>
 
@@ -76,6 +85,17 @@ export default function ConstructionPage() {
               </Grid>
               <Grid size={12}>
                 <ConF.RepairScopeField />
+              </Grid>
+
+              {/* --- [NEW] Danh sách Gói thầu (Bid Packages) --- */}
+              <Grid size={12}>
+                <Divider sx={{ my: 1 }}>Danh sách Gói thầu</Divider>
+              </Grid>
+
+              <Grid size={12}>
+                {/* Component này sẽ chịu trách nhiệm render danh sách các gói thầu 
+                    và nút "Thêm gói thầu". */}
+                <BidPackagesList />
               </Grid>
 
               {/* --- Button Submit --- */}

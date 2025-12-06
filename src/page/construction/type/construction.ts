@@ -1,10 +1,23 @@
+export type BidPackage = {
+  projectOwner: string; // Công ty Trực thăng Miền Nam
+  bidPackageName: string;
+  shortDescription: string; // Tóm tắt công việc chính của gói thầu
+  price: number; // Giá gói thầu
+  contractorSelectionTime: Date | null; // Thời gian bắt đầu tổ chức lựa chọn nhà thầu
+  contractorSelectionMethod: string; // Hình thức lựa chọn nhà thầu: chỉ định thầu rút gọn
+  contractType: string; // Loại hợp đồng: Trọn gói
+  implementDuration: string; // Thời gian thực hiện gói thầu: 10 ngày
+};
+
 export interface Construction {
   id?: string;
   documentNo: string;
   name: string;
-  dateOfSigning: Date | null; // Cho phép null khi khởi tạo
+  dateOfSigning: Date | null;
   budget: number;
   stringBudget: string;
+  sourceOfFunds: string;
+  //
   constructionExecutionTime: {
     startDate: Date | null;
     endDate: Date | null;
@@ -12,7 +25,8 @@ export interface Construction {
   existingConditionOfTheStructure: string;
   repairScope: string;
   decision: {
-    decisionNumber: string;
-    decisionDate: Date | null;
+    number: string;
+    date: Date | null;
   };
+  packages: (BidPackage | null)[];
 }

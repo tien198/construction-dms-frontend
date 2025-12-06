@@ -8,6 +8,7 @@ export const initialFormData: Construction = {
   dateOfSigning: null,
   budget: 0,
   stringBudget: "",
+  sourceOfFunds: new Date(Date.now()).getFullYear().toString(),
   constructionExecutionTime: {
     startDate: null,
     endDate: null,
@@ -15,9 +16,10 @@ export const initialFormData: Construction = {
   existingConditionOfTheStructure: "",
   repairScope: "",
   decision: {
-    decisionNumber: "",
-    decisionDate: null,
+    number: "",
+    date: null,
   },
+  packages: new Array(3).fill(null),
 };
 
 export const constructionStore = createStore<ConstructionStore>()((set) => ({

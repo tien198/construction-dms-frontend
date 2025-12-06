@@ -9,6 +9,7 @@ import DecisionNumberField from "./Field/DecisionNumber";
 import DecisionDateField from "./Field/DecisionDate";
 import ExistingConditionField from "./Field/ExistingCondition";
 import RepairScopeField from "./Field/RepairScope";
+import SourceOfFundsField from "./Field/SourceOfFunds";
 
 const ConF = {
   DocumentNo,
@@ -16,6 +17,7 @@ const ConF = {
   DateOfSigning,
   BudgetField,
   StringBudgetField,
+  SourceOfFundsField,
   StartDate,
   EndDate,
   DecisionNumberField,
