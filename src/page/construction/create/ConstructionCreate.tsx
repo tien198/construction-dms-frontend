@@ -120,7 +120,7 @@ export default function ConstructionForm() {
     >
       <Stack spacing={3}>
         <Typography variant="h4" color="primary" gutterBottom>
-          Tạo Mới Construction
+          Tạo Mới Công Trình
         </Typography>
 
         {/* --- Phần 1: Thông tin chung --- */}
@@ -129,7 +129,7 @@ export default function ConstructionForm() {
             title="Thông tin chung"
             subheader="Thông tin cơ bản về công trình"
           />
-          <Divider />
+          <Divider></Divider>
           <CardContent>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, md: 4 }}>
@@ -173,7 +173,7 @@ export default function ConstructionForm() {
                 <TextField
                   fullWidth
                   type="number"
-                  label="Ngân sách (Budget)"
+                  label="Ngân sách"
                   value={formData.budget}
                   onChange={handleChange("budget")}
                 />
@@ -194,7 +194,7 @@ export default function ConstructionForm() {
         <Card>
           <CardHeader title="Chi tiết thực hiện & Quyết định" />
           <CardContent>
-            <Divider>Thời gian thi công</Divider>
+            <Divider sx={{ mb: 3 }}>Thời gian thi công</Divider>
             <Grid container spacing={3}>
               {/* Thời gian thực hiện */}
               <Grid size={{ xs: 12, md: 6 }}>
@@ -231,7 +231,7 @@ export default function ConstructionForm() {
               </Grid>
             </Grid>
             {/* Quyết định */}
-            <Divider>Quyết định phê duyệt</Divider>
+            <Divider sx={{ mt: 4, mb: 3 }}>Quyết định phê duyệt</Divider>
             <Grid container spacing={3}>
               <Grid size={{ xs: 12, md: 6 }}>
                 <TextField
@@ -253,26 +253,25 @@ export default function ConstructionForm() {
               </Grid>
             </Grid>
 
-            <Grid size={{ xs: 12, md: 6 }}>
+            <Divider sx={{ mt: 4, mb: 3 }}>Thông tin kỹ thuật</Divider>
+            <Stack spacing={2}>
               <TextField
                 fullWidth
                 multiline
-                minRows={2}
+                minRows={3}
                 label="Hiện trạng kết cấu"
                 value={formData.existingConditionOfTheStructure}
                 onChange={handleChange("existingConditionOfTheStructure")}
               />
-            </Grid>
-            <Grid size={{ xs: 12, md: 6 }}>
               <TextField
                 fullWidth
                 multiline
-                minRows={2}
+                minRows={3}
                 label="Phạm vi sửa chữa"
                 value={formData.repairScope}
                 onChange={handleChange("repairScope")}
               />
-            </Grid>
+            </Stack>
           </CardContent>
         </Card>
 
@@ -391,11 +390,11 @@ export default function ConstructionForm() {
                         onChange={handlePackageChange(index, "contractType")}
                       />
                     </Grid>
-                    <Grid size={{ xs: 12, md: 6 }}>
+                    <Grid size={{ xs: 12 }}>
                       <TextField
                         fullWidth
                         multiline
-                        minRows={2}
+                        minRows={3}
                         label="Mô tả ngắn"
                         value={pkg.shortDescription}
                         onChange={handlePackageChange(
