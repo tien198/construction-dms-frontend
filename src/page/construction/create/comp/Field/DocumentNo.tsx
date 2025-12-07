@@ -1,23 +1,21 @@
 import { TextField } from "@mui/material";
-import { constructionStore } from "../../store/zustandStore";
 import { useStore } from "zustand";
+import { constructionStore } from "../../store/zustandStore";
 
 export default function DocumentNo() {
-  const documentNo = useStore(constructionStore, (s) => s.formData.documentNo);
-  const setField = useStore(constructionStore, (s) => s.setField);
+  const documentNo = useStore(
+    constructionStore,
+    (state) => state.formData.documentNo
+  );
+  const setField = useStore(constructionStore, (state) => state.setField);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setField(name as any, value);
-  };
   return (
     <TextField
       fullWidth
       label="Số hiệu"
-      name="documentNo"
-      type="text"
       value={documentNo}
-      onChange={handleChange}
+      onChange={(e) => setField("documentNo", e.target.value)}
+      required
     />
   );
 }

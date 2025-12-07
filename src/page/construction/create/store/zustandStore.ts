@@ -1,6 +1,7 @@
 import { createStore } from "zustand";
 import type { ConstructionStore } from "./store.type";
 import { initialFormData } from "../constant/initialData";
+import type { BidPackage } from "../../type/construction";
 
 export const constructionStore = createStore<ConstructionStore>()((set) => ({
   formData: initialFormData,
@@ -43,6 +44,15 @@ export const constructionStore = createStore<ConstructionStore>()((set) => ({
         },
       },
     })),
+
+  setPackage: (id: number, prop: keyof BidPackage, value: any) =>
+    set((state) => {
+      const shallow = { ...state };
+      console.log(shallow.formData.packages[id]);
+
+      (shallow.formData.packages[id]![prop] as any) = value;
+      return shallow;
+    }),
 
   resetForm: () => set({ formData: initialFormData }),
 }));

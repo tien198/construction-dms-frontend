@@ -1,5 +1,5 @@
 import type { Dayjs } from "dayjs";
-import type { Construction } from "../../type/construction";
+import type { BidPackage, Construction } from "../../type/construction";
 
 export interface ConstructionStore {
   formData: Construction;
@@ -19,7 +19,7 @@ export interface ConstructionStore {
     child: string,
     value: Dayjs | null
   ) => void;
-
+  setPackage: (id: number, prop: keyof BidPackage, value: any) => void;
   // Reset form nếu cần
   resetForm: () => void;
 }

@@ -1,9 +1,9 @@
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-import { constructionStore } from "../../store/zustandStore";
+import { DatePicker } from "@mui/x-date-pickers";
 import { useStore } from "zustand";
+import { constructionStore } from "../../store/zustandStore";
 
-export default function StartDate() {
+export default function ConstructionStartDate() {
   const value = useStore(
     constructionStore,
     (s) => s.formData.constructionExecutionTime.startDate
@@ -15,13 +15,12 @@ export default function StartDate() {
 
   return (
     <DatePicker
+      sx={{ width: "100%" }}
       label="Ngày bắt đầu"
-      value={value ? dayjs(value) : null}
-      name="startDate"
+      value={dayjs(value)}
       onChange={(val) =>
         setNestedDateField("constructionExecutionTime", "startDate", val)
       }
-      slotProps={{ textField: { fullWidth: true } }}
     />
   );
 }

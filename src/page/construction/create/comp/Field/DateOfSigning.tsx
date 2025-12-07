@@ -1,7 +1,7 @@
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-import { constructionStore } from "../../store/zustandStore";
+import { DatePicker } from "@mui/x-date-pickers";
 import { useStore } from "zustand";
+import { constructionStore } from "../../store/zustandStore";
 
 export default function DateOfSigning() {
   const value = useStore(constructionStore, (s) => s.formData.dateOfSigning);
@@ -9,10 +9,10 @@ export default function DateOfSigning() {
 
   return (
     <DatePicker
-      label="Ngày ký kết"
-      value={value ? dayjs(value) : null}
+      sx={{ width: "100%" }}
+      label="Ngày ký"
+      value={dayjs(value)}
       onChange={(val) => setDateField("dateOfSigning", val)}
-      slotProps={{ textField: { fullWidth: true } }}
     />
   );
 }
