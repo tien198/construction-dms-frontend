@@ -43,7 +43,7 @@ export default function PackageCard({ item }: { item: BidPackage }) {
             alignItems="flex-end"
             gap={1}
           >
-            <span>Loại hợp đồng:</span>
+            <span style={{ paddingRight: "1rem" }}>Loại hợp đồng:</span>
             <Chip
               label={item.contractType}
               color="success"
