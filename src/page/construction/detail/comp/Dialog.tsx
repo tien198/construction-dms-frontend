@@ -12,24 +12,26 @@ import {
   Box,
 } from "@mui/material";
 
-// Định nghĩa kiểu dữ liệu đầu vào
-type DocNames = string[];
-
 interface DocumentSelectorProps {
-  docNames: DocNames;
   onSave?: (selected: string[]) => void; // Callback khi người dùng nhấn Lưu
 }
 
 export default function DocumentSelectorPopup({
-  docNames,
   onSave,
 }: DocumentSelectorProps) {
   const [open, setOpen] = useState<boolean>(false);
+  const [docNames, setDocNames] = useState<string[]>([]);
+
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   // Mở Popup
   const handleClickOpen = () => {
     setOpen(true);
+    fetch(import.meta.env.VITE_API_URL + "/construction/doc-list")
+      .then((response) => response.json())
+      .then((data) => {
+        setDocNames(data);
+      });
   };
 
   // Đóng Popup

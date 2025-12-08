@@ -16,7 +16,8 @@ export async function action(args: ActionFunctionArgs) {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to generate document");
+    alert(JSON.stringify(await response.json()));
+    return;
   }
 
   alert("Thành công.");
