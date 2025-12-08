@@ -1,5 +1,10 @@
+import consList from "../../../assets/danh-sach-cong-trinh.json";
 import type { LoaderFunctionArgs } from "react-router";
 
+export async function loader(args: LoaderFunctionArgs) {
+  return consList[0];
+}
+/*
 export async function loader(args: LoaderFunctionArgs) {
   try {
     const res = await fetch(
@@ -12,3 +17,4 @@ export async function loader(args: LoaderFunctionArgs) {
     return null;
   }
 }
+*/

@@ -3,7 +3,7 @@ import type { BidPackage } from "../../../type/construction";
 // --- 2. Các giá trị khởi tạo mặc định ---
 import type { Construction } from "../../../type/construction";
 import { designPackage, verificationPackage } from "./initialPackageData";
-
+/*
 export const initialFormData: Construction = {
   documentNo: "",
   name: "",
@@ -23,6 +23,7 @@ export const initialFormData: Construction = {
   },
   packages: [designPackage, verificationPackage],
 };
+*/
 
 export const initialBidPackage: BidPackage = {
   projectOwner: "Công ty Trực thăng Miền Nam",
@@ -35,7 +36,6 @@ export const initialBidPackage: BidPackage = {
   implementDuration: "",
 };
 
-/*
 export const initialFormData: Construction = {
   id: "1764347797538-fa",
   documentNo: "fa",
@@ -59,4 +59,3 @@ export const initialFormData: Construction = {
 
   packages: [designPackage, verificationPackage],
 };
-*/
