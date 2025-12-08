@@ -18,6 +18,7 @@ export default function ImplementDuration({ id }: { id: number }) {
       label="Thời gian thực hiện"
       value={value}
       onChange={handleChange}
+      placeholder="10 ngày"
     />
   );
 }

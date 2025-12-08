@@ -31,5 +31,5 @@ export const initialBidPackage: BidPackage = {
   contractorSelectionTime: null,
   contractorSelectionMethod: "Chỉ định thầu rút gọn",
   contractType: "Trọn gói",
-  implementDuration: "10 ngày",
+  implementDuration: "",
 };

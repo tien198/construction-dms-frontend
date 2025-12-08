@@ -11,20 +11,12 @@ type Props = {
   onRemove: (id: number) => void;
 };
 export default function BidPackage({ index, onRemove }: Props) {
-  const pkg = useStore(
-    constructionStore,
-    (state) => state.formData.packages[index]
-  )!;
-
   return (
     <Card sx={{ mb: 2, borderLeft: "4px solid #1976d2" }}>
       <CardContent>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12 }} display="flex" justifyContent="space-between">
-            <Typography variant="subtitle1" fontWeight="bold">
-              Gói thầu:{" "}
-              {pkg.bidPackageName ? pkg.bidPackageName : `#${index + 1}`}
-            </Typography>
+            <Heading index={index} />
             <IconButton
               onClick={() => onRemove(index)}
               color="error"
@@ -63,5 +55,17 @@ export default function BidPackage({ index, onRemove }: Props) {
         </Grid>
       </CardContent>
     </Card>
+  );
+}
+
+function Heading({ index }: { index: number }) {
+  const packageName = useStore(
+    constructionStore,
+    (s) => s.formData.packages[index]?.bidPackageName
+  );
+  return (
+    <Typography variant="subtitle1" fontWeight="bold">
+      Gói thầu: {packageName ? packageName : `#${index + 1}`}
+    </Typography>
   );
 }
