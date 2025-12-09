@@ -4,7 +4,7 @@ export type BidPackage = {
   bidPackageName: string;
   shortDescription: string; // Tóm tắt công việc chính của gói thầu
   price: number; // Giá gói thầu
-  contractorSelectionTime: Date | null; // Thời gian bắt đầu tổ chức lựa chọn nhà thầu
+  contractorSelectionTime: string | Date | null; // Thời gian bắt đầu tổ chức lựa chọn nhà thầu
   contractorSelectionMethod: string; // Hình thức lựa chọn nhà thầu: chỉ định thầu rút gọn
   contractType: string; // Loại hợp đồng: Trọn gói
   implementDuration: string; // Thời gian thực hiện gói thầu: 10 ngày
@@ -14,20 +14,20 @@ export interface Construction {
   id?: string;
   documentNo: string;
   name: string;
-  dateOfSigning: Date | null;
+  dateOfSigning: string | Date | null;
   budget: number;
   stringBudget: string;
   sourceOfFunds: string;
   //
   constructionImplementationTime: {
-    startDate: Date | null;
-    endDate: Date | null;
+    startDate: string | Date | null;
+    endDate: string | Date | null;
   };
   existingConditionOfTheStructure: string;
   repairScope: string;
   decision: {
     number: string;
-    date: Date | null;
+    date: string | Date | null;
   };
   packages: (BidPackage | null)[];
 }

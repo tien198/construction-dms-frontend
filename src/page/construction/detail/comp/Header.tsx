@@ -26,7 +26,7 @@ export default function Header({ con }: Props) {
         spacing={20}
       >
         <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-          <Typography variant="h2" fontWeight="bold">
+          <Typography variant="h2" fontWeight="bold" textAlign="right">
             {con.name}
           </Typography>
           <Typography variant="h5" display="flex" alignItems="center" gap={3}>

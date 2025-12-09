@@ -42,8 +42,12 @@ export default function ConstructionInformation({ con }: Props) {
               icon={<CalendarToday fontSize="small" />}
               label="Thời gian thực hiện"
               value={`${formatDate(
-                con.constructionImplementationTime.startDate
-              )} - ${formatDate(con.constructionImplementationTime.endDate)}`}
+                con.constructionImplementationTime.startDate,
+                "month"
+              )} - ${formatDate(
+                con.constructionImplementationTime.endDate,
+                "month"
+              )}`}
             />
             <InfoItem
               icon={<Gavel fontSize="small" />}
