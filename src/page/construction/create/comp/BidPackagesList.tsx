@@ -4,8 +4,8 @@ import Typography from "@mui/material/Typography";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useStore } from "zustand";
 import { constructionStore } from "../store/zustandStore";
-import { initialBidPackage } from "../constant/initalData/initialFormData";
 import BidPackage from "./BidPackage";
+import { initialBidPackage } from "../constant/initalData/initialPackageData";
 
 // Gợi ý cấu trúc Grid cho item của gói thầu (để bạn implement vào BidPackagesList)
 export default function BidPackagesList() {

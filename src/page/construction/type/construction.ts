@@ -1,4 +1,5 @@
 export type BidPackage = {
+  arrayIndex?: number; // Số thứ tự gói thầu trong mảng, Thiết kế, Thẩm tra, Thi công
   projectOwner: string; // Công ty Trực thăng Miền Nam
   bidPackageName: string;
   shortDescription: string; // Tóm tắt công việc chính của gói thầu
