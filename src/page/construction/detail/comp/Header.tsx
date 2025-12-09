@@ -32,9 +32,9 @@ export default function Header({ con }: Props) {
           <Typography variant="h5" display="flex" alignItems="center" gap={3}>
             Số hiệu:{" "}
             <Chip
-              label={con.documentNo}
+              label={con.documentNo + " / TTr-LCQ"}
               sx={{
-                bgcolor: "rgba(255,255,255,0.2)",
+                bgcolor: "#ED6C02",
                 color: "white",
                 fontSize: "2rem",
                 padding: 3,

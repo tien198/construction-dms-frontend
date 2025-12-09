@@ -6,7 +6,7 @@ import { constructionStore } from "../../store/zustandStore";
 export default function ConstructionEndDate() {
   const value = useStore(
     constructionStore,
-    (s) => s.formData.constructionExecutionTime.endDate
+    (s) => s.formData.constructionImplementationTime.endDate
   );
   const setNestedDateField = useStore(
     constructionStore,
@@ -19,7 +19,7 @@ export default function ConstructionEndDate() {
       label="Ngày kết thúc"
       value={dayjs(value)}
       onChange={(val) =>
-        setNestedDateField("constructionExecutionTime", "endDate", val)
+        setNestedDateField("constructionImplementationTime", "endDate", val)
       }
     />
   );

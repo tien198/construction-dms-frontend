@@ -1,7 +1,7 @@
-import { createStore } from "zustand";
 import type { ConstructionStore } from "./store.type";
-import { initialFormData } from "../constant/initalData/initialFormData";
 import type { BidPackage } from "../../type/construction";
+import { createStore } from "zustand";
+import { initialFormData } from "../constant/initalData/initialFormData.const";
 
 export const constructionStore = createStore<ConstructionStore>()((set) => ({
   formData: initialFormData,

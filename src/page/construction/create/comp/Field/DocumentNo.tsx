@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { Box, Chip, TextField } from "@mui/material";
 import { useStore } from "zustand";
 import { constructionStore } from "../../store/zustandStore";
 
@@ -10,12 +10,24 @@ export default function DocumentNo() {
   const setField = useStore(constructionStore, (state) => state.setField);
 
   return (
-    <TextField
-      fullWidth
-      label="Số hiệu"
-      value={documentNo}
-      onChange={(e) => setField("documentNo", e.target.value)}
-      required
-    />
+    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+      <TextField
+        label="Số hiệu"
+        value={documentNo}
+        onChange={(e) => setField("documentNo", e.target.value)}
+        required
+      />
+      <Chip
+        label="/ TTr-LCQ"
+        sx={{
+          bgcolor: "#6b3509ff",
+          color: "white",
+          fontSize: "1.2rem",
+          fontWeight: "bold",
+          padding: 1,
+          py: 3,
+        }}
+      />
+    </Box>
   );
 }

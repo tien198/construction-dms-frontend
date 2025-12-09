@@ -19,7 +19,7 @@ export default function SourceOfFunds() {
     <TextField
       select
       fullWidth
-      label="Nguồn vốn"
+      label="Nguồn vốn: Chi phí SXKD năm"
       value={value}
       onChange={(e) => setField("sourceOfFunds", e.target.value)}
     >

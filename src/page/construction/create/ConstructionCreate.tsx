@@ -75,7 +75,7 @@ export default function ConstructionForm() {
           <Card>
             <CardHeader title="Chi tiết thực hiện & Quyết định" />
             <CardContent>
-              <Divider sx={{ mb: 3 }}>Thời gian thi công</Divider>
+              <Divider sx={{ mb: 3 }}>Thời gian thực hiện</Divider>
               <Grid container spacing={3}>
                 {/* Thời gian thực hiện */}
                 <Grid size={{ xs: 12, md: 6 }}>

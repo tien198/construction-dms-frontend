@@ -17,11 +17,11 @@ export const designPackage: BidPackage = {
   bidPackageName: "Tư vấn lập Báo cáo kinh tế kỹ thuật",
   shortDescription:
     "Lập bản vẽ thiết kế kỹ thuật thi công, dự toán công trình.",
-  price: 0,
-  contractorSelectionTime: null,
+  price: 100000000000,
+  contractorSelectionTime: new Date(), // null
   contractorSelectionMethod: "Chỉ định thầu rút gọn",
   contractType: "Trọn gói",
-  implementDuration: "",
+  implementDuration: "10 ngày",
 };
 
 export const verificationPackage: BidPackage = {
@@ -30,9 +30,9 @@ export const verificationPackage: BidPackage = {
   bidPackageName: "Thẩm tra Báo cáo kinh tế kỹ thuật",
   shortDescription:
     "Thẩm tra bản vẽ thiết kế kỹ thuật thi công, dự toán công trình",
-  price: 0,
-  contractorSelectionTime: null,
+  price: 100000000000,
+  contractorSelectionTime: new Date(), // null
   contractorSelectionMethod: "Chỉ định thầu rút gọn",
   contractType: "Trọn gói",
-  implementDuration: "",
+  implementDuration: "5 ngày",
 };
