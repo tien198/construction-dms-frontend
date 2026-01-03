@@ -1,4 +1,4 @@
-import type { BidPackage } from "../../../type/construction";
+import type { BidPackage } from "../../../type/construction.type";
 
 export const initialBidPackage: BidPackage = {
   projectOwner: "Công ty Trực thăng Miền Nam",

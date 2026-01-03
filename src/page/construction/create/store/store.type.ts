@@ -1,5 +1,5 @@
 import type { Dayjs } from "dayjs";
-import type { BidPackage, Construction } from "../../type/construction";
+import type { BidPackage, Construction } from "../../type/construction.type";
 
 export interface ConstructionStore {
   formData: Construction;

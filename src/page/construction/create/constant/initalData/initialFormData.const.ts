@@ -1,4 +1,4 @@
-import type { Construction } from "../../../type/construction";
+import type { Construction } from "../../../type/construction.type";
 import { designPackage, verificationPackage } from "./initialPackageData.const";
 /*
 export const initialFormData: Construction = {

@@ -1,5 +1,5 @@
 import type { ConstructionStore } from "./store.type";
-import type { BidPackage } from "../../type/construction";
+import type { BidPackage } from "../../type/construction.type";
 import { createStore } from "zustand";
 import { initialFormData } from "../constant/initalData/initialFormData.const";
 

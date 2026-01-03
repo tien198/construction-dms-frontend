@@ -1,5 +1,5 @@
 import { Box, Chip, Paper, Stack, Typography, useTheme } from "@mui/material";
-import type { Construction } from "../../type/construction";
+import type { Construction } from "../../type/construction.type";
 import { formatDate } from "../ultil/formatDate";
 import { formatCurrency } from "../ultil/currencyFormat";
 

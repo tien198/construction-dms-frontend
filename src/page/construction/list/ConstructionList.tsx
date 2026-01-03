@@ -9,7 +9,7 @@ import {
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import { Link, useLoaderData } from "react-router";
-import type { Construction } from "../type/construction";
+import type { Construction } from "../type/construction.type";
 
 // 1. Định nghĩa Type như yêu cầu
 type ConstructionsArr = Construction[];

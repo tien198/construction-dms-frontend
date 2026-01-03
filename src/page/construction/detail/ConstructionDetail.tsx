@@ -1,5 +1,5 @@
 import { Box, Container, Stack } from "@mui/material";
-import type { Construction } from "../type/construction";
+import type { Construction } from "../type/construction.type";
 import Header from "./comp/Header";
 import { useLoaderData } from "react-router";
 import ConstructionInformation from "./comp/ConstructionInfor";
