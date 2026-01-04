@@ -1,9 +1,11 @@
-import type { ConstructionInforDto } from "./construction-infor.type";
+import type z from "zod";
+import type { createDecisionDtoSchema } from "../schema/decision.zod";
 import type { ConstructionPeriod } from "./construction.type";
 import type { NestedAdministrativeDocumentDto } from "./nested-administrative-document.type";
 import type { CreateSubmissionDto } from "./submission.type";
 
-export interface CreateDecisionDto {
+export interface CreateDecisionDto
+  extends z.infer<typeof createDecisionDtoSchema> {
   no: string;
   level: string;
   date: string;
@@ -12,5 +14,4 @@ export interface CreateDecisionDto {
   submission: CreateSubmissionDto;
   isApproved?: boolean;
   isChangeConstructionInfor?: boolean;
-  constructionInfor?: ConstructionInforDto;
 }

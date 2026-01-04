@@ -1,6 +1,8 @@
+import type z from "zod";
 import type { BidderDto } from "./bidder.type";
+import type { bidPackageDtoSchema } from "../schema/bid-package.zod";
 
-export interface BidPackageDto {
+export interface BidPackageDto extends z.infer<typeof bidPackageDtoSchema> {
   type: "TV" | "TT" | "TC";
   projectOwner: string;
   bidPackageName: string;

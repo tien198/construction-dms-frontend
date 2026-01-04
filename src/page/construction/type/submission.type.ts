@@ -1,8 +1,11 @@
 import type { ConstructionPeriod } from "./construction.type";
 import type { ConstructionInforDto } from "./construction-infor.type";
 import type { NestedAdministrativeDocumentDto } from "./nested-administrative-document.type";
+import type z from "zod";
+import type { createSubmissionDtoSchema } from "../schema/submission.zod";
 
-export interface CreateSubmissionDto {
+export interface CreateSubmissionDto
+  extends z.infer<typeof createSubmissionDtoSchema> {
   no: string;
   level: string;
   date: string;

@@ -1,5 +1,6 @@
 yarn ts-to-zod ./src/page/construction/type/**_.type.ts ./src/page/construction/schema/_**.zod.ts
 
+yarn ts-to-zod ./src/page/construction/type/bankAccount.type.ts ./src/page/construction/schema/bankAccount.zod.ts
 yarn ts-to-zod ./src/page/construction/type/bid-package.type.ts ./src/page/construction/schema/bid-package.zod.ts
 yarn ts-to-zod ./src/page/construction/type/bidder.type.ts ./src/page/construction/schema/bidder.zod.ts
 yarn ts-to-zod ./src/page/construction/type/construction-infor.type.ts ./src/page/construction/schema/construction-infor.zod.ts
