@@ -1,7 +1,7 @@
 import type z from "zod";
-import type { bankAccountDtoSchema } from "../schema/bankAccount.zod";
+import type { BankAccountSchema } from "../schema/bankAccount.zod";
 
-export interface BankAccountDto extends z.infer<typeof bankAccountDtoSchema> {
+export interface BankAccount extends z.infer<typeof BankAccountSchema> {
   accountNumber: string;
   bankName: string;
   branch: string;

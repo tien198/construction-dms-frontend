@@ -1,15 +1,15 @@
 import { optional, string, object, boolean } from "zod/mini";
-import { nestedAdministrativeDocumentDtoSchema } from "./nested-administrative-document.zod";
-import { constructionPeriodSchema } from "./construction.zod";
-import { createSubmissionDtoSchema } from "./submission.zod";
+import { NestedAdministrativeDocumentSchema } from "./nested-administrative-document.zod";
+import { ConstructionPeriodSchema } from "./construction.zod";
+import { CreateSubmissionSchema } from "../create/schema/submission.zod";
 
-export const createDecisionDtoSchema = object({
+export const CreateDecisionSchema = object({
   no: string(),
   level: string(),
   date: string(),
-  pursuantToDec_TTMN: optional(nestedAdministrativeDocumentDtoSchema),
-  period: constructionPeriodSchema,
-  submission: createSubmissionDtoSchema,
+  pursuantToDec_TTMN: optional(NestedAdministrativeDocumentSchema),
+  period: ConstructionPeriodSchema,
+  submission: CreateSubmissionSchema,
   isApproved: optional(boolean()),
   isChangeConstructionInfor: optional(boolean()),
 });

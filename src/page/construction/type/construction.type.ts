@@ -1,15 +1,14 @@
 import type z from "zod";
-import type { ConstructionInforDto } from "./construction-infor.type";
-import type { CreateDecisionDto } from "./decision.type";
+import type { ConstructionInfor } from "./construction-infor.type";
+import type { CreateDecision } from "./decision.type";
 import type { NestedAdministrativeDocumentDto } from "./nested-administrative-document.type";
-import type { createConstructionDtoSchema } from "../schema/construction.zod";
+import type { ConstructionSchema } from "../schema/construction.zod";
 
-export interface CreateConstructionDto
-  extends z.infer<typeof createConstructionDtoSchema> {
+export interface CreateConstruction extends z.infer<typeof ConstructionSchema> {
   id?: string;
   pursuantToDec_TCT: NestedAdministrativeDocumentDto;
-  decisions: CreateDecisionDto[];
-  constructionInfor: ConstructionInforDto;
+  decisions: CreateDecision[];
+  constructionInfor: ConstructionInfor;
 }
 
 export type ConstructionPeriod = "KH" | "LCNT_TV_TT" | "BCKTKT";

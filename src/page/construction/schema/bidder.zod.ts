@@ -1,7 +1,7 @@
 import { string, object } from "zod/mini";
-import { bankAccountDtoSchema } from "./bankAccount.zod";
+import { BankAccountSchema } from "./bankAccount.zod";
 
-export const bidderDtoSchema = object({
+export const BidderSchema = object({
   name: string(),
   legalRepresentative: object({
     name: string(),
@@ -11,5 +11,5 @@ export const bidderDtoSchema = object({
   phone: string(),
   email: string(),
   taxCode: string(),
-  bankAccount: bankAccountDtoSchema,
+  bankAccount: BankAccountSchema,
 });

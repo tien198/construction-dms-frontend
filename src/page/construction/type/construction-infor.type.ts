@@ -1,10 +1,10 @@
 import type z from "zod";
-import type { BidPackageDto } from "./bid-package.type";
+import type { BidPackage } from "./bid-package.type";
 import type { ConstructionPeriod } from "./construction.type";
-import type { constructionInforDtoSchema } from "../schema/construction-infor.zod";
+import type { ConstructionInforSchema } from "../schema/construction-infor.zod";
 
-export interface ConstructionInforDto
-  extends z.infer<typeof constructionInforDtoSchema> {
+export interface ConstructionInfor
+  extends z.infer<typeof ConstructionInforSchema> {
   name: string;
   cost: number;
   costString: string;
@@ -16,7 +16,7 @@ export interface ConstructionInforDto
   existingConditionOfTheStructure: string;
   repairScope: string;
 
-  bidPackages: BidPackageDto[];
+  bidPackages: BidPackage[];
   packagesAmount: number;
   period: ConstructionPeriod;
 }

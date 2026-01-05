@@ -7,9 +7,9 @@ import {
   object,
   boolean,
 } from "zod/mini";
-import { bidderDtoSchema } from "./bidder.zod";
+import { BidderSchema } from "./bidder.zod";
 
-export const bidPackageDtoSchema = object({
+export const BidPackageSchema = object({
   type: union([literal("TV"), literal("TT"), literal("TC")]),
   projectOwner: string(),
   bidPackageName: string(),
@@ -18,7 +18,7 @@ export const bidPackageDtoSchema = object({
   costString: string(),
   bidderSelectionTime: string(),
   bidderSelectionMethod: string(),
-  successfulBidder: optional(bidderDtoSchema),
+  successfulBidder: optional(BidderSchema),
   upTo: string(),
   isCompleted: boolean(),
 });

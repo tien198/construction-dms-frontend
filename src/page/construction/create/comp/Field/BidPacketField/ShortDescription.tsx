@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../../store/zustandStore";
+import { constructionStore } from "../../../store/zustand.store";
 import type { ChangeEvent } from "react";
 
 export default function ShortDescription({ id }: { id: number }) {

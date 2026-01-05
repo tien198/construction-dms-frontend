@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustandStore";
+import { constructionStore } from "../../store/zustand.store";
 
 export default function DecisionNumber() {
   const value = useStore(constructionStore, (s) => s.formData.decision.number);

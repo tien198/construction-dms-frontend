@@ -3,7 +3,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useStore } from "zustand";
-import { constructionStore } from "../store/zustandStore";
+import { constructionStore } from "../store/zustand.store";
 import BidPackage from "./BidPackage";
 import { initialBidPackage } from "../constant/initalData/initialPackageData.const";
 

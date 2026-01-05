@@ -1,8 +1,8 @@
 import { string, number, array, object } from "zod/mini";
-import { bidPackageDtoSchema } from "./bid-package.zod";
-import { constructionPeriodSchema } from "./construction.zod";
+import { BidPackageSchema } from "./bid-package.zod";
+import { ConstructionPeriodSchema } from "./construction.zod";
 
-export const constructionInforDtoSchema = object({
+export const ConstructionInforSchema = object({
   name: string(),
   cost: number(),
   costString: string(),
@@ -13,7 +13,7 @@ export const constructionInforDtoSchema = object({
   }),
   existingConditionOfTheStructure: string(),
   repairScope: string(),
-  bidPackages: array(bidPackageDtoSchema),
+  bidPackages: array(BidPackageSchema),
   packagesAmount: number(),
-  period: constructionPeriodSchema,
+  period: ConstructionPeriodSchema,
 });

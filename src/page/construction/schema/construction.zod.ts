@@ -1,16 +1,16 @@
-import { optional, union, literal, string, object } from "zod/mini";
-import { nestedAdministrativeDocumentDtoSchema } from "./nested-administrative-document.zod";
-import { constructionInforDtoSchema } from "./construction-infor.zod";
-// import { createDecisionDtoSchema } from "./decision.zod";
+import { optional, array, union, literal, string, object } from "zod/mini";
+import { NestedAdministrativeDocumentSchema } from "./nested-administrative-document.zod";
+import { ConstructionInforSchema } from "./construction-infor.zod";
+import { CreateDecisionSchema } from "./decision.zod";
 
-export const createConstructionDtoSchema = object({
+export const ConstructionSchema = object({
   id: optional(string()),
-  pursuantToDec_TCT: nestedAdministrativeDocumentDtoSchema,
-  // decisions: array(createDecisionDtoSchema),
-  constructionInfor: constructionInforDtoSchema,
+  pursuantToDec_TCT: NestedAdministrativeDocumentSchema,
+  decisions: array(CreateDecisionSchema),
+  constructionInfor: ConstructionInforSchema,
 });
 
-export const constructionPeriodSchema = union([
+export const ConstructionPeriodSchema = union([
   literal("KH"),
   literal("LCNT_TV_TT"),
   literal("BCKTKT"),

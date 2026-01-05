@@ -1,6 +1,6 @@
 import { string, object } from "zod/mini";
 
-export const bankAccountDtoSchema = object({
+export const BankAccountSchema = object({
   accountNumber: string(),
   bankName: string(),
   branch: string(),
