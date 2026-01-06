@@ -1,6 +1,7 @@
 import { Box, Container, Typography, Paper, Chip } from "@mui/material";
 import { AccountBalance as AccountBalanceIcon } from "@mui/icons-material";
 import { Outlet } from "react-router";
+import NavBar from "./Navbar";
 
 export default function Layout() {
   return (
@@ -26,14 +27,11 @@ export default function Layout() {
         >
           <Box className="flex items-center gap-4 mb-3">
             <Box
+              className="flex items-center justify-center bg-primary-foreground"
               sx={{
                 width: 64,
                 height: 64,
                 borderRadius: "12px",
-                backgroundColor: "hsl(0 0% 100% / 0.15)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
                 backdropFilter: "blur(10px)",
               }}
             >
@@ -73,6 +71,7 @@ export default function Layout() {
             }}
           />
         </Paper>
+        <NavBar />
         <Outlet />
       </Container>
     </Box>

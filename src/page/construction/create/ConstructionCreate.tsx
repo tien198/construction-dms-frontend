@@ -3,7 +3,6 @@ import {
   Button,
   Card,
   CardContent,
-  CardHeader,
   Divider,
   Grid,
   Typography,
@@ -17,6 +16,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "dayjs/locale/vi";
 import ConF from "./comp/ConstructionFormFields";
 import BidPackagesList from "./comp/BidPackagesList";
+import { CardHeader } from "../../../component/CardHeader";
+import { Build as BuildIcon } from "@mui/icons-material";
 
 export default function ConstructionForm() {
   // 5. Submit
@@ -39,17 +40,13 @@ export default function ConstructionForm() {
             Tạo Mới Công Trình
           </Typography>
 
-          {/* --- Phần 1: Thông tin chung --- */}
-          <Card
-            className="card-elevated"
-            sx={{
-              border: "1px solid",
-              borderColor: "hsl(var(--border))",
-            }}
-          >
+          <Card className="card-elevanted rounded-4xl p-4" square>
             <CardHeader
               title="Thông tin chung"
-              subheader="Thông tin cơ bản về công trình"
+              sub="Thông tin cơ bản về công trình"
+              icon={
+                <BuildIcon className="text-primary" sx={{ fontSize: 28 }} />
+              }
             />
             <Divider></Divider>
             <CardContent>
@@ -76,40 +73,7 @@ export default function ConstructionForm() {
               </Grid>
             </CardContent>
           </Card>
-
-          {/* --- Phần 2: Chi tiết thực hiện & Quyết định --- */}
-          <Card>
-            <CardHeader title="Chi tiết thực hiện & Quyết định" />
-            <CardContent>
-              <Divider sx={{ mb: 3 }}>Thời gian thực hiện</Divider>
-              <Grid container spacing={3}>
-                {/* Thời gian thực hiện */}
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <ConF.ConstructionStartDate />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <ConF.ConstructionEndDate />
-                </Grid>
-              </Grid>
-              {/* Quyết định */}
-              <Divider sx={{ mt: 4, mb: 3 }}>Quyết định phê duyệt</Divider>
-              <Grid container spacing={3}>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <ConF.DecisionNumber />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <ConF.DecisionDate />
-                </Grid>
-              </Grid>
-
-              <Divider sx={{ mt: 4, mb: 3 }}>Thông tin kỹ thuật</Divider>
-              <Stack spacing={2}>
-                <ConF.ExistingConditionOfTheStructure />
-                <ConF.RepairScope />
-              </Stack>
-            </CardContent>
-          </Card>
-
+          {/* --- Phần 1: Thông tin chung --- */}
           {/* --- Phần 3: Gói thầu (Dynamic Array) --- */}
           <Box>
             <BidPackagesList />
