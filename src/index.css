@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+/* Import Google Fonts - Professional administrative typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Inter', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+
+
+
+@layer base {
+    :root {
+        /* Monochromatic Blue-Gray Palette hsl(210 20% 98%) - Professional Administrative */
+        --background: 210 20% 98%;
+        /* Off-white with blue-tint hsl(210 50% 15%) */
+        --foreground: 210 50% 15%;
+        /* Near-black with blue-tint */
+
+        /* Cards and Surfaces */
+        --card: 0 0% 100%;
+        --card-foreground: 210 50% 15%;
+        /* Pure white for cards */
+        /* Dark blue-gray text */
+
+        /* Popover */
+        --popover: 0 0% 100%;
+        --popover-foreground: 210 50% 15%;
+
+        /* Primary - Main blue-gray accent  hsl(210 40% 55%) */
+        --primary: 210 40% 55%;
+        /* Base blue-gray hsl(0 0% 100%) */
+        --primary-foreground: 0 0% 100%;
+        /* White text on primary hsl(210 45% 48%) */
+        --primary-hover: 210 45% 48%;
+        /* Darker on hover hsl(210 35% 85%) */
+        --primary-light: 210 35% 85%;
+        /* Light tint for backgrounds */
+
+        /* Secondary */
+        --secondary: 210 25% 92%;
+        /* Very light blue-gray */
+        --secondary-foreground: 210 50% 20%;
+        /* Dark text */
+
+        /* Muted */
+        --muted: 210 20% 95%;
+        /* Subtle backgrounds */
+        --muted-foreground: 210 30% 50%;
+        /* Muted text */
+
+        /* Accent */
+        --accent: 210 38% 75%;
+        /* Medium accent */
+        --accent-foreground: 210 50% 15%;
+        /* Dark text on accent */
+
+        /* Destructive */
+        --destructive: 0 70% 50%;
+        /* Red for errors */
+        --destructive-foreground: 0 0% 98%;
+        /* White text */
+
+        /* Borders and Inputs */
+        /* hsl(210 20% 88%) */
+        --border: 210 20% 88%;
+        /* Light borders */
+        --input: 210 20% 88%;
+        /* Input borders */
+        --ring: 210 40% 55%;
+        /* Focus ring - matches primary */
+
+        /* Chart colors - blue-gray variations */
+        --chart-1: 210 45% 50%;
+        --chart-2: 210 35% 65%;
+        --chart-3: 210 25% 75%;
+        --chart-4: 210 40% 60%;
+        --chart-5: 210 30% 70%;
+
+        /* Radius */
+        --radius: 0.5rem;
+
+        /* Custom shadows - elegant elevation */
+        --shadow-sm: 0 1px 2px 0 hsl(210 40% 55% / 0.05);
+        --shadow-md: 0 4px 6px -1px hsl(210 40% 55% / 0.1), 0 2px 4px -1px hsl(210 40% 55% / 0.06);
+        --shadow-lg: 0 10px 15px -3px hsl(210 40% 55% / 0.1), 0 4px 6px -2px hsl(210 40% 55% / 0.05);
+        --shadow-elegant: 0 10px 30px -10px hsl(210 40% 55% / 0.2);
+
+        /* Transitions */
+        --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .dark {
+        --background: 210 30% 8%;
+        /* Dark blue-gray */
+        --foreground: 210 15% 95%;
+        /* Light text */
+
+        --card: 210 25% 12%;
+        --card-foreground: 210 15% 95%;
+
+        --popover: 210 25% 12%;
+        --popover-foreground: 210 15% 95%;
+
+        --primary: 210 40% 60%;
+        /* Lighter primary for dark mode */
+        --primary-foreground: 210 50% 10%;
+        --primary-hover: 210 45% 65%;
+        --primary-light: 210 40% 20%;
+
+        --secondary: 210 25% 18%;
+        --secondary-foreground: 210 15% 95%;
+
+        --muted: 210 25% 15%;
+        --muted-foreground: 210 20% 65%;
+
+        --accent: 210 35% 25%;
+        --accent-foreground: 210 15% 95%;
+
+        --destructive: 0 62% 45%;
+        --destructive-foreground: 210 15% 95%;
+
+        --border: 210 25% 18%;
+        --input: 210 25% 18%;
+        --ring: 210 40% 60%;
+
+        --chart-1: 210 45% 55%;
+        --chart-2: 210 35% 70%;
+        --chart-3: 210 25% 80%;
+        --chart-4: 210 40% 65%;
+        --chart-5: 210 30% 75%;
+    }
+}
+
+@layer base {
+
+    body {
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Manrope', 'Inter', sans-serif;
+        font-weight: 600;
+    }
+}
+
+/* MUI integration styles */
+@layer components {
+
+    /* Ensure MUI components respect our design system */
+    .MuiTextField-root,
+    .MuiSelect-root,
+    .MuiButton-root {
+        font-family: 'Inter', 'Manrope', sans-serif !important;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: hsl(var(--muted));
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: hsl(var(--primary) / 0.3);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: hsl(var(--primary) / 0.5);
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"]>* {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
+
+
+/* Custom utility classes */
+@layer utilities {
+    .shadow-elegant {
+        box-shadow: var(--shadow-elegant);
+    }
+
+    .transition-smooth {
+        transition: var(--transition-smooth);
+    }
+
+    .ring-primary {
+        box-shadow: hsl(var(--primary));
+    }
+
+    /* Smooth focus states */
+    .focus-elegant {
+        @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    }
+
+    /* Professional card elevation */
+    .card-elevated {
+        @apply rounded-lg shadow-md hover:shadow-lg;
+    }
+}

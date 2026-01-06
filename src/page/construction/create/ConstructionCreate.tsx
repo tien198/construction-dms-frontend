@@ -40,7 +40,13 @@ export default function ConstructionForm() {
           </Typography>
 
           {/* --- Phần 1: Thông tin chung --- */}
-          <Card>
+          <Card
+            className="card-elevated"
+            sx={{
+              border: "1px solid",
+              borderColor: "hsl(var(--border))",
+            }}
+          >
             <CardHeader
               title="Thông tin chung"
               subheader="Thông tin cơ bản về công trình"

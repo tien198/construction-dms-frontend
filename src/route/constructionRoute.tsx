@@ -1,5 +1,6 @@
 import type { RouteObject } from "react-router";
 import { lazy, Suspense } from "react";
+import Layout from "../component/layout/ConstructionLayout";
 
 const ConstructionPage = lazy(
   () => import("../page/construction/create/ConstructionCreate")
@@ -13,6 +14,7 @@ const ConstructionDetail = lazy(
 
 export const constructionRoute: RouteObject = {
   path: "cong-trinh",
+  element: <Layout />,
 
   children: [
     {

@@ -3,7 +3,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Card, CardContent, IconButton, Typography } from "@mui/material";
 import { useStore } from "zustand";
 import { constructionStore } from "../store/zustand.store";
-import type { BidPackage } from "../../type/construction.type";
 import PkgF from "./Field/BidPacketField";
 
 type Props = {
