@@ -20,14 +20,14 @@ code {
 
 @layer base {
     :root {
-        /* Monochromatic Blue-Gray Palette hsl(210 20% 98%) - Professional Administrative */
-        --background: 210 20% 98%;
+        /* Monochromatic Blue-Gray Palette hsl(210, 17%, 86%) - Professional Administrative */
+        --background: 210, 17%, 86%;
         /* Off-white with blue-tint hsl(210 50% 15%) */
         --foreground: 210 50% 15%;
         /* Near-black with blue-tint */
 
         /* Cards and Surfaces */
-        --card: 0 0% 100%;
+        --card: 0, 30%, 0%;
         --card-foreground: 210 50% 15%;
         /* Pure white for cards */
         /* Dark blue-gray text */
@@ -189,6 +189,21 @@ code {
 }
 
 @layer base {
+    .bg-color {
+        background: hsl(var(--background));
+    }
+
+    .card {
+        background: hsl(var(--primary-light));
+        box-shadow: 0 0 1.2rem .5px hsl(var(--primary-hover));
+        padding: 1.25rem;
+    }
+
+    .card:hover {
+        box-shadow: 0 0 1.5rem .2rem hsl(var(--primary-hover));
+
+    }
+
     [data-debug-wrapper="true"] {
         display: contents !important;
     }

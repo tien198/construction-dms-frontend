@@ -31,16 +31,17 @@ export default function ConstructionForm() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="vi">
       <Box
+        className="rounded-4xl card"
         component="form"
         onSubmit={handleSubmit}
-        sx={{ p: 3, maxWidth: 1200, mx: "auto", bgcolor: "#f5f5f5" }}
+        sx={{ mx: "auto", bgcolor: "#f5f5f5" }}
       >
-        <Stack spacing={3}>
+        <Stack spacing={3} className="px-1 py-8">
           <Typography variant="h4" color="primary" gutterBottom>
             Tạo Mới Công Trình
           </Typography>
 
-          <Card className="card-elevanted rounded-4xl p-4" square>
+          <Card>
             <CardHeader
               title="Thông tin chung"
               sub="Thông tin cơ bản về công trình"
