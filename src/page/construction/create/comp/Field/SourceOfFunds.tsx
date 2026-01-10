@@ -3,8 +3,11 @@ import { useStore } from "zustand";
 import { constructionStore } from "../../store/zustand.store";
 
 export default function SourceOfFunds() {
-  const value = useStore(constructionStore, (s) => s.formData.sourceOfFunds);
-  const setField = useStore(constructionStore, (s) => s.setField);
+  const value = useStore(
+    constructionStore,
+    (s) => s.formData.constructionInfor!.sourceOfFunds
+  );
+  const setNestedField = useStore(constructionStore, (s) => s.setNestedField);
 
   // eslint-disable-next-line react-hooks/purity
   const currYear = new Date(Date.now()).getFullYear();
@@ -21,7 +24,9 @@ export default function SourceOfFunds() {
       fullWidth
       label="Nguồn vốn: Chi phí SXKD năm"
       value={value}
-      onChange={(e) => setField("sourceOfFunds", e.target.value)}
+      onChange={(e) =>
+        setNestedField("constructionInfor", "sourceOfFunds", e.target.value)
+      }
     >
       {selections.map((i) => (
         <MenuItem value={i}>{i}</MenuItem>

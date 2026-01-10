@@ -1,4 +1,3 @@
-import React from "react";
 import { Paper, Box } from "@mui/material";
 import { NavLink } from "react-router";
 
@@ -12,13 +11,15 @@ interface NavigationCardProps {
   items?: NavItem[];
 }
 
-const NavigationCard: React.FC<NavigationCardProps> = ({
-  items = [
-    { id: "1", label: "Tạo công trình", to: "/cong-trinh/them" },
-    { id: "2", label: "KH LCNT", to: "/cong-trinh/" },
-    { id: "3", label: "BCKTKT", to: "/settings" },
-  ],
-}) => {
+const itemsList: NavItem[] = [
+  { id: "1", label: "Tạo công trình", to: "/cong-trinh/them" },
+  { id: "2", label: "KH LCNT", to: "/cong-trinh/" },
+  { id: "3", label: "BCKTKT", to: "/settings" },
+];
+
+export default function NavigationCard({
+  items = itemsList,
+}: NavigationCardProps) {
   return (
     <Box
       className="card"
@@ -65,6 +66,4 @@ const NavigationCard: React.FC<NavigationCardProps> = ({
       ))}
     </Box>
   );
-};
-
-export default NavigationCard;
+}

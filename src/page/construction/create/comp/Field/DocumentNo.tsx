@@ -1,12 +1,10 @@
-import { Box, Chip, TextField } from "@mui/material";
+import { Box, MenuItem, Select, TextField } from "@mui/material";
 import { useStore } from "zustand";
 import { constructionStore } from "../../store/zustand.store";
 
 export default function DocumentNo() {
-  const documentNo = useStore(
-    constructionStore,
-    (state) => state.formData.documentNo
-  );
+  const documentNo = useStore(constructionStore, (state) => state.formData.no);
+  const level = useStore(constructionStore, (state) => state.formData.level);
   const setField = useStore(constructionStore, (state) => state.setField);
 
   return (
@@ -14,20 +12,16 @@ export default function DocumentNo() {
       <TextField
         label="Số hiệu"
         value={documentNo}
-        onChange={(e) => setField("documentNo", e.target.value)}
+        onChange={(e) => setField("no", e.target.value)}
         required
       />
-      <Chip
-        label="/ TTr-LCQ"
-        sx={{
-          bgcolor: "#6b3509ff",
-          color: "white",
-          fontSize: "1.2rem",
-          fontWeight: "bold",
-          padding: 1,
-          py: 3,
-        }}
-      />
+      <Select
+        label="Cấp độ"
+        value={level}
+        onChange={(e) => setField("level", e.target.value)}
+      >
+        <MenuItem value="LCQ">LCQ</MenuItem>
+      </Select>
     </Box>
   );
 }

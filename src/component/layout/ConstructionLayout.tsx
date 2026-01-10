@@ -1,6 +1,5 @@
 import { Container, Stack } from "@mui/material";
 import { Outlet } from "react-router";
-import NavBar from "./Navbar";
 import Hero from "./Hero";
 
 export default function Layout() {
@@ -10,7 +9,6 @@ export default function Layout() {
         <Stack spacing={3}>
           {/* Page Header */}
           <Hero />
-          <NavBar />
           <Outlet />
         </Stack>
       </Container>

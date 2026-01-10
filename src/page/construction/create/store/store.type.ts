@@ -2,7 +2,7 @@ import type { Dayjs } from "dayjs";
 import type { CreateSubmission } from "../type/submission.type";
 import type { BidPackage } from "../../type/bid-package.type";
 
-export interface initConstructionStore {
+export interface InitConstructionStore {
   formData: CreateSubmission;
 
   // Actions

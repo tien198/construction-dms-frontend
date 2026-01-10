@@ -1,10 +1,11 @@
-import type { RouteObject } from "react-router";
+import { Outlet, type RouteObject } from "react-router";
 import { lazy, Suspense } from "react";
-import Layout from "../component/layout/ConstructionLayout";
+import NavigationCard from "../component/layout/Navbar";
 
 const ConstructionPage = lazy(
   () => import("../page/construction/create/ConstructionCreate")
 );
+
 const ConstructionList = lazy(
   () => import("../page/construction/list/ConstructionList")
 );
@@ -14,35 +15,8 @@ const ConstructionDetail = lazy(
 
 export const constructionRoute: RouteObject = {
   path: "cong-trinh",
-  element: <Layout />,
 
   children: [
-    {
-      index: true,
-      element: (
-        <Suspense fallback={<div>loading ...</div>}>
-          <ConstructionList />
-        </Suspense>
-      ),
-      loader: () =>
-        import("../page/construction/list/loader").then((m) => m.loader()),
-    },
-    {
-      path: ":id",
-      element: (
-        <Suspense fallback={<div>loading ...</div>}>
-          <ConstructionDetail />
-        </Suspense>
-      ),
-      loader: (args) =>
-        import("../page/construction/detail/loader").then((m) =>
-          m.loader(args)
-        ),
-      action: (args) =>
-        import("../page/construction/detail/action").then((m) =>
-          m.action(args)
-        ),
-    },
     {
       path: "them",
       element: <ConstructionPage />,
@@ -50,6 +24,43 @@ export const constructionRoute: RouteObject = {
         import("../page/construction/create/action").then((m) =>
           m.addConstruction(args)
         ),
+    },
+    {
+      path: "",
+      element: (
+        <>
+          <NavigationCard />
+          <Outlet />
+        </>
+      ),
+      children: [
+        {
+          index: true,
+          element: (
+            <Suspense fallback={<div>loading ...</div>}>
+              <ConstructionList />
+            </Suspense>
+          ),
+          loader: () =>
+            import("../page/construction/list/loader").then((m) => m.loader()),
+        },
+        {
+          path: ":id",
+          element: (
+            <Suspense fallback={<div>loading ...</div>}>
+              <ConstructionDetail />
+            </Suspense>
+          ),
+          loader: (args) =>
+            import("../page/construction/detail/loader").then((m) =>
+              m.loader(args)
+            ),
+          action: (args) =>
+            import("../page/construction/detail/action").then((m) =>
+              m.action(args)
+            ),
+        },
+      ],
     },
   ],
 };
