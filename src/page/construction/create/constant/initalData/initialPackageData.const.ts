@@ -9,7 +9,7 @@ export const initialBidPackage: BidPackage = {
   costString: "",
   bidderSelectionTime: null,
   bidderSelectionMethod: "Chỉ định thầu rút gọn",
-  // contractType: "Trọn gói",
+  contractType: "Trọn gói",
   upTo: "",
   isCompleted: false,
 };
@@ -24,7 +24,7 @@ export const designPackage: BidPackage = {
   costString: "",
   bidderSelectionTime: new Date(), // null
   bidderSelectionMethod: "Chỉ định thầu rút gọn",
-  // contractType: "Trọn gói",
+  contractType: "Trọn gói",
   upTo: "10 ngày",
   isCompleted: false,
 };
@@ -39,7 +39,7 @@ export const verificationPackage: BidPackage = {
   costString: "",
   bidderSelectionTime: new Date(), // null
   bidderSelectionMethod: "Chỉ định thầu rút gọn",
-  // contractType: "Trọn gói",
+  contractType: "Trọn gói",
   upTo: "5 ngày",
   isCompleted: false,
 };

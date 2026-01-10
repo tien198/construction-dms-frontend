@@ -7,20 +7,20 @@ export default function DocInforSection() {
   return (
     <Card>
       <CardHeader
-        title="Thông tin chung"
-        sub="Thông tin cơ bản về công trình"
+        title="TTr và QĐ"
+        sub="Thông tin về Tờ Trình và Quyết Định"
         icon={<BuildIcon className="text-primary" sx={{ fontSize: 28 }} />}
       />
       <Divider></Divider>
       <CardContent>
         <Grid container spacing={2}>
-          <Grid size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12 }}>
             <ConF.DocumentNo />
           </Grid>
-          <Grid size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <ConF.DateOfSigning />
           </Grid>
-          <Grid size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 3 }}>
             <ConF.SourceOfFunds />
           </Grid>
           <Grid size={{ xs: 12 }}>

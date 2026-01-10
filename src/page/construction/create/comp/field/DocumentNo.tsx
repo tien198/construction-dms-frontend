@@ -1,4 +1,4 @@
-import { Box, MenuItem, Select, TextField } from "@mui/material";
+import { Box, MenuItem, TextField } from "@mui/material";
 import { useStore } from "zustand";
 import { constructionStore } from "../../store/zustand.store";
 
@@ -15,13 +15,14 @@ export default function DocumentNo() {
         onChange={(e) => setField("no", e.target.value)}
         required
       />
-      <Select
-        label="Cấp độ"
+      <TextField
+        select
+        label="Cấp"
         value={level}
         onChange={(e) => setField("level", e.target.value)}
       >
         <MenuItem value="LCQ">LCQ</MenuItem>
-      </Select>
+      </TextField>
     </Box>
   );
 }

@@ -3,7 +3,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { useStore } from "zustand";
 import { constructionStore } from "../../store/zustand.store";
 
-export default function DateOfSigning() {
+export default function Date() {
   const value = useStore(constructionStore, (s) => s.formData.date);
   const setDateField = useStore(constructionStore, (s) => s.setDateField);
 

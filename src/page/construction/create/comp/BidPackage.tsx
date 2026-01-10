@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Card, CardContent, IconButton, Typography } from "@mui/material";
 import { useStore } from "zustand";
 import { constructionStore } from "../store/zustand.store";
-import PkgF from "./field/BidPacketField";
+import PkgF from "./field/bidPacketFields";
 
 type Props = {
   index: number;
@@ -35,7 +35,7 @@ export default function BidPackage({ index, onRemove }: Props) {
           </Grid>
 
           <Grid size={{ xs: 12, md: 4 }}>
-            <PkgF.Price id={index} />
+            <PkgF.Cost id={index} />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
             <PkgF.ContractorSelectionTime id={index} />
