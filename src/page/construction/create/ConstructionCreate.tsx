@@ -7,6 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "dayjs/locale/vi";
 import BidPackagesList from "./comp/BidPackagesList";
 import DocInforSection from "./comp/formSection/DocInfor";
+import ConstructionInforSection from "./comp/formSection/ConstructionInfor";
 
 export default function ConstructionForm() {
   // 5. Submit
@@ -33,6 +34,7 @@ export default function ConstructionForm() {
           {/* --- Phần 1: Thông tin chung --- */}
           <DocInforSection />
           {/* --- Phần 3: Gói thầu (Dynamic Array) --- */}
+          <ConstructionInforSection />
           <Box>
             <BidPackagesList />
           </Box>

@@ -6,7 +6,8 @@ import { constructionStore } from "../../store/zustand.store";
 export default function ConstructionStartDate() {
   const value = useStore(
     constructionStore,
-    (s) => s.formData.constructionImplementationTime.startDate
+    (s) =>
+      s.formData.constructionInfor!.constructionImplementationTime.startDate
   );
   const setNestedDateField = useStore(
     constructionStore,
