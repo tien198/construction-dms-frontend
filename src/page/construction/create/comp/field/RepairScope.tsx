@@ -2,22 +2,22 @@ import { TextField } from "@mui/material";
 import { useStore } from "zustand";
 import { constructionStore } from "../../store/zustand.store";
 
-export default function ExistingConditionOfTheStructure() {
+export default function RepairScope() {
   const value = useStore(
     constructionStore,
-    (s) => s.formData.existingConditionOfTheStructure
+    (s) => s.formData.constructionInfor?.repairScope
   );
-  const setField = useStore(constructionStore, (s) => s.setField);
+  const setNestedField = useStore(constructionStore, (s) => s.setNestedField);
 
   return (
     <TextField
       fullWidth
       multiline
       minRows={3}
-      label="Hiện trạng kết cấu"
+      label="Phạm vi sửa chữa"
       value={value}
       onChange={(e) =>
-        setField("existingConditionOfTheStructure", e.target.value)
+        setNestedField("constructionInfor", "repairScope", e.target.value)
       }
     />
   );

@@ -4,7 +4,10 @@ import { useStore } from "zustand";
 import { constructionStore } from "../../store/zustand.store";
 
 export default function DecisionDate() {
-  const value = useStore(constructionStore, (s) => s.formData.decision.date);
+  const value = useStore(
+    constructionStore,
+    (s) => s.formData.directlyDecision?.date
+  );
   const setNestedDateField = useStore(
     constructionStore,
     (s) => s.setNestedDateField
@@ -15,7 +18,7 @@ export default function DecisionDate() {
       sx={{ width: "100%" }}
       label="Ngày quyết định"
       value={dayjs(value)}
-      onChange={(val) => setNestedDateField("decision", "date", val)}
+      onChange={(val) => setNestedDateField("directlyDecision", "date", val)}
     />
   );
 }

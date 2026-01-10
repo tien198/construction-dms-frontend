@@ -4,26 +4,27 @@ import { constructionStore } from "../../../store/zustand.store";
 import type { ChangeEvent } from "react";
 import { BidPackageConst } from "../../../constant/bidPackage.const";
 
-export default function ContractorSelectionMethod({ id }: { id: number }) {
+export default function ProjectOwner({ id }: { id: number }) {
   const value = useStore(
     constructionStore,
-    (s) => s.formData.packages[id]?.contractorSelectionMethod
+    (s) => s.formData.constructionInfor?.bidPackages[id]?.projectOwner
   );
   const setPackage = useStore(constructionStore, (s) => s.setPackage);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setPackage(id, "contractorSelectionMethod", e.target.value);
-  const contractorSelectionMethods = BidPackageConst.contractorSelectionMethods;
+    setPackage(id, "projectOwner", e.target.value);
+
+  const projectOwners = BidPackageConst.projectOwners;
 
   return (
     <TextField
       select
       fullWidth
-      label="Hình thức lựa chọn"
+      label="Chủ đầu tư"
       value={value}
       onChange={handleChange}
-      defaultValue={contractorSelectionMethods[0]}
+      defaultValue={projectOwners[0]}
     >
-      {contractorSelectionMethods.map((i) => (
+      {projectOwners.map((i) => (
         <MenuItem value={i}>{i}</MenuItem>
       ))}
     </TextField>

@@ -25,12 +25,12 @@ export const initialFormData: Construction = {
 export const initialFormData: CreateSubmission = {
   no: "1072/TTr - LCQ",
   level: "LCQ",
-  date: "2025-10-31T17:00:00.000Z",
+  date: new Date("2025-10-31T17:00:00.000Z"),
   pursuantToDec_TCT: {
     id: "",
     no: "3052/QĐ – TCT",
     level: "TCT",
-    date: "2024-12-29T17:00:00.000Z",
+    date: new Date("2024-12-29T17:00:00.000Z"),
   },
   period: "KH",
   constructionInfor: {
@@ -42,12 +42,17 @@ export const initialFormData: CreateSubmission = {
     existingConditionOfTheStructure: "",
     period: "KH",
     constructionImplementationTime: {
-      startDate: "2025-11-08T17:00:00.000Z",
-      endDate: "2025-11-28T17:00:00.000Z",
+      startDate: new Date("2025-11-08T17:00:00.000Z"),
+      endDate: new Date("2025-11-28T17:00:00.000Z"),
     },
 
     bidPackages: [designPackage, verificationPackage],
     packagesAmount: 200000000000,
   },
   isApproved: false,
+  directlyDecision: {
+    no: "21/QĐ - TTMN",
+    level: "TTMN",
+    date: new Date("2025-10-31T17:00:00.000Z"),
+  },
 };

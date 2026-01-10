@@ -1,6 +1,6 @@
 import PackageName from "./Name";
 import ProjectOwner from "./ProjectOwner";
-import Price from "./Price";
+import Cost from "./Cost";
 import ContractorSelectionTime from "./ContractorSelectionTime";
 import ImplementDuration from "./ImplementDuration";
 import ContractorSelectionMethod from "./ContractorSelectionMethod";
@@ -10,7 +10,7 @@ import ShortDescription from "./ShortDescription";
 const PkgF = {
   PackageName,
   ProjectOwner,
-  Price,
+  Cost,
   ContractorSelectionTime,
   ImplementDuration,
   ContractorSelectionMethod,

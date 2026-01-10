@@ -8,7 +8,7 @@ export interface CreateSubmission
   extends z.infer<typeof CreateSubmissionSchema> {
   no: string;
   level: string;
-  date: string;
+  date: Date | null;
   pursuantToDec_TCT: NestedAdministrativeDocumentDto;
   pursuantToDec_TTMN?: NestedAdministrativeDocumentDto;
   period: ConstructionPeriod;

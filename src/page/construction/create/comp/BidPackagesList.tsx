@@ -11,9 +11,12 @@ import { initialBidPackage } from "../constant/initalData/initialPackageData.con
 export default function BidPackagesList() {
   const packages = useStore(
     constructionStore,
-    (state) => state.formData.packages
+    (state) => state.formData.constructionInfor!.bidPackages
   );
-  const setField = useStore(constructionStore, (state) => state.setField);
+  const setNestdField = useStore(
+    constructionStore,
+    (state) => state.setNestedField
+  );
 
   /*
   const setDateField = useStore(
@@ -60,13 +63,16 @@ export default function BidPackagesList() {
     };
 */
   const handleAddPackage = () => {
-    setField("packages", [...packages, { ...initialBidPackage }]);
+    setNestdField("constructionInfor", "bidPackages", [
+      ...packages,
+      { ...initialBidPackage },
+    ]);
   };
 
   const handleRemovePackage = (index: number) => {
     const newPackages = [...packages];
     newPackages.splice(index, 1);
-    setField("packages", newPackages);
+    setNestdField("constructionInfor", "bidPackages", newPackages);
   };
 
   return (

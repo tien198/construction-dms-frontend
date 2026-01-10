@@ -1,18 +1,21 @@
 import type { BidPackage } from "../../../type/bid-package.type";
 
 export const initialBidPackage: BidPackage = {
+  type: "TC",
   projectOwner: "Công ty Trực thăng Miền Nam",
   bidPackageName: "",
   shortDescription: "",
   cost: 0,
   costString: "",
   bidderSelectionTime: null,
-  contractorSelectionMethod: "Chỉ định thầu rút gọn",
-  contractType: "Trọn gói",
-  implementDuration: "",
+  bidderSelectionMethod: "Chỉ định thầu rút gọn",
+  // contractType: "Trọn gói",
+  upTo: "",
+  isCompleted: false,
 };
 
 export const designPackage: BidPackage = {
+  type: "TV",
   projectOwner: "Công ty Trực thăng Miền Nam",
   bidPackageName: "Tư vấn lập Báo cáo kinh tế kỹ thuật",
   shortDescription:
@@ -20,12 +23,14 @@ export const designPackage: BidPackage = {
   cost: 100000000000,
   costString: "",
   bidderSelectionTime: new Date(), // null
-  contractorSelectionMethod: "Chỉ định thầu rút gọn",
-  contractType: "Trọn gói",
-  implementDuration: "10 ngày",
+  bidderSelectionMethod: "Chỉ định thầu rút gọn",
+  // contractType: "Trọn gói",
+  upTo: "10 ngày",
+  isCompleted: false,
 };
 
 export const verificationPackage: BidPackage = {
+  type: "TT",
   projectOwner: "Công ty Trực thăng Miền Nam",
   bidPackageName: "Thẩm tra Báo cáo kinh tế kỹ thuật",
   shortDescription:
@@ -33,7 +38,8 @@ export const verificationPackage: BidPackage = {
   cost: 100000000000,
   costString: "",
   bidderSelectionTime: new Date(), // null
-  contractorSelectionMethod: "Chỉ định thầu rút gọn",
-  contractType: "Trọn gói",
-  implementDuration: "5 ngày",
+  bidderSelectionMethod: "Chỉ định thầu rút gọn",
+  // contractType: "Trọn gói",
+  upTo: "5 ngày",
+  isCompleted: false,
 };

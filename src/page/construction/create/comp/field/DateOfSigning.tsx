@@ -4,7 +4,7 @@ import { useStore } from "zustand";
 import { constructionStore } from "../../store/zustand.store";
 
 export default function DateOfSigning() {
-  const value = useStore(constructionStore, (s) => s.formData.dateOfSigning);
+  const value = useStore(constructionStore, (s) => s.formData.date);
   const setDateField = useStore(constructionStore, (s) => s.setDateField);
 
   return (
@@ -12,7 +12,7 @@ export default function DateOfSigning() {
       sx={{ width: "100%" }}
       label="Ngày ký"
       value={dayjs(value)}
-      onChange={(val) => setDateField("dateOfSigning", val)}
+      onChange={(val) => setDateField("date", val)}
     />
   );
 }

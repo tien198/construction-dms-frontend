@@ -3,7 +3,10 @@ import { useStore } from "zustand";
 import { constructionStore } from "../../store/zustand.store";
 
 export default function DecisionNumber() {
-  const value = useStore(constructionStore, (s) => s.formData.decision.number);
+  const value = useStore(
+    constructionStore,
+    (s) => s.formData.directlyDecision?.no
+  );
   const setNestedField = useStore(constructionStore, (s) => s.setNestedField);
 
   return (
@@ -11,7 +14,7 @@ export default function DecisionNumber() {
       fullWidth
       label="Số quyết định"
       value={value}
-      onChange={(e) => setNestedField("decision", "number", e.target.value)}
+      onChange={(e) => setNestedField("directlyDecision", "no", e.target.value)}
     />
   );
 }

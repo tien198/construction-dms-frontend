@@ -9,10 +9,10 @@ export interface BidPackage extends z.infer<typeof BidPackageSchema> {
   shortDescription: string;
   cost: number;
   costString: string;
-  bidderSelectionTime: string;
+  bidderSelectionTime: Date | null;
   bidderSelectionMethod: string;
   successfulBidder?: Bidder;
-  // contractType: string
+  contractType: string;
   upTo: string;
   isCompleted: boolean;
 }

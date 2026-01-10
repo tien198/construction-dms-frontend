@@ -1,4 +1,11 @@
-import { string, number, array, object } from "zod/mini";
+import {
+  string,
+  number,
+  array,
+  object,
+  instanceof as zInstanceOf,
+  nullable,
+} from "zod/mini";
 import { BidPackageSchema } from "./bid-package.zod";
 import { ConstructionPeriodSchema } from "./construction.zod";
 
@@ -8,8 +15,8 @@ export const ConstructionInforSchema = object({
   costString: string(),
   sourceOfFunds: string(),
   constructionImplementationTime: object({
-    startDate: string(),
-    endDate: string(),
+    startDate: nullable(zInstanceOf(Date)),
+    endDate: nullable(zInstanceOf(Date)),
   }),
   existingConditionOfTheStructure: string(),
   repairScope: string(),

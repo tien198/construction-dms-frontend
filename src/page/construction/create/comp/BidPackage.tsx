@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Card, CardContent, IconButton, Typography } from "@mui/material";
 import { useStore } from "zustand";
 import { constructionStore } from "../store/zustand.store";
-import PkgF from "./Field/BidPacketField";
+import PkgF from "./field/BidPacketField";
 
 type Props = {
   index: number;
@@ -62,7 +62,7 @@ export default function BidPackage({ index, onRemove }: Props) {
 function Heading({ index }: { index: number }) {
   const packageName = useStore(
     constructionStore,
-    (s) => s.formData.packages[index]?.bidPackageName
+    (s) => s.formData.constructionInfor!.bidPackages[index]!.bidPackageName
   );
   return (
     <Typography variant="subtitle1" fontWeight="bold">

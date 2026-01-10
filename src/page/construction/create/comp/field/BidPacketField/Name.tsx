@@ -10,7 +10,7 @@ const nameList = [
 export default function PackageName({ id }: { id: number }) {
   const name = useStore(
     constructionStore,
-    (s) => s.formData.packages[id]?.bidPackageName
+    (s) => s.formData.constructionInfor?.bidPackages[id]?.bidPackageName
   );
   const setPackage = useStore(constructionStore, (s) => s.setPackage);
 

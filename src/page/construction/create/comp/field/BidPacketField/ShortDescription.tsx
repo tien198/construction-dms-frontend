@@ -6,7 +6,7 @@ import type { ChangeEvent } from "react";
 export default function ShortDescription({ id }: { id: number }) {
   const value = useStore(
     constructionStore,
-    (s) => s.formData.packages[id]?.shortDescription
+    (s) => s.formData.constructionInfor?.bidPackages[id]?.shortDescription
   );
   const setPackage = useStore(constructionStore, (s) => s.setPackage);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>

@@ -7,7 +7,7 @@ import { BidPackageConst } from "../../../constant/bidPackage.const";
 export default function ContractType({ id }: { id: number }) {
   const value = useStore(
     constructionStore,
-    (s) => s.formData.packages[id]?.contractType
+    (s) => s.formData.constructionInfor?.bidPackages[id]?.contractType
   );
   const setPackage = useStore(constructionStore, (s) => s.setPackage);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>

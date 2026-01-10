@@ -6,7 +6,7 @@ import { constructionStore } from "../../../store/zustand.store";
 export default function ContractorSelectionTime({ id }: { id: number }) {
   const value = useStore(
     constructionStore,
-    (s) => s.formData.packages[id]?.contractorSelectionTime
+    (s) => s.formData.constructionInfor?.bidPackages[id]?.bidderSelectionTime
   );
   const setPackage = useStore(constructionStore, (s) => s.setPackage);
 
@@ -15,7 +15,7 @@ export default function ContractorSelectionTime({ id }: { id: number }) {
       sx={{ width: "100%" }}
       label="Thời gian chọn nhà thầu"
       value={dayjs(value)}
-      onChange={(val) => setPackage(id, "contractorSelectionTime", dayjs(val))}
+      onChange={(val) => setPackage(id, "bidderSelectionTime", dayjs(val))}
     />
   );
 }

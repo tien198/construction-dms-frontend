@@ -10,8 +10,8 @@ export interface ConstructionInfor
   costString: string;
   sourceOfFunds: string;
   constructionImplementationTime: {
-    startDate: string;
-    endDate: string;
+    startDate: Date | null;
+    endDate: Date | null;
   };
   existingConditionOfTheStructure: string;
   repairScope: string;

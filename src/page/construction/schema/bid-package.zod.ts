@@ -6,6 +6,8 @@ import {
   number,
   object,
   boolean,
+  nullable,
+  instanceof as zInstanceOf,
 } from "zod/mini";
 import { BidderSchema } from "./bidder.zod";
 
@@ -16,7 +18,7 @@ export const BidPackageSchema = object({
   shortDescription: string(),
   cost: number(),
   costString: string(),
-  bidderSelectionTime: string(),
+  bidderSelectionTime: nullable(zInstanceOf(Date)),
   bidderSelectionMethod: string(),
   successfulBidder: optional(BidderSchema),
   upTo: string(),
