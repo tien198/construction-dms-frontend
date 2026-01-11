@@ -30,7 +30,7 @@ export const constructionStore = createStore<InitConstructionStore>()(
       set((state) => ({
         formData: {
           ...state.formData,
-          [name]: value ? value.toDate() : null,
+          [name]: value,
         },
       })),
 
@@ -41,12 +41,12 @@ export const constructionStore = createStore<InitConstructionStore>()(
           ...state.formData,
           [parent]: {
             ...(state.formData[parent] as object),
-            [child]: value ? value.toDate() : null,
+            [child]: value,
           },
         },
       })),
 
-    setPackage: (id: number, prop: keyof BidPackage, value: any) =>
+    setPackage: (id: number, prop: keyof BidPackage, value) =>
       set((state) => {
         const shallow = { ...state };
         console.log(shallow.formData.constructionInfor!.bidPackages[id]);

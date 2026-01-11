@@ -15,7 +15,9 @@ export default function ContractorSelectionTime({ id }: { id: number }) {
       sx={{ width: "100%" }}
       label="Thời gian chọn nhà thầu"
       value={dayjs(value)}
-      onChange={(val) => setPackage(id, "bidderSelectionTime", dayjs(val))}
+      onChange={(val) =>
+        setPackage(id, "bidderSelectionTime", (val?.toDate() as Date) ?? null)
+      }
     />
   );
 }

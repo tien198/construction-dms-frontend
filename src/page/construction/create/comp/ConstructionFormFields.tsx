@@ -14,7 +14,7 @@ import DecisionLevel from "./field/DecisionLevel";
 import PursuantTCTDecisionNo from "./field/Pursuant.TCT.DecisionNo";
 import PursuantTCTDecisionLevel from "./field/Pursuant.TCT.DecisionLevel";
 import PursuantTTMNDecisionNo from "./field/Pursuant.TTMN.DecisionNo";
-import PursuantTTMNDecisionLevel from "./field/Pursuant.TTMN.DecisionLevel copy";
+import PursuantTTMNDecisionLevel from "./field/Pursuant.TTMN.DecisionLevel";
 
 const ConF = {
   SubmissionNo,

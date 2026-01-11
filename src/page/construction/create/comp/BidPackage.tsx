@@ -16,7 +16,7 @@ export default function BidPackage({ index, onRemove }: Props) {
         <Grid container spacing={2}>
           <Grid size={{ xs: 12 }} display="flex" justifyContent="space-between">
             <Heading index={index} />
-            {index >= 3 && (
+            {index >= 2 && (
               <IconButton
                 onClick={() => onRemove(index)}
                 color="error"

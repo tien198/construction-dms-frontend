@@ -17,8 +17,8 @@ export default function Date() {
       label="Ngày ký"
       value={dayjs(value)}
       onChange={(val) => {
-        setDateField("date", val);
-        setNestedDateField("directlyDecision", "date", val);
+        setDateField("date", val?.toDate() ?? null);
+        setNestedDateField("directlyDecision", "date", val?.toDate() ?? null);
       }}
     />
   );

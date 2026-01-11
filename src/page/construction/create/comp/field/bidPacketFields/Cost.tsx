@@ -21,7 +21,7 @@ export default function Cost({ id }: { id: number }) {
       fullWidth
       type="number"
       label="Giá gói thầu"
-      value={value as any}
+      value={value}
       onChange={handleChange}
     />
   );
