@@ -32,6 +32,12 @@ export const initialFormData: CreateSubmission = {
     level: "TCT",
     date: new Date("2024-12-29T17:00:00.000Z"),
   },
+  pursuantToDec_TTMN: {
+    id: "",
+    no: "3052/QĐ – TCT",
+    level: "TCT",
+    date: new Date(""),
+  },
   period: "KH",
   constructionInfor: {
     name: "Sửa chữa mái tôn khu tập thể độc thân kỹ thuật",

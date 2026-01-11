@@ -9,7 +9,7 @@ export interface InitConstructionStore {
   setNestedField: (
     parent: keyof CreateSubmission,
     child: string,
-    value: any
+    value: number | string | Date | null
   ) => void;
 
   // Action riêng cho Date để xử lý Dayjs -> Date

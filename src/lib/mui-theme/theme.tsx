@@ -22,5 +22,14 @@ export const theme = createTheme({
         },
       },
     },
+
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          paddingTop: "1rem",
+          paddingBottom: "1.25rem",
+        },
+      },
+    },
   },
 });

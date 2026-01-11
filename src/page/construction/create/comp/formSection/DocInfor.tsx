@@ -32,9 +32,15 @@ export default function DocInforSection() {
           <Grid size={{ xs: 12, md: 6 }}>
             <ConF.PursuantTCTDecisionNo />
           </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <ConF.PursuantTCTDecisionDate />
+          </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
             <ConF.PursuantTTMNDecisionNo />
+          </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <ConF.PursuantTTMNDecisionDate />
           </Grid>
         </Grid>
       </CardContent>

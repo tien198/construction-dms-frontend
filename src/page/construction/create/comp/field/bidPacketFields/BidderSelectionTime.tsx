@@ -3,7 +3,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { useStore } from "zustand";
 import { constructionStore } from "../../../store/zustand.store";
 
-export default function ContractorSelectionTime({ id }: { id: number }) {
+export default function BidderSelectionTime({ id }: { id: number }) {
   const value = useStore(
     constructionStore,
     (s) => s.formData.constructionInfor?.bidPackages[id]?.bidderSelectionTime

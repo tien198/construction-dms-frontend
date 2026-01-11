@@ -15,13 +15,17 @@ import PursuantTCTDecisionNo from "./field/Pursuant.TCT.DecisionNo";
 import PursuantTCTDecisionLevel from "./field/Pursuant.TCT.DecisionLevel";
 import PursuantTTMNDecisionNo from "./field/Pursuant.TTMN.DecisionNo";
 import PursuantTTMNDecisionLevel from "./field/Pursuant.TTMN.DecisionLevel";
+import PursuantTCTDecisionDate from "./field/Pursuant.TCT.DecisionDate";
+import PursuantTTMNDecisionDate from "./field/Pursuant.TTMN.DecisionDate";
 
 const ConF = {
   SubmissionNo,
   DateOfSigning,
   DecisionNo,
   PursuantTCTDecisionNo,
+  PursuantTCTDecisionDate,
   PursuantTTMNDecisionNo,
+  PursuantTTMNDecisionDate,
 
   SourceOfFunds,
   NameField,

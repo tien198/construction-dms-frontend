@@ -38,14 +38,14 @@ export default function BidPackage({ index, onRemove }: Props) {
             <PkgF.Cost id={index} />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
-            <PkgF.ContractorSelectionTime id={index} />
+            <PkgF.BidderSelectionTime id={index} />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
             <PkgF.ImplementDuration id={index} />
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
-            <PkgF.ContractorSelectionMethod id={index} />
+            <PkgF.BidderSelectionMethod id={index} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
             <PkgF.ContractType id={index} />

@@ -4,7 +4,7 @@ import { constructionStore } from "../../../store/zustand.store";
 import type { ChangeEvent } from "react";
 import { BidPackageConst } from "../../../constant/bidPackage.const";
 
-export default function ContractorSelectionMethod({ id }: { id: number }) {
+export default function BidderSelectionMethod({ id }: { id: number }) {
   const value = useStore(
     constructionStore,
     (s) => s.formData.constructionInfor?.bidPackages[id]?.bidderSelectionMethod
