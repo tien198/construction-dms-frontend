@@ -19,7 +19,7 @@ export default function PursuantTCTDecisionLevel() {
       label="Cấp"
       value={level}
       onChange={(e) =>
-        setNestedField("pursuantToDec_TCT", "level", e.target.value)
+        setNestedField("pursuantToDec_TCT.level", e.target.value)
       }
     >
       <MenuItem value="LCQ">TCT</MenuItem>

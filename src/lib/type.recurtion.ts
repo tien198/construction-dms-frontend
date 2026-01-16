@@ -11,7 +11,7 @@ type Primitive =
 export type Path<T> = {
   [K in keyof T & string]: T[K] extends Primitive
     ? K
-    : T[K] extends Array<infer U>
-    ? `${K}` | `${K}.${Path<U>}`
-    : `${K}` | `${K}.${Path<T[K]>}`;
+    : T[K] extends Array<any>
+    ? `${K}`
+    : `${K}` | `${K}.${Path<NonNullable<T[K]>>}`;
 }[keyof T & string];

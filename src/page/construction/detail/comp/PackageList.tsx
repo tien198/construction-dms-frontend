@@ -1,6 +1,6 @@
 import { Business } from "@mui/icons-material";
 import { Box, Grid, Typography } from "@mui/material";
-import type { Construction } from "../../type/construction.type";
+import type { Construction } from "../../create/type/construction.create.type";
 import PackageCard from "./PackageCard";
 
 type Props = {

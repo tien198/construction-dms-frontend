@@ -14,9 +14,7 @@ export default function PursuantTCTDecisionNo() {
       fullWidth
       label="QĐ TCT"
       value={value}
-      onChange={(e) =>
-        setNestedField("pursuantToDec_TCT", "no", e.target.value)
-      }
+      onChange={(e) => setNestedField("pursuantToDec_TCT.no", e.target.value)}
     />
   );
 }

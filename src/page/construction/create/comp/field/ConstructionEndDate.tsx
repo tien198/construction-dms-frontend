@@ -20,10 +20,8 @@ export default function ConstructionEndDate() {
       value={dayjs(value)}
       onChange={(val) =>
         setNestedDateField(
-          "constructionInfor",
-          "constructionImplementationTime",
-          "endDate",
-          val
+          "constructionInfor.constructionImplementationTime.endDate",
+          val?.toDate() ?? new Date("") // if undefined, retrun "Invalid Date"
         )
       }
     />

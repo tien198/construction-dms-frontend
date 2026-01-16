@@ -18,8 +18,7 @@ export default function ExistingConditionOfTheStructure() {
       value={value}
       onChange={(e) =>
         setNestedField(
-          "constructionInfor",
-          "existingConditionOfTheStructure",
+          "constructionInfor.existingConditionOfTheStructure",
           e.target.value
         )
       }

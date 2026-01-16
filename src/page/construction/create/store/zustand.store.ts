@@ -2,6 +2,7 @@ import { createStore } from "zustand";
 import { initialFormData } from "../constant/initalData/initialFormData.const";
 import type { InitConstructionStore } from "./store.type";
 import type { BidPackage } from "../../type/bid-package.type";
+import { setValueByPath } from "../../../../lib/setvalueByPath";
 
 export const constructionStore = createStore<InitConstructionStore>()(
   (set) => ({
@@ -14,16 +15,13 @@ export const constructionStore = createStore<InitConstructionStore>()(
       })),
 
     // Tương đương handleNestedChange
-    setNestedField: (parent, child, value) =>
-      set((state) => ({
-        formData: {
-          ...state.formData,
-          [parent]: {
-            ...(state.formData[parent] as object),
-            [child]: value,
-          },
-        },
-      })),
+    setNestedField: (path, value) =>
+      set((state) => {
+        const newVal = setValueByPath(state.formData, path, value);
+        return {
+          formData: newVal,
+        };
+      }),
 
     // Tương đương handleDateChange
     setDateField: (name, value) =>
@@ -35,16 +33,13 @@ export const constructionStore = createStore<InitConstructionStore>()(
       })),
 
     // Tương đương handleNestedDateChange
-    setNestedDateField: (parent, child, value) =>
-      set((state) => ({
-        formData: {
-          ...state.formData,
-          [parent]: {
-            ...(state.formData[parent] as object),
-            [child]: value,
-          },
-        },
-      })),
+    setNestedDateField: (path, value) =>
+      set((state) => {
+        const newVal = setValueByPath(state.formData, path, value);
+        return {
+          formData: newVal,
+        };
+      }),
 
     setPackage: (id: number, prop: keyof BidPackage, value) =>
       set((state) => {

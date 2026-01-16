@@ -14,9 +14,7 @@ export default function NameField() {
       fullWidth
       label="Tên công trình"
       value={value}
-      onChange={(e) =>
-        setNestedField("constructionInfor", "name", e.target.value)
-      }
+      onChange={(e) => setNestedField("constructionInfor.name", e.target.value)}
       required
     />
   );

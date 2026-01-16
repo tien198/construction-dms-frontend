@@ -63,7 +63,7 @@ export default function BidPackagesList() {
     };
 */
   const handleAddPackage = () => {
-    setNestdField("constructionInfor", "bidPackages", [
+    setNestdField("constructionInfor.bidPackages", [
       ...packages,
       { ...initialBidPackage },
     ]);
@@ -72,7 +72,7 @@ export default function BidPackagesList() {
   const handleRemovePackage = (index: number) => {
     const newPackages = [...packages];
     newPackages.splice(index, 1);
-    setNestdField("constructionInfor", "bidPackages", newPackages);
+    setNestdField("constructionInfor.bidPackages", newPackages);
   };
 
   return (

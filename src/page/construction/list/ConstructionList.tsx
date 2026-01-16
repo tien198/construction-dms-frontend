@@ -99,7 +99,7 @@ export default function ConstructionList() {
                         textDecoration: "none",
                       }}
                     >
-                      {construction.name}
+                      {construction.constructionInfor.name}
                     </Typography>
                   </Box>
 

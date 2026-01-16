@@ -17,7 +17,7 @@ export default function RepairScope() {
       label="Phạm vi sửa chữa"
       value={value}
       onChange={(e) =>
-        setNestedField("constructionInfor", "repairScope", e.target.value)
+        setNestedField("constructionInfor.repairScope", e.target.value)
       }
     />
   );

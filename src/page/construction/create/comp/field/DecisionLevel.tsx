@@ -15,7 +15,7 @@ export default function DecisionLevel() {
       fullWidth
       label="Cấp"
       value={level}
-      onChange={(e) => setNestedField("directlyDecision", "no", e.target.value)}
+      onChange={(e) => setNestedField("directlyDecision.no", e.target.value)}
     >
       <MenuItem value="LCQ">TTMN</MenuItem>
     </TextField>

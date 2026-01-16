@@ -16,7 +16,7 @@ export default function BidderSelectionTime({ id }: { id: number }) {
       label="Thời gian chọn nhà thầu"
       value={dayjs(value)}
       onChange={(val) =>
-        setPackage(id, "bidderSelectionTime", (val?.toDate() as Date) ?? null)
+        setPackage(id, "bidderSelectionTime", val?.toDate() ?? new Date(""))
       }
     />
   );

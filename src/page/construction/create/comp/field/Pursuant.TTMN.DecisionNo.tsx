@@ -14,9 +14,7 @@ export default function PursuantTTMNDecisionNo() {
       fullWidth
       label="QĐ TTMN (Nếu có)"
       value={value}
-      onChange={(e) =>
-        setNestedField("pursuantToDec_TTMN", "no", e.target.value)
-      }
+      onChange={(e) => setNestedField("pursuantToDec_TTMN.no", e.target.value)}
     />
   );
 }

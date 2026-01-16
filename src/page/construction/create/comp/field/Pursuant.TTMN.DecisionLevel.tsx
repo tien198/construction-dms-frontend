@@ -18,9 +18,7 @@ export default function PursuantTTMNDecisionLevel() {
       fullWidth
       label="Cấp"
       value={level}
-      onChange={(e) =>
-        setNestedField("pursuantToDec_TTMN", "no", e.target.value)
-      }
+      onChange={(e) => setNestedField("pursuantToDec_TTMN.no", e.target.value)}
     >
       <MenuItem value="LCQ">TTMN</MenuItem>
     </TextField>

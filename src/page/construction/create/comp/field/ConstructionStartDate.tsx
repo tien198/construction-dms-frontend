@@ -20,7 +20,10 @@ export default function ConstructionStartDate() {
       label="Ngày bắt đầu"
       value={dayjs(value)}
       onChange={(val) =>
-        setNestedDateField("constructionImplementationTime", "startDate", val)
+        setNestedDateField(
+          "constructionInfor.constructionImplementationTime.startDate",
+          val?.toDate() ?? new Date("") // if undefined, retrun "Invalid Date"
+        )
       }
     />
   );

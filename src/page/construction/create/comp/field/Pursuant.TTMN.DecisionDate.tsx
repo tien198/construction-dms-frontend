@@ -16,7 +16,10 @@ export default function PursuantTTMNDecisionDate() {
       label="Ngày"
       value={dayjs(value)}
       onChange={(val) => {
-        setNestedField("pursuantToDec_TTMN", "date", val?.toDate() ?? null);
+        setNestedField(
+          "pursuantToDec_TTMN.date",
+          val?.toDate() ?? new Date("") // if undefined, retrun "Invalid Date"
+        );
       }}
     />
   );

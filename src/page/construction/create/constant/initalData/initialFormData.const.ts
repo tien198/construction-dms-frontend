@@ -1,4 +1,4 @@
-import type { CreateSubmission } from "../../type/submission.type";
+import type { CreateSubmission } from "../../type/submission.create.type";
 import { designPackage, verificationPackage } from "./initialPackageData.const";
 /*
 export const initialFormData: Construction = {

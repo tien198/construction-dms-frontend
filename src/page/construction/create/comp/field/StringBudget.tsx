@@ -15,7 +15,7 @@ export default function CostStringField() {
       label="Ngân sách bằng chữ"
       value={value}
       onChange={(e) =>
-        setNestedField("constructionInfor", "costString", e.target.value)
+        setNestedField("constructionInfor.costString", e.target.value)
       }
     />
   );

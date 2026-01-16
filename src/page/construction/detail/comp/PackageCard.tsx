@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { formatCurrency } from "../ultil/currencyFormat";
 import { formatDate } from "../ultil/formatDate";
-import type { BidPackage } from "../../type/construction.type";
+import type { BidPackage } from "../../create/type/construction.create.type";
 
 export default function PackageCard({ item }: { item: BidPackage }) {
   const theme = useTheme();

@@ -1,14 +1,14 @@
 import { Box, Container, Stack } from "@mui/material";
-import type { Construction } from "../type/construction.type";
 import Header from "./comp/Header";
 import { useLoaderData } from "react-router";
 import ConstructionInformation from "./comp/ConstructionInfor";
 import PackageList from "./comp/PackageList";
 import CreateDocBtn from "./comp/CreateDocBtn";
+import type { CreateConstruction } from "../create/type/construction.create.type";
 
 // --- Main Component ---
 export default function ConstructionDetail() {
-  const con = useLoaderData<Construction>();
+  const con = useLoaderData<CreateConstruction>();
   return (
     <Box sx={{ bgcolor: "#f4f6f8", pb: 15 }}>
       <Container maxWidth="xl" sx={{ py: 4 }}>

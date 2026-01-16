@@ -1,4 +1,3 @@
-import type { Construction } from "../../type/construction.type";
 import {
   Box,
   Card,
@@ -17,9 +16,10 @@ import {
 } from "@mui/icons-material";
 import InfoItem from "./InforItem";
 import { formatDate } from "../ultil/formatDate";
+import type { CreateConstruction } from "../../create/type/construction.create.type";
 
 type Props = {
-  con: Construction;
+  con: CreateConstruction;
 };
 export default function ConstructionInformation({ con }: Props) {
   return (
@@ -42,10 +42,10 @@ export default function ConstructionInformation({ con }: Props) {
               icon={<CalendarToday fontSize="small" />}
               label="Thời gian thực hiện"
               value={`${formatDate(
-                con.constructionImplementationTime.startDate,
+                con.constructionInfor.constructionImplementationTime.startDate,
                 "month"
               )} - ${formatDate(
-                con.constructionImplementationTime.endDate,
+                con.constructionInfor.constructionImplementationTime.endDate,
                 "month"
               )}`}
             />

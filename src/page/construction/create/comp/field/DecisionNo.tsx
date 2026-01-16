@@ -14,7 +14,7 @@ export default function DecisionNo() {
       fullWidth
       label="Số quyết định"
       value={value}
-      onChange={(e) => setNestedField("directlyDecision", "no", e.target.value)}
+      onChange={(e) => setNestedField("directlyDecision.no", e.target.value)}
     />
   );
 }

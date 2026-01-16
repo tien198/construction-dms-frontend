@@ -25,7 +25,7 @@ export default function SourceOfFunds() {
       label="Nguồn vốn: Chi phí SXKD năm"
       value={value}
       onChange={(e) =>
-        setNestedField("constructionInfor", "sourceOfFunds", e.target.value)
+        setNestedField("constructionInfor.sourceOfFunds", e.target.value)
       }
     >
       {selections.map((i) => (

@@ -17,8 +17,7 @@ export default function CostField() {
       value={value as any}
       onChange={(e) =>
         setNestedField(
-          "constructionInfor",
-          "cost",
+          "constructionInfor.cost",
           e.target.value === "" ? "" : parseFloat(e.target.value)
         )
       }

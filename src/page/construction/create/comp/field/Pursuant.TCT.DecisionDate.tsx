@@ -16,7 +16,7 @@ export default function PursuantTCTDecisionDate() {
       label="Ngày"
       value={dayjs(value)}
       onChange={(val) => {
-        setNestedField("pursuantToDec_TCT", "date", val?.toDate() ?? null);
+        setNestedField("pursuantToDec_TCT.date", val?.toDate() ?? null);
       }}
     />
   );
