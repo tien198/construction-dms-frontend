@@ -1,7 +1,7 @@
 import { string, object, boolean } from "zod/mini";
 import { NestedAdministrativeDocumentSchema } from "./nested-administrative-document.zod";
 import { ConstructionPeriodSchema } from "./construction.zod";
-import { CreateSubmissionSchema } from "../create/schema/submission.zod";
+import { CreateSubmissionSchema } from "../create/schema/submission.create.zod";
 import { optional } from "zod";
 
 export const DecisionSchema = object({

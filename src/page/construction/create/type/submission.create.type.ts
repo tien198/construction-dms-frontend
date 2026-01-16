@@ -1,5 +1,5 @@
 import type z from "zod";
-import type { CreateSubmissionSchema } from "../schema/submission.zod";
+import type { CreateSubmissionSchema } from "../schema/submission.create.zod";
 import type { NestedAdministrativeDocumentDto } from "../../type/nested-administrative-document.type";
 import type { ConstructionInfor } from "../../type/construction-infor.type";
 import type { ConstructionPeriod } from "../../type/construction.type";
