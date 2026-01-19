@@ -5,6 +5,7 @@ import type { ConstructionPeriod } from "./construction.type";
 import type { Submission } from "./submission.type";
 
 export interface Decision extends z.infer<typeof DecisionSchema> {
+  id: string;
   no: string;
   level: string;
   date: Date;

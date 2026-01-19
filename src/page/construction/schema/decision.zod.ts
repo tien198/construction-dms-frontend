@@ -5,6 +5,7 @@ import { optional } from "zod";
 import { SubmissionSchema } from "./submission.zod";
 
 export const DecisionSchema = object({
+  id: string(),
   no: string(),
   level: string(),
   date: zInstanceof(Date),

@@ -3,7 +3,7 @@ import { NestedAdministrativeDocumentSchema } from "../../schema/nested-administ
 import { SubmissionSchema } from "../../schema/submission.zod";
 
 export const CreateSubmissionSchema = object({
-  ...SubmissionSchema,
+  ...SubmissionSchema.shape,
   // decision directly for this submissio,
   directlyDecision: NestedAdministrativeDocumentSchema,
 });
