@@ -1,17 +1,17 @@
 import type z from "zod";
 import type { DecisionSchema } from "../schema/decision.zod";
-import type { NestedAdministrativeDocumentDto } from "./nested-administrative-document.type";
-import type { CreateSubmission } from "../create/type/submission.create.type";
+import type { NestedAdministrativeDocument } from "./nested-administrative-document.type";
 import type { ConstructionPeriod } from "./construction.type";
+import type { Submission } from "./submission.type";
 
 export interface Decision extends z.infer<typeof DecisionSchema> {
   no: string;
   level: string;
-  date: string;
-  pursuantToDec_TCT: NestedAdministrativeDocumentDto;
-  pursuantToDec_TTMN?: NestedAdministrativeDocumentDto;
+  date: Date;
+  pursuantToDec_TCT: NestedAdministrativeDocument;
+  pursuantToDec_TTMN?: NestedAdministrativeDocument;
   period: ConstructionPeriod;
-  submission: CreateSubmission;
+  submission: Submission;
   isApproved: boolean;
   isChangeConstructionInfor: boolean;
 }

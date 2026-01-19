@@ -1,7 +1,7 @@
 import type z from "zod";
 import type { ConstructionInfor } from "./construction-infor.type";
 import type { Decision } from "./decision.type";
-import type { NestedAdministrativeDocumentDto } from "./nested-administrative-document.type";
+import type { NestedAdministrativeDocument } from "./nested-administrative-document.type";
 import type {
   ConstructionPeriodSchema,
   ConstructionSchema,
@@ -9,7 +9,7 @@ import type {
 
 export interface Construction extends z.infer<typeof ConstructionSchema> {
   id: string;
-  pursuantToDec_TCT: NestedAdministrativeDocumentDto;
+  pursuantToDec_TCT: NestedAdministrativeDocument;
   decisions: Decision[];
   constructionInfor: ConstructionInfor;
 }
