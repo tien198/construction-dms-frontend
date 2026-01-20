@@ -3,14 +3,14 @@ import { lazy, Suspense } from "react";
 import NavigationCard from "../component/layout/Navbar";
 
 const ConstructionPage = lazy(
-  () => import("../page/construction/create/ConstructionCreate")
+  () => import("../page/construction/create/ConstructionCreate"),
 );
 
 const ConstructionList = lazy(
-  () => import("../page/construction/list/ConstructionList")
+  () => import("../page/construction/list/ConstructionList"),
 );
 const ConstructionDetail = lazy(
-  () => import("../page/construction/detail/ConstructionDetail")
+  () => import("../page/construction/detail/ConstructionDetail"),
 );
 
 export const constructionRoute: RouteObject = {
@@ -19,11 +19,25 @@ export const constructionRoute: RouteObject = {
   children: [
     {
       path: "them",
-      element: <ConstructionPage />,
+      element: (
+        <Suspense fallback={<div>loading ...</div>}>
+          <ConstructionPage />
+        </Suspense>
+      ),
       action: (args) =>
         import("../page/construction/create/action").then((m) =>
-          m.addConstruction(args)
+          m.addConstruction(args),
         ),
+    },
+    {
+      index: true,
+      element: (
+        <Suspense fallback={<div>loading ...</div>}>
+          <ConstructionList />
+        </Suspense>
+      ),
+      loader: () =>
+        import("../page/construction/list/loader").then((m) => m.loader()),
     },
     {
       path: "",
@@ -35,17 +49,7 @@ export const constructionRoute: RouteObject = {
       ),
       children: [
         {
-          index: true,
-          element: (
-            <Suspense fallback={<div>loading ...</div>}>
-              <ConstructionList />
-            </Suspense>
-          ),
-          loader: () =>
-            import("../page/construction/list/loader").then((m) => m.loader()),
-        },
-        {
-          path: ":id",
+          path: ":construction-id",
           element: (
             <Suspense fallback={<div>loading ...</div>}>
               <ConstructionDetail />
@@ -53,11 +57,11 @@ export const constructionRoute: RouteObject = {
           ),
           loader: (args) =>
             import("../page/construction/detail/loader").then((m) =>
-              m.loader(args)
+              m.loader(args),
             ),
           action: (args) =>
             import("../page/construction/detail/action").then((m) =>
-              m.action(args)
+              m.action(args),
             ),
         },
       ],
