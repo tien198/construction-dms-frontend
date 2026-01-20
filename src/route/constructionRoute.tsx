@@ -49,7 +49,7 @@ export const constructionRoute: RouteObject = {
       ),
       children: [
         {
-          path: ":construction-id",
+          path: ":construction-id/:decision-id",
           element: (
             <Suspense fallback={<div>loading ...</div>}>
               <ConstructionDetail />
