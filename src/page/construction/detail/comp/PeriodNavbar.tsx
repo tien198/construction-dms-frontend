@@ -1,24 +1,24 @@
 import { Paper, Box } from "@mui/material";
-import { NavLink } from "react-router";
+import { NavLink, useParams } from "react-router";
 
 interface NavItem {
   label: string;
   to: string;
 }
 
-interface NavigationCardProps {
-  items?: NavItem[];
+function gentItemList(conId: string) {
+  const itemsList: NavItem[] = [
+    { label: "KH", to: `/cong-trinh/${conId}/KH` },
+    { label: "LCNT TV", to: `/cong-trinh/${conId}/TV` },
+    { label: "LCNT TT", to: `/cong-trinh/${conId}/TT` },
+    { label: "BCKTKT", to: `/cong-trinh/${conId}/BCKTKT` },
+  ];
+  return itemsList;
 }
 
-const itemsList: NavItem[] = [
-  { label: "LCNT TV", to: "/cong-trinh/" },
-  { label: "LCNT TT", to: "/cong-trinh/" },
-  { label: "BCKTKT", to: "/settings" },
-];
-
-export default function NavigationCard({
-  items = itemsList,
-}: NavigationCardProps) {
+export default function PeriodNavigator() {
+  const conId = useParams()["construction-id"]!;
+  const items = gentItemList(conId);
   return (
     <Box
       className="card"

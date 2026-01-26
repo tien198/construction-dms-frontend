@@ -5,7 +5,7 @@ export const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: ({ theme }) => ({
-          borderRadius: "2rem",
+          borderRadius: "1.5rem",
           padding: "1rem",
           boxShadow: theme.shadows[3],
           "&:hover": {

@@ -9,6 +9,7 @@ import {
 import type { BidPackage } from "../../type/bid-package.type";
 import { formatDate } from "../ultil/formatDate";
 import SuccessfulBidderInfo from "./BidderInfor";
+import { formatCurrency } from "../ultil/currencyFormat";
 
 const BidPackageCard: React.FC<{ pkg: BidPackage }> = ({ pkg }) => {
   return (
@@ -26,9 +27,11 @@ const BidPackageCard: React.FC<{ pkg: BidPackage }> = ({ pkg }) => {
           </Stack>
 
           <Typography variant="body2">
-            <strong>Giá gói thầu:</strong> {pkg.costString}
+            <strong>Giá gói thầu:</strong> {formatCurrency(pkg.cost)}
           </Typography>
-
+          <Typography variant="body2">
+            <strong>Bằng chữ:</strong> {pkg.costString}
+          </Typography>
           <Typography variant="body2">
             <strong>Hình thức lựa chọn nhà thầu:</strong>{" "}
             {pkg.bidderSelectionMethod}
@@ -36,7 +39,7 @@ const BidPackageCard: React.FC<{ pkg: BidPackage }> = ({ pkg }) => {
 
           <Typography variant="body2">
             <strong>Thời gian lựa chọn nhà thầu:</strong>{" "}
-            {formatDate(pkg.bidderSelectionTime)}
+            {formatDate(pkg.bidderSelectionTime, "month")}
           </Typography>
 
           {pkg.successfulBidder && (

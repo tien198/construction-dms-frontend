@@ -1,6 +1,6 @@
-import { Outlet, type RouteObject } from "react-router";
+import { type RouteObject } from "react-router";
 import { lazy, Suspense } from "react";
-import NavigationCard from "../component/layout/Navbar";
+import PeriodNavigator from "../page/construction/detail/comp/PeriodNavbar";
 
 const CreatePage = lazy(() => import("../page/construction/create/Create"));
 
@@ -34,31 +34,23 @@ export const constructionRoute: RouteObject = {
         import("../page/construction/list/loader").then((m) => m.loader()),
     },
     {
-      path: "",
+      path: ":construction-id/:period",
       element: (
         <>
-          <NavigationCard />
-          <Outlet />
+          <PeriodNavigator />
+          <Suspense fallback={<div>loading ...</div>}>
+            <Detail />
+          </Suspense>
         </>
       ),
-      children: [
-        {
-          path: ":construction-id/:decision-id",
-          element: (
-            <Suspense fallback={<div>loading ...</div>}>
-              <Detail />
-            </Suspense>
-          ),
-          loader: (args) =>
-            import("../page/construction/detail/loader").then((m) =>
-              m.loader(args),
-            ),
-          action: (args) =>
-            import("../page/construction/detail/action").then((m) =>
-              m.action(args),
-            ),
-        },
-      ],
+      loader: (args) =>
+        import("../page/construction/detail/loader").then((m) =>
+          m.loader(args),
+        ),
+      action: (args) =>
+        import("../page/construction/detail/action").then((m) =>
+          m.action(args),
+        ),
     },
   ],
 };

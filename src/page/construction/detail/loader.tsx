@@ -20,7 +20,6 @@ export async function loader(args: LoaderFunctionArgs) {
     if (!res.ok) alert("Lỗi");
     return await res.json();
   } catch {
-    alert("Lỗi tải dữ liệu công trình");
     return null;
   }
 }

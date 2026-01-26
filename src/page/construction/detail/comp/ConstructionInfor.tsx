@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Card, CardContent, Grid } from "@mui/material";
 
 import InfoRow from "./InforRow";
 import type { ConstructionInfor } from "../../type/construction-infor.type";
@@ -10,13 +10,11 @@ type Props = {
 
 // Thông tin công trình
 export default function ConstructionInfor({ info }: Props) {
+  console.log(info);
+
   return (
     <Card>
       <CardContent>
-        <Typography variant="h6" gutterBottom>
-          Thông tin công trình
-        </Typography>
-
         <Grid container spacing={2}>
           <Grid size={{ xs: 12 }}>
             <InfoRow label="Tên công trình" value={info.name} />
@@ -35,7 +33,8 @@ export default function ConstructionInfor({ info }: Props) {
               label="Thời gian thực hiện"
               value={`${formatDate(
                 info.constructionImplementationTime.startDate,
-              )} - ${formatDate(info.constructionImplementationTime.endDate)}`}
+                "month",
+              )} - ${formatDate(info.constructionImplementationTime.endDate, "month")}`}
             />
           </Grid>
 

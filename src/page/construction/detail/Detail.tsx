@@ -1,54 +1,56 @@
 // ...existing code...
 import { useLoaderData } from "react-router";
 import { Box, Typography, Grid, Stack, Container } from "@mui/material";
-import type { Construction } from "../type/construction.type";
 import DecisionCard from "./comp/DecisionCard";
 import ConstructionInfor from "./comp/ConstructionInfor";
 import BidPackageCard from "./comp/BidPackageCard";
+import type { Decision } from "../type/decision.type";
 
 export default function ConstructionDetailPage() {
-  const construction = useLoaderData<Construction>();
+  const decision = useLoaderData<Decision>();
   // const construction = list[0] as Construction;
-  if (construction == null)
+  if (decision == null)
     return (
-      <div className="flex items-center justify-center h-96 font-bold text-3xl">
-        Not found
+      <div className="flex items-center justify-center h-96 text-3xl font-semibold">
+        Chưa có TTr cho QĐ này
       </div>
     );
-  const { constructionInfor, decisions } = construction;
+  // const { constructionInfor, decisions } = construction;
 
   return (
-    <Container maxWidth="lg">
-      <Stack spacing={3}>
+    <Container maxWidth="lg" className="bg-gray-200 py-9">
+      <Stack spacing={7}>
         {/* Quyết định & hồ sơ */}
         <Box>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h4" gutterBottom>
             Tờ Trình & Quyết định
           </Typography>
 
-          <Grid container spacing={2}>
-            {decisions?.map((decision, index) => (
-              <Grid size={{ xs: 12 }} key={index}>
-                <DecisionCard decision={decision} />
-              </Grid>
-            ))}
+          <Grid size={{ xs: 12 }}>
+            <DecisionCard decision={decision} />
           </Grid>
         </Box>
         {/* Thông tin chung */}
-        <ConstructionInfor info={constructionInfor} />
-
+        <Box>
+          <Typography variant="h4" gutterBottom>
+            Thông tin công trình
+          </Typography>
+          <ConstructionInfor info={decision.submission.constructionInfor!} />
+        </Box>
         {/* Danh sách gói thầu */}
         <Box>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h4" gutterBottom>
             Danh sách gói thầu
           </Typography>
 
           <Grid container spacing={2}>
-            {constructionInfor.bidPackages?.map((pkg, index) => (
-              <Grid size={{ xs: 12, md: 6 }} key={index}>
-                <BidPackageCard pkg={pkg} />
-              </Grid>
-            ))}
+            {decision.submission.constructionInfor?.bidPackages?.map(
+              (pkg, index) => (
+                <Grid size={{ xs: 12, md: 6 }} key={index}>
+                  <BidPackageCard pkg={pkg} />
+                </Grid>
+              ),
+            )}
           </Grid>
         </Box>
       </Stack>
