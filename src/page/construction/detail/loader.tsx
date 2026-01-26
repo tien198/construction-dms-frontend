@@ -10,11 +10,13 @@ import type { LoaderFunctionArgs } from "react-router";
 
 export async function loader(args: LoaderFunctionArgs) {
   const conId = args.params["construction-id"];
-  const decId = args.params["decision-id"];
+  const per = args.params["period"];
   try {
     const res = await fetch(
-      import.meta.env.VITE_API_URL + `/construction/${args.params.id}`,
+      import.meta.env.VITE_API_URL +
+        `/construction/find-dec-by-per/${conId}/${per}`,
     );
+
     if (!res.ok) alert("Lỗi");
     return await res.json();
   } catch {

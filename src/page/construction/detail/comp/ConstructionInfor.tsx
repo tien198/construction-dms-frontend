@@ -1,124 +1,60 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Divider,
-  Grid,
-  Typography,
-} from "@mui/material";
-import {
-  CalendarToday,
-  AttachMoney,
-  Build,
-  Gavel,
-  Assignment,
-  Engineering,
-} from "@mui/icons-material";
-import InfoItem from "./InforItem";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
+
+import InfoRow from "./InforRow";
+import type { ConstructionInfor } from "../../type/construction-infor.type";
 import { formatDate } from "../ultil/formatDate";
-import type { CreateConstruction } from "../../create/type/construction.create.type";
 
 type Props = {
-  con: CreateConstruction;
+  info: ConstructionInfor;
 };
-export default function ConstructionInformation({ con }: Props) {
-  return (
-    <>
-      <Grid size={{ xs: 12 }}>
-        <Card elevation={2} sx={{ height: "100%", px: 5, py: 8 }}>
-          <CardContent>
-            <Typography
-              variant="h4"
-              gutterBottom
-              display="flex"
-              alignItems="center"
-              gap={2}
-            >
-              <Assignment color="primary" sx={{ mr: 1 }} /> Thông tin chung
-            </Typography>
-            <Divider sx={{ mb: 2 }} />
 
-            <InfoItem
-              icon={<CalendarToday fontSize="small" />}
+// Thông tin công trình
+export default function ConstructionInfor({ info }: Props) {
+  return (
+    <Card>
+      <CardContent>
+        <Typography variant="h6" gutterBottom>
+          Thông tin công trình
+        </Typography>
+
+        <Grid container spacing={2}>
+          <Grid size={{ xs: 12 }}>
+            <InfoRow label="Tên công trình" value={info.name} />
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 6 }}>
+            <InfoRow label="Tổng mức đầu tư" value={info.costString} />
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 6 }}>
+            <InfoRow label="Nguồn vốn" value={info.sourceOfFunds} />
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 6 }}>
+            <InfoRow
               label="Thời gian thực hiện"
               value={`${formatDate(
-                con.constructionInfor.constructionImplementationTime.startDate,
-                "month"
-              )} - ${formatDate(
-                con.constructionInfor.constructionImplementationTime.endDate,
-                "month"
-              )}`}
+                info.constructionImplementationTime.startDate,
+              )} - ${formatDate(info.constructionImplementationTime.endDate)}`}
             />
-            <InfoItem
-              icon={<Gavel fontSize="small" />}
-              label="Quyết định phê duyệt"
-              value={
-                <Box sx={{ display: "flex", gap: 2 }}>
-                  <span>Số: {con.decision.number}</span>-
-                  <span>Ngày: {formatDate(con.decision.date)}</span>
-                </Box>
-              }
-            />
-            <InfoItem
-              icon={<AttachMoney fontSize="small" />}
-              label="Nguồn vốn"
-              value={con.sourceOfFunds}
-            />
-          </CardContent>
+          </Grid>
 
-          {/* 3. Phạm vi & Hiện trạng */}
+          <Grid size={{ xs: 12, md: 6 }}>
+            <InfoRow label="Giai đoạn" value={info.period} />
+          </Grid>
 
-          <CardContent sx={{ p: 3 }}>
-            <Grid container spacing={2}>
-              <Grid size={{ xs: 12 }}>
-                <Typography
-                  variant="h5"
-                  gutterBottom
-                  display="flex"
-                  alignItems="center"
-                >
-                  <Engineering color="warning" sx={{ mr: 1 }} />
-                  Hiện trạng kết cấu
-                </Typography>
-                <Box
-                  sx={{
-                    p: 2,
-                    bgcolor: "grey.50",
-                    borderRadius: 1,
-                    border: "1px dashed #ccc",
-                  }}
-                >
-                  <Typography sx={{ padding: 2 }}>
-                    {con.existingConditionOfTheStructure}
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid size={{ xs: 12 }}>
-                <Typography
-                  variant="h5"
-                  gutterBottom
-                  display="flex"
-                  alignItems="center"
-                  sx={{ mt: 1 }}
-                >
-                  <Build color="info" sx={{ mr: 1 }} />
-                  Phạm vi sửa chữa
-                </Typography>
-                <Box
-                  sx={{
-                    p: 2,
-                    bgcolor: "grey.50",
-                    borderRadius: 1,
-                    border: "1px dashed #ccc",
-                  }}
-                >
-                  <Typography sx={{ padding: 2 }}>{con.repairScope}</Typography>
-                </Box>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
-      </Grid>
-    </>
+          <Grid size={{ xs: 12 }}>
+            <InfoRow
+              label="Hiện trạng công trình"
+              value={info.existingConditionOfTheStructure}
+            />
+          </Grid>
+
+          <Grid size={{ xs: 12 }}>
+            <InfoRow label="Phạm vi sửa chữa" value={info.repairScope} />
+          </Grid>
+        </Grid>
+      </CardContent>
+    </Card>
   );
 }

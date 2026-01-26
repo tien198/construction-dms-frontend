@@ -2,7 +2,6 @@ import { Paper, Box } from "@mui/material";
 import { NavLink } from "react-router";
 
 interface NavItem {
-  id: string;
   label: string;
   to: string;
 }
@@ -12,9 +11,9 @@ interface NavigationCardProps {
 }
 
 const itemsList: NavItem[] = [
-  { id: "1", label: "Tạo công trình", to: "/cong-trinh/them" },
-  { id: "2", label: "KH LCNT", to: "/cong-trinh/" },
-  { id: "3", label: "BCKTKT", to: "/settings" },
+  { label: "LCNT TV", to: "/cong-trinh/" },
+  { label: "LCNT TT", to: "/cong-trinh/" },
+  { label: "BCKTKT", to: "/settings" },
 ];
 
 export default function NavigationCard({
@@ -29,8 +28,8 @@ export default function NavigationCard({
         flexWrap: "wrap",
       }}
     >
-      {items.map((item) => (
-        <NavLink className="flex-1" key={item.id} to={item.to} end>
+      {items.map((item, id) => (
+        <NavLink className="flex-1" key={id} to={item.to} end>
           {({ isActive }) => (
             <Paper
               elevation={isActive ? 8 : 1}

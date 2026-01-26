@@ -2,16 +2,10 @@ import { Outlet, type RouteObject } from "react-router";
 import { lazy, Suspense } from "react";
 import NavigationCard from "../component/layout/Navbar";
 
-const ConstructionPage = lazy(
-  () => import("../page/construction/create/ConstructionCreate"),
-);
+const CreatePage = lazy(() => import("../page/construction/create/Create"));
 
-const ConstructionList = lazy(
-  () => import("../page/construction/list/ConstructionList"),
-);
-const ConstructionDetail = lazy(
-  () => import("../page/construction/detail/ConstructionDetail"),
-);
+const List = lazy(() => import("../page/construction/list/ConstructionList"));
+const Detail = lazy(() => import("../page/construction/detail/Detail"));
 
 export const constructionRoute: RouteObject = {
   path: "cong-trinh",
@@ -21,7 +15,7 @@ export const constructionRoute: RouteObject = {
       path: "them",
       element: (
         <Suspense fallback={<div>loading ...</div>}>
-          <ConstructionPage />
+          <CreatePage />
         </Suspense>
       ),
       action: (args) =>
@@ -33,7 +27,7 @@ export const constructionRoute: RouteObject = {
       index: true,
       element: (
         <Suspense fallback={<div>loading ...</div>}>
-          <ConstructionList />
+          <List />
         </Suspense>
       ),
       loader: () =>
@@ -52,7 +46,7 @@ export const constructionRoute: RouteObject = {
           path: ":construction-id/:decision-id",
           element: (
             <Suspense fallback={<div>loading ...</div>}>
-              <ConstructionDetail />
+              <Detail />
             </Suspense>
           ),
           loader: (args) =>
