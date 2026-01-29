@@ -23,6 +23,6 @@ export async function addConstruction(args: ActionFunctionArgs) {
     return redirect("/cong-trinh/" + result.id);
   } catch {
     alert("Lỗi kết nối đến server");
+    return null;
   }
-  return null;
 }

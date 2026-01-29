@@ -52,5 +52,19 @@ export const constructionRoute: RouteObject = {
           m.action(args),
         ),
     },
+    {
+      path: "appove/:decision-id",
+      action: (args) =>
+        import("../page/construction/api-action/appove.action").then((m) =>
+          m.appoveAction(args),
+        ),
+    },
+    {
+      path: "print/:decision-id",
+      action: (args) =>
+        import("../page/construction/api-action/print.action").then((m) =>
+          m.printAction(args),
+        ),
+    },
   ],
 };
