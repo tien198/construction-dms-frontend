@@ -10,8 +10,6 @@ type Props = {
 
 // Thông tin công trình
 export default function ConstructionInfor({ info }: Props) {
-  console.log(info);
-
   return (
     <Card>
       <CardContent>

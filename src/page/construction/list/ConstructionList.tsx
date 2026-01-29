@@ -49,7 +49,7 @@ export default function ConstructionList() {
           {data.map((construction, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
               <Link
-                to={"/cong-trinh/" + construction.id}
+                to={"/cong-trinh/" + construction.id + "/kh"}
                 style={{ display: "block", textDecoration: "none" }}
               >
                 <Paper

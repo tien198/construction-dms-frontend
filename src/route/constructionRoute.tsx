@@ -47,23 +47,19 @@ export const constructionRoute: RouteObject = {
         import("../page/construction/detail/loader").then((m) =>
           m.loader(args),
         ),
-      action: (args) =>
-        import("../page/construction/detail/action").then((m) =>
-          m.action(args),
-        ),
     },
     {
-      path: "appove/:decision-id",
+      path: "approve",
       action: (args) =>
         import("../page/construction/api-action/appove.action").then((m) =>
           m.appoveAction(args),
         ),
     },
     {
-      path: "print/:decision-id",
+      path: "gen-doc",
       action: (args) =>
-        import("../page/construction/api-action/print.action").then((m) =>
-          m.printAction(args),
+        import("../page/construction/api-action/gen-docx.action").then((m) =>
+          m.genDocXxAction(args),
         ),
     },
   ],

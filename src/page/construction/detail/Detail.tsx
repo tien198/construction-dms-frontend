@@ -5,6 +5,7 @@ import DecisionCard from "./comp/DecisionCard";
 import ConstructionInfor from "./comp/ConstructionInfor";
 import BidPackageCard from "./comp/BidPackageCard";
 import type { Decision } from "../type/decision.type";
+import DecisionAction from "./comp/Dial";
 
 export default function ConstructionDetailPage() {
   const decision = useLoaderData<Decision>();
@@ -19,6 +20,7 @@ export default function ConstructionDetailPage() {
 
   return (
     <Container maxWidth="lg" className="bg-gray-200 py-9">
+      <DecisionAction decId={decision.id} />
       <Stack spacing={7}>
         {/* Quyết định & hồ sơ */}
         <Box>
