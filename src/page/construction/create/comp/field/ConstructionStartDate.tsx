@@ -1,18 +1,15 @@
 import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustand.store";
+import type { StoreApiInject } from "../../store/create-store";
 
-export default function ConstructionStartDate() {
+export default function ConstructionStartDate({ storeApi }: StoreApiInject) {
   const value = useStore(
-    constructionStore,
+    storeApi,
     (s) =>
-      s.formData.constructionInfor!.constructionImplementationTime.startDate
+      s.formData.constructionInfor!.constructionImplementationTime.startDate,
   );
-  const setNestedDateField = useStore(
-    constructionStore,
-    (s) => s.setNestedDateField
-  );
+  const setNestedDateField = useStore(storeApi, (s) => s.setNestedDateField);
 
   return (
     <DatePicker
@@ -22,7 +19,7 @@ export default function ConstructionStartDate() {
       onChange={(val) =>
         setNestedDateField(
           "constructionInfor.constructionImplementationTime.startDate",
-          val?.toDate() ?? new Date("") // if undefined, retrun "Invalid Date"
+          val?.toDate() ?? new Date(""), // if undefined, retrun "Invalid Date"
         )
       }
     />

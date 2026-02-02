@@ -3,19 +3,19 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useStore } from "zustand";
-import { constructionStore } from "../store/zustand.store";
 import BidPackage from "./BidPackage";
 import { initialBidPackage } from "../constant/initalData/initialPackageData.const";
+import { createConstructionStore } from "../store/create-store";
 
 // Gợi ý cấu trúc Grid cho item của gói thầu (để bạn implement vào BidPackagesList)
 export default function BidPackagesList() {
   const packages = useStore(
-    constructionStore,
-    (state) => state.formData.constructionInfor!.bidPackages
+    createConstructionStore,
+    (state) => state.formData.constructionInfor!.bidPackages,
   );
   const setNestdField = useStore(
-    constructionStore,
-    (state) => state.setNestedField
+    createConstructionStore,
+    (state) => state.setNestedField,
   );
 
   /*

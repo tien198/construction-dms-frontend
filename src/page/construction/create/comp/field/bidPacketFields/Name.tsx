@@ -1,5 +1,5 @@
 import { useStore } from "zustand";
-import { constructionStore } from "../../../store/zustand.store";
+import { createConstructionStore } from "../../../store/create-store";
 import { Autocomplete, TextField } from "@mui/material";
 
 const nameList = [
@@ -7,12 +7,18 @@ const nameList = [
   "Thẩm tra Báo cáo kinh tế kỹ thuật",
 ];
 
-export default function PackageName({ id }: { id: number }) {
+export default function PackageName({
+  id,
+  storeApi,
+}: {
+  id: number;
+  storeApi: typeof createConstructionStore;
+}) {
   const name = useStore(
-    constructionStore,
-    (s) => s.formData.constructionInfor?.bidPackages[id]?.bidPackageName
+    storeApi,
+    (s) => s.formData.constructionInfor?.bidPackages[id]?.bidPackageName,
   );
-  const setPackage = useStore(constructionStore, (s) => s.setPackage);
+  const setPackage = useStore(storeApi, (s) => s.setPackage);
 
   return (
     <Autocomplete

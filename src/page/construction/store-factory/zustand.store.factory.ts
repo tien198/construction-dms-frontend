@@ -1,12 +1,13 @@
 import { createStore } from "zustand";
-import { initialFormData } from "../constant/initalData/initialFormData.const";
-import type { InitConstructionStore } from "./store.type";
-import type { BidPackage } from "../../type/bid-package.type";
-import { setValueByPath } from "../../../../lib/setvalueByPath";
+import { initialFormData } from "../create/constant/initalData/initialFormData.const";
+import type { InitSubmissionStore } from "./store.type";
+import type { BidPackage } from "../type/bid-package.type";
+import { setValueByPath } from "../../../lib/setvalueByPath";
+import type { CreateSubmission } from "../create/type/submission.create.type";
 
-export const constructionStore = createStore<InitConstructionStore>()(
-  (set) => ({
-    formData: initialFormData,
+export const submissionStoreFactory = (init: CreateSubmission) =>
+  createStore<InitSubmissionStore>()((set) => ({
+    formData: init,
 
     // Tương đương handleChange (nhưng nhận value trực tiếp thay vì event)
     setField: (name, value) =>
@@ -52,5 +53,4 @@ export const constructionStore = createStore<InitConstructionStore>()(
       }),
 
     resetForm: () => set({ formData: initialFormData }),
-  })
-);
+  }));

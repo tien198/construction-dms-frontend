@@ -1,16 +1,13 @@
 import { MenuItem, TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustand.store";
+import type { StoreApiInject } from "../../store/create-store";
 
-export default function PursuantTCTDecisionLevel() {
+export default function PursuantTCTDecisionLevel({ storeApi }: StoreApiInject) {
   const level = useStore(
-    constructionStore,
-    (state) => state.formData.pursuantToDec_TCT.level
+    storeApi,
+    (state) => state.formData.pursuantToDec_TCT.level,
   );
-  const setNestedField = useStore(
-    constructionStore,
-    (state) => state.setNestedField
-  );
+  const setNestedField = useStore(storeApi, (state) => state.setNestedField);
 
   return (
     <TextField

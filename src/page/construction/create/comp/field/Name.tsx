@@ -1,13 +1,10 @@
 import { TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustand.store";
+import type { StoreApiInject } from "../../store/create-store";
 
-export default function NameField() {
-  const value = useStore(
-    constructionStore,
-    (s) => s.formData.constructionInfor?.name
-  );
-  const setNestedField = useStore(constructionStore, (s) => s.setNestedField);
+export default function NameField({ storeApi }: StoreApiInject) {
+  const value = useStore(storeApi, (s) => s.formData.constructionInfor?.name);
+  const setNestedField = useStore(storeApi, (s) => s.setNestedField);
 
   return (
     <TextField

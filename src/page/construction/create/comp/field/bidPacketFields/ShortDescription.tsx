@@ -1,14 +1,20 @@
 import { TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../../store/zustand.store";
+import { createConstructionStore } from "../../../store/create-store";
 import type { ChangeEvent } from "react";
 
-export default function ShortDescription({ id }: { id: number }) {
+export default function ShortDescription({
+  id,
+  storeApi,
+}: {
+  id: number;
+  storeApi: typeof createConstructionStore;
+}) {
   const value = useStore(
-    constructionStore,
-    (s) => s.formData.constructionInfor?.bidPackages[id]?.shortDescription
+    storeApi,
+    (s) => s.formData.constructionInfor?.bidPackages[id]?.shortDescription,
   );
-  const setPackage = useStore(constructionStore, (s) => s.setPackage);
+  const setPackage = useStore(storeApi, (s) => s.setPackage);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setPackage(id, "shortDescription", e.target.value);
 

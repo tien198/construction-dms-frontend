@@ -2,8 +2,8 @@ import Grid from "@mui/material/Grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Card, CardContent, IconButton, Typography } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../store/zustand.store";
 import PkgF from "./field/bidPacketFields";
+import { createConstructionStore } from "../store/create-store";
 
 type Props = {
   index: number;
@@ -15,7 +15,7 @@ export default function BidPackage({ index, onRemove }: Props) {
       <CardContent>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12 }} display="flex" justifyContent="space-between">
-            <Heading index={index} />
+            <Heading index={index} storeApi={createConstructionStore} />
             {index >= 2 && (
               <IconButton
                 onClick={() => onRemove(index)}
@@ -28,30 +28,42 @@ export default function BidPackage({ index, onRemove }: Props) {
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
-            <PkgF.PackageName id={index} />
+            <PkgF.PackageName id={index} storeApi={createConstructionStore} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <PkgF.ProjectOwner id={index} />
+            <PkgF.ProjectOwner id={index} storeApi={createConstructionStore} />
           </Grid>
 
           <Grid size={{ xs: 12, md: 4 }}>
-            <PkgF.Cost id={index} />
+            <PkgF.Cost id={index} storeApi={createConstructionStore} />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
-            <PkgF.BidderSelectionTime id={index} />
+            <PkgF.BidderSelectionTime
+              id={index}
+              storeApi={createConstructionStore}
+            />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
-            <PkgF.ImplementDuration id={index} />
+            <PkgF.ImplementDuration
+              id={index}
+              storeApi={createConstructionStore}
+            />
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
-            <PkgF.BidderSelectionMethod id={index} />
+            <PkgF.BidderSelectionMethod
+              id={index}
+              storeApi={createConstructionStore}
+            />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <PkgF.ContractType id={index} />
+            <PkgF.ContractType id={index} storeApi={createConstructionStore} />
           </Grid>
           <Grid size={{ xs: 12 }}>
-            <PkgF.ShortDescription id={index} />
+            <PkgF.ShortDescription
+              id={index}
+              storeApi={createConstructionStore}
+            />
           </Grid>
         </Grid>
       </CardContent>
@@ -59,10 +71,16 @@ export default function BidPackage({ index, onRemove }: Props) {
   );
 }
 
-function Heading({ index }: { index: number }) {
+function Heading({
+  index,
+  storeApi,
+}: {
+  index: number;
+  storeApi: typeof createConstructionStore;
+}) {
   const packageName = useStore(
-    constructionStore,
-    (s) => s.formData.constructionInfor!.bidPackages[index]!.bidPackageName
+    storeApi,
+    (s) => s.formData.constructionInfor!.bidPackages[index]!.bidPackageName,
   );
   return (
     <Typography variant="subtitle1" fontWeight="bold">

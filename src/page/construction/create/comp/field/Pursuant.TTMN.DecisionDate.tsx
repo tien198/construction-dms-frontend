@@ -1,14 +1,11 @@
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustand.store";
+import type { StoreApiInject } from "../../store/create-store";
 import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 
-export default function PursuantTTMNDecisionDate() {
-  const value = useStore(
-    constructionStore,
-    (s) => s.formData.pursuantToDec_TTMN?.date
-  );
-  const setNestedField = useStore(constructionStore, (s) => s.setNestedField);
+export default function PursuantTTMNDecisionDate({ storeApi }: StoreApiInject) {
+  const value = useStore(storeApi, (s) => s.formData.pursuantToDec_TTMN?.date);
+  const setNestedField = useStore(storeApi, (s) => s.setNestedField);
 
   return (
     <DatePicker
@@ -18,7 +15,7 @@ export default function PursuantTTMNDecisionDate() {
       onChange={(val) => {
         setNestedField(
           "pursuantToDec_TTMN.date",
-          val?.toDate() ?? new Date("") // if undefined, retrun "Invalid Date"
+          val?.toDate() ?? new Date(""), // if undefined, retrun "Invalid Date"
         );
       }}
     />

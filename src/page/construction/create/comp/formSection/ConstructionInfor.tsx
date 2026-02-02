@@ -2,6 +2,7 @@ import { Build as BuildIcon } from "@mui/icons-material";
 import { Card, CardContent, Divider, Grid } from "@mui/material";
 import { CardHeader } from "../../../../../component/CardHeader";
 import ConF from "../ConstructionFormFields";
+import { createConstructionStore } from "../../store/create-store";
 
 export default function ConstructionInforSection() {
   return (
@@ -15,27 +16,29 @@ export default function ConstructionInforSection() {
       <CardContent>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 9 }}>
-            <ConF.NameField />
+            <ConF.NameField storeApi={createConstructionStore} />
           </Grid>
 
           <Grid size={{ xs: 12, md: 3 }}>
-            <ConF.SourceOfFunds />
+            <ConF.SourceOfFunds storeApi={createConstructionStore} />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
-            <ConF.BudgetField />
+            <ConF.BudgetField storeApi={createConstructionStore} />
           </Grid>
 
           <Grid size={{ xs: 12, md: 8 }}>
-            <ConF.StringBudgetField />
+            <ConF.StringBudgetField storeApi={createConstructionStore} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <ConF.ConstructionStartDate />
+            <ConF.ConstructionStartDate storeApi={createConstructionStore} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <ConF.ConstructionEndDate />
+            <ConF.ConstructionEndDate storeApi={createConstructionStore} />
           </Grid>
-          <ConF.ExistingConditionOfTheStructure />
-          <ConF.RepairScope />
+          <ConF.ExistingConditionOfTheStructure
+            storeApi={createConstructionStore}
+          />
+          <ConF.RepairScope storeApi={createConstructionStore} />
         </Grid>
       </CardContent>
     </Card>

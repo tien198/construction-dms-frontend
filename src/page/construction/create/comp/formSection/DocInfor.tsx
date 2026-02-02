@@ -2,6 +2,7 @@ import { Build as BuildIcon } from "@mui/icons-material";
 import { Card, CardContent, Divider, Grid } from "@mui/material";
 import { CardHeader } from "../../../../../component/CardHeader";
 import ConF from "../ConstructionFormFields";
+import { createConstructionStore } from "../../store/create-store";
 
 export default function DocInforSection() {
   return (
@@ -15,25 +16,25 @@ export default function DocInforSection() {
       <CardContent>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 6 }}>
-            <ConF.SubmissionNo />
+            <ConF.SubmissionNo storeApi={createConstructionStore} />
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
-            <ConF.DecisionNo />
+            <ConF.DecisionNo storeApi={createConstructionStore} />
           </Grid>
 
           <Grid size={{ xs: 12, md: 8 }} />
           <Grid size={{ xs: 12, md: 4 }}>
-            <ConF.DateOfSigning />
+            <ConF.DateOfSigning storeApi={createConstructionStore} />
           </Grid>
         </Grid>
         <Divider>Căn cứ vào</Divider>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 6 }}>
-            <ConF.PursuantTCTDecisionNo />
+            <ConF.PursuantTCTDecisionNo storeApi={createConstructionStore} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <ConF.PursuantTCTDecisionDate />
+            <ConF.PursuantTCTDecisionDate storeApi={createConstructionStore} />
           </Grid>
         </Grid>
       </CardContent>

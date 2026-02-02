@@ -1,13 +1,13 @@
 import { MenuItem, TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustand.store";
+import type { StoreApiInject } from "../../store/create-store";
 
-export default function SourceOfFunds() {
+export default function SourceOfFunds({ storeApi }: StoreApiInject) {
   const value = useStore(
-    constructionStore,
-    (s) => s.formData.constructionInfor!.sourceOfFunds
+    storeApi,
+    (s) => s.formData.constructionInfor!.sourceOfFunds,
   );
-  const setNestedField = useStore(constructionStore, (s) => s.setNestedField);
+  const setNestedField = useStore(storeApi, (s) => s.setNestedField);
 
   // eslint-disable-next-line react-hooks/purity
   const currYear = new Date(Date.now()).getFullYear();

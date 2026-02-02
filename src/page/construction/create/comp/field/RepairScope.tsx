@@ -1,13 +1,13 @@
 import { TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustand.store";
+import type { StoreApiInject } from "../../store/create-store";
 
-export default function RepairScope() {
+export default function RepairScope({ storeApi }: StoreApiInject) {
   const value = useStore(
-    constructionStore,
-    (s) => s.formData.constructionInfor?.repairScope
+    storeApi,
+    (s) => s.formData.constructionInfor?.repairScope,
   );
-  const setNestedField = useStore(constructionStore, (s) => s.setNestedField);
+  const setNestedField = useStore(storeApi, (s) => s.setNestedField);
 
   return (
     <TextField

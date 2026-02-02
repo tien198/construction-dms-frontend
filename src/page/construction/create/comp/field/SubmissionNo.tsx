@@ -1,10 +1,10 @@
 import { Box, TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustand.store";
 
-export default function DocumentNo() {
-  const documentNo = useStore(constructionStore, (state) => state.formData.no);
-  const setField = useStore(constructionStore, (state) => state.setField);
+import type { StoreApiInject } from "../../store/create-store";
+export default function DocumentNo({ storeApi }: StoreApiInject) {
+  const documentNo = useStore(storeApi, (state) => state.formData.no);
+  const setField = useStore(storeApi, (state) => state.setField);
 
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>

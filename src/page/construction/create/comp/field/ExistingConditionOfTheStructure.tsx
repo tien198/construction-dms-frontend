@@ -1,13 +1,17 @@
 import { TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustand.store";
+import { createConstructionStore } from "../../store/create-store";
 
-export default function ExistingConditionOfTheStructure() {
+export default function ExistingConditionOfTheStructure({
+  storeApi,
+}: {
+  storeApi: typeof createConstructionStore;
+}) {
   const value = useStore(
-    constructionStore,
-    (s) => s.formData.constructionInfor?.existingConditionOfTheStructure
+    storeApi,
+    (s) => s.formData.constructionInfor?.existingConditionOfTheStructure,
   );
-  const setNestedField = useStore(constructionStore, (s) => s.setNestedField);
+  const setNestedField = useStore(storeApi, (s) => s.setNestedField);
 
   return (
     <TextField
@@ -19,7 +23,7 @@ export default function ExistingConditionOfTheStructure() {
       onChange={(e) =>
         setNestedField(
           "constructionInfor.existingConditionOfTheStructure",
-          e.target.value
+          e.target.value,
         )
       }
     />

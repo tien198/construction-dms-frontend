@@ -1,16 +1,15 @@
 import { MenuItem, TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustand.store";
+import type { StoreApiInject } from "../../store/create-store";
 
-export default function PursuantTTMNDecisionLevel() {
+export default function PursuantTTMNDecisionLevel({
+  storeApi,
+}: StoreApiInject) {
   const level = useStore(
-    constructionStore,
-    (state) => state.formData.pursuantToDec_TTMN?.level
+    storeApi,
+    (state) => state.formData.pursuantToDec_TTMN?.level,
   );
-  const setNestedField = useStore(
-    constructionStore,
-    (state) => state.setNestedField
-  );
+  const setNestedField = useStore(storeApi, (state) => state.setNestedField);
 
   return (
     <TextField

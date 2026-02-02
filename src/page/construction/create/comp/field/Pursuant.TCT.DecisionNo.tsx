@@ -1,13 +1,10 @@
 import { TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../store/zustand.store";
+import type { StoreApiInject } from "../../store/create-store";
 
-export default function PursuantTCTDecisionNo() {
-  const value = useStore(
-    constructionStore,
-    (s) => s.formData.pursuantToDec_TCT.no
-  );
-  const setNestedField = useStore(constructionStore, (s) => s.setNestedField);
+export default function PursuantTCTDecisionNo({ storeApi }: StoreApiInject) {
+  const value = useStore(storeApi, (s) => s.formData.pursuantToDec_TCT.no);
+  const setNestedField = useStore(storeApi, (s) => s.setNestedField);
 
   return (
     <TextField

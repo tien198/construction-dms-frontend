@@ -1,15 +1,21 @@
 import { MenuItem, TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { constructionStore } from "../../../store/zustand.store";
+import { createConstructionStore } from "../../../store/create-store";
 import type { ChangeEvent } from "react";
 import { BidPackageConst } from "../../../constant/bidPackage.const";
 
-export default function ProjectOwner({ id }: { id: number }) {
+export default function ProjectOwner({
+  id,
+  storeApi,
+}: {
+  id: number;
+  storeApi: typeof createConstructionStore;
+}) {
   const value = useStore(
-    constructionStore,
-    (s) => s.formData.constructionInfor?.bidPackages[id]?.projectOwner
+    storeApi,
+    (s) => s.formData.constructionInfor?.bidPackages[id]?.projectOwner,
   );
-  const setPackage = useStore(constructionStore, (s) => s.setPackage);
+  const setPackage = useStore(storeApi, (s) => s.setPackage);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setPackage(id, "projectOwner", e.target.value);
 
