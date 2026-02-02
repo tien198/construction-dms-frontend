@@ -1,7 +1,8 @@
 import { submissionStoreFactory } from "../../store-factory/zustand.store.factory";
-import { initialFormData } from "../constant/initalData/initialFormData.const";
+import { generateInitialState } from "../constant/initalData/initialFormData.const";
 
-export const createConstructionStore = submissionStoreFactory(initialFormData);
+const initialState = generateInitialState("KH");
+export const createConstructionStore = submissionStoreFactory(initialState);
 
 export type StoreApiInject = {
   storeApi: typeof createConstructionStore;

@@ -3,4 +3,6 @@ import type { NestedAdministrativeDocument } from "../../type/nested-administrat
 
 export interface CreateSubmission extends Submission {
   directlyDecision: NestedAdministrativeDocument;
+
+  isChangeConstructionInfor?: boolean;
 }

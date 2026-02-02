@@ -1,3 +1,4 @@
+import type { ConstructionPeriod } from "../../../type/construction.type";
 import type { CreateSubmission } from "../../type/submission.create.type";
 import { designPackage, verificationPackage } from "./initialPackageData.const";
 /*
@@ -22,7 +23,9 @@ export const initialFormData: Construction = {
 };
 */
 
-export const initialFormData: CreateSubmission = {
+export const generateInitialState = (
+  period: ConstructionPeriod,
+): CreateSubmission => ({
   no: "1072/TTr - LCQ",
   level: "LCQ",
   date: new Date("2025-10-31T17:00:00.000Z"),
@@ -32,7 +35,7 @@ export const initialFormData: CreateSubmission = {
     level: "TCT",
     date: new Date("2024-12-29T17:00:00.000Z"),
   },
-  period: "KH",
+  period: period,
   constructionInfor: {
     name: "Sửa chữa mái tôn khu tập thể độc thân kỹ thuật",
     cost: 1000000000,
@@ -40,7 +43,7 @@ export const initialFormData: CreateSubmission = {
     sourceOfFunds: "2025",
     repairScope: "",
     existingConditionOfTheStructure: "",
-    period: "KH",
+    period: period,
     constructionImplementationTime: {
       startDate: new Date("2025-11-08T17:00:00.000Z"),
       endDate: new Date("2025-11-28T17:00:00.000Z"),
@@ -55,4 +58,4 @@ export const initialFormData: CreateSubmission = {
     level: "TTMN",
     date: new Date("2025-10-31T17:00:00.000Z"),
   },
-};
+});
