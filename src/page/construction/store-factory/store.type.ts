@@ -1,6 +1,7 @@
 import type { CreateSubmission } from "../create/type/submission.create.type";
 import type { BidPackage } from "../type/bid-package.type";
 import type { Path } from "../../../lib/type.recurtion";
+import type { ConstructionPeriod } from "../type/construction.type";
 
 export interface InitSubmissionStore {
   formData: CreateSubmission;
@@ -21,5 +22,5 @@ export interface InitSubmissionStore {
     value: number | string | Date | null,
   ) => void;
   // Reset form nếu cần
-  resetForm: () => void;
+  resetForm: (period: ConstructionPeriod) => void;
 }

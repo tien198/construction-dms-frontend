@@ -2,7 +2,7 @@ import { type RouteObject } from "react-router";
 import { lazy, Suspense } from "react";
 import PeriodNavigator from "../page/construction/detail/comp/PeriodNavbar";
 
-const CreatePage = lazy(() => import("../page/construction/create/Create"));
+const CreatePage = lazy(() => import("../page/construction/create/CreatePage"));
 
 const List = lazy(() => import("../page/construction/list/ConstructionList"));
 const Detail = lazy(() => import("../page/construction/detail/Detail"));

@@ -1,9 +1,10 @@
 import { createStore } from "zustand";
-import { initialFormData } from "../create/constant/initalData/initialFormData.const";
+import { generateInitialState } from "../create/constant/initalData/initialFormData.const";
 import type { InitSubmissionStore } from "./store.type";
 import type { BidPackage } from "../type/bid-package.type";
 import { setValueByPath } from "../../../lib/setvalueByPath";
 import type { CreateSubmission } from "../create/type/submission.create.type";
+import type { ConstructionPeriod } from "../type/construction.type";
 
 export const submissionStoreFactory = (init: CreateSubmission) =>
   createStore<InitSubmissionStore>()((set) => ({
@@ -52,5 +53,6 @@ export const submissionStoreFactory = (init: CreateSubmission) =>
         return shallow;
       }),
 
-    resetForm: () => set({ formData: initialFormData }),
+    resetForm: (period: ConstructionPeriod) =>
+      set({ formData: generateInitialState(period) }),
   }));
