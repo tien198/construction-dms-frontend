@@ -1,12 +1,21 @@
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { Button } from "@mui/material";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useState, type FormEvent } from "react";
+import { useParams, useSubmit } from "react-router";
+import { createConstructionStore } from "../../create/store/create-store";
+import type { ConstructionPeriod } from "../../type/construction.type";
 
 const ConstructionForm = lazy(() => import("../../comp/ConstructionForm"));
 
 export default function NotFound_AddSubmissionForm() {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const handelSubmit = () => {};
+  const { period } = useParams();
+  const submit = useSubmit();
+
+  const handelSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    submit(null, { method: "post" });
+  };
 
   const openForm = () => setIsFormOpen(true);
   if (!isFormOpen)
@@ -23,7 +32,7 @@ export default function NotFound_AddSubmissionForm() {
     return (
       <Suspense fallback={<div>Loading...</div>}>
         <ConstructionForm
-          period="KH"
+          period={(period as ConstructionPeriod) || "KH"}
           handleSubmit={handelSubmit}
           storeApi={storeApi}
         />
