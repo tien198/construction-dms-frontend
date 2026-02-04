@@ -2,9 +2,9 @@ import { Build as BuildIcon } from "@mui/icons-material";
 import { Card, CardContent, Divider, Grid } from "@mui/material";
 import { CardHeader } from "../../../../component/CardHeader";
 import ConF from "../ConstructionFormFields";
-import { createConstructionStore } from "../../create/store/create-store";
+import type { StoreApiInject } from "../../store-factory/store.type";
 
-export default function ConstructionInforSection() {
+export default function ConstructionInforSection({ storeApi }: StoreApiInject) {
   return (
     <Card>
       <CardHeader
@@ -16,29 +16,27 @@ export default function ConstructionInforSection() {
       <CardContent>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 9 }}>
-            <ConF.NameField storeApi={createConstructionStore} />
+            <ConF.NameField storeApi={storeApi} />
           </Grid>
 
           <Grid size={{ xs: 12, md: 3 }}>
-            <ConF.SourceOfFunds storeApi={createConstructionStore} />
+            <ConF.SourceOfFunds storeApi={storeApi} />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
-            <ConF.BudgetField storeApi={createConstructionStore} />
+            <ConF.BudgetField storeApi={storeApi} />
           </Grid>
 
           <Grid size={{ xs: 12, md: 8 }}>
-            <ConF.StringBudgetField storeApi={createConstructionStore} />
+            <ConF.StringBudgetField storeApi={storeApi} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <ConF.ConstructionStartDate storeApi={createConstructionStore} />
+            <ConF.ConstructionStartDate storeApi={storeApi} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <ConF.ConstructionEndDate storeApi={createConstructionStore} />
+            <ConF.ConstructionEndDate storeApi={storeApi} />
           </Grid>
-          <ConF.ExistingConditionOfTheStructure
-            storeApi={createConstructionStore}
-          />
-          <ConF.RepairScope storeApi={createConstructionStore} />
+          <ConF.ExistingConditionOfTheStructure storeApi={storeApi} />
+          <ConF.RepairScope storeApi={storeApi} />
         </Grid>
       </CardContent>
     </Card>

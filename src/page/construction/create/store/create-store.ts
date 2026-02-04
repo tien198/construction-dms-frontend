@@ -3,7 +3,3 @@ import { generateInitialState } from "../constant/initalData/initialFormData.con
 
 const initialState = generateInitialState("KH");
 export const createConstructionStore = submissionStoreFactory(initialState);
-
-export type StoreApiInject = {
-  storeApi: typeof createConstructionStore;
-};

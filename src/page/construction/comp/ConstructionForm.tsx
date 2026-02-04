@@ -7,12 +7,19 @@ import "dayjs/locale/vi";
 import BidPackagesList from "./BidPackagesList";
 import DocInforSection from "./formSection/DocInfor";
 import ConstructionInforSection from "./formSection/ConstructionInfor";
+import type { ConstructionPeriod } from "../type/construction.type";
+import type { StoreApiInject } from "../store-factory/store.type";
 
 type Props = {
+  period: ConstructionPeriod;
   handleSubmit: (e: FormEvent) => void;
-};
+} & StoreApiInject;
 
-export default function ConstructionForm({ handleSubmit }: Props) {
+export default function ConstructionForm({
+  storeApi,
+  period,
+  handleSubmit,
+}: Props) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="vi">
       <Box
@@ -27,11 +34,11 @@ export default function ConstructionForm({ handleSubmit }: Props) {
           </Typography>
 
           {/* --- Phần 1: Thông tin chung --- */}
-          <DocInforSection period="KH" />
+          <DocInforSection period={period} storeApi={storeApi} />
           {/* --- Phần 3: Gói thầu (Dynamic Array) --- */}
-          <ConstructionInforSection />
+          <ConstructionInforSection storeApi={storeApi} />
           <Box>
-            <BidPackagesList />
+            <BidPackagesList storeApi={storeApi} />
           </Box>
 
           {/* Action Buttons */}

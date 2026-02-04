@@ -1,6 +1,7 @@
 import { useSubmit } from "react-router";
 import ConstructionForm from "../comp/ConstructionForm";
 import type { FormEvent } from "react";
+import { createConstructionStore } from "./store/create-store";
 
 export default function CreateConstruction() {
   const submit = useSubmit();
@@ -12,7 +13,11 @@ export default function CreateConstruction() {
 
   return (
     <>
-      <ConstructionForm handleSubmit={handleSubmit} />
+      <ConstructionForm
+        period="KH"
+        handleSubmit={handleSubmit}
+        storeApi={createConstructionStore!}
+      />
     </>
   );
 }

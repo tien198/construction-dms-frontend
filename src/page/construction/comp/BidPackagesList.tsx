@@ -5,63 +5,16 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useStore } from "zustand";
 import BidPackage from "./BidPackage";
 import { initialBidPackage } from "../create/constant/initalData/initialPackageData.const";
-import { createConstructionStore } from "../create/store/create-store";
+import type { StoreApiInject } from "../store-factory/store.type";
 
 // Gợi ý cấu trúc Grid cho item của gói thầu (để bạn implement vào BidPackagesList)
-export default function BidPackagesList() {
+export default function BidPackagesList({ storeApi }: StoreApiInject) {
   const packages = useStore(
-    createConstructionStore,
+    storeApi,
     (state) => state.formData.constructionInfor!.bidPackages,
   );
-  const setNestdField = useStore(
-    createConstructionStore,
-    (state) => state.setNestedField,
-  );
+  const setNestdField = useStore(storeApi, (state) => state.setNestedField);
 
-  /*
-  const setDateField = useStore(
-    constructionStore,
-    (state) => state.setDateField
-  );
-  const setNestedField = useStore(
-    constructionStore,
-    (state) => state.setNestedField
-  );
-  const setNestedDateField = useStore(
-    constructionStore,
-    (state) => state.setNestedDateField
-  );
-
-  // --- Handlers ---
-  // 1. Xử lý các trường cấp 1 (name, budget...)
-  const handleChange =
-    (prop: keyof Construction) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value =
-        event.target.type === "number"
-          ? parseFloat(event.target.value)
-          : event.target.value;
-      setField(prop, value);
-    };
-
-  // 2. Xử lý trường Date cấp 1
-  const handleDateChange = (prop: keyof Construction) => (val: PickerValue) => {
-    setDateField(prop, val);
-  };
-
-  // 3. Xử lý Nested Object (decision, constructionExecutionTime)
-  const handleNestedChange =
-    (parent: "decision" | "constructionExecutionTime", child: string) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value;
-      setNestedField(parent, child, value);
-    };
-
-  const handleNestedDateChange =
-    (parent: keyof Construction, child: string) => (val: PickerValue) => {
-      setNestedDateField(parent, child, val);
-    };
-*/
   const handleAddPackage = () => {
     setNestdField("constructionInfor.bidPackages", [
       ...packages,

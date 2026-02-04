@@ -6,17 +6,12 @@ import ConstructionInfor from "./comp/ConstructionInfor";
 import BidPackageCard from "./comp/BidPackageCard";
 import type { Decision } from "../type/decision.type";
 import DecisionAction from "./comp/Dial";
+import NotFound_AddSubmissionForm from "./comp/Notfound";
 
 export default function ConstructionDetailPage() {
   const decision = useLoaderData<Decision>();
-  // const construction = list[0] as Construction;
-  if (decision == null)
-    return (
-      <div className="flex items-center justify-center h-96 text-3xl font-semibold">
-        Chưa có TTr cho QĐ này
-      </div>
-    );
-  // const { constructionInfor, decisions } = construction;
+
+  if (decision == null) return <NotFound_AddSubmissionForm />;
 
   return (
     <Container maxWidth="lg" className="bg-gray-200 py-9">
