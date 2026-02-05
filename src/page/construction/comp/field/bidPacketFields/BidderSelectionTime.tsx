@@ -1,20 +1,20 @@
 import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useStore } from "zustand";
-import { createConstructionStore } from "../../../create/store/create-store";
+import type { StoreApiInject } from "../../../store-factory/store.type";
 
-export default function BidderSelectionTime({
-  id,
-  storeApi,
-}: {
-  id: number;
-  storeApi: typeof createConstructionStore;
-}) {
+type Props = { id: number } & StoreApiInject;
+
+export default function BidderSelectionTime({ id, storeApi }: Props) {
   const value = useStore(
     storeApi,
     (s) => s.formData.constructionInfor?.bidPackages[id]?.bidderSelectionTime,
   );
   const setPackage = useStore(storeApi, (s) => s.setPackage);
+  const isChangeInfor = useStore(
+    storeApi,
+    (s) => s.formData.isChangeConstructionInfor,
+  );
 
   return (
     <DatePicker
@@ -24,6 +24,7 @@ export default function BidderSelectionTime({
       onChange={(val) =>
         setPackage(id, "bidderSelectionTime", val?.toDate() ?? new Date(""))
       }
+      disabled={!isChangeInfor}
     />
   );
 }

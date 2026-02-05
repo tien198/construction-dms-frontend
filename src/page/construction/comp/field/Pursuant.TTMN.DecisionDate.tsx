@@ -1,5 +1,5 @@
 import { useStore } from "zustand";
-import type { StoreApiInject } from "../../create/store/create-store";
+import type { StoreApiInject } from "../../store-factory/store.type";
 import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 

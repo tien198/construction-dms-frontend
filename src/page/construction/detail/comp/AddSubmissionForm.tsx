@@ -14,7 +14,7 @@ type Props = {
   ) => void;
 };
 
-export default function NotFound_AddSubmissionForm({
+export default function AddSubmissionForm({
   formOpenList,
   setFormOpenList,
 }: Props) {

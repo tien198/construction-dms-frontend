@@ -2,15 +2,11 @@ import { MenuItem, TextField } from "@mui/material";
 import { useStore } from "zustand";
 import type { ChangeEvent } from "react";
 import { BidPackageConst } from "../../../create/constant/bidPackage.const";
-import { createConstructionStore } from "../../../create/store/create-store";
+import type { StoreApiInject } from "../../../store-factory/store.type";
 
-export default function BidderSelectionMethod({
-  id,
-  storeApi,
-}: {
-  id: number;
-  storeApi: typeof createConstructionStore;
-}) {
+type Props = { id: number } & StoreApiInject;
+
+export default function BidderSelectionMethod({ id, storeApi }: Props) {
   const value = useStore(
     storeApi,
     (s) => s.formData.constructionInfor?.bidPackages[id]?.bidderSelectionMethod,
@@ -20,6 +16,11 @@ export default function BidderSelectionMethod({
     setPackage(id, "bidderSelectionMethod", e.target.value);
   const contractorSelectionMethods = BidPackageConst.contractorSelectionMethods;
 
+  const isChangeInfor = useStore(
+    storeApi,
+    (s) => s.formData.isChangeConstructionInfor,
+  );
+
   return (
     <TextField
       select
@@ -28,6 +29,7 @@ export default function BidderSelectionMethod({
       value={value}
       onChange={handleChange}
       defaultValue={contractorSelectionMethods[0]}
+      disabled={!isChangeInfor}
     >
       {contractorSelectionMethods.map((i) => (
         <MenuItem value={i}>{i}</MenuItem>

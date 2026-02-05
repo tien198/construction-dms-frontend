@@ -1,15 +1,11 @@
 import { TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { createConstructionStore } from "../../../create/store/create-store";
 import type { ChangeEvent } from "react";
+import type { StoreApiInject } from "../../../store-factory/store.type";
 
-export default function ImplementDuration({
-  id,
-  storeApi,
-}: {
-  id: number;
-  storeApi: typeof createConstructionStore;
-}) {
+type Props = { id: number } & StoreApiInject;
+
+export default function ImplementDuration({ id, storeApi }: Props) {
   const value = useStore(
     storeApi,
     (s) => s.formData.constructionInfor?.bidPackages[id]?.upTo,
@@ -18,6 +14,11 @@ export default function ImplementDuration({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setPackage(id, "upTo", e.target.value);
 
+  const isChangeInfor = useStore(
+    storeApi,
+    (s) => s.formData.isChangeConstructionInfor,
+  );
+
   return (
     <TextField
       fullWidth
@@ -25,6 +26,7 @@ export default function ImplementDuration({
       value={value}
       onChange={handleChange}
       placeholder="10 ngày"
+      disabled={!isChangeInfor}
     />
   );
 }

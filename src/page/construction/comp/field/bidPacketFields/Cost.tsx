@@ -1,15 +1,11 @@
 import { TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { createConstructionStore } from "../../../create/store/create-store";
 import type { ChangeEvent } from "react";
+import type { StoreApiInject } from "../../../store-factory/store.type";
 
-export default function Cost({
-  id,
-  storeApi,
-}: {
-  id: number;
-  storeApi: typeof createConstructionStore;
-}) {
+type Props = { id: number } & StoreApiInject;
+
+export default function Cost({ id, storeApi }: Props) {
   const value = useStore(
     storeApi,
     (s) => s.formData.constructionInfor?.bidPackages[id]?.cost,
@@ -22,6 +18,11 @@ export default function Cost({
       e.target.type === "string" ? parseFloat(e.target.value) : e.target.value,
     );
 
+  const isChangeInfor = useStore(
+    storeApi,
+    (s) => s.formData.isChangeConstructionInfor,
+  );
+
   return (
     <TextField
       fullWidth
@@ -29,6 +30,7 @@ export default function Cost({
       label="Giá gói thầu"
       value={value}
       onChange={handleChange}
+      disabled={!isChangeInfor}
     />
   );
 }

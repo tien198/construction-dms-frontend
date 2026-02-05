@@ -1,6 +1,6 @@
 import { MenuItem, TextField } from "@mui/material";
 import { useStore } from "zustand";
-import type { StoreApiInject } from "../../create/store/create-store";
+import type { StoreApiInject } from "../../store-factory/store.type";
 
 export default function PursuantTTMNDecisionLevel({
   storeApi,

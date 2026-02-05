@@ -1,11 +1,15 @@
 import { MenuItem, TextField } from "@mui/material";
 import { useStore } from "zustand";
-import type { StoreApiInject } from "../../create/store/create-store";
+import type { StoreApiInject } from "../../store-factory/store.type";
 
 export default function SourceOfFunds({ storeApi }: StoreApiInject) {
   const value = useStore(
     storeApi,
     (s) => s.formData.constructionInfor!.sourceOfFunds,
+  );
+  const isChangeInfor = useStore(
+    storeApi,
+    (s) => s.formData.isChangeConstructionInfor,
   );
   const setNestedField = useStore(storeApi, (s) => s.setNestedField);
 
@@ -27,6 +31,7 @@ export default function SourceOfFunds({ storeApi }: StoreApiInject) {
       onChange={(e) =>
         setNestedField("constructionInfor.sourceOfFunds", e.target.value)
       }
+      disabled={!isChangeInfor}
     >
       {selections.map((i) => (
         <MenuItem value={i}>{i}</MenuItem>

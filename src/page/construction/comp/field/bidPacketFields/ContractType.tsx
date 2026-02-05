@@ -1,16 +1,12 @@
 import { MenuItem, TextField } from "@mui/material";
 import { useStore } from "zustand";
-import { createConstructionStore } from "../../../create/store/create-store";
 import type { ChangeEvent } from "react";
 import { BidPackageConst } from "../../../create/constant/bidPackage.const";
+import type { StoreApiInject } from "../../../store-factory/store.type";
 
-export default function ContractType({
-  id,
-  storeApi,
-}: {
-  id: number;
-  storeApi: typeof createConstructionStore;
-}) {
+type Props = { id: number } & StoreApiInject;
+
+export default function ContractType({ id, storeApi }: Props) {
   const value = useStore(
     storeApi,
     (s) => s.formData.constructionInfor?.bidPackages[id]?.contractType,
@@ -21,6 +17,11 @@ export default function ContractType({
 
   const contractTypes = BidPackageConst.contractTypes;
 
+  const isChangeInfor = useStore(
+    storeApi,
+    (s) => s.formData.isChangeConstructionInfor,
+  );
+
   return (
     <TextField
       select
@@ -29,6 +30,7 @@ export default function ContractType({
       value={value}
       onChange={handleChange}
       defaultValue={contractTypes[0]}
+      disabled={!isChangeInfor}
     >
       {contractTypes.map((i) => (
         <MenuItem value={i}>{i}</MenuItem>

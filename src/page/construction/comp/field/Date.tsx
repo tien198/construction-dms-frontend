@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useStore } from "zustand";
-import type { StoreApiInject } from "../../create/store/create-store";
+import type { StoreApiInject } from "../../store-factory/store.type";
 import type { PickerValue } from "@mui/x-date-pickers/internals";
 
 export default function DateOfSigning({ storeApi }: StoreApiInject) {

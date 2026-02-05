@@ -1,9 +1,10 @@
 import { MenuItem, TextField } from "@mui/material";
 import { useStore } from "zustand";
-import type { StoreApiInject } from "../../create/store/create-store";
+import type { StoreApiInject } from "../../store-factory/store.type";
 
 export default function DecisionLevel({ storeApi }: StoreApiInject) {
   const level = useStore(storeApi, (state) => state.formData.level);
+
   const setNestedField = useStore(storeApi, (state) => state.setNestedField);
 
   return (
