@@ -54,7 +54,7 @@ function getBcktktSubmissionStore() {
 
 
 // export all ---------------------------------------
-export function getStoreByPeriod(period: ConstructionPeriod) {
+export function getStoreByPeriod(period: ConstructionPeriod):StoreApi<InitSubmissionStore> {
     switch (period) {
         case 'KH':
             return getKhSubmissionStore();

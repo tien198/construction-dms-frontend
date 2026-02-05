@@ -5,7 +5,7 @@ import PeriodNavigator from "../page/construction/detail/comp/PeriodNavbar";
 const CreatePage = lazy(() => import("../page/construction/create/CreatePage"));
 
 const List = lazy(() => import("../page/construction/list/ConstructionList"));
-const Detail = lazy(() => import("../page/construction/detail/Detail"));
+const DetailPage = lazy(() => import("../page/construction/detail/DetailPage"));
 
 export const constructionRoute: RouteObject = {
   path: "cong-trinh",
@@ -47,7 +47,7 @@ export const constructionRoute: RouteObject = {
           path: ":period",
           element: (
             <Suspense fallback={<div>loading ...</div>}>
-              <Detail />
+              <DetailPage />
             </Suspense>
           ),
           loader: (args) =>

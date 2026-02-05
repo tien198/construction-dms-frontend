@@ -1,4 +1,4 @@
-import { Box, Button, Typography, Stack } from "@mui/material";
+import { Box, Button, Typography, Stack, Chip } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import type { FormEvent } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -11,11 +11,15 @@ import type { ConstructionPeriod } from "../type/construction.type";
 import type { StoreApiInject } from "../store-factory/store.type";
 
 type Props = {
+  title: string;
+  subTitle?: string;
   period: ConstructionPeriod;
   handleSubmit: (e: FormEvent) => void;
 } & StoreApiInject;
 
 export default function ConstructionForm({
+  title,
+  subTitle,
   storeApi,
   period,
   handleSubmit,
@@ -30,7 +34,15 @@ export default function ConstructionForm({
       >
         <Stack spacing={3} className="px-1 py-8">
           <Typography variant="h4" color="primary" gutterBottom>
-            Tạo Mới Công Trình
+            {title + " "}
+            {subTitle && (
+              <Chip
+                variant="outlined"
+                color="primary"
+                size="medium"
+                label={subTitle}
+              />
+            )}
           </Typography>
 
           {/* --- Phần 1: Thông tin chung --- */}
@@ -52,7 +64,7 @@ export default function ConstructionForm({
               size="large"
               startIcon={<SaveIcon />}
             >
-              Lưu Construction
+              Lưu
             </Button>
           </Box>
         </Stack>

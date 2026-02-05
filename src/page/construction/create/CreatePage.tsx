@@ -14,6 +14,7 @@ export default function CreateConstruction() {
   return (
     <>
       <ConstructionForm
+        title="Tạo Mới Công Trình"
         period="KH"
         handleSubmit={handleSubmit}
         storeApi={createConstructionStore!}

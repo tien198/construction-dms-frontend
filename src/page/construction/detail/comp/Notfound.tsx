@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { lazy, Suspense, useState, type FormEvent } from "react";
 import { useParams, useSubmit } from "react-router";
 import type { ConstructionPeriod } from "../../type/construction.type";
-import { getStoreByPeriod } from "../store/store";
+import { getStoreByPeriod } from "../store/submission.store";
 
 const ConstructionForm = lazy(() => import("../../comp/ConstructionForm"));
 
@@ -26,7 +26,7 @@ export default function NotFound_AddSubmissionForm() {
         <span className="text-3xl font-semibold">Chưa có TTr cho QĐ này</span>
         <Button className="text-2xl flex items-center gap-2" onClick={openForm}>
           <AddCircleIcon fontSize="large" className="ml-3" color="primary" />
-          Tạo tờ trình{" "}
+          Tạo tờ trình giai đoạn {period}
         </Button>
       </div>
     );
@@ -34,6 +34,8 @@ export default function NotFound_AddSubmissionForm() {
     return (
       <Suspense fallback={<div>Loading...</div>}>
         <ConstructionForm
+          title="Tạo Tờ Trình"
+          subTitle={`giai đoạn ${period}`}
           period={period}
           handleSubmit={handelSubmit}
           storeApi={store}
