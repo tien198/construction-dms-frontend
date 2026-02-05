@@ -9,4 +9,4 @@ export const ConstructionSchema = object({
   constructionInfor: ConstructionInforSchema,
 });
 
-export const ConstructionPeriodSchema = zenum(["KH", "LCNT_TV_TT", "BCKTKT"]);
+export const ConstructionPeriodSchema = zenum(["KH", "TV", "TT", "BCKTKT"]);
