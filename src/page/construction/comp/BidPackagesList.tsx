@@ -56,6 +56,7 @@ export default function BidPackagesList({ storeApi }: StoreApiInject) {
             key={index}
             index={index}
             onRemove={handleRemovePackage}
+            storeApi={storeApi}
           />
         );
       })}

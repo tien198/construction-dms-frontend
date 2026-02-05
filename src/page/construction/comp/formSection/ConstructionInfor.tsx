@@ -1,17 +1,31 @@
 import { Build as BuildIcon } from "@mui/icons-material";
-import { Card, CardContent, Divider, Grid } from "@mui/material";
+import { Button, Card, CardContent, Divider, Grid } from "@mui/material";
 import { CardHeader } from "../../../../component/CardHeader";
 import ConF from "../ConstructionFormFields";
 import type { StoreApiInject } from "../../store-factory/store.type";
+import { useStore } from "zustand";
 
 export default function ConstructionInforSection({ storeApi }: StoreApiInject) {
+  const isChangeInfor = useStore(
+    storeApi,
+    (state) => state.formData.isChangeConstructionInfor,
+  );
+  const setField = useStore(storeApi, (state) => state.setField);
+  const handleChangeInfor = () => {
+    setField("isChangeConstructionInfor", !isChangeInfor);
+  };
   return (
     <Card>
-      <CardHeader
-        title="Công trình"
-        sub="Thông tin Công Trình"
-        icon={<BuildIcon className="text-primary" sx={{ fontSize: 28 }} />}
-      />
+      <div className="flex items-center justify-between">
+        <CardHeader
+          title="Công trình"
+          sub="Thông tin Công Trình"
+          icon={<BuildIcon className="text-primary" sx={{ fontSize: 28 }} />}
+        />
+        <Button onClick={handleChangeInfor}>
+          {isChangeInfor ? "Hủy " : "Thay đổi thông tin"}
+        </Button>
+      </div>
       <Divider></Divider>
       <CardContent>
         <Grid container spacing={2}>
