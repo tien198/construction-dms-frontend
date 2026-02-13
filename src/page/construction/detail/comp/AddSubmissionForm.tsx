@@ -1,9 +1,10 @@
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { Button } from "@mui/material";
-import { lazy, Suspense, type FormEvent } from "react";
+import { lazy, Suspense, useEffect, type FormEvent } from "react";
 import { useParams, useSubmit } from "react-router";
 import type { ConstructionPeriod } from "../../type/construction.type";
-import { getStoreByPeriod } from "../store/submission.store";
+import { getStoreByPeriod, setStoreByPeriod } from "../store/submission.store";
+import { constructionFetcher } from "../loader";
+import { Button } from "@mui/material";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const ConstructionForm = lazy(() => import("../../comp/ConstructionForm"));
 
@@ -18,7 +19,9 @@ export default function AddSubmissionForm({
   formOpenList,
   setFormOpenList,
 }: Props) {
-  const period = useParams().period as ConstructionPeriod;
+  const params = useParams();
+  const conId = params["construction-id"] as string;
+  const period = params.period as ConstructionPeriod;
   const submit = useSubmit();
 
   const handelSubmit = (e: FormEvent) => {
@@ -27,6 +30,17 @@ export default function AddSubmissionForm({
   };
 
   const store = getStoreByPeriod(period);
+  console.log(period);
+
+  useEffect(() => {
+    constructionFetcher(conId)
+      .then((con) => {
+        console.log(con);
+
+        setStoreByPeriod(period, con!);
+      })
+      .catch((err) => alert(err));
+  }, [conId, period]);
 
   const openForm = () => setFormOpenList((prev) => [...prev, period]);
   if (!formOpenList.includes(period))

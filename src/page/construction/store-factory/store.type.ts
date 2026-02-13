@@ -1,7 +1,6 @@
 import type { CreateSubmission } from "../create/type/submission.create.type";
 import type { BidPackage } from "../type/bid-package.type";
 import type { Path } from "../../../lib/type.recurtion";
-import type { ConstructionPeriod } from "../type/construction.type";
 import type { StoreApi } from "zustand";
 
 export interface InitSubmissionStore {
@@ -23,7 +22,7 @@ export interface InitSubmissionStore {
     value: number | string | Date | null,
   ) => void;
   // Reset form nếu cần
-  resetForm: (period: ConstructionPeriod) => void;
+  resetForm: (state?: CreateSubmission) => void;
 }
 
 export type StoreApiInject = { storeApi: StoreApi<InitSubmissionStore> };

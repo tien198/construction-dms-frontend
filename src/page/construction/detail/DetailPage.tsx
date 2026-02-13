@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router";
 import type { Decision } from "../type/decision.type";
 import AddSubmissionForm from "./comp/AddSubmissionForm";
 import DecisionDetail from "./comp/DecisionDetail";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import type { ConstructionPeriod } from "../type/construction.type";
 
 export default function DetailPage() {
@@ -11,10 +11,12 @@ export default function DetailPage() {
   const [formOpenList, setFormOpenList] = useState<ConstructionPeriod[]>([]);
   if (decision == null)
     return (
-      <AddSubmissionForm
-        formOpenList={formOpenList}
-        setFormOpenList={setFormOpenList}
-      />
+      <Suspense fallback={<span>Loading ... </span>}>
+        <AddSubmissionForm
+          formOpenList={formOpenList}
+          setFormOpenList={setFormOpenList}
+        />
+      </Suspense>
     );
 
   return <DecisionDetail decision={decision} />;

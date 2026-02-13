@@ -5,9 +5,9 @@ import BidPackageCard from "./BidPackageCard";
 import DecisionAction from "./Dial";
 import type { Decision } from "../../type/decision.type";
 
-export default function DecisionDetail({decision}: {decision:Decision}) {
-    return (
-        <Container maxWidth="lg" className="bg-gray-200 py-9">
+export default function DecisionDetail({ decision }: { decision: Decision }) {
+  return (
+    <Container maxWidth="lg" className="bg-gray-200 py-9">
       <DecisionAction decId={decision.id} />
       <Stack spacing={7}>
         {/* Quyết định & hồ sơ */}
@@ -45,5 +45,5 @@ export default function DecisionDetail({decision}: {decision:Decision}) {
         </Box>
       </Stack>
     </Container>
-    )
+  );
 }

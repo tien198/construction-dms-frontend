@@ -1,68 +1,96 @@
 import type { StoreApi } from "zustand";
 import type { InitSubmissionStore } from "../../store-factory/store.type";
 import { submissionStoreFactory } from "../../store-factory/zustand.store.factory";
-import { generateInitialState } from "../../create/constant/initalData/initialFormData.const";
-import type { ConstructionPeriod } from "../../type/construction.type";
+import {
+  generateState,
+  iniitialState,
+} from "../../create/constant/initalData/initialFormData.const";
+import type {
+  Construction,
+  ConstructionPeriod,
+} from "../../type/construction.type";
 
 // KH
-let kh_submission_store: StoreApi<InitSubmissionStore>;
-
+const kh_submission_store: StoreApi<InitSubmissionStore> =
+  submissionStoreFactory(iniitialState);
 function getKhSubmissionStore() {
-    if (!kh_submission_store) {
-        const initialState = generateInitialState('KH')
-        kh_submission_store = submissionStoreFactory(initialState);
-    }
-    return kh_submission_store;
+  return kh_submission_store;
 }
+function setKhSubmissionStore(con: Construction) {
+  const state = generateState("KH", con);
 
+  kh_submission_store.setState({ formData: state });
+  return kh_submission_store;
+}
 
 // LCNT_TV
-let lcnt_tv_submission_store: StoreApi<InitSubmissionStore>;
-
+const lcnt_tv_submission_store: StoreApi<InitSubmissionStore> =
+  submissionStoreFactory(iniitialState);
 function getLcntTvSubmissionStore() {
-    if (!lcnt_tv_submission_store) {
-        const initialState = generateInitialState('TV')
-        lcnt_tv_submission_store = submissionStoreFactory(initialState);
-    }
-    return lcnt_tv_submission_store;
+  return lcnt_tv_submission_store;
 }
+function setLcntTvSubmissionStore(con: Construction) {
+  const state = generateState("TV", con);
+  console.log(state);
 
+  lcnt_tv_submission_store.setState({ formData: state });
 
+  return lcnt_tv_submission_store;
+}
 
 // LCNT_TT
-let lcnt_tt_submission_store: StoreApi<InitSubmissionStore>;
-
+const lcnt_tt_submission_store: StoreApi<InitSubmissionStore> =
+  submissionStoreFactory(iniitialState);
 function getLcntTtSubmissionStore() {
-    if (!lcnt_tt_submission_store) {
-        const initialState = generateInitialState('TT')
-        lcnt_tt_submission_store = submissionStoreFactory(initialState);
-    }
-    return lcnt_tt_submission_store;
+  return lcnt_tt_submission_store;
 }
+function setLcntTtSubmissionStore(con: Construction) {
+  const state = generateState("TT", con);
+  lcnt_tt_submission_store.setState({ formData: state });
 
+  return lcnt_tt_submission_store;
+}
 
 // BCKTKT
-let bcktkt_submission_store: StoreApi<InitSubmissionStore>;
-
+const bcktkt_submission_store: StoreApi<InitSubmissionStore> =
+  submissionStoreFactory(iniitialState);
 function getBcktktSubmissionStore() {
-    if (!bcktkt_submission_store) {
-        const initialState = generateInitialState('BCKTKT')
-        bcktkt_submission_store = submissionStoreFactory(initialState);
-    }
-    return bcktkt_submission_store;
+  return bcktkt_submission_store;
+}
+function setBcktktSubmissionStore(con: Construction) {
+  const state = generateState("BCKTKT", con);
+  bcktkt_submission_store.setState({ formData: state });
+
+  return bcktkt_submission_store;
 }
 
-
 // export all ---------------------------------------
-export function getStoreByPeriod(period: ConstructionPeriod):StoreApi<InitSubmissionStore> {
-    switch (period) {
-        case 'KH':
-            return getKhSubmissionStore();
-        case 'TV':
-            return getLcntTvSubmissionStore();
-        case 'TT':
-            return getLcntTtSubmissionStore();
-        case 'BCKTKT':
-            return getBcktktSubmissionStore();
-    }
+
+export function setStoreByPeriod(per: ConstructionPeriod, con: Construction) {
+  switch (per) {
+    case "KH":
+      return setKhSubmissionStore(con);
+    case "TV":
+      return setLcntTvSubmissionStore(con);
+    case "TT":
+      return setLcntTtSubmissionStore(con);
+    case "BCKTKT":
+      return setBcktktSubmissionStore(con);
+  }
+}
+
+export function getStoreByPeriod(per: ConstructionPeriod) {
+  switch (per) {
+    case "KH":
+      return getKhSubmissionStore();
+
+    case "TV":
+      return getLcntTvSubmissionStore();
+
+    case "TT":
+      return getLcntTtSubmissionStore();
+
+    case "BCKTKT":
+      return getBcktktSubmissionStore();
+  }
 }

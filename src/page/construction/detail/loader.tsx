@@ -7,8 +7,9 @@ export async function loader(args: LoaderFunctionArgs) {
 */
 
 import type { LoaderFunctionArgs } from "react-router";
+import type { Construction } from "../type/construction.type";
 
-export async function loader(args: LoaderFunctionArgs) {
+export async function decisionLoader(args: LoaderFunctionArgs) {
   const conId = args.params["construction-id"];
   const per = args.params["period"];
   try {
@@ -19,6 +20,20 @@ export async function loader(args: LoaderFunctionArgs) {
 
     if (!res.ok) alert("Lỗi");
     return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+export async function constructionFetcher(conId: string) {
+  try {
+    const res = await fetch(
+      import.meta.env.VITE_API_URL + `/construction/${conId}`,
+    );
+
+    if (!res.ok) alert("Lỗi");
+
+    return (await res.json()) as Construction;
   } catch {
     return null;
   }

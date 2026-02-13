@@ -1,61 +1,62 @@
-import type { ConstructionPeriod } from "../../../type/construction.type";
+import type {
+  Construction,
+  ConstructionPeriod,
+} from "../../../type/construction.type";
 import type { CreateSubmission } from "../../type/submission.create.type";
-import { designPackage, verificationPackage } from "./initialPackageData.const";
-/*
-export const initialFormData: Construction = {
-  documentNo: "",
-  name: "",
-  dateOfSigning: null,
-  budget: 0,
-  stringBudget: "",
-  sourceOfFunds: new Date(Date.now()).getFullYear().toString(),
-  constructionExecutionTime: {
-    startDate: null,
-    endDate: null,
-  },
-  existingConditionOfTheStructure: "",
-  repairScope: "",
-  decision: {
-    number: "",
-    date: null,
-  },
-  packages: [designPackage, verificationPackage],
-};
-*/
+import { initialBidPackage } from "./initialPackageData.const";
 
-export const generateInitialState = (
+export const generateState = (
   period: ConstructionPeriod,
+  con: Construction,
 ): CreateSubmission => ({
   no: "1072/TTr - LCQ",
   level: "LCQ",
-  date: new Date("2025-10-31T17:00:00.000Z"),
-  pursuantToDec_TCT: {
-    id: "",
-    no: "3052/QĐ – TCT",
-    level: "TCT",
-    date: new Date("2024-12-29T17:00:00.000Z"),
-  },
+  date: new Date(),
+  pursuantToDec_TCT: { ...con.pursuantToDec_TCT },
   period: period,
-  constructionInfor: {
-    name: "Sửa chữa mái tôn khu tập thể độc thân kỹ thuật",
-    cost: 1000000000,
-    costString: "Một tỷ đồng",
-    sourceOfFunds: "2025",
-    repairScope: "",
-    existingConditionOfTheStructure: "",
-    period: period,
-    constructionImplementationTime: {
-      startDate: new Date("2025-11-08T17:00:00.000Z"),
-      endDate: new Date("2025-11-28T17:00:00.000Z"),
-    },
+  constructionInfor: { ...con.constructionInfor },
+  isApproved: false,
+  directlyDecision: {
+    no: "21/QĐ - TTMN",
+    level: "TTMN",
+    date: new Date(),
+  },
+});
 
-    bidPackages: [designPackage, verificationPackage],
-    packagesAmount: 200000000000,
+// export const generateInitialState = (period: ConstructionPeriod) => ({
+//   ...iniitialState,
+//   period: period,
+// });
+
+export const iniitialState: CreateSubmission = {
+  no: "1072/TTr - LCQ",
+  level: "LCQ",
+  date: new Date(),
+  pursuantToDec_TCT: {
+    no: "QĐ-TCT",
+    date: new Date(),
+    level: "TCT",
+  },
+  period: "KH",
+  constructionInfor: {
+    name: "",
+    cost: 0,
+    costString: "",
+    sourceOfFunds: "",
+    constructionImplementationTime: {
+      startDate: new Date(),
+      endDate: new Date(),
+    },
+    existingConditionOfTheStructure: "",
+    repairScope: "",
+    bidPackages: [initialBidPackage],
+    packagesAmount: 0,
+    period: "TV",
   },
   isApproved: false,
   directlyDecision: {
     no: "21/QĐ - TTMN",
     level: "TTMN",
-    date: new Date("2025-10-31T17:00:00.000Z"),
+    date: new Date(),
   },
-});
+};

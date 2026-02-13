@@ -1,4 +1,4 @@
-import { Outlet, type RouteObject } from "react-router";
+import type { RouteObject } from "react-router";
 import { lazy, Suspense } from "react";
 import PeriodNavigator from "../page/construction/detail/comp/PeriodNavbar";
 
@@ -33,29 +33,17 @@ export const constructionRoute: RouteObject = {
       loader: () =>
         import("../page/construction/list/loader").then((m) => m.loader()),
     },
+
     {
-      path: ":construction-id",
+      path: ":construction-id/:period",
       element: (
         <>
           <PeriodNavigator />
-          <Outlet />
+          <Suspense fallback={<div>loading ...</div>}>
+            <DetailPage />
+          </Suspense>
         </>
       ),
-
-      children: [
-        {
-          path: ":period",
-          element: (
-            <Suspense fallback={<div>loading ...</div>}>
-              <DetailPage />
-            </Suspense>
-          ),
-          loader: (args) =>
-            import("../page/construction/detail/loader").then((m) =>
-              m.loader(args),
-            ),
-        },
-      ],
     },
     {
       path: "approve",
