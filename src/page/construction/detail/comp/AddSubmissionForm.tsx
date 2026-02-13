@@ -30,15 +30,10 @@ export default function AddSubmissionForm({
   };
 
   const store = getStoreByPeriod(period);
-  console.log(period);
 
   useEffect(() => {
     constructionFetcher(conId)
-      .then((con) => {
-        console.log(con);
-
-        setStoreByPeriod(period, con!);
-      })
+      .then((con) => setStoreByPeriod(period, con!))
       .catch((err) => alert(err));
   }, [conId, period]);
 

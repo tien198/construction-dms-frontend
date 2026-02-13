@@ -9,7 +9,7 @@ export const generateState = (
   period: ConstructionPeriod,
   con: Construction,
 ): CreateSubmission => ({
-  no: "1072/TTr - LCQ",
+  no: "___/TTr - LCQ",
   level: "LCQ",
   date: new Date(),
   pursuantToDec_TCT: { ...con.pursuantToDec_TCT },
@@ -17,7 +17,7 @@ export const generateState = (
   constructionInfor: { ...con.constructionInfor },
   isApproved: false,
   directlyDecision: {
-    no: "21/QĐ - TTMN",
+    no: "___/QĐ - TTMN",
     level: "TTMN",
     date: new Date(),
   },

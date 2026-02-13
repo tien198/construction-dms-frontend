@@ -19,7 +19,9 @@ export async function decisionLoader(args: LoaderFunctionArgs) {
     );
 
     if (!res.ok) alert("Lỗi");
-    return await res.json();
+    const result = await res.json();
+
+    return result;
   } catch {
     return null;
   }

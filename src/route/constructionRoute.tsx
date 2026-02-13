@@ -44,6 +44,10 @@ export const constructionRoute: RouteObject = {
           </Suspense>
         </>
       ),
+      loader: (args) =>
+        import("../page/construction/detail/loader").then((m) =>
+          m.decisionLoader(args),
+        ),
     },
     {
       path: "approve",

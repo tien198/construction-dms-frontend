@@ -31,7 +31,6 @@ function getLcntTvSubmissionStore() {
 }
 function setLcntTvSubmissionStore(con: Construction) {
   const state = generateState("TV", con);
-  console.log(state);
 
   lcnt_tv_submission_store.setState({ formData: state });
 

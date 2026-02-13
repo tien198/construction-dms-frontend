@@ -52,7 +52,7 @@ export default function DecisionAction({ decId }: Props) {
   const period = params["period"]!;
 
   const actions = actionItems;
-  console.log(actions);
+
   return (
     <CusSpeedDial
       ariaLabel="quick actions"
