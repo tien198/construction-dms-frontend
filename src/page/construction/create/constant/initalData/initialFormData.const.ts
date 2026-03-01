@@ -29,11 +29,11 @@ export const generateState = (
 // });
 
 export const iniitialState: CreateSubmission = {
-  no: "1072/TTr - LCQ",
+  no: "___/TTr - LCQ",
   level: "LCQ",
   date: new Date(),
   pursuantToDec_TCT: {
-    no: "QĐ-TCT",
+    no: "___/QĐ-TCT",
     date: new Date(),
     level: "TCT",
   },
@@ -55,7 +55,7 @@ export const iniitialState: CreateSubmission = {
   },
   isApproved: false,
   directlyDecision: {
-    no: "21/QĐ - TTMN",
+    no: "___/QĐ-TTMN",
     level: "TTMN",
     date: new Date(),
   },

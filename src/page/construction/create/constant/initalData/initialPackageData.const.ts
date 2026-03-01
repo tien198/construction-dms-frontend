@@ -17,7 +17,7 @@ export const initialBidPackage: BidPackage = {
 export const designPackage: BidPackage = {
   type: "TV",
   projectOwner: "Công ty Trực thăng Miền Nam",
-  bidPackageName: "Tư vấn lập Báo cáo kinh tế kỹ thuật",
+  bidPackageName: "Tư vấn lập BCKTKT",
   shortDescription:
     "Lập bản vẽ thiết kế kỹ thuật thi công, dự toán công trình.",
   cost: 100000000000,
@@ -32,7 +32,7 @@ export const designPackage: BidPackage = {
 export const verificationPackage: BidPackage = {
   type: "TT",
   projectOwner: "Công ty Trực thăng Miền Nam",
-  bidPackageName: "Thẩm tra Báo cáo kinh tế kỹ thuật",
+  bidPackageName: "Thẩm tra BCKTKT",
   shortDescription:
     "Thẩm tra bản vẽ thiết kế kỹ thuật thi công, dự toán công trình",
   cost: 100000000000,

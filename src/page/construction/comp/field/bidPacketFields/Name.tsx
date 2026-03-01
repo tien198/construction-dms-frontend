@@ -2,10 +2,7 @@ import { useStore } from "zustand";
 import { Autocomplete, TextField } from "@mui/material";
 import type { StoreApiInject } from "../../../store-factory/store.type";
 
-const nameList = [
-  "Tư vấn lập Báo cáo kinh tế kỹ thuật",
-  "Thẩm tra Báo cáo kinh tế kỹ thuật",
-];
+const nameList = ["Tư vấn lập BCKTKT", "Thẩm tra BCKTKT"];
 
 type Props = { id: number } & StoreApiInject;
 

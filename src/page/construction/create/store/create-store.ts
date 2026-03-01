@@ -1,5 +1,5 @@
 import { submissionStoreFactory } from "../../store-factory/zustand.store.factory";
-import { generateInitialState } from "../constant/initalData/initialFormData.const";
+import { iniitialState } from "../constant/initalData/initialFormData.const";
 
-const initialState = generateInitialState("KH");
+const initialState = iniitialState;
 export const createConstructionStore = submissionStoreFactory(initialState);
