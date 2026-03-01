@@ -35,7 +35,7 @@ export const constructionRoute: RouteObject = {
     },
 
     {
-      path: ":construction-id/:period",
+      path: ":constructionId/:period",
       element: (
         <>
           <PeriodNavigator />

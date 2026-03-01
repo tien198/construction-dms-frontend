@@ -3,12 +3,11 @@ import { getStoreByPeriod } from "./store/submission.store";
 import type { ConstructionPeriod } from "../type/construction.type";
 
 export async function addSubmissionAction(args: ActionFunctionArgs) {
-  const store = getStoreByPeriod(
-    args.params.period?.toUpperCase() as ConstructionPeriod,
-  );
+  const period = args.params.period?.toUpperCase() as ConstructionPeriod;
+  const store = getStoreByPeriod(period);
   const data = store.getState().formData;
 
-  const conId = args.params["construction-id"];
+  const conId = args.params["constructionId"];
   const apiUri = `${import.meta.env.VITE_API_URL}/construction/add-submission/${conId}`;
 
   try {
@@ -25,7 +24,7 @@ export async function addSubmissionAction(args: ActionFunctionArgs) {
       return await res.json();
     }
     const result = await res.json();
-    return redirect("/cong-trinh/" + result.id);
+    return redirect("/cong-trinh/" + result.id + "/" + period);
   } catch {
     alert("Lỗi kết nối đến server");
     return null;

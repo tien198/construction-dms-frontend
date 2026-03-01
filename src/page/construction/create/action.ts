@@ -20,7 +20,7 @@ export async function addConstruction(args: ActionFunctionArgs) {
       return await res.json();
     }
     const result = await res.json();
-    return redirect("/cong-trinh/" + result.id);
+    return redirect("/cong-trinh/" + result.id + "/" + data.period);
   } catch {
     alert("Lỗi kết nối đến server");
     return null;

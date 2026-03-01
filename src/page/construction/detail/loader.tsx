@@ -10,7 +10,7 @@ import type { LoaderFunctionArgs } from "react-router";
 import type { Construction } from "../type/construction.type";
 
 export async function decisionLoader(args: LoaderFunctionArgs) {
-  const conId = args.params["construction-id"];
+  const conId = args.params["constructionId"];
   const per = args.params["period"];
   try {
     const res = await fetch(

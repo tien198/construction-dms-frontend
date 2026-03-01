@@ -22,13 +22,14 @@ const CusSpeedDial = styled(SpeedDial)(() => ({
 
 type ActionItem = {
   name: string;
+  // href either nav link or action link
   href: string;
   icon: React.ReactNode;
   type: "nav" | "action";
 };
 
 const actionItems: ActionItem[] = [
-  { name: "Chỉnh sửa", href: "/edit", icon: <EditIcon />, type: "nav" },
+  { name: "Chỉnh sửa", href: "?edit=true", icon: <EditIcon />, type: "nav" },
   {
     name: "Phê duyệt",
     href: "/cong-trinh/approve/",

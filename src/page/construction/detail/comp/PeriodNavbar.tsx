@@ -17,7 +17,7 @@ function gentItemList(conId: string) {
 }
 
 export default function PeriodNavigator() {
-  const conId = useParams()["construction-id"]!;
+  const conId = useParams()["constructionId"]!;
   const items = gentItemList(conId);
   return (
     <Box
