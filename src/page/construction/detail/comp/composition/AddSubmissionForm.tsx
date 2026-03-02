@@ -8,6 +8,7 @@ import {
 import { constructionFetcher } from "../../loader";
 import { Button } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useIsEditSubmissionStore } from "../../store/isEdit.submission.store";
 
 const ConstructionForm = lazy(() => import("../../../comp/ConstructionForm"));
 
@@ -33,11 +34,17 @@ export default function AddSubmissionForm({
   };
 
   const store = getStoreByPeriod(period);
+  const { isEditing, setEditing } = useIsEditSubmissionStore();
 
   useEffect(() => {
-    constructionFetcher(conId)
-      .then((con) => setStoreByPeriod(period, con!))
-      .catch((err) => alert(err));
+    if (!isEditing(period)) {
+      constructionFetcher(conId)
+        .then((con) => {
+          setStoreByPeriod(period, con!);
+          setEditing(period);
+        })
+        .catch((err) => alert(err));
+    }
   }, [conId, period]);
 
   const openForm = () => setFormOpenList((prev) => [...prev, period]);

@@ -11,11 +11,11 @@ export default function PursuantTTMNDecisionDate({ storeApi }: StoreApiInject) {
     <DatePicker
       sx={{ width: "100%" }}
       label="Ngày"
-      value={dayjs(value)}
+      value={dayjs(value ?? "")}
       onChange={(val) => {
         setNestedField(
           "pursuantToDec_TTMN.date",
-          val?.toDate() ?? new Date(""), // if undefined, retrun "Invalid Date"
+          val?.toDate() ?? null, // if undefined, retrun "Invalid Date"
         );
       }}
     />

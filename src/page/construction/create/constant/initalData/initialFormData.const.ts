@@ -14,7 +14,7 @@ export const generateState = (
   return {
     no: dec?.no ?? "___/TTr - LCQ",
     level: dec?.submission?.level ?? "LCQ",
-    date: dec?.date ?? new Date(),
+    date: dec?.date ?? new Date(""),
     pursuantToDec_TCT: dec?.pursuantToDec_TCT ?? { ...con.pursuantToDec_TCT },
     pursuantToDec_TTMN: dec?.pursuantToDec_TTMN,
     period: period,
@@ -25,7 +25,7 @@ export const generateState = (
       id: dec?.id,
       no: dec?.no ?? "___/QĐ - TTMN",
       level: dec?.level ?? "TTMN",
-      date: dec?.date ?? new Date(),
+      date: dec?.date ?? new Date(""),
     },
   };
 };
@@ -37,10 +37,10 @@ export const generateState = (
 export const iniitialState: CreateSubmission = {
   no: "___/TTr - LCQ",
   level: "LCQ",
-  date: new Date(),
+  date: new Date(""),
   pursuantToDec_TCT: {
     no: "___/QĐ-TCT",
-    date: new Date(),
+    date: new Date(""),
     level: "TCT",
   },
   period: "KH",
@@ -63,6 +63,6 @@ export const iniitialState: CreateSubmission = {
   directlyDecision: {
     no: "___/QĐ-TTMN",
     level: "TTMN",
-    date: new Date(),
+    date: new Date(""),
   },
 };

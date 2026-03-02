@@ -6,6 +6,7 @@ import {
   setStoreByPeriod,
 } from "../../store/submission.store";
 import { constructionFetcher } from "../../loader";
+import { useIsEditSubmissionStore } from "../../store/isEdit.submission.store";
 const ConstructionForm = lazy(() => import("../../../comp/ConstructionForm"));
 
 export default function EditSubmissionForm() {
@@ -20,11 +21,17 @@ export default function EditSubmissionForm() {
   };
 
   const store = getStoreByPeriod(period);
+  const { isEditing, setEditing } = useIsEditSubmissionStore();
 
   useEffect(() => {
-    constructionFetcher(conId)
-      .then((con) => setStoreByPeriod(period, con!))
-      .catch((err) => alert(err));
+    if (!isEditing(period)) {
+      constructionFetcher(conId)
+        .then((con) => {
+          setStoreByPeriod(period, con!);
+          setEditing(period);
+        })
+        .catch((err) => alert(err));
+    }
   }, [conId, period]);
 
   return (

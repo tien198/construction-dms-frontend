@@ -11,7 +11,7 @@ export default function PursuantTCTDecisionDate({ storeApi }: StoreApiInject) {
     <DatePicker
       sx={{ width: "100%" }}
       label="Ngày"
-      value={dayjs(value)}
+      value={dayjs(value ?? "")}
       onChange={(val) => {
         setNestedField("pursuantToDec_TCT.date", val?.toDate() ?? null);
       }}
