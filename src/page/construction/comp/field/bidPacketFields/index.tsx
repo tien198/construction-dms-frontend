@@ -1,6 +1,7 @@
 import PackageName from "./Name";
 import ProjectOwner from "./ProjectOwner";
 import Cost from "./Cost";
+import CostString from "./CostString";
 import BidderSelectionTime from "./BidderSelectionTime";
 import BidderSelectionMethod from "./BidderSelectionMethod";
 import ImplementDuration from "./ImplementDuration";
@@ -11,6 +12,7 @@ const PkgF = {
   PackageName,
   ProjectOwner,
   Cost,
+  CostString,
   BidderSelectionTime,
   ImplementDuration,
   BidderSelectionMethod,

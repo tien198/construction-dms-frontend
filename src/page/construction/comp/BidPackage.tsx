@@ -37,10 +37,14 @@ export default function BidPackage({ index, onRemove, storeApi }: Props) {
           <Grid size={{ xs: 12, md: 4 }}>
             <PkgF.Cost id={index} storeApi={storeApi} />
           </Grid>
-          <Grid size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 8 }}>
+            <PkgF.CostString id={index} storeApi={storeApi} />
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 6 }}>
             <PkgF.BidderSelectionTime id={index} storeApi={storeApi} />
           </Grid>
-          <Grid size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <PkgF.ImplementDuration id={index} storeApi={storeApi} />
           </Grid>
 

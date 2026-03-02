@@ -19,7 +19,10 @@ export default function ConstructionInfor({ info }: Props) {
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
-            <InfoRow label="Tổng mức đầu tư" value={info.costString} />
+            <InfoRow
+              label="Tổng mức đầu tư"
+              value={info.costString + " đồng"}
+            />
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
