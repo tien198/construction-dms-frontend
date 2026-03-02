@@ -7,11 +7,15 @@ export async function loader(args: LoaderFunctionArgs) {
 */
 
 import type { LoaderFunctionArgs } from "react-router";
-import type { Construction } from "../type/construction.type";
+import type {
+  Construction,
+  ConstructionPeriod,
+} from "../type/construction.type";
+import { getStoreByPeriod } from "./store/submission.store";
 
 export async function decisionLoader(args: LoaderFunctionArgs) {
   const conId = args.params["constructionId"];
-  const per = args.params["period"];
+  const per = args.params["period"] as ConstructionPeriod;
   try {
     const res = await fetch(
       import.meta.env.VITE_API_URL +
@@ -20,6 +24,9 @@ export async function decisionLoader(args: LoaderFunctionArgs) {
 
     if (!res.ok) alert("Lỗi");
     const result = await res.json();
+    getStoreByPeriod(per)
+      .getState()
+      .setNestedField("directlyDecision.id", result.id);
 
     return result;
   } catch {

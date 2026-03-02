@@ -30,7 +30,8 @@ const BidPackageCard: React.FC<{ pkg: BidPackage }> = ({ pkg }) => {
             <strong>Giá gói thầu:</strong> {formatCurrency(pkg.cost)}
           </Typography>
           <Typography variant="body2">
-            <strong>Bằng chữ:</strong> {pkg.costString} đồng
+            <strong>Bằng chữ:</strong>{" "}
+            {(pkg.costString || "... ... ...") + " đồng"}
           </Typography>
           <Typography variant="body2">
             <strong>Hình thức lựa chọn nhà thầu:</strong>{" "}

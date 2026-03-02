@@ -15,7 +15,9 @@ export default function Cost({ id, storeApi }: Props) {
     setPackage(
       id,
       "cost",
-      e.target.type === "string" ? parseFloat(e.target.value) : e.target.value,
+      typeof e.target.value === "string"
+        ? parseFloat(e.target.value)
+        : e.target.value,
     );
 
   const isChangeInfor = useStore(

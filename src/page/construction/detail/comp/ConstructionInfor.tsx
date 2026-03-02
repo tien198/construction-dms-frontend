@@ -3,6 +3,7 @@ import { Card, CardContent, Grid } from "@mui/material";
 import InfoRow from "./InforRow";
 import type { ConstructionInfor } from "../../type/construction-infor.type";
 import { formatDate } from "../ultil/formatDate";
+import { formatCurrency } from "../ultil/currencyFormat";
 
 type Props = {
   info: ConstructionInfor;
@@ -21,7 +22,14 @@ export default function ConstructionInfor({ info }: Props) {
           <Grid size={{ xs: 12, md: 6 }}>
             <InfoRow
               label="Tổng mức đầu tư"
-              value={info.costString + " đồng"}
+              value={formatCurrency(info.cost)}
+            />
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 6 }}>
+            <InfoRow
+              label="Bằng chữ"
+              value={(info.costString || "... ... ...") + " đồng"}
             />
           </Grid>
 
