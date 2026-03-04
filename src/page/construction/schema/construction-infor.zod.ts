@@ -21,6 +21,7 @@ export const ConstructionInforSchema = object({
   existingConditionOfTheStructure: string(),
   repairScope: string(),
   bidPackages: array(BidPackageSchema),
-  packagesAmount: number(),
+  estimatedCost: number(),
+  estimatedCostString: string(),
   period: ConstructionPeriodSchema,
 });
