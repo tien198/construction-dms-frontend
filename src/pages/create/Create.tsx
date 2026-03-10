@@ -97,7 +97,7 @@ export default function Create() {
           <DecisionForm values={data} onChange={handleDecisionChange} />
         </div>
         <ConstructionInfoSnapshotForm
-          values={data.submissions.construction_infor_snapshot}
+          values={data.submissions.construction_infor_snapshot!}
           onChange={handleSnapshotChange}
         />
       </div>
