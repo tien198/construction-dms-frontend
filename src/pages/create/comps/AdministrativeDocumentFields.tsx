@@ -1,17 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-interface AdministrativeDocumentFieldsProps {
-  prefix: string;
-  values: {
-    no: string;
-    level: string;
-    date: string;
-    pursuant_to_dec_tct_id: string;
-    pursuant_to_dec_ttmn_id: string;
-  };
-  onChange: (field: string, value: string) => void;
-}
+import type { AdministrativeDocumentFieldsProps } from "./AdministrativeDocumentFields.type";
 
 export function AdministrativeDocumentFields({
   prefix,
@@ -31,16 +21,6 @@ export function AdministrativeDocumentFields({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor={`${prefix}-level`}>Cấp ban hành (Level)</Label>
-        <Input
-          id={`${prefix}-level`}
-          placeholder="VD: Cấp tỉnh"
-          value={values.level}
-          onChange={(e) => onChange("level", e.target.value)}
-        />
-      </div>
-
-      <div className="flex flex-col gap-1.5">
         <Label htmlFor={`${prefix}-date`}>Ngày ban hành (Date)</Label>
         <Input
           id={`${prefix}-date`}
@@ -54,7 +34,7 @@ export function AdministrativeDocumentFields({
         <Label htmlFor={`${prefix}-tct`}>Căn cứ quyết định TCT</Label>
         <Input
           id={`${prefix}-tct`}
-          placeholder="ID quyết định TCT (tuỳ chọn)"
+          placeholder="ID quyết định TCT"
           value={values.pursuant_to_dec_tct_id}
           onChange={(e) => onChange("pursuant_to_dec_tct_id", e.target.value)}
         />
@@ -64,7 +44,7 @@ export function AdministrativeDocumentFields({
         <Label htmlFor={`${prefix}-ttmn`}>Căn cứ quyết định TTMN</Label>
         <Input
           id={`${prefix}-ttmn`}
-          placeholder="ID quyết định TTMN (tuỳ chọn)"
+          placeholder="ID quyết định TTMN (nếu có)"
           value={values.pursuant_to_dec_ttmn_id}
           onChange={(e) => onChange("pursuant_to_dec_ttmn_id", e.target.value)}
         />

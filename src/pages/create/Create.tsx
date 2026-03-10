@@ -1,36 +1,37 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { PlusIcon, SaveIcon } from "lucide-react";
-import { Label } from "@/components/ui/label";
+import { SaveIcon } from "lucide-react";
 import { DecisionForm } from "./comps/DecisionForm";
-import type {
-  Construction,
-  Decision,
-  Submission,
-  ConstructionInfoSnapshot,
-  BidPackageSnapshot,
-} from "@/types";
+import type { FormDecision } from "./comps/DecisionForm.type";
+import type { FormSubmission } from "./comps/SubmissionForm.type";
+import { ConstructionInfoSnapshotForm } from "./comps/ConstructionInfoSnapshotForm";
+import type { FormSnapshot } from "./comps/ConstructionInfoSnapshotForm.type";
+import type { ConstructionInfoSnapshot } from "@/types";
+import StickyRevealButton from "@/components/sticky-reveal-button";
 
-type FormSnapshot = Omit<
-  ConstructionInfoSnapshot,
-  "id" | "bid_package_snapshots"
-> & {
-  bid_package_snapshots: Omit<BidPackageSnapshot, "id">[];
+const EMPTY_SNAPSHOT: FormSnapshot = {
+  period: "KH",
+  name: "",
+  budget: 0,
+  budget_string: "",
+  source_of_funds: "",
+  implementation_start_date: "",
+  implementation_end_date: "",
+  existing_condition_of_the_structure: "",
+  repair_scope: "",
+  estimated_cost: 0,
+  estimated_cost_string: "",
+  bid_package_snapshots: [],
 };
 
-type FormSubmission = Omit<Submission, "id" | "construction_infor_snapshot"> & {
-  id: string;
-  construction_infor_snapshot: FormSnapshot | null;
+const EMPTY_SUBMISSION: FormSubmission = {
+  id: "",
+  no: "",
+  level: "",
+  date: "",
+  pursuant_to_dec_tct_id: null,
+  pursuant_to_dec_ttmn_id: null,
+  construction_infor_snapshot: { ...EMPTY_SNAPSHOT },
 };
-
-type FormDecision = Omit<Decision, "submissions"> & {
-  submissions: FormSubmission[];
-};
-
-interface FormConstruction extends Omit<Construction, "decisions"> {
-  decisions: FormDecision[];
-}
 
 const EMPTY_DECISION: FormDecision = {
   id: "",
@@ -40,41 +41,37 @@ const EMPTY_DECISION: FormDecision = {
   pursuant_to_dec_tct_id: null,
   pursuant_to_dec_ttmn_id: null,
   is_change_construction_infor: false,
-  submissions: [],
+  submissions: { ...EMPTY_SUBMISSION },
 };
 
 export default function Create() {
-  const [data, setData] = useState<FormConstruction>({
-    id: "",
-    decisions: [{ ...EMPTY_DECISION }],
+  const [data, setData] = useState<FormDecision>({
+    ...EMPTY_DECISION,
   });
 
-  const handleDecisionChange = (
-    index: number,
-    field: keyof FormDecision,
+  const handleDecisionChange = (field: keyof FormDecision, value: unknown) => {
+    setData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSnapshotChange = (
+    field: keyof ConstructionInfoSnapshot,
     value: unknown,
   ) => {
-    const newDecisions = [...data.decisions];
-    newDecisions[index] = { ...newDecisions[index], [field]: value };
-    setData((prev) => ({ ...prev, decisions: newDecisions }));
-  };
-
-  const addDecision = () => {
-    setData((prev) => ({
-      ...prev,
-      decisions: [...prev.decisions, { ...EMPTY_DECISION }],
-    }));
-  };
-
-  const removeDecision = (index: number) => {
-    setData((prev) => ({
-      ...prev,
-      decisions: prev.decisions.filter((_, i) => i !== index),
-    }));
+    setData((prev) => {
+      const snap = prev.submissions.construction_infor_snapshot;
+      if (!snap) return prev;
+      return {
+        ...prev,
+        submissions: {
+          ...prev.submissions,
+          construction_infor_snapshot: { ...snap, [field]: value },
+        },
+      };
+    });
   };
 
   const onSubmit = () => {
-    console.log("Submit Construction Data:", data);
+    console.log("Submit Decision Data:", data);
   };
 
   return (
@@ -82,65 +79,27 @@ export default function Create() {
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Tạo mới Công trình
+            Tạo mới Công Trình
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Nhập thông tin chi tiết để khởi tạo một công trình với các quyết
-            định, tờ trình, và gói thầu.
+            Nhập thông tin chi tiết để khởi tạo Công trình.
           </p>
         </div>
-        <Button onClick={onSubmit} className="self-start sm:self-auto">
+        {/* <Button onClick={onSubmit} className="p-4 self-start sm:self-auto"> */}
+        <StickyRevealButton onClick={onSubmit}>
           <SaveIcon className="mr-2 h-4 w-4" />
-          Lưu công trình
-        </Button>
+          Lưu Công trình
+        </StickyRevealButton>
+        {/* </Button> */}
       </div>
-      <div className="flex justify-between">
-        <div className="space-y-8">
-          {/* Construction Base Info */}
-          <div className="rounded-lg border bg-card p-5 shadow-sm">
-            <h2 className="mb-4 text-lg font-semibold">Thông tin chung</h2>
-            <div className="flex flex-col gap-2 lg:max-w-sm">
-              <Label htmlFor="construction-id">Mã công trình (ID)</Label>
-              <Input
-                id="construction-id"
-                placeholder="Ví dụ: CT-001"
-                value={data.id}
-                onChange={(e) => setData({ ...data, id: e.target.value })}
-              />
-            </div>
-          </div>
-
-          {/* Decisions List */}
-          <div className="space-y-4">
-            <div className="flex items-center justify-between border-b pb-3">
-              <h2 className="text-lg font-semibold">
-                Danh sách Quyết định ({data.decisions.length})
-              </h2>
-              <Button onClick={addDecision} variant="secondary" size="sm">
-                <PlusIcon className="mr-2 h-4 w-4" />
-                Thêm Quyết định
-              </Button>
-            </div>
-
-            {data.decisions.length === 0 ? (
-              <div className="rounded-lg border border-dashed py-12 text-center text-muted-foreground">
-                Chưa có quyết định nào. Bấm nút "Thêm Quyết định" để bắt đầu.
-              </div>
-            ) : (
-              <div className="flex flex-col gap-6">
-                {data.decisions.map((decision, idx) => (
-                  <DecisionForm
-                    key={`decision-${idx}`}
-                    index={idx}
-                    values={decision}
-                    onChange={handleDecisionChange}
-                    onRemove={removeDecision}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div>
+          <DecisionForm values={data} onChange={handleDecisionChange} />
         </div>
+        <ConstructionInfoSnapshotForm
+          values={data.submissions.construction_infor_snapshot}
+          onChange={handleSnapshotChange}
+        />
       </div>
     </div>
   );

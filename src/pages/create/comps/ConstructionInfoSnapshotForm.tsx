@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,25 +10,11 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
-import { PlusIcon, Trash2Icon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import type { BidPackageSnapshot, ConstructionInfoSnapshot } from "@/types";
+import type { ConstructionInfoSnapshotFormProps } from "./ConstructionInfoSnapshotForm.type";
 import { BidPackageSnapshotForm } from "./BidPackageSnapshotForm";
 import { Label } from "@/components/ui/label";
-
-type FormSnapshot = Omit<ConstructionInfoSnapshot, "id" | "bid_package_snapshots"> & {
-  bid_package_snapshots: Omit<BidPackageSnapshot, "id">[];
-};
-
-interface ConstructionInfoSnapshotFormProps {
-  index: number;
-  values: FormSnapshot;
-  onChange: (
-    index: number,
-    field: keyof ConstructionInfoSnapshot,
-    value: unknown
-  ) => void;
-  onRemove: (index: number) => void;
-}
 
 const EMPTY_BID_PACKAGE: Omit<BidPackageSnapshot, "id"> = {
   type: "TV",
@@ -46,25 +33,23 @@ const EMPTY_BID_PACKAGE: Omit<BidPackageSnapshot, "id"> = {
 };
 
 export function ConstructionInfoSnapshotForm({
-  index,
   values,
   onChange,
-  onRemove,
 }: ConstructionInfoSnapshotFormProps) {
-  const prefix = `cis-${index}`;
+  const prefix = useId();
 
   const handleBidPkgChange = (
     bidIdx: number,
     field: keyof BidPackageSnapshot,
-    value: unknown
+    value: unknown,
   ) => {
     const updated = [...(values.bid_package_snapshots ?? [])];
     updated[bidIdx] = { ...updated[bidIdx], [field]: value };
-    onChange(index, "bid_package_snapshots", updated);
+    onChange("bid_package_snapshots", updated);
   };
 
   const addBidPackage = () => {
-    onChange(index, "bid_package_snapshots", [
+    onChange("bid_package_snapshots", [
       ...(values.bid_package_snapshots ?? []),
       { ...EMPTY_BID_PACKAGE },
     ]);
@@ -72,37 +57,24 @@ export function ConstructionInfoSnapshotForm({
 
   const removeBidPackage = (bidIdx: number) => {
     const updated = (values.bid_package_snapshots ?? []).filter(
-      (_, i) => i !== bidIdx
+      (_, i) => i !== bidIdx,
     );
-    onChange(index, "bid_package_snapshots", updated);
+    onChange("bid_package_snapshots", updated);
   };
 
   return (
     <div className="relative rounded-xl border border-border bg-card/60 p-5 shadow-sm">
-      {/* Remove button */}
-      <Button
-        type="button"
-        variant="ghost"
-        size="icon-sm"
-        className="absolute right-4 top-4 text-muted-foreground hover:text-destructive"
-        onClick={() => onRemove(index)}
-        aria-label="Xoá thông tin công trình"
-      >
-        <Trash2Icon />
-      </Button>
-
-      <p className="mb-4 text-sm font-semibold text-foreground">
-        Thông tin công trình #{index + 1}
+      <p className="mb-6 text-sm font-semibold text-foreground">
+        Thông tin công trình
       </p>
-
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Period */}
         <div className="flex flex-col gap-1.5">
           <Label htmlFor={`${prefix}-period`}>Giai đoạn (Period)</Label>
           <Select
-            value={values.period}
+            value={values.period ?? ""}
             onValueChange={(v) =>
-              onChange(index, "period", v as ConstructionInfoSnapshot["period"])
+              onChange("period", v as ConstructionInfoSnapshot["period"])
             }
           >
             <SelectTrigger id={`${prefix}-period`} className="w-full">
@@ -124,7 +96,7 @@ export function ConstructionInfoSnapshotForm({
             id={`${prefix}-name`}
             placeholder="Tên công trình"
             value={values.name}
-            onChange={(e) => onChange(index, "name", e.target.value)}
+            onChange={(e) => onChange("name", e.target.value)}
           />
         </div>
 
@@ -136,7 +108,7 @@ export function ConstructionInfoSnapshotForm({
             type="number"
             placeholder="0"
             value={values.budget}
-            onChange={(e) => onChange(index, "budget", Number(e.target.value))}
+            onChange={(e) => onChange("budget", Number(e.target.value))}
           />
         </div>
 
@@ -147,7 +119,7 @@ export function ConstructionInfoSnapshotForm({
             id={`${prefix}-budget-str`}
             placeholder="VD: Một tỷ đồng"
             value={values.budget_string}
-            onChange={(e) => onChange(index, "budget_string", e.target.value)}
+            onChange={(e) => onChange("budget_string", e.target.value)}
           />
         </div>
 
@@ -158,7 +130,7 @@ export function ConstructionInfoSnapshotForm({
             id={`${prefix}-source`}
             placeholder="Nguồn vốn (VD: Ngân sách nhà nước)"
             value={values.source_of_funds}
-            onChange={(e) => onChange(index, "source_of_funds", e.target.value)}
+            onChange={(e) => onChange("source_of_funds", e.target.value)}
           />
         </div>
 
@@ -170,7 +142,7 @@ export function ConstructionInfoSnapshotForm({
             type="date"
             value={values.implementation_start_date}
             onChange={(e) =>
-              onChange(index, "implementation_start_date", e.target.value)
+              onChange("implementation_start_date", e.target.value)
             }
           />
         </div>
@@ -183,7 +155,7 @@ export function ConstructionInfoSnapshotForm({
             type="date"
             value={values.implementation_end_date}
             onChange={(e) =>
-              onChange(index, "implementation_end_date", e.target.value)
+              onChange("implementation_end_date", e.target.value)
             }
           />
         </div>
@@ -196,11 +168,7 @@ export function ConstructionInfoSnapshotForm({
             placeholder="Mô tả hiện trạng..."
             value={values.existing_condition_of_the_structure}
             onChange={(e) =>
-              onChange(
-                index,
-                "existing_condition_of_the_structure",
-                e.target.value
-              )
+              onChange("existing_condition_of_the_structure", e.target.value)
             }
           />
         </div>
@@ -212,7 +180,7 @@ export function ConstructionInfoSnapshotForm({
             id={`${prefix}-repair`}
             placeholder="Phạm vi công việc sửa chữa..."
             value={values.repair_scope}
-            onChange={(e) => onChange(index, "repair_scope", e.target.value)}
+            onChange={(e) => onChange("repair_scope", e.target.value)}
           />
         </div>
 
@@ -224,9 +192,7 @@ export function ConstructionInfoSnapshotForm({
             type="number"
             placeholder="0"
             value={values.estimated_cost}
-            onChange={(e) =>
-              onChange(index, "estimated_cost", Number(e.target.value))
-            }
+            onChange={(e) => onChange("estimated_cost", Number(e.target.value))}
           />
         </div>
 
@@ -237,9 +203,7 @@ export function ConstructionInfoSnapshotForm({
             id={`${prefix}-est-cost-str`}
             placeholder="VD: Hai tỷ đồng"
             value={values.estimated_cost_string}
-            onChange={(e) =>
-              onChange(index, "estimated_cost_string", e.target.value)
-            }
+            onChange={(e) => onChange("estimated_cost_string", e.target.value)}
           />
         </div>
       </div>

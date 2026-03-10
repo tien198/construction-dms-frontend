@@ -12,12 +12,7 @@ import { Trash2Icon } from "lucide-react";
 import type { BidPackageSnapshot } from "@/types";
 import { Label } from "@/components/ui/label";
 
-interface BidPackageSnapshotFormProps {
-  index: number;
-  values: Omit<BidPackageSnapshot, "id">;
-  onChange: (index: number, field: keyof BidPackageSnapshot, value: unknown) => void;
-  onRemove: (index: number) => void;
-}
+import type { BidPackageSnapshotFormProps } from "./BidPackageSnapshotForm.type";
 
 export function BidPackageSnapshotForm({
   index,
