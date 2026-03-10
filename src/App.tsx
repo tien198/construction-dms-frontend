@@ -1,7 +1,3 @@
-import { Button } from "@/components/ui/button";
-
-function App() {
-  return <Button>Button</Button>;
+export default function App() {
+  return <></>;
 }
-
-export default App;
