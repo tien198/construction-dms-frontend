@@ -30,7 +30,7 @@ export function FormText({
       className={`flex flex-col gap-1.5${fullWidth ? " sm:col-span-2" : ""}`}
     >
       <Label htmlFor={htmlFor}>{label}</Label>
-      <Textarea id={htmlFor} {...props} className="bg-accent" />
+      <Textarea id={htmlFor} {...props} className="bg-card" />
     </div>
   );
 }

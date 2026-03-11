@@ -32,7 +32,7 @@ export function FormField({
       className={`flex flex-col gap-1.5${fullWidth ? " sm:col-span-2" : ""}`}
     >
       <Label htmlFor={htmlFor}>{label}</Label>
-      <Input id={htmlFor} {...props} className="bg-accent" />
+      <Input id={htmlFor} {...props} className="bg-card" />
     </div>
   );
 }
