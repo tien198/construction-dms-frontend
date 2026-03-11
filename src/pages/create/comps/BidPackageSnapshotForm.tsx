@@ -13,7 +13,7 @@ import { FormField } from "@/components/form-ui/form-field";
 
 export function BidPackageSnapshotForm() {
   return (
-    <div className="relative rounded-lg border border-border bg-muted/30 p-4">
+    <div className="relative w-full rounded-lg border border-border bg-muted/30 p-4">
       {/* Remove button */}
       <Button
         type="button"
@@ -25,7 +25,7 @@ export function BidPackageSnapshotForm() {
         <Trash2Icon />
       </Button>
 
-      <p className="mb-4 text-sm font-semibold text-foreground">Gói thầu</p>
+      <div className="h-6" />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Type — Select, not an Input */}

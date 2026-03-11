@@ -9,7 +9,7 @@ export default function CreateSubmission() {
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-primary text-shadow-md text-shadow-accent-foreground sm:text-3xl">
-            Tạo mới Tờ trình
+            Tạo Công Trình mới
           </h1>
           <p className="mt-1 text-sm text-accent text-shadow-sm text-shadow-accent-foreground">
             Nhập thông tin chi tiết để khởi tạo Tờ trình.

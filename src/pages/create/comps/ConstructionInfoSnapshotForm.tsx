@@ -1,10 +1,8 @@
 import { useId } from "react";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { FormText } from "@/components/form-ui/form-text";
-import { PlusIcon } from "lucide-react";
-import { BidPackageSnapshotForm } from "./BidPackageSnapshotForm";
 import { FormField } from "@/components/form-ui/form-field";
+import { BidPackageSideDrawer } from "./BidPackageDrawer";
 
 export function ConstructionInfoSnapshotForm() {
   const prefix = useId();
@@ -97,16 +95,12 @@ export function ConstructionInfoSnapshotForm() {
       {/* Bid packages */}
       <Separator className="my-5" />
       <div className="flex items-center justify-between mb-3">
-        <p className="text-sm font-medium text-muted-foreground">Gói thầu</p>
-        <Button type="button" variant="outline" size="sm">
-          <PlusIcon />
-          Thêm gói thầu
-        </Button>
+        <BidPackageSideDrawer />
       </div>
-
+      {/* 
       <div className="flex flex-col gap-3">
         <BidPackageSnapshotForm />
-      </div>
+      </div> */}
     </div>
   );
 }
