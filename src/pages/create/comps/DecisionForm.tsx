@@ -26,7 +26,7 @@ export function DecisionForm({
   };
 
   return (
-    <div className="relative rounded-xl border border-border bg-card/50 p-5 shadow-sm">
+    <div className="relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground">
       {onRemove && (
         <Button
           type="button"

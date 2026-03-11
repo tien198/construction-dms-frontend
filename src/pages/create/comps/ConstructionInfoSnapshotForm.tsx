@@ -62,8 +62,10 @@ export function ConstructionInfoSnapshotForm({
     onChange("bid_package_snapshots", updated);
   };
 
+  const dummyBidPackage = values.bid_package_snapshots?.[0] ?? (EMPTY_BID_PACKAGE as BidPackageSnapshot);
+
   return (
-    <div className="relative rounded-xl border border-border bg-card/60 p-5 shadow-sm">
+    <div className="relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground">
       <p className="mb-6 text-sm font-semibold text-foreground">
         Thông tin công trình
       </p>
@@ -226,15 +228,12 @@ export function ConstructionInfoSnapshotForm({
       </div>
 
       <div className="flex flex-col gap-3">
-        {(values.bid_package_snapshots ?? []).map((bp, bidIdx) => (
-          <BidPackageSnapshotForm
-            key={bidIdx}
-            index={bidIdx}
-            values={bp}
-            onChange={handleBidPkgChange}
-            onRemove={removeBidPackage}
-          />
-        ))}
+        <BidPackageSnapshotForm
+          index={0}
+          values={dummyBidPackage}
+          onChange={handleBidPkgChange}
+          onRemove={removeBidPackage}
+        />
       </div>
     </div>
   );
