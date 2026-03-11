@@ -1,4 +1,3 @@
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -7,10 +6,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import { FormText } from "@/components/form-ui/form-text";
 import { Trash2Icon } from "lucide-react";
 import type { BidPackageSnapshot } from "@/types";
 import { Label } from "@/components/ui/label";
+import { FormField } from "@/components/form-ui/form-field";
 
 import type { BidPackageSnapshotFormProps } from "./BidPackageSnapshotForm.type";
 
@@ -41,7 +41,7 @@ export function BidPackageSnapshotForm({
       </p>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {/* Type */}
+        {/* Type — Select, not an Input */}
         <div className="flex flex-col gap-1.5">
           <Label htmlFor={`${prefix}-type`}>Loại gói thầu</Label>
           <Select
@@ -62,155 +62,117 @@ export function BidPackageSnapshotForm({
         </div>
 
         {/* Project owner */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-owner`}>Chủ đầu tư</Label>
-          <Input
-            id={`${prefix}-owner`}
-            placeholder="Tên chủ đầu tư"
-            value={values.project_owner}
-            onChange={(e) => onChange(index, "project_owner", e.target.value)}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-owner`}
+          label="Chủ đầu tư"
+          placeholder="Tên chủ đầu tư"
+          value={values.project_owner}
+          onChange={(e) => onChange(index, "project_owner", e.target.value)}
+        />
 
         {/* Bid package name */}
-        <div className="flex flex-col gap-1.5 sm:col-span-2">
-          <Label htmlFor={`${prefix}-name`}>Tên gói thầu</Label>
-          <Input
-            id={`${prefix}-name`}
-            placeholder="Tên gói thầu"
-            value={values.bid_package_name}
-            onChange={(e) => onChange(index, "bid_package_name", e.target.value)}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-name`}
+          label="Tên gói thầu"
+          placeholder="Tên gói thầu"
+          value={values.bid_package_name}
+          onChange={(e) => onChange(index, "bid_package_name", e.target.value)}
+          fullWidth
+        />
 
         {/* Short description */}
-        <div className="flex flex-col gap-1.5 sm:col-span-2">
-          <Label htmlFor={`${prefix}-desc`}>Mô tả ngắn</Label>
-          <Textarea
-            id={`${prefix}-desc`}
-            placeholder="Mô tả ngắn về gói thầu..."
-            value={values.short_description}
-            onChange={(e) => onChange(index, "short_description", e.target.value)}
-          />
-        </div>
+        <FormText
+          htmlFor={`${prefix}-desc`}
+          label="Mô tả ngắn"
+          placeholder="Mô tả ngắn về gói thầu..."
+          value={values.short_description}
+          onChange={(e) => onChange(index, "short_description", e.target.value)}
+          fullWidth
+        />
 
         {/* Budget */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-budget`}>Ngân sách (số)</Label>
-          <Input
-            id={`${prefix}-budget`}
-            type="number"
-            placeholder="0"
-            value={values.budget}
-            onChange={(e) => onChange(index, "budget", Number(e.target.value))}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-budget`}
+          label="Ngân sách (số)"
+          type="number"
+          placeholder="0"
+          value={String(values.budget)}
+          onChange={(e) => onChange(index, "budget", Number(e.target.value))}
+        />
 
         {/* Budget string */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-budget-str`}>Ngân sách (chữ)</Label>
-          <Input
-            id={`${prefix}-budget-str`}
-            placeholder="VD: Một tỷ đồng"
-            value={values.budget_string}
-            onChange={(e) => onChange(index, "budget_string", e.target.value)}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-budget-str`}
+          label="Ngân sách (chữ)"
+          placeholder="VD: Một tỷ đồng"
+          value={values.budget_string}
+          onChange={(e) => onChange(index, "budget_string", e.target.value)}
+        />
 
         {/* Bidder selection time */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-sel-time`}>Thời gian chọn thầu</Label>
-          <Input
-            id={`${prefix}-sel-time`}
-            type="date"
-            value={values.bidder_selection_time}
-            onChange={(e) =>
-              onChange(index, "bidder_selection_time", e.target.value)
-            }
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-sel-time`}
+          label="Thời gian chọn thầu"
+          type="date"
+          value={values.bidder_selection_time}
+          onChange={(e) =>
+            onChange(index, "bidder_selection_time", e.target.value)
+          }
+        />
 
         {/* Bidder selection method */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-sel-method`}>Hình thức chọn thầu</Label>
-          <Input
-            id={`${prefix}-sel-method`}
-            placeholder="VD: Đấu thầu rộng rãi"
-            value={values.bidder_selection_method}
-            onChange={(e) =>
-              onChange(index, "bidder_selection_method", e.target.value)
-            }
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-sel-method`}
+          label="Hình thức chọn thầu"
+          placeholder="VD: Đấu thầu rộng rãi"
+          value={values.bidder_selection_method}
+          onChange={(e) =>
+            onChange(index, "bidder_selection_method", e.target.value)
+          }
+        />
 
         {/* Successful bidder ID */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-bidder`}>ID nhà thầu trúng thầu</Label>
-          <Input
-            id={`${prefix}-bidder`}
-            placeholder="(tuỳ chọn)"
-            value={values.successful_bidder_id ?? ""}
-            onChange={(e) =>
-              onChange(
-                index,
-                "successful_bidder_id",
-                e.target.value || null
-              )
-            }
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-bidder`}
+          label="ID nhà thầu trúng thầu"
+          placeholder="(tuỳ chọn)"
+          value={values.successful_bidder_id ?? ""}
+          onChange={(e) =>
+            onChange(index, "successful_bidder_id", e.target.value || null)
+          }
+        />
 
         {/* Duration */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-duration`}>Thời gian thực hiện</Label>
-          <Input
-            id={`${prefix}-duration`}
-            placeholder="VD: 12 tháng"
-            value={values.duration}
-            onChange={(e) => onChange(index, "duration", e.target.value)}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-duration`}
+          label="Thời gian thực hiện"
+          placeholder="VD: 12 tháng"
+          value={values.duration}
+          onChange={(e) => onChange(index, "duration", e.target.value)}
+        />
 
         {/* Estimated cost */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-est-cost`}>Dự toán (số)</Label>
-          <Input
-            id={`${prefix}-est-cost`}
-            type="number"
-            placeholder="0"
-            value={values.estimated_cost}
-            onChange={(e) =>
-              onChange(index, "estimated_cost", Number(e.target.value))
-            }
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-est-cost`}
+          label="Dự toán (số)"
+          type="number"
+          placeholder="0"
+          value={String(values.estimated_cost)}
+          onChange={(e) =>
+            onChange(index, "estimated_cost", Number(e.target.value))
+          }
+        />
 
         {/* Estimated cost string */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-est-cost-str`}>Dự toán (chữ)</Label>
-          <Input
-            id={`${prefix}-est-cost-str`}
-            placeholder="VD: Một tỷ đồng"
-            value={values.estimated_cost_string}
-            onChange={(e) =>
-              onChange(index, "estimated_cost_string", e.target.value)
-            }
-          />
-        </div>
-
-        {/* Is completed */}
-        <div className="flex items-center gap-2 sm:col-span-2">
-          <input
-            id={`${prefix}-completed`}
-            type="checkbox"
-            className="size-4 rounded border-border accent-primary"
-            checked={values.is_completed}
-            onChange={(e) => onChange(index, "is_completed", e.target.checked)}
-          />
-          <Label htmlFor={`${prefix}-completed`} className="cursor-pointer">
-            Đã hoàn thành
-          </Label>
-        </div>
+        <FormField
+          htmlFor={`${prefix}-est-cost-str`}
+          label="Dự toán (chữ)"
+          placeholder="VD: Một tỷ đồng"
+          value={values.estimated_cost_string}
+          onChange={(e) =>
+            onChange(index, "estimated_cost_string", e.target.value)
+          }
+        />
       </div>
     </div>
   );

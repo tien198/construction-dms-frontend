@@ -1,20 +1,12 @@
 import { useId } from "react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
+import { FormText } from "@/components/form-ui/form-text";
 import { PlusIcon } from "lucide-react";
-import type { BidPackageSnapshot, ConstructionInfoSnapshot } from "@/types";
+import type { BidPackageSnapshot } from "@/types";
 import type { ConstructionInfoSnapshotFormProps } from "./ConstructionInfoSnapshotForm.type";
 import { BidPackageSnapshotForm } from "./BidPackageSnapshotForm";
-import { Label } from "@/components/ui/label";
+import { FormField } from "@/components/form-ui/form-field";
 
 const EMPTY_BID_PACKAGE: Omit<BidPackageSnapshot, "id"> = {
   type: "TV",
@@ -62,152 +54,116 @@ export function ConstructionInfoSnapshotForm({
     onChange("bid_package_snapshots", updated);
   };
 
-  const dummyBidPackage = values.bid_package_snapshots?.[0] ?? (EMPTY_BID_PACKAGE as BidPackageSnapshot);
+  const dummyBidPackage =
+    values.bid_package_snapshots?.[0] ??
+    (EMPTY_BID_PACKAGE as BidPackageSnapshot);
 
   return (
-    <div className="relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground">
+    <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground">
       <p className="mb-6 text-sm font-semibold text-foreground">
         Thông tin công trình
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {/* Period */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-period`}>Giai đoạn (Period)</Label>
-          <Select
-            value={values.period ?? ""}
-            onValueChange={(v) =>
-              onChange("period", v as ConstructionInfoSnapshot["period"])
-            }
-          >
-            <SelectTrigger id={`${prefix}-period`} className="w-full">
-              <SelectValue placeholder="Chọn giai đoạn..." />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="KH">KH – Kế hoạch</SelectItem>
-              <SelectItem value="TV">TV – Tư vấn</SelectItem>
-              <SelectItem value="TT">TT – Thi công</SelectItem>
-              <SelectItem value="BCKTKT">BCKTKT – Báo cáo KTKT</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
         {/* Name */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-name`}>Tên công trình</Label>
-          <Input
-            id={`${prefix}-name`}
-            placeholder="Tên công trình"
-            value={values.name}
-            onChange={(e) => onChange("name", e.target.value)}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-name`}
+          label="Tên công trình"
+          placeholder="Tên công trình"
+          value={values.name}
+          onChange={(e) => onChange("name", e.target.value)}
+          fullWidth
+        />
 
         {/* Budget */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-budget`}>Ngân sách (số)</Label>
-          <Input
-            id={`${prefix}-budget`}
-            type="number"
-            placeholder="0"
-            value={values.budget}
-            onChange={(e) => onChange("budget", Number(e.target.value))}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-budget`}
+          label="Ngân sách (số)"
+          type="number"
+          placeholder="0"
+          value={String(values.budget)}
+          onChange={(e) => onChange("budget", Number(e.target.value))}
+        />
 
         {/* Budget string */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-budget-str`}>Ngân sách (chữ)</Label>
-          <Input
-            id={`${prefix}-budget-str`}
-            placeholder="VD: Một tỷ đồng"
-            value={values.budget_string}
-            onChange={(e) => onChange("budget_string", e.target.value)}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-budget-str`}
+          label="Ngân sách (chữ)"
+          placeholder="VD: Một tỷ đồng"
+          value={values.budget_string}
+          onChange={(e) => onChange("budget_string", e.target.value)}
+        />
 
         {/* Source of funds */}
-        <div className="flex flex-col gap-1.5 sm:col-span-2">
-          <Label htmlFor={`${prefix}-source`}>Nguồn vốn</Label>
-          <Input
-            id={`${prefix}-source`}
-            placeholder="Nguồn vốn (VD: Ngân sách nhà nước)"
-            value={values.source_of_funds}
-            onChange={(e) => onChange("source_of_funds", e.target.value)}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-source`}
+          label="Nguồn vốn"
+          placeholder="Nguồn vốn (VD: 2026)"
+          value={values.source_of_funds}
+          onChange={(e) => onChange("source_of_funds", e.target.value)}
+          fullWidth
+        />
 
         {/* Start date */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-start`}>Ngày bắt đầu thực hiện</Label>
-          <Input
-            id={`${prefix}-start`}
-            type="date"
-            value={values.implementation_start_date}
-            onChange={(e) =>
-              onChange("implementation_start_date", e.target.value)
-            }
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-start`}
+          label="Ngày bắt đầu thực hiện"
+          type="date"
+          value={values.implementation_start_date}
+          onChange={(e) =>
+            onChange("implementation_start_date", e.target.value)
+          }
+        />
 
         {/* End date */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-end`}>Ngày kết thúc thực hiện</Label>
-          <Input
-            id={`${prefix}-end`}
-            type="date"
-            value={values.implementation_end_date}
-            onChange={(e) =>
-              onChange("implementation_end_date", e.target.value)
-            }
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-end`}
+          label="Ngày kết thúc thực hiện"
+          type="date"
+          value={values.implementation_end_date}
+          onChange={(e) => onChange("implementation_end_date", e.target.value)}
+        />
 
         {/* Existing condition */}
-        <div className="flex flex-col gap-1.5 sm:col-span-2">
-          <Label htmlFor={`${prefix}-condition`}>Hiện trạng công trình</Label>
-          <Textarea
-            id={`${prefix}-condition`}
-            placeholder="Mô tả hiện trạng..."
-            value={values.existing_condition_of_the_structure}
-            onChange={(e) =>
-              onChange("existing_condition_of_the_structure", e.target.value)
-            }
-          />
-        </div>
+        <FormText
+          htmlFor={`${prefix}-condition`}
+          label="Hiện trạng công trình"
+          placeholder="Mô tả hiện trạng..."
+          value={values.existing_condition_of_the_structure}
+          onChange={(e) =>
+            onChange("existing_condition_of_the_structure", e.target.value)
+          }
+          fullWidth
+        />
 
         {/* Repair scope */}
-        <div className="flex flex-col gap-1.5 sm:col-span-2">
-          <Label htmlFor={`${prefix}-repair`}>Phạm vi sửa chữa</Label>
-          <Textarea
-            id={`${prefix}-repair`}
-            placeholder="Phạm vi công việc sửa chữa..."
-            value={values.repair_scope}
-            onChange={(e) => onChange("repair_scope", e.target.value)}
-          />
-        </div>
+        <FormText
+          htmlFor={`${prefix}-repair`}
+          label="Phạm vi sửa chữa"
+          className="bg-accent"
+          placeholder="Phạm vi công việc sửa chữa..."
+          value={values.repair_scope}
+          onChange={(e) => onChange("repair_scope", e.target.value)}
+          fullWidth
+        />
 
         {/* Estimated cost */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-est-cost`}>Dự toán (số)</Label>
-          <Input
-            id={`${prefix}-est-cost`}
-            type="number"
-            placeholder="0"
-            value={values.estimated_cost}
-            onChange={(e) => onChange("estimated_cost", Number(e.target.value))}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-est-cost`}
+          label="Dự toán (số)"
+          type="number"
+          placeholder="0"
+          value={String(values.estimated_cost)}
+          onChange={(e) => onChange("estimated_cost", Number(e.target.value))}
+        />
 
         {/* Estimated cost string */}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${prefix}-est-cost-str`}>Dự toán (chữ)</Label>
-          <Input
-            id={`${prefix}-est-cost-str`}
-            placeholder="VD: Hai tỷ đồng"
-            value={values.estimated_cost_string}
-            onChange={(e) => onChange("estimated_cost_string", e.target.value)}
-          />
-        </div>
+        <FormField
+          htmlFor={`${prefix}-est-cost-str`}
+          label="Dự toán (chữ)"
+          placeholder="VD: Hai tỷ đồng"
+          value={values.estimated_cost_string}
+          onChange={(e) => onChange("estimated_cost_string", e.target.value)}
+        />
       </div>
 
       {/* Bid packages */}

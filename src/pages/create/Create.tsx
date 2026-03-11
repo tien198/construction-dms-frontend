@@ -4,7 +4,7 @@ import type { FormDecision } from "./comps/DecisionForm.type";
 import type { FormSubmission } from "./comps/SubmissionForm.type";
 import { ConstructionInfoSnapshotForm } from "./comps/ConstructionInfoSnapshotForm";
 import type { FormSnapshot } from "./comps/ConstructionInfoSnapshotForm.type";
-import StickyRevealButton from "@/components/sticky-reveal-button";
+import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 
 const EMPTY_SNAPSHOT: FormSnapshot = {
   period: "KH",
