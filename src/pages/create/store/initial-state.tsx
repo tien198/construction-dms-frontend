@@ -1,0 +1,42 @@
+import type { Submission } from "../../../types/submission.type";
+
+export const initialState: Partial<Submission> = {
+  no: "",
+  level: "",
+  date: "",
+  pursuant_to_dec_tct_id: null,
+  pursuant_to_dec_ttmn_id: null,
+  construction_infor_snapshot: {
+    id: 0,
+    period: "KH",
+    name: "",
+    budget: 0,
+    budget_string: "",
+    source_of_funds: "",
+    implementation_start_date: "",
+    implementation_end_date: "",
+    existing_condition_of_the_structure: "",
+    repair_scope: "",
+    estimated_cost: 0,
+    estimated_cost_string: "",
+    bid_package_snapshots: [
+      {
+        id: 0,
+        type: "TV",
+        project_owner: "",
+        bid_package_name: "",
+        short_description: "",
+        budget: 0,
+        budget_string: "",
+        bidder_selection_time: "",
+        bidder_selection_method: "",
+        successful_bidder_id: null,
+        duration: "",
+        is_completed: false,
+        estimated_cost: 0,
+        estimated_cost_string: "",
+      },
+    ],
+  },
+  directlyDecision: { no: "" },
+};
