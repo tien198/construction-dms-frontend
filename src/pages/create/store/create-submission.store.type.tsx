@@ -1,19 +1,11 @@
-import { create } from "zustand";
-import type { Submission } from "../../../types/submission.type";
-import { initialState } from "./initial-state";
+import type { SubmissionCreate } from "../types/submission-create.type";
 
-export interface CreateStoreState extends Partial<Submission> {
-  setField: <K extends keyof Submission>(
+export interface CreateSubmission {
+  submission: SubmissionCreate;
+  setField: <K extends keyof SubmissionCreate>(
     field: K,
-    value: Submission[K],
+    value: SubmissionCreate[K],
   ) => void;
-  updateSubmission: (updates: Partial<Submission>) => void;
+  updateSubmission: (updates: Partial<SubmissionCreate>) => void;
   reset: () => void;
 }
-
-export const useCreateStore = create<CreateStoreState>((set) => ({
-  ...initialState,
-  setField: (field, value) => set((state) => ({ ...state, [field]: value })),
-  updateSubmission: (updates) => set((state) => ({ ...state, ...updates })),
-  reset: () => set(initialState),
-}));

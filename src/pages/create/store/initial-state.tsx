@@ -1,13 +1,12 @@
-import type { Submission } from "../../../types/submission.type";
+import type { SubmissionCreate } from "../types/submission-create.type";
 
-export const initialState: Partial<Submission> = {
+export const initialState: SubmissionCreate = {
   no: "",
   level: "",
   date: "",
   pursuant_to_dec_tct_id: null,
   pursuant_to_dec_ttmn_id: null,
   construction_infor_snapshot: {
-    id: 0,
     period: "KH",
     name: "",
     budget: 0,
@@ -21,7 +20,6 @@ export const initialState: Partial<Submission> = {
     estimated_cost_string: "",
     bid_package_snapshots: [
       {
-        id: 0,
         type: "TV",
         project_owner: "",
         bid_package_name: "",

@@ -1,10 +1,18 @@
-import { create } from "zustand";
+import { createStore } from "zustand";
 import { initialState } from "./initial-state";
-import type { CreateStoreState } from "./create-submission.store.type";
+import type { CreateSubmission } from "./create-submission.store.type";
 
-export const useCreateStore = create<CreateStoreState>((set) => ({
-  ...initialState,
-  setField: (field, value) => set((state) => ({ ...state, [field]: value })),
-  updateSubmission: (updates) => set((state) => ({ ...state, ...updates })),
-  reset: () => set(initialState),
+export const createSubmission_store = createStore<CreateSubmission>((set) => ({
+  submission: initialState,
+  setField: (field, value) =>
+    set((state) => ({
+      ...state,
+      submission: { ...state.submission, [field]: value },
+    })),
+  updateSubmission: (updates) =>
+    set((state) => ({
+      ...state,
+      submission: { ...state.submission, ...updates },
+    })),
+  reset: () => set({ submission: initialState }),
 }));
