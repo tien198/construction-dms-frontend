@@ -18,7 +18,10 @@ export function BidPackageSnapshotForm({ index }: Props) {
       state.submission.construction_infor_snapshot.bid_package_snapshots[index],
   );
 
-  // const setField = useStore(createSubmission_store, (state) => state.setField);
+  const setBidPackage = useStore(
+    createSubmission_store,
+    (state) => state.setBidPackage,
+  );
 
   return (
     <div className="relative w-full rounded-lg border border-border bg-muted/30 p-4">
@@ -47,6 +50,9 @@ export function BidPackageSnapshotForm({ index }: Props) {
           label="Chủ đầu tư"
           placeholder="Tên chủ đầu tư"
           value={bp.project_owner}
+          onChange={(e) =>
+            setBidPackage(bp.type, "project_owner", e.target.value)
+          }
         />
 
         {/* Bid package name */}

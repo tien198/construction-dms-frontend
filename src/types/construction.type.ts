@@ -4,3 +4,5 @@ export interface Construction {
   id: string;
   decisions: Decision[];
 }
+
+export type ConstructionPeriod = "TV" | "TT" | "TC";
