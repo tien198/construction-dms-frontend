@@ -5,13 +5,14 @@ export interface BidPackageSnapshot {
   bid_package_name: string;
   short_description: string;
   budget: number;
-  budget_string: string;
+  budget_str: string;
   bidder_selection_time: string;
   bidder_selection_method: string;
   // Note: sau khi hoàn thành chức năng nhà thầu sẽ thêm
   successful_bidder_id: string | null;
   duration: string;
   is_completed: boolean;
-  estimated_cost: number;
-  estimated_cost_string: string;
+  // est - estimated
+  est_cost: number;
+  est_cost_str: string;
 }

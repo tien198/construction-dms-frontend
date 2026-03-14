@@ -7,8 +7,16 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { BidPackageSnapshotForm } from "./BidPackageSnapshotForm";
+import { useStore } from "zustand";
+import { createSubmission_store } from "../store/create-submission.store";
 
 export function BidPackageSideDrawer() {
+  const bidPackagesList = useStore(
+    createSubmission_store,
+    (state) =>
+      state.submission.construction_infor_snapshot.bid_package_snapshots,
+  );
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -20,9 +28,9 @@ export function BidPackageSideDrawer() {
             <DrawerTitle className="text-primary">Gói thầu</DrawerTitle>
           </DrawerHeader>
           <div className="grid grid-cols-2 gap-12 p-4 pb-14">
-            <BidPackageSnapshotForm />
-            <BidPackageSnapshotForm />
-            <BidPackageSnapshotForm />
+            {bidPackagesList.map((_, id) => (
+              <BidPackageSnapshotForm key={id} index={id} />
+            ))}
           </div>
         </div>
       </DrawerContent>

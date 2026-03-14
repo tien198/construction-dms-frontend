@@ -1,17 +1,25 @@
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import { FormText } from "@/components/form-ui/form-text";
 import { Trash2Icon } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { FormField } from "@/components/form-ui/form-field";
+import { useStore } from "zustand";
+import { createSubmission_store } from "../store/create-submission.store";
 
-export function BidPackageSnapshotForm() {
+type Props = {
+  index: number;
+};
+
+export function BidPackageSnapshotForm({ index }: Props) {
+  const bp = useStore(
+    createSubmission_store,
+    (state) =>
+      state.submission.construction_infor_snapshot.bid_package_snapshots[index],
+  );
+
+  // const setField = useStore(createSubmission_store, (state) => state.setField);
+
   return (
     <div className="relative w-full rounded-lg border border-border bg-muted/30 p-4">
       {/* Remove button */}
@@ -30,17 +38,7 @@ export function BidPackageSnapshotForm() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Type — Select, not an Input */}
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`type`}>Loại gói thầu</Label>
-          <Select>
-            <SelectTrigger id={`type`} className="w-full">
-              <SelectValue placeholder="Chọn loại..." />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="TV">TV – Tư vấn</SelectItem>
-              <SelectItem value="TT">TT – Thi công</SelectItem>
-              <SelectItem value="TC">TC – Tổng thầu</SelectItem>
-            </SelectContent>
-          </Select>
+          <Label htmlFor="type">Gói {bp.type}</Label>
         </div>
 
         {/* Project owner */}
@@ -48,6 +46,7 @@ export function BidPackageSnapshotForm() {
           htmlFor={`owner`}
           label="Chủ đầu tư"
           placeholder="Tên chủ đầu tư"
+          value={bp.project_owner}
         />
 
         {/* Bid package name */}
@@ -55,6 +54,7 @@ export function BidPackageSnapshotForm() {
           htmlFor={`name`}
           label="Tên gói thầu"
           placeholder="Tên gói thầu"
+          value={bp.bid_package_name}
           fullWidth
         />
 
@@ -63,6 +63,7 @@ export function BidPackageSnapshotForm() {
           htmlFor={`desc`}
           label="Mô tả ngắn"
           placeholder="Mô tả ngắn về gói thầu..."
+          value={bp.short_description}
           fullWidth
         />
 
@@ -72,6 +73,7 @@ export function BidPackageSnapshotForm() {
           label="Ngân sách (số)"
           type="number"
           placeholder="0"
+          value={bp.budget}
         />
 
         {/* Budget string */}
@@ -79,6 +81,7 @@ export function BidPackageSnapshotForm() {
           htmlFor={`budget-str`}
           label="Ngân sách (chữ)"
           placeholder="VD: Một tỷ đồng"
+          value={bp.budget_str}
         />
 
         {/* Estimated cost */}
@@ -87,13 +90,15 @@ export function BidPackageSnapshotForm() {
           label="Dự toán (số)"
           type="number"
           placeholder="0"
+          value={bp.est_cost}
         />
 
         {/* Estimated cost string */}
         <FormField
           htmlFor={`est-cost-str`}
           label="Dự toán (chữ)"
-          placeholder="VD: Một tỷ đồng"
+          placeholder="Một tỷ đồng"
+          value={bp.est_cost_str}
         />
 
         {/* Bidder selection time */}
@@ -101,6 +106,7 @@ export function BidPackageSnapshotForm() {
           htmlFor={`sel-time`}
           label="Thời gian chọn thầu"
           type="date"
+          value={bp.bidder_selection_time}
         />
 
         {/* Bidder selection method */}
@@ -115,13 +121,15 @@ export function BidPackageSnapshotForm() {
           htmlFor={`bidder`}
           label="Nhà trúng thầu"
           placeholder="Chọn nhà thầu"
+          value={bp.successful_bidder_id ?? ""}
         />
 
         {/* Duration */}
         <FormField
           htmlFor={`duration`}
           label="Thời gian thực hiện"
-          placeholder="VD: 12 tháng"
+          placeholder="10 ngày"
+          value={bp.duration}
         />
       </div>
     </div>

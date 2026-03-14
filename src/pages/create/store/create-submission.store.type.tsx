@@ -1,11 +1,11 @@
+import type { RecursivePath } from "@/lib/type/recursion";
 import type { SubmissionCreate } from "../types/submission-create.type";
 
-export interface CreateSubmission {
+export interface CreateSubmissionStore {
   submission: SubmissionCreate;
-  setField: <K extends keyof SubmissionCreate>(
+  setField: <K extends RecursivePath<SubmissionCreate>>(
     field: K,
-    value: SubmissionCreate[K],
+    value: any,
   ) => void;
-  updateSubmission: (updates: Partial<SubmissionCreate>) => void;
   reset: () => void;
 }
