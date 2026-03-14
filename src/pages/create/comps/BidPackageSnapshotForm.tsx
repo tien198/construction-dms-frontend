@@ -1,7 +1,8 @@
+/*
 import { Button } from "@/components/ui/button";
-
-import { FormText } from "@/components/form-ui/form-text";
 import { Trash2Icon } from "lucide-react";
+*/
+import { FormText } from "@/components/form-ui/form-text";
 import { Label } from "@/components/ui/label";
 import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
@@ -15,7 +16,9 @@ export function BidPackageSnapshotForm({ index }: Props) {
   const bp = useStore(
     createSubmission_store,
     (state) =>
-      state.submission.construction_infor_snapshot.bid_package_snapshots[index],
+      state.submission.construction_infor_snapshot!.bid_package_snapshots[
+        index
+      ],
   );
 
   const setBidPackage = useStore(
@@ -26,6 +29,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
   return (
     <div className="relative w-full rounded-lg border border-border bg-muted/30 p-4">
       {/* Remove button */}
+      {/* 
       <Button
         type="button"
         variant="ghost"
@@ -35,7 +39,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
       >
         <Trash2Icon />
       </Button>
-
+ */}
       <div className="h-6" />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -44,98 +48,110 @@ export function BidPackageSnapshotForm({ index }: Props) {
           <Label htmlFor="type">Gói {bp.type}</Label>
         </div>
 
-        {/* Project owner */}
-        <FormField
-          htmlFor={`owner`}
-          label="Chủ đầu tư"
-          placeholder="Tên chủ đầu tư"
-          value={bp.project_owner}
-          onChange={(e) =>
-            setBidPackage(bp.type, "project_owner", e.target.value)
-          }
-        />
-
         {/* Bid package name */}
         <FormField
-          htmlFor={`name`}
+          htmlFor="name"
           label="Tên gói thầu"
           placeholder="Tên gói thầu"
           value={bp.bid_package_name}
           fullWidth
+          onChange={(e) =>
+            setBidPackage(bp.type, "bid_package_name", e.target.value)
+          }
         />
 
         {/* Short description */}
         <FormText
-          htmlFor={`desc`}
+          htmlFor="desc"
           label="Mô tả ngắn"
           placeholder="Mô tả ngắn về gói thầu..."
           value={bp.short_description}
           fullWidth
+          onChange={(e) =>
+            setBidPackage(bp.type, "short_description", e.target.value)
+          }
         />
 
         {/* Budget */}
         <FormField
-          htmlFor={`budget`}
+          htmlFor="budget"
           label="Ngân sách (số)"
           type="number"
           placeholder="0"
           value={bp.budget}
+          onChange={(e) =>
+            setBidPackage(bp.type, "budget", Number(e.target.value))
+          }
         />
 
         {/* Budget string */}
         <FormField
-          htmlFor={`budget-str`}
+          htmlFor="budget-str"
           label="Ngân sách (chữ)"
-          placeholder="VD: Một tỷ đồng"
+          placeholder="Một tỷ đồng"
           value={bp.budget_str}
+          onChange={(e) => setBidPackage(bp.type, "budget_str", e.target.value)}
         />
 
         {/* Estimated cost */}
         <FormField
-          htmlFor={`est-cost`}
+          htmlFor="est-cost"
           label="Dự toán (số)"
           type="number"
           placeholder="0"
           value={bp.est_cost}
+          onChange={(e) =>
+            setBidPackage(bp.type, "est_cost", Number(e.target.value))
+          }
         />
 
         {/* Estimated cost string */}
         <FormField
-          htmlFor={`est-cost-str`}
+          htmlFor="est-cost-str"
           label="Dự toán (chữ)"
           placeholder="Một tỷ đồng"
           value={bp.est_cost_str}
+          onChange={(e) =>
+            setBidPackage(bp.type, "est_cost_str", e.target.value)
+          }
         />
 
         {/* Bidder selection time */}
         <FormField
-          htmlFor={`sel-time`}
+          htmlFor="sel-time"
           label="Thời gian chọn thầu"
           type="date"
           value={bp.bidder_selection_time}
+          onChange={(e) =>
+            setBidPackage(bp.type, "bidder_selection_time", e.target.value)
+          }
         />
 
         {/* Bidder selection method */}
         {/* <FormField
-          htmlFor={`sel-method`}
+          htmlFor="sel-method"
           label="Hình thức chọn thầu"
           placeholder="VD: Đấu thầu rộng rãi"
         /> */}
 
-        {/* Successful bidder ID */}
-        <FormField
-          htmlFor={`bidder`}
-          label="Nhà trúng thầu"
-          placeholder="Chọn nhà thầu"
-          value={bp.successful_bidder_id ?? ""}
-        />
-
         {/* Duration */}
         <FormField
-          htmlFor={`duration`}
+          htmlFor="duration"
           label="Thời gian thực hiện"
           placeholder="10 ngày"
           value={bp.duration}
+          onChange={(e) => setBidPackage(bp.type, "duration", e.target.value)}
+        />
+
+        {/* Successful bidder ID */}
+        <FormField
+          htmlFor="bidder"
+          label="Nhà trúng thầu"
+          placeholder="Chọn nhà thầu"
+          value={bp.successful_bidder_id ?? ""}
+          onChange={(e) =>
+            setBidPackage(bp.type, "successful_bidder_id", e.target.value)
+          }
         />
       </div>
     </div>

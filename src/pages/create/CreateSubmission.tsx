@@ -2,8 +2,17 @@ import { SaveIcon } from "lucide-react";
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { ConstructionInfoSnapshotForm } from "./comps/ConstructionInfoSnapshotForm";
 import { DocumentSide } from "./comps/DocumentSide";
+import { useFetcher } from "react-router";
 
 export default function CreateSubmission() {
+  const fetcher = useFetcher();
+  const handleSubmit = () => {
+    return fetcher.submit(null, {
+      method: "post",
+      encType: "application/json",
+      action: "/init",
+    });
+  };
   return (
     <div className="w-full border p-6 shadow-sm md:p-8 bg-wood-grain">
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -15,7 +24,7 @@ export default function CreateSubmission() {
             Nhập thông tin chi tiết để khởi tạo Tờ trình.
           </p>
         </div>
-        <StickyRevealButton>
+        <StickyRevealButton onClick={() => handleSubmit()}>
           <SaveIcon className="mr-2 h-4 w-4" />
           Lưu Tờ trình
         </StickyRevealButton>

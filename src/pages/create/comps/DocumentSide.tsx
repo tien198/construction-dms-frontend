@@ -9,7 +9,7 @@ export function DocumentSide() {
         </p>
 
         {/* Submission's own AdministrativeDocument fields */}
-        <AdministrativeDocumentFields />
+        <AdministrativeDocumentFields type="tv" />
       </div>
       <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
         <p className="mb-6 text-sm font-semibold text-foreground">
@@ -17,7 +17,7 @@ export function DocumentSide() {
         </p>
 
         {/* Submission's own AdministrativeDocument fields */}
-        <AdministrativeDocumentFields />
+        <AdministrativeDocumentFields type="tt" />
       </div>
     </div>
   );

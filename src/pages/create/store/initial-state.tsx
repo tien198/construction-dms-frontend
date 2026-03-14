@@ -1,6 +1,6 @@
 import type { SubmissionCreate } from "../types/submission-create.type";
 
-export const initialState: SubmissionCreate = {
+const initialState: SubmissionCreate = {
   no: "",
   level: "",
   date: "",
@@ -53,3 +53,8 @@ export const initialState: SubmissionCreate = {
   },
   directlyDecision: { no: "" },
 };
+
+const { construction_infor_snapshot, ...withoutConstructionInfor } =
+  initialState;
+
+export { initialState, withoutConstructionInfor };

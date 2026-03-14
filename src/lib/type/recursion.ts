@@ -11,5 +11,5 @@ type Primitive =
 export type RecursivePath<T> = {
   [K in keyof T & string]: T[K] extends Primitive
     ? K
-    : K | `${K}.${RecursivePath<T[K]>}`;
+    : K | `${K}.${RecursivePath<NonNullable<T[K]>>}`;
 }[keyof T & string];

@@ -7,4 +7,11 @@ export const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
+  {
+    path: "/init",
+    action: (args) =>
+      import("../pages/create/action").then((m) =>
+        m.initConstructionAction(args),
+      ),
+  },
 ]);

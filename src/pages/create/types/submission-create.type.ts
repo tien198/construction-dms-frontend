@@ -5,5 +5,5 @@ export type SubmissionCreate = Omit<
   Submission,
   "id" | "construction_infor_snapshot"
 > & {
-  construction_infor_snapshot: ConstructionInfoSnapshotCreate;
+  construction_infor_snapshot?: ConstructionInfoSnapshotCreate;
 };
