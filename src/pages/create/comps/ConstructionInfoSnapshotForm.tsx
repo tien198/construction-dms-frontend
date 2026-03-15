@@ -34,7 +34,7 @@ export function ConstructionInfoSnapshotForm() {
         {/* Budget */}
         <FormField
           htmlFor="budget"
-          label="Ngân sách (số)"
+          label="Chi phí sửa chữa dự kiến (số)"
           type="number"
           placeholder="0"
           value={infor.budget}
@@ -49,7 +49,7 @@ export function ConstructionInfoSnapshotForm() {
         {/* Budget string */}
         <FormField
           htmlFor="budget-str"
-          label="Ngân sách (chữ)"
+          label="Chi phí sửa chữa dự kiến (chữ)"
           placeholder="Một tỷ đồng"
           value={infor.budget_str}
           onChange={(e) =>
@@ -58,6 +58,7 @@ export function ConstructionInfoSnapshotForm() {
         />
 
         {/* Estimated cost */}
+        {/* 
         <FormField
           htmlFor="est-cost"
           label="Dự toán (số)"
@@ -71,8 +72,10 @@ export function ConstructionInfoSnapshotForm() {
             )
           }
         />
+         */}
 
         {/* Estimated cost string */}
+        {/* 
         <FormField
           htmlFor="est-cost-str"
           label="Dự toán (chữ)"
@@ -82,6 +85,7 @@ export function ConstructionInfoSnapshotForm() {
             setField("construction_infor_snapshot.est_cost_str", e.target.value)
           }
         />
+         */}
 
         {/* Source of funds */}
         <FormField

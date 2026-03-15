@@ -49,6 +49,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
         </div>
 
         {/* Bid package name */}
+        {/* 
         <FormField
           htmlFor="name"
           label="Tên gói thầu"
@@ -59,8 +60,10 @@ export function BidPackageSnapshotForm({ index }: Props) {
             setBidPackage(bp.type, "bid_package_name", e.target.value)
           }
         />
+         */}
 
         {/* Short description */}
+        {/* 
         <FormText
           htmlFor="desc"
           label="Mô tả ngắn"
@@ -71,11 +74,13 @@ export function BidPackageSnapshotForm({ index }: Props) {
             setBidPackage(bp.type, "short_description", e.target.value)
           }
         />
+         */}
 
+        <span />
         {/* Budget */}
         <FormField
           htmlFor="budget"
-          label="Ngân sách (số)"
+          label="Giá thầu (số)"
           type="number"
           placeholder="0"
           value={bp.budget}
@@ -87,13 +92,14 @@ export function BidPackageSnapshotForm({ index }: Props) {
         {/* Budget string */}
         <FormField
           htmlFor="budget-str"
-          label="Ngân sách (chữ)"
+          label="Giá thầu (chữ)"
           placeholder="Một tỷ đồng"
           value={bp.budget_str}
           onChange={(e) => setBidPackage(bp.type, "budget_str", e.target.value)}
         />
 
         {/* Estimated cost */}
+        {/* 
         <FormField
           htmlFor="est-cost"
           label="Dự toán (số)"
@@ -104,8 +110,10 @@ export function BidPackageSnapshotForm({ index }: Props) {
             setBidPackage(bp.type, "est_cost", Number(e.target.value))
           }
         />
+         */}
 
         {/* Estimated cost string */}
+        {/* 
         <FormField
           htmlFor="est-cost-str"
           label="Dự toán (chữ)"
@@ -115,6 +123,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
             setBidPackage(bp.type, "est_cost_str", e.target.value)
           }
         />
+*/}
 
         {/* Bidder selection time */}
         <FormField
