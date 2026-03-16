@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { Trash2Icon } from "lucide-react";
 */
-import { FormText } from "@/components/form-ui/form-text";
 import { Label } from "@/components/ui/label";
 import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
