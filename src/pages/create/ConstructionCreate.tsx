@@ -4,13 +4,12 @@ import { ConstructionInfoSnapshotForm } from "./comps/ConstructionInfoSnapshotFo
 import { DocumentSide } from "./comps/DocumentSide";
 import { useFetcher } from "react-router";
 
-export default function CreateSubmission() {
+export default function ConstructionCreate() {
   const fetcher = useFetcher();
   const handleSubmit = () => {
     return fetcher.submit(null, {
       method: "post",
       encType: "application/json",
-      action: "/init",
     });
   };
   return (
