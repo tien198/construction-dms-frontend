@@ -1,5 +1,6 @@
 import Global_Layout from "@/components/global-layout";
 import ConstructionCreate from "@/pages/create/ConstructionCreate";
+import SubmissionEdit from "@/pages/edit/SubmissionEdit";
 
 import { createBrowserRouter } from "react-router";
 
@@ -15,6 +16,11 @@ export const router = createBrowserRouter([
           import("../pages/create/action").then((m) =>
             m.initConstructionAction(args),
           ),
+      },
+
+      {
+        path: "cong-trinh",
+        element: <SubmissionEdit />,
       },
     ],
   },
