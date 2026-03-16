@@ -1,6 +1,6 @@
 import type { Construction } from "@/types";
 
-export function getConstructions(): Construction[] {
+export async function getConstructions(): Promise<Construction[]> {
   return [
     {
       id: "construction-1",
@@ -10,8 +10,8 @@ export function getConstructions(): Construction[] {
           no: "QD-001",
           level: "Tỉnh",
           date: "2024-01-10",
-          pursuant_to_dec_tct_id: null,
-          pursuant_to_dec_ttmn_id: null,
+          pursuant_to_dec_tct: null,
+          pursuant_to_dec_ttmn: null,
 
           is_change_construction_infor: false,
 
@@ -20,8 +20,8 @@ export function getConstructions(): Construction[] {
             no: "SUB-001",
             level: "Sở",
             date: "2024-01-09",
-            pursuant_to_dec_tct_id: null,
-            pursuant_to_dec_ttmn_id: null,
+            pursuant_to_dec_tct: null,
+            pursuant_to_dec_ttmn: null,
 
             construction_infor_snapshot: {
               id: 1,
@@ -85,8 +85,8 @@ export function getConstructions(): Construction[] {
           no: "QD-002",
           level: "Tỉnh",
           date: "2024-03-15",
-          pursuant_to_dec_tct_id: null,
-          pursuant_to_dec_ttmn_id: null,
+          pursuant_to_dec_tct: null,
+          pursuant_to_dec_ttmn: null,
 
           is_change_construction_infor: false,
 
@@ -95,8 +95,8 @@ export function getConstructions(): Construction[] {
             no: "SUB-002",
             level: "Sở",
             date: "2024-03-10",
-            pursuant_to_dec_tct_id: null,
-            pursuant_to_dec_ttmn_id: null,
+            pursuant_to_dec_tct: null,
+            pursuant_to_dec_ttmn: null,
 
             construction_infor_snapshot: {
               id: 2,
@@ -160,8 +160,8 @@ export function getConstructions(): Construction[] {
           no: "QD-003",
           level: "Tỉnh",
           date: "2024-05-01",
-          pursuant_to_dec_tct_id: null,
-          pursuant_to_dec_ttmn_id: null,
+          pursuant_to_dec_tct: null,
+          pursuant_to_dec_ttmn: null,
 
           is_change_construction_infor: false,
 
@@ -170,8 +170,8 @@ export function getConstructions(): Construction[] {
             no: "SUB-003",
             level: "Sở",
             date: "2024-04-25",
-            pursuant_to_dec_tct_id: null,
-            pursuant_to_dec_ttmn_id: null,
+            pursuant_to_dec_tct: null,
+            pursuant_to_dec_ttmn: null,
 
             construction_infor_snapshot: {
               id: 3,

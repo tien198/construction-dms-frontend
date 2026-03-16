@@ -1,13 +1,13 @@
 import type { RecursivePath } from "@/lib/type/recursion";
-import type { SubmissionCreate } from "../types/submission-create.type";
+import type { SubmissionPost } from "../types/submission-post.type";
 import type { BidPackageSnapshotCreate } from "../types/bid-package-snapshot-create.type";
 import type { ConstructionPeriod } from "@/types/construction.type";
 
 export interface CreateSubmissionStore {
   // default submission is TV
-  submission: SubmissionCreate;
-  submission_tt: SubmissionCreate;
-  setField: <K extends RecursivePath<SubmissionCreate>>(
+  submission: SubmissionPost;
+  submission_tt: SubmissionPost;
+  setField: <K extends RecursivePath<SubmissionPost>>(
     field: K,
     value: any,
     type?: "tv" | "tt" | "bcktkt",

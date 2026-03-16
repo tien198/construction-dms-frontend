@@ -1,11 +1,11 @@
-import type { SubmissionCreate } from "../types/submission-create.type";
+import type { SubmissionPost } from "../types/submission-post.type";
 
-const initialState: SubmissionCreate = {
+const initialState: SubmissionPost = {
   no: "",
   level: "",
   date: "",
-  pursuant_to_dec_tct_id: null,
-  pursuant_to_dec_ttmn_id: null,
+  pursuant_to_dec_tct: null,
+  pursuant_to_dec_ttmn: null,
   construction_infor_snapshot: {
     period: "KH",
     name: "",

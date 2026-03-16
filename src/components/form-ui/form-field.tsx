@@ -25,6 +25,7 @@ export function FormField({
   htmlFor,
   label,
   fullWidth = false,
+  disabled = false,
   ...props
 }: FormFieldProps) {
   return (
@@ -32,7 +33,12 @@ export function FormField({
       className={`flex flex-col gap-1.5${fullWidth ? " sm:col-span-2" : ""}`}
     >
       <Label htmlFor={htmlFor}>{label}</Label>
-      <Input id={htmlFor} {...props} className="bg-card" />
+      <Input
+        id={htmlFor}
+        disabled={disabled}
+        {...props}
+        className={`bg-card${disabled ? " border-0 text-black disabled:opacity-100" : ""}${props.className ? ` ${props.className}` : ""}`}
+      />
     </div>
   );
 }

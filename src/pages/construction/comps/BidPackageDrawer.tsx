@@ -8,18 +8,22 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { BidPackageSnapshotForm } from "./BidPackageSnapshotForm";
+import { useStore } from "zustand";
+import type { StoreApiInject } from "../store-factory/store-api-inject.type";
 
-type Props = {
-  bidPackagesList: any[];
-  onChange: (index: number, field: string, value: any) => void;
-  disabled?: boolean;
-};
+type Props = StoreApiInject;
 
-export function BidPackageSideDrawer({ bidPackagesList, onChange, disabled }: Props) {
+export function BidPackageSideDrawer({ storeApi, disabled = false }: Props) {
+  const bidPackagesList = useStore(
+    storeApi,
+    (state) =>
+      state.submission.construction_infor_snapshot!.bid_package_snapshots,
+  );
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="outline" disabled={disabled}>Các gói thầu</Button>
+        <Button variant="outline">Các gói thầu</Button>
       </DrawerTrigger>
       <DrawerOverlay className="bg-black/60" />
       <DrawerContent className="top-32 -translate-x-1/2 md:w-[1550px] max-w-[90vw] left-1/2!">
@@ -28,13 +32,12 @@ export function BidPackageSideDrawer({ bidPackagesList, onChange, disabled }: Pr
             <DrawerTitle className="text-primary">Gói thầu</DrawerTitle>
           </DrawerHeader>
           <div className="grid grid-cols-2 gap-12 p-4 pb-14">
-            {bidPackagesList?.map((bp, id) => (
-              <BidPackageSnapshotForm 
-                key={id} 
-                index={id} 
-                bidPackage={bp} 
-                onChange={onChange}
-                disabled={disabled} 
+            {bidPackagesList.map((_, id) => (
+              <BidPackageSnapshotForm
+                key={id}
+                index={id}
+                storeApi={storeApi}
+                disabled={disabled}
               />
             ))}
           </div>

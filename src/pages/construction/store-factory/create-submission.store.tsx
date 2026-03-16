@@ -1,12 +1,12 @@
-import { createStore } from "zustand";
+import { createStore, type StoreApi } from "zustand";
 import { setValueByPath } from "@/lib/setValByPath";
 import type { CreateSubmissionStore } from "./create-submission.store.type";
 import type { ConstructionPeriod } from "@/types/construction.type";
 import type { BidPackageSnapshotCreate } from "../types/bid-package-snapshot-create.type";
 import { initialState, withoutConstructionInfor } from "./initial-state";
 
-export const createSubmission_store = createStore<CreateSubmissionStore>(
-  (set) => ({
+export function submission_store_factory(): StoreApi<CreateSubmissionStore> {
+  return createStore<CreateSubmissionStore>((set) => ({
     // default submission is TV
     submission: initialState,
     submission_tt: withoutConstructionInfor,
@@ -52,5 +52,5 @@ export const createSubmission_store = createStore<CreateSubmissionStore>(
       });
     },
     reset: () => set({ submission: initialState }),
-  }),
-);
+  }));
+}

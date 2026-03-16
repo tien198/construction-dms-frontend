@@ -1,8 +1,9 @@
 import { SaveIcon } from "lucide-react";
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
-import { ConstructionInfoSnapshotForm } from "./comps/ConstructionInfoSnapshotForm";
-import { DocumentSide } from "./comps/DocumentSide";
+import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotForm";
+import { DocumentSide } from "../comps/DocumentSide";
 import { useFetcher } from "react-router";
+import { create_construction_store } from "./create-store";
 
 export default function ConstructionCreate() {
   const fetcher = useFetcher();
@@ -12,6 +13,8 @@ export default function ConstructionCreate() {
       encType: "application/json",
     });
   };
+
+  const storeApi = create_construction_store;
   return (
     <div className="w-full border p-6 shadow-sm md:p-8 bg-wood-grain">
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -31,9 +34,9 @@ export default function ConstructionCreate() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Submission info + directly attached Decision */}
-        <DocumentSide />
+        <DocumentSide storeApi={storeApi} />
         {/* Right: Construction info snapshot */}
-        <ConstructionInfoSnapshotForm />
+        <ConstructionInfoSnapshotForm storeApi={storeApi} />
       </div>
     </div>
   );

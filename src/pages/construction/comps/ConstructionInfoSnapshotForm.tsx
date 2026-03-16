@@ -3,15 +3,20 @@ import { FormText } from "@/components/form-ui/form-text";
 import { FormField } from "@/components/form-ui/form-field";
 import { BidPackageSideDrawer } from "./BidPackageDrawer";
 import { useStore } from "zustand";
-import { createSubmission_store } from "../store/create-submission.store";
+import type { StoreApiInject } from "../store-factory/store-api-inject.type";
 
-export function ConstructionInfoSnapshotForm() {
+type Props = StoreApiInject;
+
+export function ConstructionInfoSnapshotForm({
+  storeApi,
+  disabled = false,
+}: Props) {
   const infor = useStore(
-    createSubmission_store,
+    storeApi,
     (state) => state.submission.construction_infor_snapshot!,
   );
 
-  const setField = useStore(createSubmission_store, (state) => state.setField);
+  const setField = useStore(storeApi, (state) => state.setField);
 
   return (
     <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground">
@@ -29,6 +34,7 @@ export function ConstructionInfoSnapshotForm() {
           onChange={(e) =>
             setField("construction_infor_snapshot.name", e.target.value)
           }
+          disabled={disabled}
         />
 
         {/* Budget */}
@@ -44,6 +50,7 @@ export function ConstructionInfoSnapshotForm() {
               Number(e.target.value),
             )
           }
+          disabled={disabled}
         />
 
         {/* Budget string */}
@@ -55,6 +62,7 @@ export function ConstructionInfoSnapshotForm() {
           onChange={(e) =>
             setField("construction_infor_snapshot.budget_str", e.target.value)
           }
+          disabled={disabled}
         />
 
         {/* Estimated cost */}
@@ -71,6 +79,7 @@ export function ConstructionInfoSnapshotForm() {
               Number(e.target.value),
             )
           }
+          disabled={disabled}
         />
          */}
 
@@ -84,6 +93,7 @@ export function ConstructionInfoSnapshotForm() {
           onChange={(e) =>
             setField("construction_infor_snapshot.est_cost_str", e.target.value)
           }
+          disabled={disabled}
         />
          */}
 
@@ -99,6 +109,7 @@ export function ConstructionInfoSnapshotForm() {
               e.target.value,
             )
           }
+          disabled={disabled}
         />
         <span />
         <Separator className="col-span-2" />
@@ -115,6 +126,7 @@ export function ConstructionInfoSnapshotForm() {
               e.target.value,
             )
           }
+          disabled={disabled}
         />
 
         {/* End date */}
@@ -129,6 +141,7 @@ export function ConstructionInfoSnapshotForm() {
               e.target.value,
             )
           }
+          disabled={disabled}
         />
 
         {/* Existing condition */}
@@ -144,6 +157,7 @@ export function ConstructionInfoSnapshotForm() {
               e.target.value,
             )
           }
+          disabled={disabled}
         />
 
         {/* Repair scope */}
@@ -157,13 +171,14 @@ export function ConstructionInfoSnapshotForm() {
           onChange={(e) =>
             setField("construction_infor_snapshot.repair_scope", e.target.value)
           }
+          disabled={disabled}
         />
       </div>
 
       {/* Bid packages */}
       <Separator className="my-5" />
       <div className="flex items-center justify-between mb-3">
-        <BidPackageSideDrawer />
+        <BidPackageSideDrawer storeApi={storeApi} disabled={disabled} />
       </div>
       {/* 
       <div className="flex flex-col gap-3">

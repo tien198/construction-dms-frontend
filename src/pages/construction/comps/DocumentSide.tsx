@@ -1,6 +1,9 @@
 import { AdministrativeDocumentFields } from "./AdministrativeDocumentFields";
+import type { StoreApiInject } from "../store-factory/store-api-inject.type";
 
-export function DocumentSide() {
+type Props = StoreApiInject;
+
+export function DocumentSide({ storeApi, disabled = false }: Props) {
   return (
     <div className="flex flex-col gap-6">
       <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
@@ -9,7 +12,11 @@ export function DocumentSide() {
         </p>
 
         {/* Submission's own AdministrativeDocument fields */}
-        <AdministrativeDocumentFields type="tv" />
+        <AdministrativeDocumentFields
+          type="tv"
+          storeApi={storeApi}
+          disabled={disabled}
+        />
       </div>
       <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
         <p className="mb-6 text-sm font-semibold text-foreground">
@@ -17,7 +24,11 @@ export function DocumentSide() {
         </p>
 
         {/* Submission's own AdministrativeDocument fields */}
-        <AdministrativeDocumentFields type="tt" />
+        <AdministrativeDocumentFields
+          type="tt"
+          storeApi={storeApi}
+          disabled={disabled}
+        />
       </div>
     </div>
   );

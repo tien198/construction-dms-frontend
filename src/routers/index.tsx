@@ -1,6 +1,7 @@
 import Global_Layout from "@/components/global-layout";
-import ConstructionCreate from "@/pages/create/ConstructionCreate";
-import SubmissionEdit from "@/pages/edit/SubmissionEdit";
+import ConstructionCreate from "@/pages/construction/create/ConstructionCreate";
+import SubmissionEdit from "@/pages/construction/edit/SubmissionEdit";
+// import SubmissionEdit from "@/pages/construction/edit/SubmissionEdit";
 
 import { createBrowserRouter } from "react-router";
 
@@ -13,13 +14,13 @@ export const router = createBrowserRouter([
         path: "tao-cong-trinh",
         element: <ConstructionCreate />,
         action: (args) =>
-          import("../pages/create/action").then((m) =>
+          import("../pages/construction/create/action").then((m) =>
             m.initConstructionAction(args),
           ),
       },
 
       {
-        path: "cong-trinh",
+        path: "cong-trinh/:id",
         element: <SubmissionEdit />,
       },
     ],

@@ -7,14 +7,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import type { AdministrativeDocument } from "@/types";
 import { DecisionList } from "./DecisionList";
 import { useStore } from "zustand";
-import { createSubmission_store } from "../store/create-submission.store";
 import { useState } from "react";
-import type { SubmissionCreate } from "../types/submission-create.type";
+import type { StoreApiInject } from "../store-factory/store-api-inject.type";
+import type { SubmissionPost } from "../types/submission-post.type";
+import { FormField } from "@/components/form-ui/form-field";
 
 export type DecisionResponse = Pick<
   AdministrativeDocument,
@@ -28,17 +27,20 @@ export type FormFieldProps = {
   label: string;
   /** When true adds `sm:col-span-2` so the field spans full width on ≥sm grids */
   placeholder?: string;
-  fieldName: keyof SubmissionCreate;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+  fieldName: keyof SubmissionPost;
+} & StoreApiInject &
+  React.InputHTMLAttributes<HTMLInputElement>;
 
 export default function DecisionSelectionDialog({
   htmlFor,
   label,
   placeholder,
   fieldName,
+  storeApi,
+  disabled = false,
 }: FormFieldProps) {
   const [dec, setDec] = useState<DecisionResponse | null>(null);
-  const setField = useStore(createSubmission_store, (state) => state.setField);
+  const setField = useStore(storeApi, (state) => state.setField);
 
   function handleSetDec(dec: DecisionResponse) {
     setDec(dec);
@@ -48,15 +50,15 @@ export default function DecisionSelectionDialog({
   return (
     <Dialog>
       <DialogOverlay className="bg-black/60" />
-      <DialogTrigger>
-        <div>
-          <Label htmlFor={htmlFor}>{label}</Label>
-          <Input
-            value={dec?.no ?? "Chọn quyết định"}
-            placeholder={placeholder}
-            readOnly
-          />
-        </div>
+      <DialogTrigger disabled={disabled}>
+        <FormField
+          htmlFor={htmlFor}
+          label={label}
+          value={dec?.no ?? ""}
+          placeholder={placeholder ?? "Chọn quyết định"}
+          disabled={disabled}
+          readOnly
+        />
       </DialogTrigger>
       <DialogContent className="max-w-[90vw]! md:max-w-[30vw]!">
         <DialogHeader>

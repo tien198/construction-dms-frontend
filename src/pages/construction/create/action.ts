@@ -1,8 +1,9 @@
 import { redirect, type ActionFunctionArgs } from "react-router";
-import { createSubmission_store } from "./store/create-submission.store";
+import {} from "../store-factory/create-submission.store";
+import { create_construction_store } from "./create-store";
 
 export function initConstructionAction(args: ActionFunctionArgs) {
-  const state = createSubmission_store.getState();
+  const state = create_construction_store.getState();
   const tv_sub = state.submission;
   const tt_sub = state.submission_tt;
 

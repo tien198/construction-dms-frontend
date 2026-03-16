@@ -5,25 +5,26 @@ import { Trash2Icon } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
-import { createSubmission_store } from "../store/create-submission.store";
+import type { StoreApiInject } from "../store-factory/store-api-inject.type";
 
 type Props = {
   index: number;
-};
+} & StoreApiInject;
 
-export function BidPackageSnapshotForm({ index }: Props) {
+export function BidPackageSnapshotForm({
+  index,
+  storeApi,
+  disabled = false,
+}: Props) {
   const bp = useStore(
-    createSubmission_store,
+    storeApi,
     (state) =>
       state.submission.construction_infor_snapshot!.bid_package_snapshots[
         index
       ],
   );
 
-  const setBidPackage = useStore(
-    createSubmission_store,
-    (state) => state.setBidPackage,
-  );
+  const setBidPackage = useStore(storeApi, (state) => state.setBidPackage);
 
   return (
     <div className="relative w-full rounded-lg border border-border bg-muted/30 p-4">
@@ -58,6 +59,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
           onChange={(e) =>
             setBidPackage(bp.type, "bid_package_name", e.target.value)
           }
+          disabled={disabled}
         />
          */}
 
@@ -72,6 +74,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
           onChange={(e) =>
             setBidPackage(bp.type, "short_description", e.target.value)
           }
+          disabled={disabled}
         />
          */}
 
@@ -86,6 +89,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
           onChange={(e) =>
             setBidPackage(bp.type, "budget", Number(e.target.value))
           }
+          disabled={disabled}
         />
 
         {/* Budget string */}
@@ -95,6 +99,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
           placeholder="Một tỷ đồng"
           value={bp.budget_str}
           onChange={(e) => setBidPackage(bp.type, "budget_str", e.target.value)}
+          disabled={disabled}
         />
 
         {/* Estimated cost */}
@@ -108,6 +113,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
           onChange={(e) =>
             setBidPackage(bp.type, "est_cost", Number(e.target.value))
           }
+          disabled={disabled}
         />
          */}
 
@@ -121,6 +127,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
           onChange={(e) =>
             setBidPackage(bp.type, "est_cost_str", e.target.value)
           }
+          disabled={disabled}
         />
 */}
 
@@ -133,6 +140,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
           onChange={(e) =>
             setBidPackage(bp.type, "bidder_selection_time", e.target.value)
           }
+          disabled={disabled}
         />
 
         {/* Bidder selection method */}
@@ -140,6 +148,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
           htmlFor="sel-method"
           label="Hình thức chọn thầu"
           placeholder="VD: Đấu thầu rộng rãi"
+          disabled={disabled}
         /> */}
 
         {/* Duration */}
@@ -149,6 +158,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
           placeholder="10 ngày"
           value={bp.duration}
           onChange={(e) => setBidPackage(bp.type, "duration", e.target.value)}
+          disabled={disabled}
         />
 
         {/* Successful bidder ID */}
@@ -160,6 +170,7 @@ export function BidPackageSnapshotForm({ index }: Props) {
           onChange={(e) =>
             setBidPackage(bp.type, "successful_bidder_id", e.target.value)
           }
+          disabled={disabled}
         />
       </div>
     </div>

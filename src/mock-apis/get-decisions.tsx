@@ -1,4 +1,4 @@
-import type { DecisionResponse } from "@/pages/create/comps/decision-selection-dialog";
+import type { DecisionResponse } from "@/pages/construction/comps/decision-selection-dialog";
 
 export async function getDecisions(
   level?: string,
