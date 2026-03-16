@@ -10,7 +10,7 @@ export interface CreateSubmissionStore {
   setField: <K extends RecursivePath<SubmissionCreate>>(
     field: K,
     value: any,
-    type?: "tv" | "tt",
+    type?: "tv" | "tt" | "bcktkt",
   ) => void;
 
   setBidPackage<K extends keyof BidPackageSnapshotCreate>(

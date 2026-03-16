@@ -1,9 +1,10 @@
 import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
 import { createSubmission_store } from "../store/create-submission.store";
+import DecisionSelectionDialog from "./decision-selection-dialog";
 
 type Props = {
-  type: "tv" | "tt";
+  type: "tv" | "tt" | "bcktkt";
 };
 
 export function AdministrativeDocumentFields({ type }: Props) {
@@ -14,6 +15,7 @@ export function AdministrativeDocumentFields({ type }: Props) {
   );
   const setField = useStore(createSubmission_store, (state) => state.setField);
   const isTv = type === "tv";
+  const isBcktkt = type === "bcktkt";
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -42,22 +44,20 @@ export function AdministrativeDocumentFields({ type }: Props) {
       />
 
       {isTv && (
-        <FormField
+        <DecisionSelectionDialog
+          fieldName="pursuant_to_dec_tct_id"
           htmlFor="dec-tct"
           label="Căn cứ quyết định TCT"
-          placeholder="ID quyết định TCT"
-          value={sub.pursuant_to_dec_tct_id ?? ""}
-          onChange={(e) => setField("pursuant_to_dec_tct_id", e.target.value)}
+          placeholder="Quyết định TCT"
         />
       )}
 
-      {isTv && (
-        <FormField
+      {isBcktkt && (
+        <DecisionSelectionDialog
+          fieldName="pursuant_to_dec_ttmn_id"
           htmlFor="dec-ttmn"
           label="Căn cứ quyết định TTMN"
-          placeholder="ID quyết định TTMN (nếu có)"
-          value={sub.pursuant_to_dec_ttmn_id ?? ""}
-          onChange={(e) => setField("pursuant_to_dec_ttmn_id", e.target.value)}
+          placeholder="Quyết định TTMN"
         />
       )}
     </div>

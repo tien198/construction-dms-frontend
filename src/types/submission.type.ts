@@ -3,5 +3,4 @@ import type { ConstructionInfoSnapshot } from "./construction-info-snapshot.type
 
 export interface Submission extends AdministrativeDocument {
   construction_infor_snapshot?: ConstructionInfoSnapshot | null;
-  directlyDecision: Pick<AdministrativeDocument, "no">;
 }

@@ -4,7 +4,7 @@ export async function getDecisions(
   level?: string,
   year?: string,
 ): Promise<DecisionResponse[]> {
-  console.log("is calling");
+  console.log("is calling", level, year);
   return [
     {
       id: "1",

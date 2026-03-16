@@ -1,4 +1,4 @@
-import type { Submission } from "@/types";
+import type { AdministrativeDocument, Submission } from "@/types";
 import type { ConstructionInfoSnapshotCreate } from "./construction-infor-snapshot-create.type";
 
 export type SubmissionCreate = Omit<
@@ -6,4 +6,5 @@ export type SubmissionCreate = Omit<
   "id" | "construction_infor_snapshot"
 > & {
   construction_infor_snapshot?: ConstructionInfoSnapshotCreate;
+  directlyDecision: Pick<AdministrativeDocument, "no">;
 };
