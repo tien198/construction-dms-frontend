@@ -18,5 +18,5 @@ export interface CreateSubmissionStore {
     field: K,
     value: any,
   ): void;
-  reset: () => void;
+  reset: (type: "tv" | "tt", sub?: SubmissionPost) => void;
 }

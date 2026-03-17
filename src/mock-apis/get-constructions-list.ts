@@ -81,6 +81,33 @@ export async function getConstructions(): Promise<Construction[]> {
             },
           },
         },
+        {
+          id: "dec-1",
+          no: "QD-001",
+          level: "Tỉnh",
+          date: "2024-01-10",
+          pursuant_to_dec_tct: {
+            id: "dec-0",
+            no: "001/QĐ-TCT",
+            date: "2024-01-10",
+          },
+          pursuant_to_dec_ttmn: null,
+          period: "TT",
+
+          submission: {
+            id: "sub-1",
+            no: "SUB-001",
+            level: "Sở",
+            date: "2024-01-09",
+            pursuant_to_dec_tct: {
+              id: "dec-0",
+              no: "001/QĐ-TCT",
+              date: "2024-01-10",
+            },
+            pursuant_to_dec_ttmn: null,
+            is_change_construction_infor: false,
+          },
+        },
       ],
     },
 

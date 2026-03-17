@@ -51,6 +51,12 @@ export function submission_store_factory(): StoreApi<CreateSubmissionStore> {
         return shallowStore;
       });
     },
-    reset: () => set({ submission: initialState }),
+    reset: (type, sub) =>
+      set((state) => {
+        if (type == "tv") {
+          return { ...state, submission: sub ?? initialState };
+        }
+        return { ...state, submission_tt: sub ?? withoutConstructionInfor };
+      }),
   }));
 }

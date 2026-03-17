@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { SaveIcon, EditIcon } from "lucide-react";
@@ -9,6 +9,9 @@ import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotF
 import { useParams } from "react-router";
 import type { Decision } from "@/types";
 import { getDecisionByPer } from "@/mock-apis/get-decision-by-per";
+import { useStore } from "zustand";
+import { decisionToSubmissionPost } from "./ultil/decision-to-submision-post";
+import type { SubmissionPost } from "../types/submission-post.type";
 
 export default function SubmissionEdit() {
   const [isEdit, setIsEdit] = useState(false);
@@ -28,6 +31,22 @@ export default function SubmissionEdit() {
   });
 
   const storeApi = edit_submission_store;
+  const reset = useStore(storeApi, (state) => state.reset);
+  const tvDec = data?.[0];
+  const ttDec = data?.[1];
+
+  let tvSubmission: SubmissionPost | undefined;
+  if (tvDec) {
+    tvSubmission = decisionToSubmissionPost(tvDec);
+  }
+  let ttSubmission: SubmissionPost | undefined;
+  if (ttDec) {
+    ttSubmission = decisionToSubmissionPost(ttDec);
+  }
+  useEffect(() => {
+    if (tvSubmission) reset("tv", tvSubmission);
+    if (ttSubmission) reset("tt", ttSubmission);
+  }, [tvDec, ttDec]);
 
   if (isLoading) {
     return (
@@ -37,14 +56,13 @@ export default function SubmissionEdit() {
     );
   }
 
-  if (!data?.[0] && !data?.[1])
+  if (!data?.[0] || !data?.[1])
     return (
       <div className="p-8 text-center text-muted-foreground w-full">
         Không tồn tại công trình có id: {id}
       </div>
     );
 
-  const [tvDec, ttDec] = data;
   const handleSubmit = () => {
     // Handle submitting the edited data using TanStack Query mutation or similar here.
     setIsEdit(false); // Assuming we turn editing off, or if disabled=isEdit then wait...
