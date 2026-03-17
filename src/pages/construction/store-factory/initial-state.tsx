@@ -4,10 +4,10 @@ const initialState: SubmissionPost = {
   no: "",
   level: "",
   date: "",
-  pursuant_to_dec_tct: null,
-  pursuant_to_dec_ttmn: null,
+  pursuant_to_dec_tct_id: null,
+  pursuant_to_dec_ttmn_id: null,
+  is_change_construction_infor: false,
   construction_infor_snapshot: {
-    period: "KH",
     name: "",
     budget: 0,
     budget_str: "",
@@ -51,7 +51,7 @@ const initialState: SubmissionPost = {
       },
     ],
   },
-  directlyDecision: { no: "" },
+  directlyDecision: { no: "", period: "TV" },
 };
 
 const { construction_infor_snapshot, ...withoutConstructionInfor } =

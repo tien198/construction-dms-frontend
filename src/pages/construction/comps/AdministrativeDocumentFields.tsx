@@ -2,6 +2,7 @@ import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
 import DecisionSelectionDialog from "./decision-selection-dialog";
 import type { StoreApiInject } from "../store-factory/store-api-inject.type";
+import { useEffect } from "react";
 
 type Props = {
   type: "tv" | "tt" | "bcktkt";
@@ -18,6 +19,10 @@ export function AdministrativeDocumentFields({
 
   const isTv = type === "tv";
   const isBcktkt = type === "bcktkt";
+
+  useEffect(() => {
+    setField("directlyDecision.period", type.toUpperCase());
+  }, [type, setField]);
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -51,7 +56,7 @@ export function AdministrativeDocumentFields({
       {isTv && (
         <DecisionSelectionDialog
           storeApi={storeApi}
-          fieldName="pursuant_to_dec_tct"
+          fieldName="pursuant_to_dec_tct_id"
           htmlFor="dec-tct"
           label="Căn cứ quyết định TCT"
           placeholder="Quyết định TCT"
@@ -62,7 +67,7 @@ export function AdministrativeDocumentFields({
       {isBcktkt && (
         <DecisionSelectionDialog
           storeApi={storeApi}
-          fieldName="pursuant_to_dec_ttmn"
+          fieldName="pursuant_to_dec_ttmn_id"
           htmlFor="dec-ttmn"
           label="Căn cứ quyết định TTMN"
           placeholder="Quyết định TTMN"

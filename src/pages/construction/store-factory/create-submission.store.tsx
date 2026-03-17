@@ -2,7 +2,7 @@ import { createStore, type StoreApi } from "zustand";
 import { setValueByPath } from "@/lib/setValByPath";
 import type { CreateSubmissionStore } from "./create-submission.store.type";
 import type { ConstructionPeriod } from "@/types/construction.type";
-import type { BidPackageSnapshotCreate } from "../types/bid-package-snapshot-create.type";
+import type { BidPackageSnapshotPost } from "../types/bid-package-snapshot-post.type";
 import { initialState, withoutConstructionInfor } from "./initial-state";
 
 export function submission_store_factory(): StoreApi<CreateSubmissionStore> {
@@ -29,7 +29,7 @@ export function submission_store_factory(): StoreApi<CreateSubmissionStore> {
         return { ...state, submission_tt: shallowSubmission };
       }),
 
-    setBidPackage<K extends keyof BidPackageSnapshotCreate>(
+    setBidPackage<K extends keyof BidPackageSnapshotPost>(
       per: ConstructionPeriod,
       field: K,
       value: any,

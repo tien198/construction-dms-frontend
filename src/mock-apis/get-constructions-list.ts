@@ -12,20 +12,19 @@ export async function getConstructions(): Promise<Construction[]> {
           date: "2024-01-10",
           pursuant_to_dec_tct: null,
           pursuant_to_dec_ttmn: null,
+          period: "TV",
 
-          is_change_construction_infor: false,
-
-          submissions: {
+          submission: {
             id: "sub-1",
             no: "SUB-001",
             level: "Sở",
             date: "2024-01-09",
             pursuant_to_dec_tct: null,
             pursuant_to_dec_ttmn: null,
+            is_change_construction_infor: false,
 
             construction_infor_snapshot: {
               id: 1,
-              period: "TV",
               name: "Sửa chữa Trường Tiểu học A",
               budget: 2000000000,
               budget_str: "2 tỷ",
@@ -87,20 +86,19 @@ export async function getConstructions(): Promise<Construction[]> {
           date: "2024-03-15",
           pursuant_to_dec_tct: null,
           pursuant_to_dec_ttmn: null,
+          period: "TT",
 
-          is_change_construction_infor: false,
-
-          submissions: {
+          submission: {
             id: "sub-2",
             no: "SUB-002",
             level: "Sở",
             date: "2024-03-10",
             pursuant_to_dec_tct: null,
             pursuant_to_dec_ttmn: null,
+            is_change_construction_infor: false,
 
             construction_infor_snapshot: {
               id: 2,
-              period: "TT",
               name: "Nâng cấp đường nội thị",
               budget: 5000000000,
               budget_str: "5 tỷ",
@@ -162,20 +160,19 @@ export async function getConstructions(): Promise<Construction[]> {
           date: "2024-05-01",
           pursuant_to_dec_tct: null,
           pursuant_to_dec_ttmn: null,
+          period: "TV",
 
-          is_change_construction_infor: false,
-
-          submissions: {
+          submission: {
             id: "sub-3",
             no: "SUB-003",
             level: "Sở",
             date: "2024-04-25",
             pursuant_to_dec_tct: null,
             pursuant_to_dec_ttmn: null,
+            is_change_construction_infor: false,
 
             construction_infor_snapshot: {
               id: 3,
-              period: "TV",
               name: "Cải tạo bệnh viện huyện",
               budget: 8000000000,
               budget_str: "8 tỷ",

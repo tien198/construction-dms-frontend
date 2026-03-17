@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getConstructions } from "@/mock-apis/get-constructions-list";
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { SaveIcon, EditIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,18 +8,22 @@ import { edit_submission_store } from "./edit-store";
 import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotForm";
 import { useParams } from "react-router";
 import type { Decision } from "@/types";
+import { getDecisionByPer } from "@/mock-apis/get-decision-by-per";
 
 export default function SubmissionEdit() {
   const [isEdit, setIsEdit] = useState(false);
   const disabled = !isEdit;
   const params = useParams();
   const id = params["id"] as string;
-  const { isLoading } = useQuery<Decision>({
+  const { data, isLoading } = useQuery<(Decision | undefined | null)[]>({
     queryKey: ["construction", id],
     queryFn: async () => {
-      const list = await getConstructions();
+      const [tv, tt] = await Promise.all([
+        getDecisionByPer(id, "TV"),
+        getDecisionByPer(id, "TT"),
+      ]);
       // Fetch mock data
-      return list[0].decisions[0];
+      return [tv, tt];
     },
   });
 
@@ -33,6 +36,13 @@ export default function SubmissionEdit() {
       </div>
     );
   }
+
+  if (!data?.[0])
+    return (
+      <div className="p-8 text-center text-muted-foreground w-full">
+        Không tồn tại công trình có id: {id}
+      </div>
+    );
 
   const handleSubmit = () => {
     // Handle submitting the edited data using TanStack Query mutation or similar here.

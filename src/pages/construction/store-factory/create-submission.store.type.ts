@@ -1,6 +1,6 @@
 import type { RecursivePath } from "@/lib/type/recursion";
 import type { SubmissionPost } from "../types/submission-post.type";
-import type { BidPackageSnapshotCreate } from "../types/bid-package-snapshot-create.type";
+import type { BidPackageSnapshotPost } from "../types/bid-package-snapshot-post.type";
 import type { ConstructionPeriod } from "@/types/construction.type";
 
 export interface CreateSubmissionStore {
@@ -13,7 +13,7 @@ export interface CreateSubmissionStore {
     type?: "tv" | "tt" | "bcktkt",
   ) => void;
 
-  setBidPackage<K extends keyof BidPackageSnapshotCreate>(
+  setBidPackage<K extends keyof BidPackageSnapshotPost>(
     per: ConstructionPeriod,
     field: K,
     value: any,

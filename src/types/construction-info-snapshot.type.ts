@@ -2,7 +2,6 @@ import type { BidPackageSnapshot } from "./bid-package-snapshot.type";
 
 export interface ConstructionInfoSnapshot {
   id: number;
-  period: "KH" | "TV" | "TT" | "BCKTKT";
   name: string;
   budget: number;
   budget_str: string;
