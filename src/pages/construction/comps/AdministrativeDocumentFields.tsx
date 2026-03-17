@@ -3,13 +3,16 @@ import { useStore } from "zustand";
 import DecisionSelectionDialog from "./decision-selection-dialog";
 import type { StoreApiInject } from "../store-factory/store-api-inject.type";
 import { useEffect } from "react";
+import type { Decision } from "@/types";
 
 type Props = {
   type: "tv" | "tt" | "bcktkt";
+  decision?: Decision;
 } & StoreApiInject;
 
 export function AdministrativeDocumentFields({
   type,
+  decision,
   storeApi,
   disabled = false,
 }: Props) {
@@ -61,6 +64,7 @@ export function AdministrativeDocumentFields({
           label="Căn cứ quyết định TCT"
           placeholder="Quyết định TCT"
           disabled={disabled}
+          decision={decision?.pursuant_to_dec_tct}
         />
       )}
 
@@ -72,6 +76,7 @@ export function AdministrativeDocumentFields({
           label="Căn cứ quyết định TTMN"
           placeholder="Quyết định TTMN"
           disabled={disabled}
+          decision={decision?.pursuant_to_dec_ttmn}
         />
       )}
     </div>

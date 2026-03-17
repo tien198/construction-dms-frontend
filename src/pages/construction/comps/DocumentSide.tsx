@@ -1,9 +1,15 @@
 import { AdministrativeDocumentFields } from "./AdministrativeDocumentFields";
 import type { StoreApiInject } from "../store-factory/store-api-inject.type";
+import type { Decision } from "@/types";
 
-type Props = StoreApiInject;
+type Props = { tvDec?: Decision; ttDec?: Decision } & StoreApiInject;
 
-export function DocumentSide({ storeApi, disabled = false }: Props) {
+export function DocumentSide({
+  storeApi,
+  disabled = false,
+  tvDec,
+  ttDec,
+}: Props) {
   return (
     <div className="flex flex-col gap-6">
       <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
@@ -16,6 +22,7 @@ export function DocumentSide({ storeApi, disabled = false }: Props) {
           type="tv"
           storeApi={storeApi}
           disabled={disabled}
+          decision={tvDec}
         />
       </div>
       <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
@@ -28,6 +35,7 @@ export function DocumentSide({ storeApi, disabled = false }: Props) {
           type="tt"
           storeApi={storeApi}
           disabled={disabled}
+          decision={ttDec}
         />
       </div>
     </div>

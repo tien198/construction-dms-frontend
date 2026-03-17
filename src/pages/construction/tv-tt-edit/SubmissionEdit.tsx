@@ -15,7 +15,7 @@ export default function SubmissionEdit() {
   const disabled = !isEdit;
   const params = useParams();
   const id = params["id"] as string;
-  const { data, isLoading } = useQuery<(Decision | undefined | null)[]>({
+  const { data, isLoading } = useQuery<(Decision | undefined)[]>({
     queryKey: ["construction", id],
     queryFn: async () => {
       const [tv, tt] = await Promise.all([
@@ -37,13 +37,14 @@ export default function SubmissionEdit() {
     );
   }
 
-  if (!data?.[0])
+  if (!data?.[0] && !data?.[1])
     return (
       <div className="p-8 text-center text-muted-foreground w-full">
         Không tồn tại công trình có id: {id}
       </div>
     );
 
+  const [tvDec, ttDec] = data;
   const handleSubmit = () => {
     // Handle submitting the edited data using TanStack Query mutation or similar here.
     setIsEdit(false); // Assuming we turn editing off, or if disabled=isEdit then wait...
@@ -74,7 +75,12 @@ export default function SubmissionEdit() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Submission info + directly attached Decision */}
-        <DocumentSide storeApi={storeApi} disabled={disabled} />
+        <DocumentSide
+          storeApi={storeApi}
+          disabled={disabled}
+          tvDec={tvDec}
+          ttDec={ttDec}
+        />
         {/* Right: Construction info snapshot */}
         <ConstructionInfoSnapshotForm storeApi={storeApi} disabled={disabled} />
       </div>
