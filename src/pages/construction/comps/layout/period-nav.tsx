@@ -1,35 +1,41 @@
-import { NavLink } from "react-router";
+import { NavLink, useParams } from "react-router";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
   //   NavigationMenuLink,
   //   navigationMenuTriggerStyle,
-} from "./ui/navigation-menu";
+} from "@/components/ui/navigation-menu";
 
 type Link = {
   href: string;
   title: string;
 };
 
-export function Global_Nav() {
+export function Period_Nav() {
+  const { id } = useParams();
   const links: Link[] = [
     {
-      href: "/",
-      title: "Trang chủ",
+      href: `/cong-trinh/tv-tt/${id}`,
+      title: "Tư vấn - thiết kế",
     },
     {
-      href: "/a",
-      title: "Trang chủ",
-    },
-    {
-      href: "/b",
-      title: "Trang chủ",
+      href: `/cong-trinh/bcktkt/${id}`,
+      title: "Báo cáo kinh tế kỹ thuật",
     },
   ];
   return (
-    <div className="fixed top-2 -translate-x-1/2 left-1/2 flex justify-center">
-      <NavigationMenu>
+    <div>
+      <NavLink
+        to="/"
+        className={(state) =>
+          (state.isActive ? "bg-primary text-white" : "bg-white text-primary") +
+          " rounded-md py-1 px-4 outline-2 outline-primary fixed top-6 left-6"
+        }
+      >
+        Trang chủ
+      </NavLink>
+      <NavigationMenu className="fixed top-6 -translate-x-1/2 left-1/2 flex">
         <NavigationMenuList className="flex gap-5">
           {links.map((link, id) => (
             <Item key={id} href={link.href} title={link.title} />
