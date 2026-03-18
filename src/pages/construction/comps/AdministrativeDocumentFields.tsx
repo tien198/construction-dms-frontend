@@ -33,7 +33,7 @@ export function AdministrativeDocumentFields({
         htmlFor="no"
         label="Số T.Tr (No)"
         placeholder="01/TTr-..."
-        value={isTv ? sub.no : sub_tt.no}
+        value={isTv || isBcktkt ? sub.no : sub_tt.no}
         onChange={(e) => setField("no", e.target.value, type)}
         disabled={disabled}
       />
@@ -42,7 +42,11 @@ export function AdministrativeDocumentFields({
         htmlFor="no"
         label="Số QĐ (No)"
         placeholder="01/QĐ-..."
-        value={isTv ? sub.directlyDecision.no : sub_tt.directlyDecision.no}
+        value={
+          isTv || isBcktkt
+            ? sub.directlyDecision.no
+            : sub_tt.directlyDecision.no
+        }
         onChange={(e) => setField("directlyDecision.no", e.target.value, type)}
         disabled={disabled}
       />
@@ -51,7 +55,7 @@ export function AdministrativeDocumentFields({
         htmlFor="date"
         label="Ngày ban hành (Date)"
         type="date"
-        value={isTv ? sub.date : sub_tt.date}
+        value={isTv || isBcktkt ? sub.date : sub_tt.date}
         onChange={(e) => setField("date", e.target.value, type)}
         disabled={disabled}
       />

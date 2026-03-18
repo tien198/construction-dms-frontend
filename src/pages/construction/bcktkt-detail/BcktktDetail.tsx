@@ -92,7 +92,12 @@ export default function BcktktDetail() {
             <p className="mb-6 text-sm font-semibold text-foreground">
               Tờ trình - Quyết định BCKTKT
             </p>
-            <AdministrativeDocumentFields type="bcktkt" storeApi={storeApi} />
+            <AdministrativeDocumentFields
+              type="bcktkt"
+              storeApi={storeApi}
+              disabled={disabled}
+              decision={data}
+            />
           </div>
         </div>
         {/* Right: Construction info snapshot */}
