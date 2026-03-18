@@ -53,7 +53,7 @@ export function submission_store_factory(): StoreApi<CreateSubmissionStore> {
     },
     reset: (type, sub) =>
       set((state) => {
-        if (type == "tv") {
+        if (type == "tv" || type == "bcktkt") {
           return { ...state, submission: sub ?? initialState };
         }
         return { ...state, submission_tt: sub ?? withoutConstructionInfor };
