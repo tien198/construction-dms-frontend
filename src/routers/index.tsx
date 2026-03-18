@@ -1,4 +1,5 @@
 import Global_Layout from "@/components/global-layout";
+import { Home } from "@/pages/construction/home/Home";
 import ConstructionCreate from "@/pages/construction/tv-tt-create/ConstructionCreate";
 import SubmissionEdit from "@/pages/construction/tv-tt-edit/SubmissionEdit";
 // import SubmissionEdit from "@/pages/construction/edit/SubmissionEdit";
@@ -10,6 +11,10 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Global_Layout />,
     children: [
+      {
+        index: true,
+        element: <Home />,
+      },
       {
         path: "tao-cong-trinh",
         element: <ConstructionCreate />,

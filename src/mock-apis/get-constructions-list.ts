@@ -40,7 +40,8 @@ export async function getConstructions(): Promise<Construction[]> {
               impl_start_date: "2024-02-01",
               impl_end_date: "2024-08-01",
               existing_condition_of_the_structure: "Công trình xuống cấp",
-              repair_scope: "Sửa mái và tường",
+              repair_scope:
+                "Sửa mái và tường, Sửa mái và tường, Sửa mái và tường,  Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường,",
               est_cost: 1900000000,
               est_cost_str: "1.9 tỷ",
 
