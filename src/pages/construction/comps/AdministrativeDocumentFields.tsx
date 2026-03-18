@@ -56,7 +56,7 @@ export function AdministrativeDocumentFields({
         disabled={disabled}
       />
 
-      {isTv && (
+      {(isTv || isBcktkt) && (
         <DecisionSelectionDialog
           storeApi={storeApi}
           fieldName="pursuant_to_dec_tct_id"

@@ -4,6 +4,12 @@ import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { SaveIcon, EditIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AdministrativeDocumentFields } from "../comps/AdministrativeDocumentFields";
+import {
+  FormLayout,
+  FormHeader,
+  FormTitle,
+  ActionBtns,
+} from "../comps/layout/form-layout";
 import { edit_bcktkt_store } from "./edit-store";
 import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotForm";
 import { useParams, useSubmit } from "react-router";
@@ -59,17 +65,13 @@ export default function BcktktDetail() {
   };
 
   return (
-    <div className="w-full border p-6 shadow-sm md:p-8 bg-wood-grain">
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight text-primary text-shadow-md text-shadow-accent-foreground sm:text-3xl">
-            Chi tiết BCKTKT
-          </h1>
-          <p className="mt-1 text-sm text-accent text-shadow-sm text-shadow-accent-foreground">
-            Thông tin chi tiết của báo cáo khảo sát thiết kế.
-          </p>
-        </div>
-        <div className="flex gap-2">
+    <FormLayout>
+      <FormHeader>
+        <FormTitle
+          title="Chi tiết BCKTKT"
+          description="Thông tin chi tiết của báo cáo khảo sát thiết kế."
+        />
+        <ActionBtns>
           <Button variant="outline" onClick={() => setIsEdit(!isEdit)}>
             <EditIcon className="mr-2 h-4 w-4" />
             {disabled ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
@@ -80,8 +82,8 @@ export default function BcktktDetail() {
               Lưu BCKTKT
             </StickyRevealButton>
           )}
-        </div>
-      </div>
+        </ActionBtns>
+      </FormHeader>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Administrative document fields for bcktkt */}
@@ -96,6 +98,6 @@ export default function BcktktDetail() {
         {/* Right: Construction info snapshot */}
         <ConstructionInfoSnapshotForm storeApi={storeApi} disabled={disabled} />
       </div>
-    </div>
+    </FormLayout>
   );
 }

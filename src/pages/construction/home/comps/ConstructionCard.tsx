@@ -27,9 +27,9 @@ export function ConstructionCard({ construction }: Props) {
     <Link
       to={`/cong-trinh/tv-tt/${construction.id}`}
       key={construction.id}
-      className="block h-full hover:-translate-y-1 hover:shadow-lg shadow-black duration-300"
+      className="block h-full hover:-translate-y-1 shadow-md hover:shadow-lg shadow-black duration-300"
     >
-      <Card className="cursor-pointer  h-full">
+      <Card className="cursor-pointer h-full">
         <CardHeader>
           <CardTitle className="line-clamp-2">{name}</CardTitle>
           <CardDescription>Ngày bắt đầu KH: {date}</CardDescription>
