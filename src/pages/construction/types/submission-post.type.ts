@@ -8,6 +8,7 @@ export type SubmissionPost = Omit<
   | "pursuant_to_dec_tct"
   | "pursuant_to_dec_ttmn"
 > & {
+  id?: string;
   construction_infor_snapshot?: ConstructionInfoSnapshotPost;
   directlyDecision: Pick<Decision, "no" | "period">;
   pursuant_to_dec_tct_id: string | null;

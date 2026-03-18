@@ -1,7 +1,7 @@
 import type { ConstructionPeriod } from "./construction.type";
 
 export interface BidPackageSnapshot {
-  id: number;
+  id: string;
   type: ConstructionPeriod;
   project_owner: string;
   bid_package_name: string;

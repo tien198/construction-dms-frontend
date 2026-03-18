@@ -1,7 +1,7 @@
 import type { BidPackageSnapshot } from "./bid-package-snapshot.type";
 
 export interface ConstructionInfoSnapshot {
-  id: number;
+  id: string;
   name: string;
   budget: number;
   budget_str: string;

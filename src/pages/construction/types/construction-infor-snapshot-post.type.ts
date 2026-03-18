@@ -5,5 +5,6 @@ export type ConstructionInfoSnapshotPost = Omit<
   ConstructionInfoSnapshot,
   "id" | "bid_package_snapshots"
 > & {
+  id?: string;
   bid_package_snapshots: BidPackageSnapshotPost[];
 };

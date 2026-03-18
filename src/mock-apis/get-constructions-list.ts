@@ -32,7 +32,7 @@ export async function getConstructions(): Promise<Construction[]> {
             is_change_construction_infor: false,
 
             construction_infor_snapshot: {
-              id: 1,
+              id: "1",
               name: "Sửa chữa Trường Tiểu học A",
               budget: 2000000000,
               budget_str: "2 tỷ",
@@ -46,7 +46,7 @@ export async function getConstructions(): Promise<Construction[]> {
 
               bid_package_snapshots: [
                 {
-                  id: 1,
+                  id: "1",
                   type: "TV",
                   project_owner: "UBND Tỉnh",
                   bid_package_name: "Tư vấn thiết kế",
@@ -62,7 +62,7 @@ export async function getConstructions(): Promise<Construction[]> {
                   est_cost_str: "180 triệu",
                 },
                 {
-                  id: 2,
+                  id: "2",
                   type: "TC",
                   project_owner: "UBND Tỉnh",
                   bid_package_name: "Thi công sửa chữa",
@@ -83,9 +83,9 @@ export async function getConstructions(): Promise<Construction[]> {
         },
         {
           id: "dec-1",
-          no: "QD-001",
+          no: "02/QĐ-TTMN",
           level: "Tỉnh",
-          date: "2024-01-10",
+          date: "2026-01-10",
           pursuant_to_dec_tct: {
             id: "dec-0",
             no: "001/QĐ-TCT",
@@ -96,9 +96,9 @@ export async function getConstructions(): Promise<Construction[]> {
 
           submission: {
             id: "sub-1",
-            no: "SUB-001",
+            no: "02/TTr-LCQ",
             level: "Sở",
-            date: "2024-01-09",
+            date: "2026-01-09",
             pursuant_to_dec_tct: {
               id: "dec-0",
               no: "001/QĐ-TCT",
@@ -133,7 +133,7 @@ export async function getConstructions(): Promise<Construction[]> {
             is_change_construction_infor: false,
 
             construction_infor_snapshot: {
-              id: 2,
+              id: "2",
               name: "Nâng cấp đường nội thị",
               budget: 5000000000,
               budget_str: "5 tỷ",
@@ -147,7 +147,7 @@ export async function getConstructions(): Promise<Construction[]> {
 
               bid_package_snapshots: [
                 {
-                  id: 3,
+                  id: "3",
                   type: "TV",
                   project_owner: "UBND TP",
                   bid_package_name: "Tư vấn giám sát",
@@ -163,7 +163,7 @@ export async function getConstructions(): Promise<Construction[]> {
                   est_cost_str: "280 triệu",
                 },
                 {
-                  id: 4,
+                  id: "4",
                   type: "TC",
                   project_owner: "UBND TP",
                   bid_package_name: "Thi công nâng cấp",
@@ -207,7 +207,7 @@ export async function getConstructions(): Promise<Construction[]> {
             is_change_construction_infor: false,
 
             construction_infor_snapshot: {
-              id: 3,
+              id: "3",
               name: "Cải tạo bệnh viện huyện",
               budget: 8000000000,
               budget_str: "8 tỷ",
@@ -221,7 +221,7 @@ export async function getConstructions(): Promise<Construction[]> {
 
               bid_package_snapshots: [
                 {
-                  id: 5,
+                  id: "5",
                   type: "TV",
                   project_owner: "Sở Y tế",
                   bid_package_name: "Thiết kế cải tạo",
@@ -237,7 +237,7 @@ export async function getConstructions(): Promise<Construction[]> {
                   est_cost_str: "450 triệu",
                 },
                 {
-                  id: 6,
+                  id: "6",
                   type: "TC",
                   project_owner: "Sở Y tế",
                   bid_package_name: "Thi công cải tạo",
