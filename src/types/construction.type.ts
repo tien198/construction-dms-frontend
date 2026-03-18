@@ -5,4 +5,4 @@ export interface Construction {
   decisions: Decision[];
 }
 
-export type ConstructionPeriod = "TV" | "TT" | "TC";
+export type ConstructionPeriod = "TV" | "TT" | "TC" | "BCKTKT";

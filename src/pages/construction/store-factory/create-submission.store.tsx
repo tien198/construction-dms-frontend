@@ -3,12 +3,17 @@ import { setValueByPath } from "@/lib/setValByPath";
 import type { CreateSubmissionStore } from "./create-submission.store.type";
 import type { ConstructionPeriod } from "@/types/construction.type";
 import type { BidPackageSnapshotPost } from "../types/bid-package-snapshot-post.type";
-import { initialState, withoutConstructionInfor } from "./initial-state";
+import {
+  initialStateGeneration,
+  withoutConstructionInfor,
+} from "./initial-state";
 
-export function submission_store_factory(): StoreApi<CreateSubmissionStore> {
+export function submission_store_factory(
+  period: ConstructionPeriod,
+): StoreApi<CreateSubmissionStore> {
   return createStore<CreateSubmissionStore>((set) => ({
     // default submission is TV
-    submission: initialState,
+    submission: initialStateGeneration(period),
     submission_tt: withoutConstructionInfor,
 
     setField: (field, value, type = "tv") =>
@@ -53,8 +58,8 @@ export function submission_store_factory(): StoreApi<CreateSubmissionStore> {
     },
     reset: (type, sub) =>
       set((state) => {
-        if (type == "tv" || type == "bcktkt") {
-          return { ...state, submission: sub ?? initialState };
+        if (type == "TV" || type == "BCKTKT") {
+          return { ...state, submission: sub ?? initialStateGeneration(type) };
         }
         return { ...state, submission_tt: sub ?? withoutConstructionInfor };
       }),

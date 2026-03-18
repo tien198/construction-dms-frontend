@@ -24,7 +24,7 @@ export function BcktktCreate() {
             Tạo BCKTKT
           </h1>
           <p className="mt-1 text-sm text-accent text-shadow-sm text-shadow-accent-foreground">
-            Nhập thông tin chi tiết để khởi tạo BCKTKT.
+            Nhập thông tin BCKTKT.
           </p>
         </div>
         <StickyRevealButton onClick={() => handleSubmit()}>

@@ -1,8 +1,8 @@
 import { Period_Nav } from "@/pages/construction/comps/layout/period-nav";
 import { Outlet, type RouteObject } from "react-router";
 import ConstructionCreate from "@/pages/construction/tv-tt-create/ConstructionCreate";
-import SubmissionEdit from "@/pages/construction/tv-tt-edit/SubmissionEdit";
-import { BcktktCreate } from "@/pages/construction/bcktkt-create/BcktktCreate";
+import SubmissionEdit from "@/pages/construction/tv-tt-detail/TvTtDetail";
+import BcktktDetail from "@/pages/construction/bcktkt-detail/BcktktDetail";
 
 export const constructionRoute: RouteObject = {
   path: "/cong-trinh",
@@ -26,14 +26,14 @@ export const constructionRoute: RouteObject = {
       path: "tv-tt/:id",
       element: <SubmissionEdit />,
       action: (args) =>
-        import("../pages/construction/tv-tt-edit/action").then((m) =>
+        import("../pages/construction/tv-tt-detail/action").then((m) =>
           m.editAction(args),
         ),
     },
 
     {
       path: "bcktkt/:id",
-      element: <BcktktCreate />,
+      element: <BcktktDetail />,
       action: (args) =>
         import("../pages/construction/bcktkt-create/action").then((m) =>
           m.initBcktktAction(args),
