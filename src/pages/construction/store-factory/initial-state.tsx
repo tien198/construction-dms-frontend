@@ -58,6 +58,6 @@ function initialStateGeneration(period: ConstructionPeriod): SubmissionPost {
 }
 
 const { construction_infor_snapshot, ...withoutConstructionInfor } =
-  initialStateGeneration("TV");
+  initialStateGeneration("TT");
 
 export { initialStateGeneration, withoutConstructionInfor };
