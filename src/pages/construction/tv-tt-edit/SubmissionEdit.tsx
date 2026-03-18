@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { DocumentSide } from "../comps/DocumentSide";
 import { edit_submission_store } from "./edit-store";
 import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotForm";
-import { useParams } from "react-router";
+import { useParams, useSubmit } from "react-router";
 import type { Decision } from "@/types";
 import { getDecisionByPer } from "@/mock-apis/get-decision-by-per";
 import { useStore } from "zustand";
@@ -48,6 +48,8 @@ export default function SubmissionEdit() {
     if (ttSubmission) reset("tt", ttSubmission);
   }, [tvDec, ttDec]);
 
+  const submit = useSubmit();
+
   if (isLoading) {
     return (
       <div className="p-8 text-center text-muted-foreground w-full">
@@ -64,8 +66,8 @@ export default function SubmissionEdit() {
     );
 
   const handleSubmit = () => {
-    // Handle submitting the edited data using TanStack Query mutation or similar here.
-    setIsEdit(false); // Assuming we turn editing off, or if disabled=isEdit then wait...
+    setIsEdit(false);
+    submit(null, { method: "PUT", encType: "application/json" });
   };
 
   return (
@@ -82,12 +84,14 @@ export default function SubmissionEdit() {
         <div className="flex gap-2">
           <Button variant="outline" onClick={() => setIsEdit(!isEdit)}>
             <EditIcon className="mr-2 h-4 w-4" />
-            Toggle isEdit (current: {String(disabled)})
+            {disabled ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
           </Button>
-          <StickyRevealButton onClick={handleSubmit}>
-            <SaveIcon className="mr-2 h-4 w-4" />
-            Lưu Tờ trình
-          </StickyRevealButton>
+          {isEdit && (
+            <StickyRevealButton onClick={handleSubmit}>
+              <SaveIcon className="mr-2 h-4 w-4" />
+              Lưu Tờ trình
+            </StickyRevealButton>
+          )}
         </div>
       </div>
 

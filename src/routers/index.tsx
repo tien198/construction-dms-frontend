@@ -20,7 +20,16 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "cong-trinh/:id",
+        path: "cong-trinh/tv-tt/:id",
+        element: <SubmissionEdit />,
+        action: (args) =>
+          import("../pages/construction/tv-tt-edit/action").then((m) =>
+            m.editAction(args),
+          ),
+      },
+
+      {
+        path: "cong-trinh/bcktkt/:id",
         element: <SubmissionEdit />,
       },
     ],
