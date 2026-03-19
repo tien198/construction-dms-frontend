@@ -34,10 +34,22 @@ export const constructionRoute: RouteObject = {
     {
       path: "bcktkt/:id",
       element: <BcktktDetail />,
-      action: (args) =>
-        import("../pages/construction/bcktkt-create/action").then((m) =>
-          m.initBcktktAction(args),
-        ),
+      children: [
+        {
+          path: "tao-moi",
+          action: (args) =>
+            import("../pages/construction/bcktkt-detail/actions/create-action").then(
+              (m) => m.createBcktktAction(args),
+            ),
+        },
+        {
+          path: "chinh-sua",
+          action: (args) =>
+            import("../pages/construction/bcktkt-detail/actions/edit-action").then(
+              (m) => m.editBcktktAction(args),
+            ),
+        },
+      ],
     },
   ],
 };

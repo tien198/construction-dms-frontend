@@ -18,7 +18,7 @@ export function submission_store_factory(
 
     setField: (field, value, type = "tv") =>
       set((state) => {
-        if (type == "tv") {
+        if (type == "tv" || type == "bcktkt") {
           const shallowSubmission = setValueByPath(
             state.submission,
             field,

@@ -1,32 +1,53 @@
 import { SaveIcon } from "lucide-react";
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
-import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotForm";
-import { AdministrativeDocumentFields } from "../comps/AdministrativeDocumentFields";
+import { ConstructionInfoSnapshotForm } from "../../comps/ConstructionInfoSnapshotForm";
+import { AdministrativeDocumentFields } from "../../comps/AdministrativeDocumentFields";
 import { useFetcher } from "react-router";
-import { create_bcktkt_store } from "./create-store";
+import { create_bcktkt_store } from "../store/create-store";
 import {
   FormLayout,
   FormHeader,
   FormTitle,
   ActionBtns,
-} from "../comps/layout/form-layout";
+} from "../../comps/layout/form-layout";
+import { useIsCreating } from "../store/useIsCreating";
+import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
-export function BcktktCreate() {
+export function Create() {
   const fetcher = useFetcher();
+  const { toggleIsCreating } = useIsCreating();
   const handleSubmit = () => {
+    toggleIsCreating();
     return fetcher.submit(null, {
       method: "post",
       encType: "application/json",
+      action: "tao-moi",
     });
   };
 
+  const handleCancel = () => {
+    toggleIsCreating();
+  };
+
   const storeApi = create_bcktkt_store;
+
+  useEffect(() => {
+    storeApi.getState().reset("BCKTKT");
+  });
 
   return (
     <FormLayout>
       <FormHeader>
         <FormTitle title="Tạo BCKTKT" description="Nhập thông tin BCKTKT." />
         <ActionBtns>
+          <Button
+            variant="outline"
+            className="bg-accent text-accent-foreground hover:bg-destructive hover:text-white"
+            onClick={() => handleCancel()}
+          >
+            Hủy
+          </Button>
           <StickyRevealButton onClick={() => handleSubmit()}>
             <SaveIcon className="mr-2 h-4 w-4" />
             Lưu BCKTKT
