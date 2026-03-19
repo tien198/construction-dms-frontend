@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { getConstructions } from "@/mock-apis/get-constructions-list";
 import { ConstructionCard } from "./comps/ConstructionCard";
+import { AddButton } from "../comps/layout/add-btn";
+import { useNavigate } from "react-router";
 
 export function Home() {
   const {
@@ -11,6 +13,12 @@ export function Home() {
     queryKey: ["constructions"],
     queryFn: getConstructions,
   });
+
+  const nav = useNavigate();
+
+  const handleAddConstruction = () => {
+    nav("/cong-trinh/tao-moi");
+  };
 
   if (isLoading) return <div className="p-4">Loading constructions...</div>;
   if (error)
@@ -27,6 +35,7 @@ export function Home() {
         {constructions?.map((construction) => (
           <ConstructionCard key={construction.id} construction={construction} />
         ))}
+        <AddButton title="Thêm công trình" onClick={handleAddConstruction} />
       </div>
     </div>
   );

@@ -54,6 +54,21 @@ export default function SubmissionEdit() {
     if (ttSubmission) reset("TT", ttSubmission);
   }, [tvDec, ttDec]);
 
+  const isEditToggle = () => {
+    if (isEdit) {
+      const isConfirm = confirm(
+        "Hủy chỉnh sửa sẽ đưa tất cả giá trị về lại ban đầu",
+      );
+      if (isConfirm) {
+        setIsEdit((prev) => !prev);
+        storeApi.getState().reset("TV", tvSubmission);
+        storeApi.getState().reset("TT", ttSubmission);
+      }
+    } else {
+      setIsEdit((prev) => !prev);
+    }
+  };
+
   const submit = useSubmit();
 
   if (isLoading) {
@@ -84,7 +99,7 @@ export default function SubmissionEdit() {
           description="Thông tin chi tiết của tờ trình."
         />
         <ActionBtns>
-          <Button variant="outline" onClick={() => setIsEdit(!isEdit)}>
+          <Button variant="outline" onClick={isEditToggle}>
             <EditIcon className="mr-2 h-4 w-4" />
             {disabled ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
           </Button>

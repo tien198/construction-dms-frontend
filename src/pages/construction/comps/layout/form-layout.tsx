@@ -29,7 +29,7 @@ interface FormTitleProps {
 export function FormTitle({ title, description }: FormTitleProps) {
   return (
     <div>
-      <h1 className="text-2xl font-bold tracking-tight text-primary text-shadow-md text-shadow-accent-foreground sm:text-3xl">
+      <h1 className="text-2xl font-bold tracking-tight text-primary text-shadow-lg text-shadow-accent-foreground sm:text-3xl">
         {title}
       </h1>
       {description && (

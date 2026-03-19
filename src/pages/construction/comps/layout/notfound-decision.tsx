@@ -1,8 +1,7 @@
-import { Button } from "@/components/ui/button";
 import type { ConstructionPeriod } from "@/types/construction.type";
-import { PlusIcon } from "lucide-react";
 import { Create } from "../../bcktkt-detail/comps/Create";
 import { useIsCreating } from "../../bcktkt-detail/store/useIsCreating";
+import { AddButton } from "./add-btn";
 
 type Props = {
   constructionId?: string;
@@ -21,10 +20,16 @@ export function NotfoundDecicion({ constructionId, period }: Props) {
           </div>
           <div>của công trình {constructionId} </div>
         </div>
-        <Button onClick={toggleIsCreating}>
+        {/* <Button onClick={toggleIsCreating}>
           <PlusIcon className="w-4 h-4 mr-2" />
           Tạo mới
-        </Button>
+        </Button> */}
+        <AddButton
+          title="Tạo mới"
+          border={false}
+          onClick={toggleIsCreating}
+          className="px-12"
+        />
       </div>
     );
 
