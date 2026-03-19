@@ -25,7 +25,7 @@ export function AddButton({ title, onClick, border, className }: Props) {
     <div
       onClick={onClick}
       className={cn(
-        "border border-dashed rounded-lg flex justify-center items-center gap-4 text-accent bg-accent-foreground/45 cursor-pointer",
+        "border border-dashed rounded-lg flex justify-center items-center gap-4 text-accent bg-accent-foreground/45 hover:bg-primary/20 cursor-pointer",
         className,
       )}
     >

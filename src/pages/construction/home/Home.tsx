@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getConstructions } from "@/mock-apis/get-constructions-list";
 import { ConstructionCard } from "./comps/ConstructionCard";
+import { FloatingAddButton } from "./comps/FloatingAddButton";
 import { AddButton } from "../comps/layout/add-btn";
 import { useNavigate } from "react-router";
 
@@ -37,6 +38,7 @@ export function Home() {
         ))}
         <AddButton title="Thêm công trình" onClick={handleAddConstruction} />
       </div>
+      <FloatingAddButton onClick={handleAddConstruction} />
     </div>
   );
 }
