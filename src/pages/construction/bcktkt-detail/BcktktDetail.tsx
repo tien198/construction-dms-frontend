@@ -18,5 +18,6 @@ export default function BcktktDetail() {
     return <NotfoundDecicion constructionId={constructionId} period="BCKTKT" />;
   }
 
+  // Detail also Edit form if `isEdit` is true
   return <Detail storeApi={storeApi} data={data} />;
 }

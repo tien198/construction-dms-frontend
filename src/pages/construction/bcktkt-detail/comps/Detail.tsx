@@ -14,15 +14,31 @@ import { useSubmit } from "react-router";
 import type { StoreApi } from "zustand";
 import type { CreateSubmissionStore } from "../../store-factory/create-submission.store.type";
 import type { Decision } from "@/types";
+import { decisionToSubmissionPost } from "../../tv-tt-detail/ultil/decision-to-submision-post";
 
 type Props = {
   storeApi: StoreApi<CreateSubmissionStore>;
   data: Decision;
 };
 
+// Detail also Edit form if `isEdit` is true
 export function Detail({ data, storeApi }: Props) {
   const [isEdit, setIsEdit] = useState(false);
   const disabled = !isEdit;
+
+  const isEditToggle = () => {
+    if (isEdit) {
+      const isConfirm = confirm(
+        "Hủy chỉnh sửa sẽ đưa tất cả giá trị về lại ban đầu",
+      );
+      if (isConfirm) {
+        setIsEdit((prev) => !prev);
+        storeApi.getState().reset("BCKTKT", decisionToSubmissionPost(data));
+      }
+    } else {
+      setIsEdit((prev) => !prev);
+    }
+  };
 
   const submit = useSubmit();
 
@@ -43,7 +59,7 @@ export function Detail({ data, storeApi }: Props) {
           description="Thông tin chi tiết của báo cáo khảo sát thiết kế."
         />
         <ActionBtns>
-          <Button variant="outline" onClick={() => setIsEdit(!isEdit)}>
+          <Button variant="outline" onClick={isEditToggle}>
             <EditIcon className="mr-2 h-4 w-4" />
             {disabled ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
           </Button>
