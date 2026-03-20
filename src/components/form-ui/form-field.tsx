@@ -37,7 +37,7 @@ export function FormField({
         id={htmlFor}
         disabled={disabled}
         {...props}
-        className={`bg-card${disabled ? " border-0 text-black disabled:opacity-100" : ""}${props.className ? ` ${props.className}` : ""}`}
+        className={`bg-card${disabled ? " text-black disabled:opacity-100" : " border-primary outline-2 outline-primary"}${props.className ? ` ${props.className}` : ""}`}
       />
     </div>
   );

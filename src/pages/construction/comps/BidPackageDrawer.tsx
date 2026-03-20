@@ -25,8 +25,10 @@ export function BidPackageSideDrawer({ storeApi, disabled = false }: Props) {
       <DrawerTrigger asChild>
         <Button variant="outline">Các gói thầu</Button>
       </DrawerTrigger>
-      <DrawerOverlay className="bg-black/60" />
-      <DrawerContent className="top-32 -translate-x-1/2 md:w-[1550px] max-w-[90vw] left-1/2!">
+      <DrawerContent
+        id="bid-package-drawer-content"
+        className="top-32 -translate-x-1/2 md:w-[1550px] max-w-[90vw] left-1/2!"
+      >
         <div className="mx-auto w-full overflow-auto">
           <DrawerHeader>
             <DrawerTitle className="text-primary">Gói thầu</DrawerTitle>
