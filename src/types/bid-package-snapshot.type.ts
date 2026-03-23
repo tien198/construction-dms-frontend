@@ -4,10 +4,8 @@ export interface BidPackageSnapshot {
   id: string;
   type: ConstructionPeriod;
   project_owner: string;
-  bid_package_name: string;
-  short_description: string;
-  budget: number;
-  budget_str: string;
+  name: string;
+  short_desc: string;
   bidder_selection_time: string;
   bidder_selection_method: string;
   // Note: sau khi hoàn thành chức năng nhà thầu sẽ thêm

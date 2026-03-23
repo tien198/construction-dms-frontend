@@ -10,8 +10,6 @@ export function decisionToSubmissionPost(decision: Decision): SubmissionPost {
       ? {
           id: submission.id ?? "",
           name: submission.construction_infor_snapshot.name,
-          budget: submission.construction_infor_snapshot.budget,
-          budget_str: submission.construction_infor_snapshot.budget_str,
           source_of_funds:
             submission.construction_infor_snapshot.source_of_funds,
           impl_start_date:

@@ -79,26 +79,28 @@ export function BidPackageSnapshotForm({
          */}
 
         <span />
-        {/* Budget */}
+        {/* est_cost */}
         <FormField
-          htmlFor="budget"
+          htmlFor="est_cost"
           label="Giá thầu (số)"
           type="number"
           placeholder="0"
-          value={bp.budget}
+          value={bp.est_cost}
           onChange={(e) =>
-            setBidPackage(bp.type, "budget", Number(e.target.value))
+            setBidPackage(bp.type, "est_cost", Number(e.target.value))
           }
           disabled={disabled}
         />
 
-        {/* Budget string */}
+        {/* est_cost string */}
         <FormField
-          htmlFor="budget-str"
+          htmlFor="est_cost-str"
           label="Giá thầu (chữ)"
           placeholder="Một tỷ đồng"
-          value={bp.budget_str}
-          onChange={(e) => setBidPackage(bp.type, "budget_str", e.target.value)}
+          value={bp.est_cost_str}
+          onChange={(e) =>
+            setBidPackage(bp.type, "est_cost_str", e.target.value)
+          }
           disabled={disabled}
         />
 

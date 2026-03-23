@@ -37,30 +37,30 @@ export function ConstructionInfoSnapshotForm({
           disabled={disabled}
         />
 
-        {/* Budget */}
+        {/* est_cost */}
         <FormField
-          htmlFor="budget"
+          htmlFor="est_cost"
           label="Chi phí sửa chữa dự kiến (số)"
           type="number"
           placeholder="0"
-          value={infor.budget}
+          value={infor.est_cost}
           onChange={(e) =>
             setField(
-              "construction_infor_snapshot.budget",
+              "construction_infor_snapshot.est_cost",
               Number(e.target.value),
             )
           }
           disabled={disabled}
         />
 
-        {/* Budget string */}
+        {/* est_cost string */}
         <FormField
-          htmlFor="budget-str"
+          htmlFor="est_cost-str"
           label="Chi phí sửa chữa dự kiến (chữ)"
           placeholder="Một tỷ đồng"
-          value={infor.budget_str}
+          value={infor.est_cost_str}
           onChange={(e) =>
-            setField("construction_infor_snapshot.budget_str", e.target.value)
+            setField("construction_infor_snapshot.est_cost_str", e.target.value)
           }
           disabled={disabled}
         />
