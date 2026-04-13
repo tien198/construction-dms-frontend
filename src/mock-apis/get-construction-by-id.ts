@@ -1,6 +1,6 @@
-import { getConstructions } from "./get-constructions-list";
+import { getConstructions_mock } from "./get-constructions-list.mock";
 
-export async function getConstructionById(id: string) {
-  const constructions = await getConstructions();
+export async function getConstructionById_mock(id: string) {
+  const constructions = await getConstructions_mock();
   return constructions.find((c) => c.id === id);
 }

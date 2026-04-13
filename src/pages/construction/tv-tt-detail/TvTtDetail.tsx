@@ -8,7 +8,7 @@ import { edit_tv_tt_store } from "./edit-store";
 import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotForm";
 import { useParams, useSubmit } from "react-router";
 import type { Decision } from "@/types";
-import { getDecisionByPer } from "@/mock-apis/get-decision-by-per";
+import { getDecisionByPer } from "./api/get-decision-by-per.api";
 import { useStore } from "zustand";
 import { decisionToSubmissionPost } from "./ultil/decision-to-submision-post";
 import type { SubmissionPost } from "../types/submission-post.type";
@@ -23,13 +23,13 @@ export default function SubmissionEdit() {
   const [isEdit, setIsEdit] = useState(false);
   const disabled = !isEdit;
   const params = useParams();
-  const id = params["id"] as string;
+  const id = params["con-id"] as string;
   const { data, isLoading } = useQuery<(Decision | undefined)[]>({
     queryKey: ["tv-tt", id],
     queryFn: async () => {
       const [tv, tt] = await Promise.all([
-        getDecisionByPer(id, "TV"),
-        getDecisionByPer(id, "TT"),
+        getDecisionByPer(id, "KH_TV_TT"),
+        getDecisionByPer(id, "KH_TV_TT"),
       ]);
       // Fetch mock data
       return [tv, tt];

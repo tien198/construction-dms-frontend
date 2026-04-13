@@ -1,6 +1,6 @@
 import type { Construction } from "@/types";
 
-export async function getConstructions(): Promise<Construction[]> {
+export async function getConstructions_mock(): Promise<Construction[]> {
   return [
     {
       id: "construction-1",

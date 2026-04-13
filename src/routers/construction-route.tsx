@@ -23,7 +23,7 @@ export const constructionRoute: RouteObject = {
     },
 
     {
-      path: "tv-tt/:id",
+      path: "tv-tt/:con-id",
       element: <SubmissionEdit />,
       action: (args) =>
         import("../pages/construction/tv-tt-detail/action").then((m) =>

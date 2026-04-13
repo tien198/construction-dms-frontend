@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { edit_bcktkt_store } from "../store/edit-store";
 import { useParams } from "react-router";
 import type { Decision } from "@/types";
-import { getDecisionByPer } from "@/mock-apis/get-decision-by-per";
+import { getDecisionByPer_mock } from "@/mock-apis/get-decision-by-per.mock";
 import { useStore } from "zustand";
 import { decisionToSubmissionPost } from "../../tv-tt-detail/ultil/decision-to-submision-post";
 
@@ -14,7 +14,7 @@ export function useDetailFunc() {
   const { data, isLoading } = useQuery<Decision | undefined>({
     queryKey: ["bcktkt", constructionId],
     queryFn: async () => {
-      return await getDecisionByPer(constructionId, "BCKTKT");
+      return await getDecisionByPer_mock(constructionId, "BCKTKT");
     },
   });
 
