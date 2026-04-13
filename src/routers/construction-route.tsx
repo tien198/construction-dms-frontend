@@ -32,7 +32,7 @@ export const constructionRoute: RouteObject = {
     },
 
     {
-      path: "bcktkt/:id",
+      path: "bcktkt/:con-id",
       element: <BcktktDetail />,
       children: [
         {

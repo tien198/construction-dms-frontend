@@ -34,8 +34,8 @@ export function Home() {
         Danh sách công trình
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {constructions?.map((construction) => (
-          <ConstructionCard key={construction.id} construction={construction} />
+        {constructions?.map((con) => (
+          <ConstructionCard key={con.id} construction={con} />
         ))}
         <AddButton title="Thêm công trình" onClick={handleAddConstruction} />
       </div>

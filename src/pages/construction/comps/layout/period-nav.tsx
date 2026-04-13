@@ -13,14 +13,15 @@ type Link = {
 };
 
 export function Period_Nav() {
-  const { id } = useParams();
+  const params = useParams();
+  const conId = params["con-id"];
   const links: Link[] = [
     {
-      href: `/cong-trinh/tv-tt/${id}`,
+      href: `/cong-trinh/tv-tt/${conId}`,
       title: "Tư vấn - thiết kế",
     },
     {
-      href: `/cong-trinh/bcktkt/${id}`,
+      href: `/cong-trinh/bcktkt/${conId}`,
       title: "Báo cáo kinh tế kỹ thuật",
     },
   ];

@@ -1,4 +1,3 @@
-import type { Construction } from "@/types";
 import {
   Card,
   CardHeader,
@@ -7,32 +6,29 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Link } from "react-router";
+import type { ConstructionResDto } from "../api/dto/get-construction-list.dto";
 
 type Props = {
-  construction: Construction;
+  construction: ConstructionResDto;
 };
 export function ConstructionCard({ construction }: Props) {
-  const firstDecision = construction.decisions?.[0];
-  const infoSnapshot = firstDecision?.submission?.construction_infor_snapshot;
-
-  const name = infoSnapshot?.name || "Unnamed Construction";
-  const date = firstDecision?.date || "No date defined";
-  const repairScope = infoSnapshot?.repair_scope || "No repair scope specified";
+  const { id: conId, name, date, repair_scope } = construction;
   const truncatedScope =
-    repairScope.length > 50
-      ? repairScope.substring(0, 50) + "..."
-      : repairScope;
+    repair_scope.length > 50
+      ? repair_scope.substring(0, 50) + "..."
+      : repair_scope;
 
   return (
     <Link
-      to={`/cong-trinh/tv-tt/${construction.id}`}
-      key={construction.id}
+      to={`/cong-trinh/tv-tt/${conId}`}
       className="block h-full hover:-translate-y-1 shadow-md hover:shadow-lg shadow-black duration-300"
     >
       <Card className="cursor-pointer h-full">
         <CardHeader>
           <CardTitle className="line-clamp-2">{name}</CardTitle>
-          <CardDescription>Ngày bắt đầu KH: {date}</CardDescription>
+          <CardDescription>
+            Ngày bắt đầu KH: {new Date(date).toLocaleDateString("vi-vn")}
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground wrap-break-word">

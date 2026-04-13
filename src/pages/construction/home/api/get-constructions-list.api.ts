@@ -1,5 +1,11 @@
-import { getConstructions_mock } from "@/mock-apis/get-constructions-list.mock";
+import type { ConstructionResDto } from "./dto/get-construction-list.dto";
 
-export async function getConstructions() {
-  return getConstructions_mock();
+export async function getConstructions(): Promise<ConstructionResDto[]> {
+  const res = await fetch(
+    import.meta.env.VITE_API_URL + "/document/constructions-list",
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch constructions list");
+  }
+  return await res.json();
 }
