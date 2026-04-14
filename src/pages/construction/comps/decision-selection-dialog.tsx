@@ -30,6 +30,7 @@ export type FormFieldProps = {
   placeholder?: string;
   fieldName: keyof SubmissionPost;
   decision?: NestedDoc | null;
+  isFindTCT?: boolean;
 } & StoreApiInject &
   React.InputHTMLAttributes<HTMLInputElement>;
 
@@ -41,6 +42,7 @@ export default function DecisionSelectionDialog({
   storeApi,
   disabled = false,
   decision,
+  isFindTCT = false,
 }: FormFieldProps) {
   const [dec, setDec] = useState<DecisionResponse | null>(decision ?? null);
   const setField = useStore(storeApi, (state) => state.setField);
@@ -68,7 +70,7 @@ export default function DecisionSelectionDialog({
           <DialogTitle>Căn cứ Quyết Định</DialogTitle>
           <DialogDescription></DialogDescription>
           <div className="max-h-[80vh]! min-h-96! overflow-y-auto">
-            <DecisionList handleSetDec={handleSetDec} />
+            <DecisionList handleSetDec={handleSetDec} isFindTCT={isFindTCT} />
           </div>
         </DialogHeader>
       </DialogContent>

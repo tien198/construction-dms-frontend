@@ -69,6 +69,7 @@ export function AdministrativeDocumentFields({
           placeholder="Quyết định TCT"
           disabled={disabled}
           decision={decision?.pursuant_to_dec_tct}
+          isFindTCT
         />
       )}
 

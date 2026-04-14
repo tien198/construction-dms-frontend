@@ -1,21 +1,25 @@
 import { DialogClose } from "@/components/ui/dialog";
 import { useQuery } from "@tanstack/react-query";
 import type { DecisionResponse } from "./decision-selection-dialog";
-import { GET_DECISIONS_LIST_OF_CONSTRUCTION } from "@/lib/api-list/document-api-list";
+import {
+  GET_DECISIONS_LIST_OF_CONSTRUCTION,
+  GET_TCT_DECISIONS_LIST,
+} from "@/lib/api-list/document-api-list";
 import { useParams } from "react-router";
 
 type Props = {
   handleSetDec: (decision: DecisionResponse) => void;
+  isFindTCT?: boolean;
 };
 
-export function DecisionList({ handleSetDec }: Props) {
+export function DecisionList({ handleSetDec, isFindTCT }: Props) {
   const params = useParams();
   const conId = params["con-id"] as string;
-  console.log(conId);
 
   const query = useQuery({
     queryKey: ["decision-list", conId],
-    queryFn: () => getDecisionsLisOfConstruction(conId),
+    queryFn: () =>
+      isFindTCT ? getTCTDecisionsList() : getDecisionsLisOfConstruction(conId),
   });
 
   if (query.isError)
@@ -46,6 +50,7 @@ export function DecisionList({ handleSetDec }: Props) {
   );
 }
 
+// used to find TTMN level
 async function getDecisionsLisOfConstruction(
   conId: string,
 ): Promise<DecisionResponse[]> {
@@ -53,6 +58,15 @@ async function getDecisionsLisOfConstruction(
   const response = await fetch(
     GET_DECISIONS_LIST_OF_CONSTRUCTION + "/" + conId,
   );
+  if (!response.ok) {
+    throw new Error("Failed to fetch decisions");
+  }
+  return response.json();
+}
+
+// used to find TCT level only
+async function getTCTDecisionsList(): Promise<DecisionResponse[]> {
+  const response = await fetch(GET_TCT_DECISIONS_LIST);
   if (!response.ok) {
     throw new Error("Failed to fetch decisions");
   }

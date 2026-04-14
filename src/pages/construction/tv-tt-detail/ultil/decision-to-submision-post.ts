@@ -38,6 +38,7 @@ export function decisionToSubmissionPost(decision: Decision): SubmissionPost {
     directlyDecision: {
       no: decision.no,
       period: decision.period,
+      id: decision.id,
     },
 
     pursuant_to_dec_tct_id: decision.pursuant_to_dec_tct?.id ?? null,
