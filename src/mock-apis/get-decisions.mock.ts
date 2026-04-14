@@ -1,6 +1,6 @@
 import type { DecisionResponse } from "@/pages/construction/comps/decision-selection-dialog";
 
-export async function getDecisions(
+export async function getDecisions_mock(
   level?: string,
   year?: string,
 ): Promise<DecisionResponse[]> {

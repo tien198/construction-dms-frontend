@@ -1,17 +1,29 @@
 import { DialogClose } from "@/components/ui/dialog";
-import { getDecisions } from "@/mock-apis/get-decisions";
 import { useQuery } from "@tanstack/react-query";
 import type { DecisionResponse } from "./decision-selection-dialog";
+import { GET_DECISIONS_LIST_OF_CONSTRUCTION } from "@/lib/api-list/document-api-list";
+import { useParams } from "react-router";
 
 type Props = {
   handleSetDec: (decision: DecisionResponse) => void;
 };
 
 export function DecisionList({ handleSetDec }: Props) {
+  const params = useParams();
+  const conId = params["con-id"] as string;
+  console.log(conId);
+
   const query = useQuery({
-    queryKey: ["decision-list"],
-    queryFn: () => getDecisions(),
+    queryKey: ["decision-list", conId],
+    queryFn: () => getDecisionsLisOfConstruction(conId),
   });
+
+  if (query.isError)
+    return (
+      <div className="h-full flex items-center justify-center text-red-500">
+        Lỗi khi tải danh sách quyết định
+      </div>
+    );
 
   return (
     <ul className="flex flex-col gap-2 mt-2">
@@ -32,4 +44,17 @@ export function DecisionList({ handleSetDec }: Props) {
       ))}
     </ul>
   );
+}
+
+async function getDecisionsLisOfConstruction(
+  conId: string,
+): Promise<DecisionResponse[]> {
+  // Replace with actual API call
+  const response = await fetch(
+    GET_DECISIONS_LIST_OF_CONSTRUCTION + "/" + conId,
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch decisions");
+  }
+  return response.json();
 }
