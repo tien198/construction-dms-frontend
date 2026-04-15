@@ -10,7 +10,7 @@ import { useParams, useSubmit } from "react-router";
 import type { Decision } from "@/types";
 import { getDecisionByPer } from "../api/get-decision-by-per.api";
 import { useStore } from "zustand";
-import { decisionToSubmissionPost } from "./ultil/decision-to-submision-post";
+import { decisionToSubmissionPost } from "../ultil/decision-to-submision-post";
 import type { SubmissionPost } from "../types/submission-post.type";
 import {
   FormLayout,
@@ -51,9 +51,9 @@ export default function SubmissionEdit() {
     ttSubmission = decisionToSubmissionPost(ttDec);
   }
   useEffect(() => {
-    if (tvSubmission) reset("TV", tvSubmission);
-    if (ttSubmission) reset("TT", ttSubmission);
-  }, [tvDec, ttDec]);
+    if (tvSubmission) reset("KH_TV_TT", tvSubmission);
+    if (ttSubmission) reset("KH_TV_TT", ttSubmission);
+  });
 
   const isEditToggle = () => {
     if (isEdit) {
@@ -62,8 +62,8 @@ export default function SubmissionEdit() {
       );
       if (isConfirm) {
         setIsEdit((prev) => !prev);
-        storeApi.getState().reset("TV", tvSubmission);
-        storeApi.getState().reset("TT", ttSubmission);
+        storeApi.getState().reset("KH_TV_TT", tvSubmission);
+        storeApi.getState().reset("KH_TV_TT", ttSubmission);
       }
     } else {
       setIsEdit((prev) => !prev);

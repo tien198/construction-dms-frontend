@@ -1,8 +1,8 @@
-import type { ConstructionPeriod } from "./construction.type";
+export type BidPackageType = "TV" | "TT" | "TC";
 
 export interface BidPackageSnapshot {
   id: string;
-  type: ConstructionPeriod;
+  type: BidPackageType;
   project_owner: string;
   name: string;
   short_desc: string;

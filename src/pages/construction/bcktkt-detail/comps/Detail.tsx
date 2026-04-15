@@ -14,7 +14,7 @@ import { useSubmit } from "react-router";
 import type { StoreApi } from "zustand";
 import type { CreateSubmissionStore } from "../../store-factory/create-submission.store.type";
 import type { Decision } from "@/types";
-import { decisionToSubmissionPost } from "../../tv-tt-detail/ultil/decision-to-submision-post";
+import { decisionToSubmissionPost } from "../../ultil/decision-to-submision-post";
 
 type Props = {
   storeApi: StoreApi<CreateSubmissionStore>;

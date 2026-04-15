@@ -51,7 +51,4 @@ function initialStateGeneration(period: ConstructionPeriod): SubmissionPost {
   };
 }
 
-const { construction_infor_snapshot, ...withoutConstructionInfor } =
-  initialStateGeneration("TT");
-
-export { initialStateGeneration, withoutConstructionInfor };
+export { initialStateGeneration };

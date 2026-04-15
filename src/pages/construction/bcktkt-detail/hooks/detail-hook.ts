@@ -4,7 +4,7 @@ import { edit_bcktkt_store } from "../store/edit-store";
 import { useParams } from "react-router";
 import type { Decision } from "@/types";
 import { useStore } from "zustand";
-import { decisionToSubmissionPost } from "../../tv-tt-detail/ultil/decision-to-submision-post";
+import { decisionToSubmissionPost } from "../../ultil/decision-to-submision-post";
 import { getDecisionByPer } from "../../api/get-decision-by-per.api";
 import type { ResResult } from "@/lib/type/response-result.tyoe";
 

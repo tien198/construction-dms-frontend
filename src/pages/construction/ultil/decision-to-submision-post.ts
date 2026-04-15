@@ -1,6 +1,6 @@
 import type { Decision } from "@/types";
-import type { SubmissionPost } from "../../types/submission-post.type";
-import type { ConstructionInfoSnapshotPost } from "../../types/construction-infor-snapshot-post.type";
+import type { SubmissionPost } from "../types/submission-post.type";
+import type { ConstructionInfoSnapshotPost } from "../types/construction-infor-snapshot-post.type";
 
 export function decisionToSubmissionPost(decision: Decision): SubmissionPost {
   const submission = decision.submission;

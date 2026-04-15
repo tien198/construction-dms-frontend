@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getDecisionByPer } from "../../api/get-decision-by-per.api";
+import { decisionToSubmissionPost } from "../../ultil/decision-to-submision-post";
 
 export function Create() {
   const fetcher = useFetcher();
@@ -33,16 +34,20 @@ export function Create() {
   };
 
   const conId = useParams()["con-id"] as string;
-  const query = useQuery({
-    queryKey: ["tv-tt"],
+  const { data } = useQuery({
+    queryKey: ["tv-tt", conId],
     queryFn: () => getDecisionByPer(conId, "KH_TV_TT"),
   });
 
   const storeApi = create_bcktkt_store;
 
   useEffect(() => {
-    storeApi.getState().reset("BCKTKT");
-  });
+    if (data?.result) {
+      storeApi
+        .getState()
+        .reset("BCKTKT", decisionToSubmissionPost(data.result));
+    }
+  }, [data?.result]);
 
   return (
     <FormLayout>

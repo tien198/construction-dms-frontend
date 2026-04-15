@@ -17,7 +17,6 @@ export function AdministrativeDocumentFields({
   disabled = false,
 }: Props) {
   const sub = useStore(storeApi, (state) => state.submission);
-  const sub_tt = useStore(storeApi, (state) => state.submission_tt);
   const setField = useStore(storeApi, (state) => state.setField);
 
   const isTv = type === "tv";
@@ -33,8 +32,8 @@ export function AdministrativeDocumentFields({
         htmlFor="no"
         label="Số T.Tr (No)"
         placeholder="01/TTr-..."
-        value={isTv || isBcktkt ? sub.no : sub_tt.no}
-        onChange={(e) => setField("no", e.target.value, type)}
+        value={sub.no}
+        onChange={(e) => setField("no", e.target.value)}
         disabled={disabled}
       />
 
@@ -42,12 +41,8 @@ export function AdministrativeDocumentFields({
         htmlFor="no"
         label="Số QĐ (No)"
         placeholder="01/QĐ-..."
-        value={
-          isTv || isBcktkt
-            ? sub.directlyDecision.no
-            : sub_tt.directlyDecision.no
-        }
-        onChange={(e) => setField("directlyDecision.no", e.target.value, type)}
+        value={sub.directlyDecision.no}
+        onChange={(e) => setField("directlyDecision.no", e.target.value)}
         disabled={disabled}
       />
       <span />
@@ -55,8 +50,8 @@ export function AdministrativeDocumentFields({
         htmlFor="date"
         label="Ngày ban hành (Date)"
         type="date"
-        value={isTv || isBcktkt ? sub.date : sub_tt.date}
-        onChange={(e) => setField("date", e.target.value, type)}
+        value={sub.date}
+        onChange={(e) => setField("date", e.target.value)}
         disabled={disabled}
       />
 
