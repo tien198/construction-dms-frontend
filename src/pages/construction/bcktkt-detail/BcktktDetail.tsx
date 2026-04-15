@@ -13,11 +13,11 @@ export default function BcktktDetail() {
     );
   }
 
-  if (!data) {
+  if (!data || !data.result) {
     // Notfound include Create BCKTKT form component
     return <NotfoundDecicion constructionId={constructionId} period="BCKTKT" />;
   }
 
   // Detail also Edit form if `isEdit` is true
-  return <Detail storeApi={storeApi} data={data} />;
+  return <Detail storeApi={storeApi} data={data.result} />;
 }

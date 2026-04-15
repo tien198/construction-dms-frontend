@@ -17,7 +17,7 @@ export function DecisionList({ handleSetDec, isFindTCT }: Props) {
   const conId = params["con-id"] as string;
 
   const query = useQuery({
-    queryKey: ["decision-list", conId],
+    queryKey: ["decision-list", isFindTCT ? "tct" : conId],
     queryFn: () =>
       isFindTCT ? getTCTDecisionsList() : getDecisionsLisOfConstruction(conId),
   });

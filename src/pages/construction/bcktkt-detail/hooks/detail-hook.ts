@@ -6,12 +6,13 @@ import type { Decision } from "@/types";
 import { useStore } from "zustand";
 import { decisionToSubmissionPost } from "../../tv-tt-detail/ultil/decision-to-submision-post";
 import { getDecisionByPer } from "../../api/get-decision-by-per.api";
+import type { ResResult } from "@/lib/type/response-result.tyoe";
 
 export function useDetailFunc() {
   const params = useParams();
   const constructionId = params["id"] as string;
 
-  const { data, isLoading } = useQuery<Decision | undefined>({
+  const { data, isLoading } = useQuery<ResResult<Decision | undefined>>({
     queryKey: ["bcktkt", constructionId],
     queryFn: async () => {
       return await getDecisionByPer(constructionId, "BCKTKT");
@@ -22,8 +23,8 @@ export function useDetailFunc() {
   const reset = useStore(storeApi, (state) => state.reset);
 
   useEffect(() => {
-    if (data) {
-      const submission = decisionToSubmissionPost(data);
+    if (data?.result) {
+      const submission = decisionToSubmissionPost(data.result);
       reset("BCKTKT", submission);
     }
   }, [data]);

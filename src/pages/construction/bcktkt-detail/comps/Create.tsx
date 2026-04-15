@@ -2,7 +2,7 @@ import { SaveIcon } from "lucide-react";
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { ConstructionInfoSnapshotForm } from "../../comps/ConstructionInfoSnapshotForm";
 import { AdministrativeDocumentFields } from "../../comps/AdministrativeDocumentFields";
-import { useFetcher } from "react-router";
+import { useFetcher, useParams } from "react-router";
 import { create_bcktkt_store } from "../store/create-store";
 import {
   FormLayout,
@@ -13,6 +13,8 @@ import {
 import { useIsCreating } from "../store/useIsCreating";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getDecisionByPer } from "../../api/get-decision-by-per.api";
 
 export function Create() {
   const fetcher = useFetcher();
@@ -29,6 +31,12 @@ export function Create() {
   const handleCancel = () => {
     toggleIsCreating();
   };
+
+  const conId = useParams()["con-id"] as string;
+  const query = useQuery({
+    queryKey: ["tv-tt"],
+    queryFn: () => getDecisionByPer(conId, "KH_TV_TT"),
+  });
 
   const storeApi = create_bcktkt_store;
 

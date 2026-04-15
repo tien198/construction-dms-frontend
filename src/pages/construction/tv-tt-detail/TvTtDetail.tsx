@@ -18,13 +18,14 @@ import {
   FormTitle,
   ActionBtns,
 } from "../comps/layout/form-layout";
+import type { ResResult } from "@/lib/type/response-result.tyoe";
 
 export default function SubmissionEdit() {
   const [isEdit, setIsEdit] = useState(false);
   const disabled = !isEdit;
   const params = useParams();
   const id = params["con-id"] as string;
-  const { data, isLoading } = useQuery<(Decision | undefined)[]>({
+  const { data, isLoading } = useQuery<ResResult<Decision | undefined>[]>({
     queryKey: ["tv-tt", id],
     queryFn: async () => {
       const [tv, tt] = await Promise.all([
@@ -38,8 +39,8 @@ export default function SubmissionEdit() {
 
   const storeApi = edit_tv_tt_store;
   const reset = useStore(storeApi, (state) => state.reset);
-  const tvDec = data?.[0];
-  const ttDec = data?.[1];
+  const tvDec = data?.[0]?.result;
+  const ttDec = data?.[1]?.result;
 
   let tvSubmission: SubmissionPost | undefined;
   if (tvDec) {
