@@ -24,7 +24,10 @@ export function BidPackageSnapshotForm({
       ],
   );
 
-  const setBidPackage = useStore(storeApi, (state) => state.setBidPackage);
+  const setBidPackageField = useStore(
+    storeApi,
+    (state) => state.setBidPackageField,
+  );
 
   return (
     <div className="relative w-full rounded-lg border border-border bg-muted/30 p-4">
@@ -87,7 +90,7 @@ export function BidPackageSnapshotForm({
           placeholder="0"
           value={bp.est_cost}
           onChange={(e) =>
-            setBidPackage(bp.type, "est_cost", Number(e.target.value))
+            setBidPackageField(bp.type, "est_cost", Number(e.target.value))
           }
           disabled={disabled}
         />
@@ -99,7 +102,7 @@ export function BidPackageSnapshotForm({
           placeholder="Một tỷ đồng"
           value={bp.est_cost_str}
           onChange={(e) =>
-            setBidPackage(bp.type, "est_cost_str", e.target.value)
+            setBidPackageField(bp.type, "est_cost_str", e.target.value)
           }
           disabled={disabled}
         />
@@ -140,7 +143,7 @@ export function BidPackageSnapshotForm({
           type="date"
           value={bp.bidder_selection_time}
           onChange={(e) =>
-            setBidPackage(bp.type, "bidder_selection_time", e.target.value)
+            setBidPackageField(bp.type, "bidder_selection_time", e.target.value)
           }
           disabled={disabled}
         />
@@ -159,7 +162,9 @@ export function BidPackageSnapshotForm({
           label="Thời gian thực hiện"
           placeholder="10 ngày"
           value={bp.duration}
-          onChange={(e) => setBidPackage(bp.type, "duration", e.target.value)}
+          onChange={(e) =>
+            setBidPackageField(bp.type, "duration", e.target.value)
+          }
           disabled={disabled}
         />
 
@@ -170,7 +175,7 @@ export function BidPackageSnapshotForm({
           placeholder="Chọn nhà thầu"
           value={bp.successful_bidder_id ?? ""}
           onChange={(e) =>
-            setBidPackage(bp.type, "successful_bidder_id", e.target.value)
+            setBidPackageField(bp.type, "successful_bidder_id", e.target.value)
           }
           disabled={disabled}
         />

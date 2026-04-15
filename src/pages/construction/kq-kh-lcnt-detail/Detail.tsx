@@ -2,7 +2,7 @@ import { useDetailFunc } from "./hooks/detail-hook";
 import { NotfoundDecicion } from "../comps/layout/notfound-decision";
 import { DetailComp } from "./comps/Detail";
 
-export namespace Bcktkt {
+export namespace KqKhLcnt {
   export function Detail() {
     const { data, isLoading, storeApi, constructionId } = useDetailFunc();
 

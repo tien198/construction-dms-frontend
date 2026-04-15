@@ -5,6 +5,7 @@ import type { CreateSubmissionStore } from "./create-submission.store.type";
 import type { ConstructionPeriod } from "@/types/construction.type";
 import type { BidPackageSnapshotPost } from "../types/bid-package-snapshot-post.type";
 import type { BidPackageType } from "@/types/bid-package-snapshot.type";
+import type { ConstructionInfoSnapshotPost } from "../types/construction-infor-snapshot-post.type";
 
 import { initialStateGeneration } from "./initial-state";
 
@@ -25,7 +26,7 @@ export function submission_store_factory(
         return { ...state, submission: shallowSubmission };
       }),
 
-    setBidPackage<K extends keyof BidPackageSnapshotPost>(
+    setBidPackageField<K extends keyof BidPackageSnapshotPost>(
       type: BidPackageType,
       field: K,
       value: any,
@@ -47,6 +48,17 @@ export function submission_store_factory(
         return shallowStore;
       });
     },
+
+    setConstructionInfor(value: ConstructionInfoSnapshotPost) {
+      set((state) => ({
+        ...state,
+        submission: {
+          ...state.submission,
+          construction_infor_snapshot: value,
+        },
+      }));
+    },
+
     reset: (type, sub) =>
       set((state) => ({
         ...state,

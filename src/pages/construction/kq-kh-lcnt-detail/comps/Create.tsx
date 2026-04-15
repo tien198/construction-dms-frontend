@@ -35,7 +35,7 @@ export function Create() {
 
   const conId = useParams()["con-id"] as string;
   const { data } = useQuery({
-    queryKey: ["kq-kh-lcnt", conId],
+    queryKey: ["kh-lcnt", conId],
     queryFn: () => getDecisionByPer(conId, "KH_LCNT"),
   });
 
@@ -45,9 +45,7 @@ export function Create() {
     if (data?.result) {
       storeApi
         .getState()
-        .setConstructionInfor(
-          decisionToSubmissionPost(data.result).construction_infor_snapshot!,
-        );
+        .reset("BCKTKT", decisionToSubmissionPost(data.result));
     }
   }, [data?.result]);
 

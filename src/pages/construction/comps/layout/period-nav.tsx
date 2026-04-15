@@ -17,8 +17,12 @@ export function Period_Nav() {
   const conId = params["con-id"];
   const links: Link[] = [
     {
-      href: `/cong-trinh/tv-tt/${conId}`,
-      title: "Tư vấn - thiết kế",
+      href: `/cong-trinh/kh-lcnt/${conId}`,
+      title: "Kê hoạch LCNT",
+    },
+    {
+      href: `/cong-trinh/kq-kh-lcnt/${conId}`,
+      title: "Kết quả LCNT",
     },
     {
       href: `/cong-trinh/bcktkt/${conId}`,
@@ -36,13 +40,16 @@ export function Period_Nav() {
       >
         Trang chủ
       </NavLink>
-      <NavigationMenu className="fixed top-6 -translate-x-1/2 left-1/2 flex">
-        <NavigationMenuList className="flex gap-5">
-          {links.map((link, id) => (
-            <Item key={id} href={link.href} title={link.title} />
-          ))}
-        </NavigationMenuList>
-      </NavigationMenu>
+
+      {conId && (
+        <NavigationMenu className="fixed top-6 -translate-x-1/2 left-1/2 flex">
+          <NavigationMenuList className="flex gap-5">
+            {links.map((link, id) => (
+              <Item key={id} href={link.href} title={link.title} />
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
+      )}
     </div>
   );
 }

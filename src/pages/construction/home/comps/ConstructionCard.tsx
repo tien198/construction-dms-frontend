@@ -20,7 +20,7 @@ export function ConstructionCard({ construction }: Props) {
 
   return (
     <Link
-      to={`/cong-trinh/tv-tt/${conId}`}
+      to={`/cong-trinh/kh-lcnt/${conId}`}
       className="block h-full hover:-translate-y-1 shadow-md hover:shadow-lg shadow-black duration-300"
     >
       <Card className="cursor-pointer h-full">

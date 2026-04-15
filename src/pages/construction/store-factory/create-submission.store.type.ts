@@ -3,6 +3,7 @@ import type { SubmissionPost } from "../types/submission-post.type";
 import type { BidPackageSnapshotPost } from "../types/bid-package-snapshot-post.type";
 import type { ConstructionPeriod } from "@/types/construction.type";
 import type { BidPackageType } from "@/types/bid-package-snapshot.type";
+import type { ConstructionInfoSnapshotPost } from "../types/construction-infor-snapshot-post.type";
 
 export interface CreateSubmissionStore {
   // default submission is TV
@@ -12,10 +13,13 @@ export interface CreateSubmissionStore {
     value: any,
   ) => void;
 
-  setBidPackage<K extends keyof BidPackageSnapshotPost>(
+  setBidPackageField<K extends keyof BidPackageSnapshotPost>(
     type: BidPackageType,
     field: K,
     value: any,
   ): void;
+
+  setConstructionInfor(value: ConstructionInfoSnapshotPost): void;
+
   reset: (type: ConstructionPeriod, sub?: SubmissionPost) => void;
 }

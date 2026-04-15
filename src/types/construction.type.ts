@@ -5,4 +5,4 @@ export interface Construction {
   decisions: Decision[];
 }
 
-export type ConstructionPeriod = "KH_TV_TT" | "BCKTKT" | "TC";
+export type ConstructionPeriod = "KH_LCNT" | "KQ_KH_LCNT" | "BCKTKT" | "TC";

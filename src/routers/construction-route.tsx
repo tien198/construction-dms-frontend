@@ -1,8 +1,8 @@
 import { Period_Nav } from "@/pages/construction/comps/layout/period-nav";
 import { Outlet, type RouteObject } from "react-router";
-import KhLcnt_Create from "@/pages/construction/kh-lcnt-init/ConstructionCreate";
-import KhLcnt_Detail from "@/pages/construction/kh-lcnt-detail/Detail";
-import BcktktDetail from "@/pages/construction/bcktkt-detail/BcktktDetail";
+import { KhLcnt as KhLcntInit } from "@/pages/construction/kh-lcnt-init/ConstructionInitializer";
+import { KhLcnt } from "@/pages/construction/kh-lcnt-detail/Detail";
+import { Bcktkt } from "@/pages/construction/bcktkt-detail/BcktktDetail";
 
 export const constructionRoute: RouteObject = {
   path: "/cong-trinh",
@@ -15,7 +15,7 @@ export const constructionRoute: RouteObject = {
   children: [
     {
       path: "tao-moi",
-      element: <KhLcnt_Create />,
+      element: <KhLcntInit.Create />,
       action: (args) =>
         import("../pages/construction/kh-lcnt-init/action").then((m) =>
           m.initConstructionAction(args),
@@ -24,7 +24,7 @@ export const constructionRoute: RouteObject = {
 
     {
       path: "kh-lcnt/:con-id",
-      element: <KhLcnt_Detail />,
+      element: <KhLcnt.Detail />,
       action: (args) =>
         import("../pages/construction/kh-lcnt-detail/action").then((m) =>
           m.editAction(args),
@@ -33,7 +33,7 @@ export const constructionRoute: RouteObject = {
 
     {
       path: "bcktkt/:con-id",
-      element: <BcktktDetail />,
+      element: <Bcktkt.Detail />,
       children: [
         {
           path: "tao-moi",
