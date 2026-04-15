@@ -20,7 +20,7 @@ import {
 } from "../comps/layout/form-layout";
 import type { ResResult } from "@/lib/type/response-result.tyoe";
 
-export default function SubmissionEdit() {
+export default function KhLcnt_Detail() {
   const [isEdit, setIsEdit] = useState(false);
   const disabled = !isEdit;
   const params = useParams();

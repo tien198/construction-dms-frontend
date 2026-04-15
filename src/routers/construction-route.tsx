@@ -1,7 +1,7 @@
 import { Period_Nav } from "@/pages/construction/comps/layout/period-nav";
 import { Outlet, type RouteObject } from "react-router";
-import ConstructionCreate from "@/pages/construction/tv-tt-create/ConstructionCreate";
-import SubmissionEdit from "@/pages/construction/tv-tt-detail/TvTtDetail";
+import KhLcnt_Create from "@/pages/construction/kh-lcnt-init/ConstructionCreate";
+import KhLcnt_Detail from "@/pages/construction/kh-lcnt-detail/Detail";
 import BcktktDetail from "@/pages/construction/bcktkt-detail/BcktktDetail";
 
 export const constructionRoute: RouteObject = {
@@ -15,18 +15,18 @@ export const constructionRoute: RouteObject = {
   children: [
     {
       path: "tao-moi",
-      element: <ConstructionCreate />,
+      element: <KhLcnt_Create />,
       action: (args) =>
-        import("../pages/construction/tv-tt-create/action").then((m) =>
+        import("../pages/construction/kh-lcnt-init/action").then((m) =>
           m.initConstructionAction(args),
         ),
     },
 
     {
-      path: "tv-tt/:con-id",
-      element: <SubmissionEdit />,
+      path: "kh-lcnt/:con-id",
+      element: <KhLcnt_Detail />,
       action: (args) =>
-        import("../pages/construction/tv-tt-detail/action").then((m) =>
+        import("../pages/construction/kh-lcnt-detail/action").then((m) =>
           m.editAction(args),
         ),
     },

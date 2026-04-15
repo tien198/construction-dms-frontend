@@ -11,7 +11,7 @@ import {
   ActionBtns,
 } from "../comps/layout/form-layout";
 
-export default function ConstructionCreate() {
+export default function KhLcnt_Create() {
   const fetcher = useFetcher();
   const handleSubmit = () => {
     return fetcher.submit(null, {
