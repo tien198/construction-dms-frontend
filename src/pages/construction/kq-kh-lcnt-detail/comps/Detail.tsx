@@ -33,7 +33,7 @@ export function DetailComp({ data, storeApi }: Props) {
       );
       if (isConfirm) {
         setIsEdit((prev) => !prev);
-        storeApi.getState().reset("BCKTKT", decisionToSubmissionPost(data));
+        storeApi.getState().reset("KQ_KH_LCNT", decisionToSubmissionPost(data));
       }
     } else {
       setIsEdit((prev) => !prev);
@@ -55,7 +55,7 @@ export function DetailComp({ data, storeApi }: Props) {
     <FormLayout>
       <FormHeader>
         <FormTitle
-          title="Chi tiết BCKTKT"
+          title="Chi tiết KQ KH LCNT"
           description="Thông tin chi tiết của báo cáo khảo sát thiết kế."
         />
         <ActionBtns>
@@ -76,8 +76,8 @@ export function DetailComp({ data, storeApi }: Props) {
         {/* Left: Administrative document fields for bcktkt */}
         <div className="flex flex-col gap-6">
           <AdministrativeDocumentFields
-            title="Tờ trình - Quyết định BCKTKT"
-            type="bcktkt"
+            title="Tờ trình - Quyết định KQ KH LCNT"
+            type="kq_kh_lcnt"
             storeApi={storeApi}
             disabled={disabled}
             decision={data}

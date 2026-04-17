@@ -1,5 +1,4 @@
 import type { ConstructionPeriod } from "@/types/construction.type";
-import { Create } from "../../bcktkt-detail/comps/Create";
 import { AddButton } from "./add-btn";
 
 type Props = {
@@ -7,6 +6,8 @@ type Props = {
   toggleIsCreating: () => void;
   constructionId?: string;
   period: ConstructionPeriod;
+  // createComp is passed as HOC
+  createComp: React.ReactNode;
 };
 
 export function NotfoundDecicion({
@@ -14,6 +15,7 @@ export function NotfoundDecicion({
   period,
   isCreating,
   toggleIsCreating,
+  createComp,
 }: Props) {
   if (!isCreating)
     return (
@@ -22,7 +24,9 @@ export function NotfoundDecicion({
           <div className="text-2xl font-semibold">
             Không tìm thấy QĐ {period}{" "}
           </div>
-          <div>của công trình {constructionId} </div>
+          <div>
+            của công trình có id: <i>"{constructionId}"</i>
+          </div>
         </div>
         <AddButton
           title="Tạo mới"
@@ -33,5 +37,5 @@ export function NotfoundDecicion({
       </div>
     );
 
-  return <Create toggleIsCreating={toggleIsCreating} />;
+  return createComp;
 }

@@ -10,7 +10,7 @@ import type { ResResult } from "@/lib/type/response-result.tyoe";
 
 export function useDetailFunc() {
   const params = useParams();
-  const constructionId = params["id"] as string;
+  const constructionId = params["con-id"] as string;
 
   const { data, isLoading } = useQuery<ResResult<Decision | undefined>>({
     queryKey: ["kq-kh-lcnt", constructionId],

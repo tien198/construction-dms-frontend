@@ -2,7 +2,8 @@ import { useDetailFunc } from "./hooks/detail-hook";
 import { NotfoundDecicion } from "../comps/layout/notfound-decision";
 import { DetailComp } from "./comps/Detail";
 import { useStore } from "zustand";
-import { createIsCreatingStore } from "../store-factory/is-creating-store";
+import { createIsCreatingStore } from "../store-factory/create-is-creating-store";
+import { Create } from "./comps/Create";
 
 const isCreatingStore = createIsCreatingStore();
 
@@ -31,6 +32,7 @@ export namespace KqKhLcnt {
           toggleIsCreating={toggleIsCreating}
           constructionId={constructionId}
           period="KQ_KH_LCNT"
+          createComp={<Create toggleIsCreating={toggleIsCreating} />}
         />
       );
     }
