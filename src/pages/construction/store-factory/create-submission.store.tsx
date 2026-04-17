@@ -59,10 +59,10 @@ export function submission_store_factory(
       }));
     },
 
-    reset: (type, sub) =>
+    reset: (per, sub) =>
       set((state) => ({
         ...state,
-        submission: sub ?? initialStateGeneration(type),
+        submission: sub ?? initialStateGeneration(per),
       })),
   }));
 }

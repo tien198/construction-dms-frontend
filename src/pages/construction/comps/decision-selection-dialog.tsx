@@ -14,7 +14,7 @@ import { useState } from "react";
 import type { StoreApiInject } from "../store-factory/store-api-inject.type";
 import type { SubmissionPost } from "../types/submission-post.type";
 import { FormField } from "@/components/form-ui/form-field";
-import type { NestedDoc } from "@/types/administrative-document.type";
+import type { DecisionRef } from "@/types/administrative-document.type";
 
 export type DecisionResponse = Pick<
   AdministrativeDocument,
@@ -29,7 +29,7 @@ export type FormFieldProps = {
   /** When true adds `sm:col-span-2` so the field spans full width on ≥sm grids */
   placeholder?: string;
   fieldName: keyof SubmissionPost;
-  decision?: NestedDoc | null;
+  selectedDec?: DecisionRef | null;
   isFindTCT?: boolean;
 } & StoreApiInject &
   React.InputHTMLAttributes<HTMLInputElement>;
@@ -41,10 +41,10 @@ export default function DecisionSelectionDialog({
   fieldName,
   storeApi,
   disabled = false,
-  decision,
+  selectedDec,
   isFindTCT = false,
 }: FormFieldProps) {
-  const [dec, setDec] = useState<DecisionResponse | null>(decision ?? null);
+  const [dec, setDec] = useState<DecisionResponse | null>(selectedDec ?? null);
   const setField = useStore(storeApi, (state) => state.setField);
 
   function handleSetDec(dec: DecisionResponse) {

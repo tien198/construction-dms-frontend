@@ -15,9 +15,9 @@ export namespace KqKhLcnt {
     }
 
     if (!data || !data.result) {
-      // Notfound include Create BCKTKT form component
+      // Notfound include Create KQ_KH_LCNT form component
       return (
-        <NotfoundDecicion constructionId={constructionId} period="BCKTKT" />
+        <NotfoundDecicion constructionId={constructionId} period="KQ_KH_LCNT" />
       );
     }
 

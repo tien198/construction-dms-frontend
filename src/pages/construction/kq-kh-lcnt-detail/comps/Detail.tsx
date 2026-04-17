@@ -75,17 +75,13 @@ export function DetailComp({ data, storeApi }: Props) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Administrative document fields for bcktkt */}
         <div className="flex flex-col gap-6">
-          <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
-            <p className="mb-6 text-sm font-semibold text-foreground">
-              Tờ trình - Quyết định BCKTKT
-            </p>
-            <AdministrativeDocumentFields
-              type="bcktkt"
-              storeApi={storeApi}
-              disabled={disabled}
-              decision={data}
-            />
-          </div>
+          <AdministrativeDocumentFields
+            title="Tờ trình - Quyết định BCKTKT"
+            type="bcktkt"
+            storeApi={storeApi}
+            disabled={disabled}
+            decision={data}
+          />
         </div>
         {/* Right: Construction info snapshot */}
         <ConstructionInfoSnapshotForm storeApi={storeApi} disabled={disabled} />

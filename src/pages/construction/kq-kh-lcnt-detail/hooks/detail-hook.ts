@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { edit_bcktkt_store } from "../store/edit-store";
+import { edit_kq_kh_lcnt_store } from "../store/edit-store";
 import { useParams } from "react-router";
 import type { Decision } from "@/types";
 import { useStore } from "zustand";
@@ -19,13 +19,13 @@ export function useDetailFunc() {
     },
   });
 
-  const storeApi = edit_bcktkt_store;
+  const storeApi = edit_kq_kh_lcnt_store;
   const reset = useStore(storeApi, (state) => state.reset);
 
   useEffect(() => {
     if (data?.result) {
       const submission = decisionToSubmissionPost(data.result);
-      reset("BCKTKT", submission);
+      reset("KQ_KH_LCNT", submission);
     }
   }, [data]);
 

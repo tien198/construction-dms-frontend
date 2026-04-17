@@ -2,6 +2,7 @@ import { Period_Nav } from "@/pages/construction/comps/layout/period-nav";
 import { Outlet, type RouteObject } from "react-router";
 import { KhLcnt as KhLcntInit } from "@/pages/construction/kh-lcnt-init/ConstructionInitializer";
 import { KhLcnt } from "@/pages/construction/kh-lcnt-detail/Detail";
+import { KqKhLcnt } from "@/pages/construction/kq-kh-lcnt-detail/Detail";
 import { Bcktkt } from "@/pages/construction/bcktkt-detail/BcktktDetail";
 
 export const constructionRoute: RouteObject = {
@@ -29,6 +30,27 @@ export const constructionRoute: RouteObject = {
         import("../pages/construction/kh-lcnt-detail/action").then((m) =>
           m.editAction(args),
         ),
+    },
+
+    {
+      path: "kq-kh-lcnt/:con-id",
+      element: <KqKhLcnt.Detail />,
+      children: [
+        {
+          path: "tao-moi",
+          action: (args) =>
+            import("../pages/construction/kq-kh-lcnt-detail/actions/create-action").then(
+              (m) => m.createKqKhLcntAction(args),
+            ),
+        },
+        {
+          path: "chinh-sua",
+          action: (args) =>
+            import("../pages/construction/kq-kh-lcnt-detail/actions/edit-action").then(
+              (m) => m.editKqKhLcntAction(args),
+            ),
+        },
+      ],
     },
 
     {

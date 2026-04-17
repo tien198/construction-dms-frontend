@@ -3,7 +3,7 @@ import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { ConstructionInfoSnapshotForm } from "../../comps/ConstructionInfoSnapshotForm";
 import { AdministrativeDocumentFields } from "../../comps/AdministrativeDocumentFields";
 import { useFetcher, useParams } from "react-router";
-import { create_bcktkt_store } from "../store/create-store";
+import { create_kq_kh_lcnt_store } from "../store/create-store";
 import {
   FormLayout,
   FormHeader,
@@ -39,20 +39,23 @@ export function Create() {
     queryFn: () => getDecisionByPer(conId, "KH_LCNT"),
   });
 
-  const storeApi = create_bcktkt_store;
+  const storeApi = create_kq_kh_lcnt_store;
 
   useEffect(() => {
     if (data?.result) {
       storeApi
         .getState()
-        .reset("BCKTKT", decisionToSubmissionPost(data.result));
+        .reset("KQ_KH_LCNT", decisionToSubmissionPost(data.result));
     }
   }, [data?.result]);
 
   return (
     <FormLayout>
       <FormHeader>
-        <FormTitle title="Tạo BCKTKT" description="Nhập thông tin BCKTKT." />
+        <FormTitle
+          title="Tạo KQ KH LCNT"
+          description="Nhập thông tin KQ KH LCNT."
+        />
         <ActionBtns>
           <Button
             variant="outline"
@@ -63,7 +66,7 @@ export function Create() {
           </Button>
           <StickyRevealButton onClick={() => handleSubmit()}>
             <SaveIcon className="mr-2 h-4 w-4" />
-            Lưu BCKTKT
+            Lưu KQ KH LCNT
           </StickyRevealButton>
         </ActionBtns>
       </FormHeader>
@@ -71,12 +74,11 @@ export function Create() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Administrative document fields for bcktkt */}
         <div className="flex flex-col gap-6">
-          <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
-            <p className="mb-6 text-sm font-semibold text-foreground">
-              Tờ trình - Quyết định BCKTKT
-            </p>
-            <AdministrativeDocumentFields type="bcktkt" storeApi={storeApi} />
-          </div>
+          <AdministrativeDocumentFields
+            title="Tờ trình - Quyết định BCKTKT"
+            type="kq_kh_lcnt"
+            storeApi={storeApi}
+          />
         </div>
         {/* Right: Construction info snapshot */}
         <ConstructionInfoSnapshotForm storeApi={storeApi} />

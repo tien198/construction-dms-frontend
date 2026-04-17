@@ -3,11 +3,11 @@ export interface AdministrativeDocument {
   no: string;
   level: string;
   date: string;
-  pursuant_to_dec_tct: NestedDoc | null;
-  pursuant_to_dec_ttmn: NestedDoc | null;
+  pursuant_to_dec_tct: DecisionRef | null;
+  pursuant_to_dec_ttmn: DecisionRef | null;
 }
 
-export interface NestedDoc {
+export interface DecisionRef {
   id: string;
   no: string;
   date: string;

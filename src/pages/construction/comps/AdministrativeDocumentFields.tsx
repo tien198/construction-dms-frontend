@@ -6,11 +6,13 @@ import { useEffect } from "react";
 import type { Decision } from "@/types";
 
 type Props = {
-  type: "tv" | "tt" | "bcktkt";
+  title: string;
+  type: "kh_lcnt" | "kq_kh_lcnt" | "bcktkt";
   decision?: Decision;
 } & StoreApiInject;
 
 export function AdministrativeDocumentFields({
+  title,
   type,
   decision,
   storeApi,
@@ -19,7 +21,7 @@ export function AdministrativeDocumentFields({
   const sub = useStore(storeApi, (state) => state.submission);
   const setField = useStore(storeApi, (state) => state.setField);
 
-  const isTv = type === "tv";
+  const isKh = type === "kh_lcnt";
   const isBcktkt = type === "bcktkt";
 
   useEffect(() => {
@@ -27,58 +29,62 @@ export function AdministrativeDocumentFields({
   }, [type, setField]);
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-      <FormField
-        htmlFor="no"
-        label="Số T.Tr (No)"
-        placeholder="01/TTr-..."
-        value={sub.no}
-        onChange={(e) => setField("no", e.target.value)}
-        disabled={disabled}
-      />
+    <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
+      <p className="mb-6 text-sm font-semibold text-foreground">{title}</p>
 
-      <FormField
-        htmlFor="no"
-        label="Số QĐ (No)"
-        placeholder="01/QĐ-..."
-        value={sub.directlyDecision.no}
-        onChange={(e) => setField("directlyDecision.no", e.target.value)}
-        disabled={disabled}
-      />
-      <span />
-      <FormField
-        htmlFor="date"
-        label="Ngày ban hành (Date)"
-        type="date"
-        value={sub.date}
-        onChange={(e) => setField("date", e.target.value)}
-        disabled={disabled}
-      />
-
-      {(isTv || isBcktkt) && (
-        <DecisionSelectionDialog
-          storeApi={storeApi}
-          fieldName="pursuant_to_dec_tct_id"
-          htmlFor="dec-tct"
-          label="Căn cứ quyết định TCT"
-          placeholder="Quyết định TCT"
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <FormField
+          htmlFor="no"
+          label="Số T.Tr (No)"
+          placeholder="01/TTr-..."
+          value={sub.no}
+          onChange={(e) => setField("no", e.target.value)}
           disabled={disabled}
-          decision={decision?.pursuant_to_dec_tct}
-          isFindTCT
         />
-      )}
 
-      {isBcktkt && (
-        <DecisionSelectionDialog
-          storeApi={storeApi}
-          fieldName="pursuant_to_dec_ttmn_id"
-          htmlFor="dec-ttmn"
-          label="Căn cứ quyết định TTMN"
-          placeholder="Quyết định TTMN"
+        <FormField
+          htmlFor="no"
+          label="Số QĐ (No)"
+          placeholder="01/QĐ-..."
+          value={sub.directlyDecision.no}
+          onChange={(e) => setField("directlyDecision.no", e.target.value)}
           disabled={disabled}
-          decision={decision?.pursuant_to_dec_ttmn}
         />
-      )}
+        <span />
+        <FormField
+          htmlFor="date"
+          label="Ngày ban hành (Date)"
+          type="date"
+          value={sub.date}
+          onChange={(e) => setField("date", e.target.value)}
+          disabled={disabled}
+        />
+
+        {(isKh || isBcktkt) && (
+          <DecisionSelectionDialog
+            storeApi={storeApi}
+            fieldName="pursuant_to_dec_tct_id"
+            htmlFor="dec-tct"
+            label="Căn cứ quyết định TCT"
+            placeholder="Quyết định TCT"
+            disabled={disabled}
+            selectedDec={decision?.pursuant_to_dec_tct}
+            isFindTCT
+          />
+        )}
+
+        {isBcktkt && (
+          <DecisionSelectionDialog
+            storeApi={storeApi}
+            fieldName="pursuant_to_dec_ttmn_id"
+            htmlFor="dec-ttmn"
+            label="Căn cứ quyết định TTMN"
+            placeholder="Quyết định TTMN"
+            disabled={disabled}
+            selectedDec={decision?.pursuant_to_dec_ttmn}
+          />
+        )}
+      </div>
     </div>
   );
 }

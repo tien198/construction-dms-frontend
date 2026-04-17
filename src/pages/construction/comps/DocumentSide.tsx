@@ -2,42 +2,28 @@ import { AdministrativeDocumentFields } from "./AdministrativeDocumentFields";
 import type { StoreApiInject } from "../store-factory/store-api-inject.type";
 import type { Decision } from "@/types";
 
-type Props = { tvDec?: Decision; ttDec?: Decision } & StoreApiInject;
+type Props = { decision?: Decision } & StoreApiInject;
 
-export function DocumentSide({
-  storeApi,
-  disabled = false,
-  tvDec,
-  ttDec,
-}: Props) {
+export function DocumentSide({ storeApi, disabled = false, decision }: Props) {
   return (
     <div className="flex flex-col gap-6">
-      <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
-        <p className="mb-6 text-sm font-semibold text-foreground">
-          Tờ trình - Quyết định TV
-        </p>
+      {/* Submission's own AdministrativeDocument fields */}
+      <AdministrativeDocumentFields
+        title="KH LCNT"
+        type="kh_lcnt"
+        storeApi={storeApi}
+        disabled={disabled}
+        decision={decision}
+      />
 
-        {/* Submission's own AdministrativeDocument fields */}
-        <AdministrativeDocumentFields
-          type="tv"
-          storeApi={storeApi}
-          disabled={disabled}
-          decision={tvDec}
-        />
-      </div>
-      <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
-        <p className="mb-6 text-sm font-semibold text-foreground">
-          Tờ trình - Quyết định TT
-        </p>
-
-        {/* Submission's own AdministrativeDocument fields */}
-        <AdministrativeDocumentFields
-          type="tt"
-          storeApi={storeApi}
-          disabled={disabled}
-          decision={ttDec}
-        />
-      </div>
+      {/* Submission's own AdministrativeDocument fields */}
+      {/* <AdministrativeDocumentFields
+        title="Tờ trình - Quyết định TT"
+        type="tt"
+        storeApi={storeApi}
+        disabled={disabled}
+        decision={ttDec}
+      /> */}
     </div>
   );
 }

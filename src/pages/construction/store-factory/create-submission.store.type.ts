@@ -21,5 +21,5 @@ export interface CreateSubmissionStore {
 
   setConstructionInfor(value: ConstructionInfoSnapshotPost): void;
 
-  reset: (type: ConstructionPeriod, sub?: SubmissionPost) => void;
+  reset: (per: ConstructionPeriod, sub?: SubmissionPost) => void;
 }
