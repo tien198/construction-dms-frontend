@@ -10,16 +10,18 @@ import {
   FormTitle,
   ActionBtns,
 } from "../../comps/layout/form-layout";
-import { useIsCreating } from "../store/useIsCreating";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getDecisionByPer } from "../../api/get-decision-by-per.api";
 import { decisionToSubmissionPost } from "../../ultil/decision-to-submision-post";
 
-export function Create() {
+type Props = {
+  toggleIsCreating: () => void;
+};
+
+export function Create({ toggleIsCreating }: Props) {
   const fetcher = useFetcher();
-  const { toggleIsCreating } = useIsCreating();
   const handleSubmit = () => {
     toggleIsCreating();
     return fetcher.submit(null, {

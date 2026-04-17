@@ -1,10 +1,19 @@
 import { useDetailFunc } from "./hooks/detail-hook";
 import { NotfoundDecicion } from "../comps/layout/notfound-decision";
 import { DetailComp } from "./comps/Detail";
+import { createIsCreatingStore } from "../store-factory/is-creating-store";
+import { useStore } from "zustand";
+
+const isCreatingStore = createIsCreatingStore();
 
 export namespace Bcktkt {
   export function Detail() {
     const { data, isLoading, storeApi, constructionId } = useDetailFunc();
+
+    const { isCreating, toggleIsCreating } = useStore(
+      isCreatingStore,
+      (state) => state,
+    );
 
     if (isLoading) {
       return (
@@ -17,7 +26,12 @@ export namespace Bcktkt {
     if (!data || !data.result) {
       // Notfound include Create BCKTKT form component
       return (
-        <NotfoundDecicion constructionId={constructionId} period="BCKTKT" />
+        <NotfoundDecicion
+          isCreating={isCreating}
+          toggleIsCreating={toggleIsCreating}
+          constructionId={constructionId}
+          period="BCKTKT"
+        />
       );
     }
 

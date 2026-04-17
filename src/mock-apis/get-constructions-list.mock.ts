@@ -16,7 +16,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
             date: "2024-01-10",
           },
           pursuant_to_dec_ttmn: null,
-          period: "KH_TV_TT",
+          period: "KH_LCNT",
 
           submission: {
             id: "sub-1",
@@ -87,7 +87,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
             date: "2024-01-10",
           },
           pursuant_to_dec_ttmn: null,
-          period: "KH_TV_TT",
+          period: "KH_LCNT",
 
           submission: {
             id: "sub-1",
@@ -185,7 +185,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           date: "2024-03-15",
           pursuant_to_dec_tct: null,
           pursuant_to_dec_ttmn: null,
-          period: "KH_TV_TT",
+          period: "KH_LCNT",
 
           submission: {
             id: "sub-2",
@@ -247,7 +247,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           date: "2024-03-15",
           pursuant_to_dec_tct: null,
           pursuant_to_dec_ttmn: null,
-          period: "KH_TV_TT",
+          period: "KH_LCNT",
 
           submission: {
             id: "sub-3",

@@ -1,10 +1,19 @@
 import { useDetailFunc } from "./hooks/detail-hook";
 import { NotfoundDecicion } from "../comps/layout/notfound-decision";
 import { DetailComp } from "./comps/Detail";
+import { useStore } from "zustand";
+import { createIsCreatingStore } from "../store-factory/is-creating-store";
+
+const isCreatingStore = createIsCreatingStore();
 
 export namespace KqKhLcnt {
   export function Detail() {
     const { data, isLoading, storeApi, constructionId } = useDetailFunc();
+
+    const { isCreating, toggleIsCreating } = useStore(
+      isCreatingStore,
+      (state) => state,
+    );
 
     if (isLoading) {
       return (
@@ -17,7 +26,12 @@ export namespace KqKhLcnt {
     if (!data || !data.result) {
       // Notfound include Create KQ_KH_LCNT form component
       return (
-        <NotfoundDecicion constructionId={constructionId} period="KQ_KH_LCNT" />
+        <NotfoundDecicion
+          isCreating={isCreating}
+          toggleIsCreating={toggleIsCreating}
+          constructionId={constructionId}
+          period="KQ_KH_LCNT"
+        />
       );
     }
 
