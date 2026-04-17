@@ -11,7 +11,7 @@ export namespace KqKhLcnt {
   export function Detail() {
     const { data, isLoading, storeApi, constructionId } = useDetailFunc();
 
-    const { isCreating, toggleIsCreating } = useStore(
+    const { isCreate, toggleIsCreate } = useStore(
       isCreatingStore,
       (state) => state,
     );
@@ -28,11 +28,11 @@ export namespace KqKhLcnt {
       // Notfound include Create KQ_KH_LCNT form component
       return (
         <NotfoundDecicion
-          isCreating={isCreating}
-          toggleIsCreating={toggleIsCreating}
+          isCreating={isCreate}
+          toggleIsCreating={toggleIsCreate}
           constructionId={constructionId}
           period="KQ_KH_LCNT"
-          createComp={<Create toggleIsCreating={toggleIsCreating} />}
+          createComp={() => <Create toggleIsCreating={toggleIsCreate} />}
         />
       );
     }

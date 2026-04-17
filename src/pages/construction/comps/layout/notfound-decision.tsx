@@ -7,7 +7,7 @@ type Props = {
   constructionId?: string;
   period: ConstructionPeriod;
   // createComp is passed as HOC
-  createComp: React.ReactNode;
+  createComp: () => React.ReactNode;
 };
 
 export function NotfoundDecicion({
@@ -37,5 +37,5 @@ export function NotfoundDecicion({
       </div>
     );
 
-  return createComp;
+  return createComp();
 }

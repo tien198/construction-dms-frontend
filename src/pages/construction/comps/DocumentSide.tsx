@@ -9,7 +9,7 @@ export function DocumentSide({ storeApi, disabled = false, decision }: Props) {
     <div className="flex flex-col gap-6">
       {/* Submission's own AdministrativeDocument fields */}
       <AdministrativeDocumentFields
-        title="KH LCNT"
+        title="QĐ và TTr"
         type="kh_lcnt"
         storeApi={storeApi}
         disabled={disabled}

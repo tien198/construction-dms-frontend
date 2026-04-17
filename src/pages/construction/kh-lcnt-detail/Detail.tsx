@@ -36,7 +36,7 @@ export namespace KhLcnt {
     if (!data?.result)
       return (
         <div className="p-8 text-center text-muted-foreground w-full">
-          Không tồn tại công trình có id: {conId}
+          Không tồn tại công trình có id: <i>"{conId}"</i>
         </div>
       );
 
@@ -49,8 +49,8 @@ export namespace KhLcnt {
       <FormLayout>
         <FormHeader>
           <FormTitle
-            title="Chi tiết Tờ trình"
-            description="Thông tin chi tiết của tờ trình."
+            title="Kế hoạch LCNT"
+            description="Thông tin chi tiết của kế hoạch LCNT."
           />
           <ActionBtns>
             <Button variant="outline" onClick={isEditToggle}>

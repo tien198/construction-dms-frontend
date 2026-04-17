@@ -11,7 +11,7 @@ export namespace Bcktkt {
   export function Detail() {
     const { data, isLoading, storeApi, constructionId } = useDetailFunc();
 
-    const { isCreating, toggleIsCreating } = useStore(
+    const { isCreate, toggleIsCreate } = useStore(
       isCreatingStore,
       (state) => state,
     );
@@ -28,11 +28,11 @@ export namespace Bcktkt {
       // Notfound include Create BCKTKT form component
       return (
         <NotfoundDecicion
-          isCreating={isCreating}
-          toggleIsCreating={toggleIsCreating}
+          isCreating={isCreate}
+          toggleIsCreating={toggleIsCreate}
           constructionId={constructionId}
           period="BCKTKT"
-          createComp={<Create toggleIsCreating={toggleIsCreating} />}
+          createComp={() => <Create toggleIsCreating={toggleIsCreate} />}
         />
       );
     }

@@ -1,13 +1,14 @@
 import { createStore, type StoreApi } from "zustand";
 
 export type IsCreating = {
-  isCreating: boolean;
-  toggleIsCreating: () => void;
+  isCreate: boolean;
+  toggleIsCreate: (setTo?: boolean) => void;
 };
 
 export const createIsCreatingStore = (): StoreApi<IsCreating> => {
   return createStore<IsCreating>((set) => ({
-    isCreating: false,
-    toggleIsCreating: () => set((state) => ({ isCreating: !state.isCreating })),
+    isCreate: false,
+    toggleIsCreate: (setTo?: boolean) =>
+      set((state) => ({ isCreate: setTo ?? !state.isCreate })),
   }));
 };

@@ -9,21 +9,23 @@ import {
   ActionBtns,
 } from "../../comps/layout/form-layout";
 import { ConstructionInfoSnapshotForm } from "../../comps/ConstructionInfoSnapshotForm";
-import { useState } from "react";
 import { useSubmit } from "react-router";
-import type { StoreApi } from "zustand";
+import { useStore, type StoreApi } from "zustand";
 import type { CreateSubmissionStore } from "../../store-factory/create-submission.store.type";
 import type { Decision } from "@/types";
 import { decisionToSubmissionPost } from "../../ultil/decision-to-submision-post";
+import { createIsEditingStore } from "../../store-factory/create-is-editing-store";
 
 type Props = {
   storeApi: StoreApi<CreateSubmissionStore>;
   data: Decision;
 };
 
+const isEditingStore = createIsEditingStore();
+
 // Detail also Edit form if `isEdit` is true
 export function DetailComp({ data, storeApi }: Props) {
-  const [isEdit, setIsEdit] = useState(false);
+  const { isEdit, toggleIsEdit } = useStore(isEditingStore, (state) => state);
   const disabled = !isEdit;
 
   const isEditToggle = () => {
@@ -32,18 +34,18 @@ export function DetailComp({ data, storeApi }: Props) {
         "Hủy chỉnh sửa sẽ đưa tất cả giá trị về lại ban đầu",
       );
       if (isConfirm) {
-        setIsEdit((prev) => !prev);
+        toggleIsEdit();
         storeApi.getState().reset("BCKTKT", decisionToSubmissionPost(data));
       }
     } else {
-      setIsEdit((prev) => !prev);
+      toggleIsEdit(false);
     }
   };
 
   const submit = useSubmit();
 
   const handleSubmit = () => {
-    setIsEdit(false);
+    toggleIsEdit(false);
     submit(null, {
       method: "PUT",
       encType: "application/json",
