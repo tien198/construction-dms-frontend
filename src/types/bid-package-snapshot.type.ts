@@ -1,7 +1,7 @@
 export type BidPackageType = "TV" | "TT" | "TC";
 
 export interface BidPackageSnapshot {
-  id: string;
+  id?: string;
   type: BidPackageType;
   project_owner: string;
   name: string;

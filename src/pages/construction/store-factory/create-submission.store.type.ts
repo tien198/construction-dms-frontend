@@ -3,7 +3,7 @@ import type { SubmissionPost } from "../types/submission-post.type";
 import type { BidPackageSnapshotPost } from "../types/bid-package-snapshot-post.type";
 import type { ConstructionPeriod } from "@/types/construction.type";
 import type { BidPackageType } from "@/types/bid-package-snapshot.type";
-import type { ConstructionInfoSnapshotPost } from "../types/construction-infor-snapshot-post.type";
+import type { ConstructionInfoSnapshotPost } from "../types/construction-info-snapshot-post.type";
 
 export interface CreateSubmissionStore {
   // default submission is TV
@@ -19,7 +19,7 @@ export interface CreateSubmissionStore {
     value: any,
   ): void;
 
-  setConstructionInfor(value: ConstructionInfoSnapshotPost): void;
+  setConstructionInfo(value: ConstructionInfoSnapshotPost): void;
 
   reset: (per: ConstructionPeriod, sub?: SubmissionPost) => void;
 }

@@ -47,7 +47,9 @@ export function Create({ toggleIsCreating }: Props) {
     if (data?.result) {
       storeApi
         .getState()
-        .reset("KQ_KH_LCNT", decisionToSubmissionPost(data.result));
+        .setConstructionInfo(
+          decisionToSubmissionPost(data.result).construction_info_snapshot!,
+        );
     }
   }, [data?.result]);
 

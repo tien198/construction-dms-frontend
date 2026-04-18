@@ -47,8 +47,8 @@ export function Create({ toggleIsCreating }: Props) {
     if (data?.result) {
       storeApi
         .getState()
-        .setConstructionInfor(
-          decisionToSubmissionPost(data.result).construction_infor_snapshot!,
+        .setConstructionInfo(
+          decisionToSubmissionPost(data.result).construction_info_snapshot!,
         );
     }
   }, [data?.result]);

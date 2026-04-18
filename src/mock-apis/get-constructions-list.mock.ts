@@ -29,9 +29,9 @@ export async function getConstructions_mock(): Promise<Construction[]> {
               date: "2024-01-10",
             },
             pursuant_to_dec_ttmn: null,
-            is_change_construction_infor: false,
+            is_changed_construction_info: false,
 
-            construction_infor_snapshot: {
+            construction_info_snapshot: {
               id: "1",
               name: "Sửa chữa Trường Tiểu học A",
               source_of_funds: "Ngân sách tỉnh",
@@ -100,7 +100,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
               date: "2024-01-10",
             },
             pursuant_to_dec_ttmn: null,
-            is_change_construction_infor: false,
+            is_changed_construction_info: false,
           },
         },
         {
@@ -127,8 +127,8 @@ export async function getConstructions_mock(): Promise<Construction[]> {
               date: "2024-01-10",
             },
             pursuant_to_dec_ttmn: null,
-            is_change_construction_infor: false,
-            construction_infor_snapshot: {
+            is_changed_construction_info: false,
+            construction_info_snapshot: {
               id: "1",
               name: "Sửa chữa Trường Tiểu học A",
               source_of_funds: "Ngân sách tỉnh",
@@ -192,11 +192,11 @@ export async function getConstructions_mock(): Promise<Construction[]> {
             no: "SUB-002",
             level: "Sở",
             date: "2024-03-10",
-            is_change_construction_infor: false,
+            is_changed_construction_info: false,
             pursuant_to_dec_tct: null,
             pursuant_to_dec_ttmn: null,
 
-            construction_infor_snapshot: {
+            construction_info_snapshot: {
               id: "2",
               name: "Nâng cấp đường nội thị",
               source_of_funds: "Ngân sách thành phố",
@@ -254,11 +254,11 @@ export async function getConstructions_mock(): Promise<Construction[]> {
             no: "SUB-003",
             level: "Sở",
             date: "2024-03-10",
-            is_change_construction_infor: false,
+            is_changed_construction_info: false,
             pursuant_to_dec_tct: null,
             pursuant_to_dec_ttmn: null,
 
-            construction_infor_snapshot: {
+            construction_info_snapshot: {
               id: "2",
               name: "Nâng cấp đường nội thị",
               source_of_funds: "Ngân sách thành phố",

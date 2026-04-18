@@ -5,7 +5,7 @@ import type { CreateSubmissionStore } from "./create-submission.store.type";
 import type { ConstructionPeriod } from "@/types/construction.type";
 import type { BidPackageSnapshotPost } from "../types/bid-package-snapshot-post.type";
 import type { BidPackageType } from "@/types/bid-package-snapshot.type";
-import type { ConstructionInfoSnapshotPost } from "../types/construction-infor-snapshot-post.type";
+import type { ConstructionInfoSnapshotPost } from "../types/construction-info-snapshot-post.type";
 
 import { initialStateGeneration } from "./initial-state";
 
@@ -33,7 +33,7 @@ export function submission_store_factory(
     ) {
       set((state) => {
         const shallowStore = { ...state };
-        const conInfor = shallowStore.submission.construction_infor_snapshot;
+        const conInfor = shallowStore.submission.construction_info_snapshot;
         const bpIndex = conInfor!.bid_package_snapshots.findIndex(
           (bp) => bp.type === type,
         );
@@ -49,12 +49,12 @@ export function submission_store_factory(
       });
     },
 
-    setConstructionInfor(value: ConstructionInfoSnapshotPost) {
+    setConstructionInfo(value: ConstructionInfoSnapshotPost) {
       set((state) => ({
         ...state,
         submission: {
           ...state.submission,
-          construction_infor_snapshot: value,
+          construction_info_snapshot: value,
         },
       }));
     },

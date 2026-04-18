@@ -16,7 +16,7 @@ export function BidPackageSideDrawer({ storeApi, disabled = false }: Props) {
   const bidPackagesList = useStore(
     storeApi,
     (state) =>
-      state.submission.construction_infor_snapshot!.bid_package_snapshots,
+      state.submission.construction_info_snapshot!.bid_package_snapshots,
   );
 
   return (
@@ -33,7 +33,7 @@ export function BidPackageSideDrawer({ storeApi, disabled = false }: Props) {
             <DrawerTitle className="text-primary">Gói thầu</DrawerTitle>
           </DrawerHeader>
           <div className="grid grid-cols-2 gap-12 p-4 pb-14">
-            {bidPackagesList.map((_, id) => (
+            {bidPackagesList?.map((_, id) => (
               <BidPackageSnapshotForm
                 key={id}
                 index={id}

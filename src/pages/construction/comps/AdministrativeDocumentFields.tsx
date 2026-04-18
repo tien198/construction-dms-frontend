@@ -25,7 +25,7 @@ export function AdministrativeDocumentFields({
   const isBcktkt = type === "bcktkt";
 
   useEffect(() => {
-    setField("directlyDecision.period", type.toUpperCase());
+    setField("directly_decision.period", type.toUpperCase());
   }, [type, setField]);
 
   return (
@@ -46,8 +46,8 @@ export function AdministrativeDocumentFields({
           htmlFor="no"
           label="Số QĐ (No)"
           placeholder="01/QĐ-..."
-          value={sub.directlyDecision.no}
-          onChange={(e) => setField("directlyDecision.no", e.target.value)}
+          value={sub.directly_decision.no}
+          onChange={(e) => setField("directly_decision.no", e.target.value)}
           disabled={disabled}
         />
         <span />

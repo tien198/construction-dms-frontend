@@ -8,8 +8,8 @@ function initialStateGeneration(period: ConstructionPeriod): SubmissionPost {
     date: "",
     pursuant_to_dec_tct_id: null,
     pursuant_to_dec_ttmn_id: null,
-    is_change_construction_infor: false,
-    construction_infor_snapshot: {
+    is_changed_construction_info: false,
+    construction_info_snapshot: {
       name: "",
       source_of_funds: "",
       impl_start_date: "",
@@ -47,7 +47,7 @@ function initialStateGeneration(period: ConstructionPeriod): SubmissionPost {
         },
       ],
     },
-    directlyDecision: { no: "", period: period },
+    directly_decision: { no: "", period: period },
   };
 }
 

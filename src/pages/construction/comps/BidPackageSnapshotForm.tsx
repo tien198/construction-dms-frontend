@@ -19,9 +19,7 @@ export function BidPackageSnapshotForm({
   const bp = useStore(
     storeApi,
     (state) =>
-      state.submission.construction_infor_snapshot!.bid_package_snapshots[
-        index
-      ],
+      state.submission.construction_info_snapshot!.bid_package_snapshots[index],
   );
 
   const setBidPackageField = useStore(

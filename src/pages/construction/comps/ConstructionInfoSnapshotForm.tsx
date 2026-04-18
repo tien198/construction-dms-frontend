@@ -13,7 +13,7 @@ export function ConstructionInfoSnapshotForm({
 }: Props) {
   const infor = useStore(
     storeApi,
-    (state) => state.submission.construction_infor_snapshot!,
+    (state) => state.submission.construction_info_snapshot!,
   );
 
   const setField = useStore(storeApi, (state) => state.setField);
@@ -32,7 +32,7 @@ export function ConstructionInfoSnapshotForm({
           fullWidth
           value={infor.name}
           onChange={(e) =>
-            setField("construction_infor_snapshot.name", e.target.value)
+            setField("construction_info_snapshot.name", e.target.value)
           }
           disabled={disabled}
         />
@@ -46,7 +46,7 @@ export function ConstructionInfoSnapshotForm({
           value={infor.est_cost}
           onChange={(e) =>
             setField(
-              "construction_infor_snapshot.est_cost",
+              "construction_info_snapshot.est_cost",
               Number(e.target.value),
             )
           }
@@ -60,7 +60,7 @@ export function ConstructionInfoSnapshotForm({
           placeholder="Một tỷ đồng"
           value={infor.est_cost_str}
           onChange={(e) =>
-            setField("construction_infor_snapshot.est_cost_str", e.target.value)
+            setField("construction_info_snapshot.est_cost_str", e.target.value)
           }
           disabled={disabled}
         />
@@ -105,7 +105,7 @@ export function ConstructionInfoSnapshotForm({
           value={infor.source_of_funds}
           onChange={(e) =>
             setField(
-              "construction_infor_snapshot.source_of_funds",
+              "construction_info_snapshot.source_of_funds",
               e.target.value,
             )
           }
@@ -122,7 +122,7 @@ export function ConstructionInfoSnapshotForm({
           value={infor.impl_start_date}
           onChange={(e) =>
             setField(
-              "construction_infor_snapshot.impl_start_date",
+              "construction_info_snapshot.impl_start_date",
               e.target.value,
             )
           }
@@ -136,10 +136,7 @@ export function ConstructionInfoSnapshotForm({
           type="date"
           value={infor.impl_end_date}
           onChange={(e) =>
-            setField(
-              "construction_infor_snapshot.impl_end_date",
-              e.target.value,
-            )
+            setField("construction_info_snapshot.impl_end_date", e.target.value)
           }
           disabled={disabled}
         />
@@ -153,7 +150,7 @@ export function ConstructionInfoSnapshotForm({
           value={infor.existing_condition_of_the_structure}
           onChange={(e) =>
             setField(
-              "construction_infor_snapshot.existing_condition_of_the_structure",
+              "construction_info_snapshot.existing_condition_of_the_structure",
               e.target.value,
             )
           }
@@ -169,7 +166,7 @@ export function ConstructionInfoSnapshotForm({
           fullWidth
           value={infor.repair_scope}
           onChange={(e) =>
-            setField("construction_infor_snapshot.repair_scope", e.target.value)
+            setField("construction_info_snapshot.repair_scope", e.target.value)
           }
           disabled={disabled}
         />
