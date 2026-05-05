@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { edit_kq_kh_lcnt_store } from "../store/edit-store";
 import { useParams } from "react-router";
@@ -12,11 +12,15 @@ export function useDetailFunc() {
   const params = useParams();
   const constructionId = params["con-id"] as string;
 
-  const { data, isLoading } = useQuery<ResResult<Decision | undefined>>({
+  const hasFetched = useRef(false);
+  const { data, isLoading, isFetched } = useQuery<
+    ResResult<Decision | undefined>
+  >({
     queryKey: ["kq-kh-lcnt", constructionId],
     queryFn: async () => {
       return await getDecisionByPer(constructionId, "KQ_KH_LCNT");
     },
+    enabled: !hasFetched.current,
   });
 
   const storeApi = edit_kq_kh_lcnt_store;
@@ -28,6 +32,10 @@ export function useDetailFunc() {
       reset("KQ_KH_LCNT", submission);
     }
   }, [data]);
+
+  if (isFetched) {
+    hasFetched.current = true;
+  }
 
   return {
     data,

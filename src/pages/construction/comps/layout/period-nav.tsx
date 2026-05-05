@@ -1,4 +1,4 @@
-import { NavLink, useParams } from "react-router";
+import { NavLink, useLocation, useParams } from "react-router";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -29,6 +29,7 @@ export function Period_Nav() {
       title: "Báo cáo kinh tế kỹ thuật",
     },
   ];
+
   return (
     <div>
       <NavLink
@@ -55,13 +56,15 @@ export function Period_Nav() {
 }
 
 function Item({ href, title }: Link) {
+  const location = useLocation();
+  const isActive = location.pathname.includes(href);
   return (
     <NavigationMenuItem>
       {/* <NavigationMenuLink asChild> */}
       <NavLink
         to={href}
-        className={(state) =>
-          (state.isActive ? "bg-primary text-white" : "bg-white text-primary") +
+        className={
+          (isActive ? "bg-primary text-white" : "bg-white text-primary") +
           " rounded-md py-1 px-4 outline-2 outline-primary"
         }
         end

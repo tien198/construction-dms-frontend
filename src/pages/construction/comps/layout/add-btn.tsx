@@ -22,7 +22,7 @@ type Props = {
 
 export function AddButton({ title, onClick, border, className }: Props) {
   return (
-    <div
+    <button
       onClick={onClick}
       className={cn(
         "border border-dashed rounded-lg flex justify-center items-center gap-4 text-accent bg-accent-foreground/45 hover:bg-primary/20 cursor-pointer",
@@ -33,6 +33,6 @@ export function AddButton({ title, onClick, border, className }: Props) {
         <PlusIcon size={35} />
       </div>
       {title}
-    </div>
+    </button>
   );
 }

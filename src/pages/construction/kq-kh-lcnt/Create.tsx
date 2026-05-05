@@ -1,29 +1,24 @@
 import { SaveIcon } from "lucide-react";
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
-import { ConstructionInfoSnapshotForm } from "../../comps/ConstructionInfoSnapshotForm";
-import { AdministrativeDocumentFields } from "../../comps/AdministrativeDocumentFields";
+import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotForm";
+import { AdministrativeDocumentFields } from "../comps/AdministrativeDocumentFields";
 import { useFetcher, useParams } from "react-router";
-import { create_kq_kh_lcnt_store } from "../store/create-store";
+import { create_kq_kh_lcnt_store } from "./store/create-store";
 import {
   FormLayout,
   FormHeader,
   FormTitle,
   ActionBtns,
-} from "../../comps/layout/form-layout";
+} from "../comps/layout/form-layout";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getDecisionByPer } from "../../api/get-decision-by-per.api";
-import { decisionToSubmissionPost } from "../../ultil/decision-to-submision-post";
+import { getDecisionByPer } from "../api/get-decision-by-per.api";
+import { decisionToSubmissionPost } from "../ultil/decision-to-submision-post";
 
-type Props = {
-  toggleIsCreating: () => void;
-};
-
-export function Create({ toggleIsCreating }: Props) {
+export function Create() {
   const fetcher = useFetcher();
   const handleSubmit = () => {
-    toggleIsCreating();
     return fetcher.submit(null, {
       method: "post",
       encType: "application/json",
@@ -32,7 +27,7 @@ export function Create({ toggleIsCreating }: Props) {
   };
 
   const handleCancel = () => {
-    toggleIsCreating();
+    //
   };
 
   const conId = useParams()["con-id"] as string;
