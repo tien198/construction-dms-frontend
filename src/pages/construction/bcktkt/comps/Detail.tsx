@@ -14,38 +14,41 @@ import { useStore, type StoreApi } from "zustand";
 import type { CreateSubmissionStore } from "../../store-factory/create-submission.store.type";
 import type { Decision } from "@/types";
 import { decisionToSubmissionPost } from "../../ultil/decision-to-submision-post";
-import { createIsEditingStore } from "../../store-factory/create-is-editing-store";
+import { isEditingStoreFactory } from "../../store-factory/is-editing-store-factory";
 
 type Props = {
   storeApi: StoreApi<CreateSubmissionStore>;
   data: Decision;
 };
 
-const isEditingStore = createIsEditingStore();
+const isEditingStore = isEditingStoreFactory();
 
 // Detail also Edit form if `isEdit` is true
 export function DetailComp({ data, storeApi }: Props) {
-  const { isEdit, toggleIsEdit } = useStore(isEditingStore, (state) => state);
-  const disabled = !isEdit;
+  const { isEditing, toggleIsEditing } = useStore(
+    isEditingStore,
+    (state) => state,
+  );
+  const disabled = !isEditing;
 
   const isEditToggle = () => {
-    if (isEdit) {
+    if (isEditing) {
       const isConfirm = confirm(
         "Hủy chỉnh sửa sẽ đưa tất cả giá trị về lại ban đầu",
       );
       if (isConfirm) {
-        toggleIsEdit();
+        toggleIsEditing();
         storeApi.getState().reset("BCKTKT", decisionToSubmissionPost(data));
       }
     } else {
-      toggleIsEdit(false);
+      toggleIsEditing(false);
     }
   };
 
   const submit = useSubmit();
 
   const handleSubmit = () => {
-    toggleIsEdit(false);
+    toggleIsEditing(false);
     submit(null, {
       method: "PUT",
       encType: "application/json",
@@ -65,7 +68,7 @@ export function DetailComp({ data, storeApi }: Props) {
             <EditIcon className="mr-2 h-4 w-4" />
             {disabled ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
           </Button>
-          {isEdit && (
+          {isEditing && (
             <StickyRevealButton onClick={handleSubmit}>
               <SaveIcon className="mr-2 h-4 w-4" />
               Lưu BCKTKT
