@@ -2,13 +2,13 @@ import { useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { edit_kq_kh_lcnt_store } from "../store/edit-store";
 import { useParams } from "react-router";
-import type { Decision } from "@/types";
+import type { Decision } from "@/types/domain";
 import { useStore } from "zustand";
-import { decisionToSubmissionPost } from "../../ultil/decision-to-submision-post";
-import { getDecisionByPer } from "../../api/get-decision-by-per.api";
+import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
+import { getDecisionByPer } from "../../../../api/get-decision-by-per.api";
 import type { ResResult } from "@/lib/type/response-result.tyoe";
 
-export function useDetailFunc() {
+export function useDetail() {
   const params = useParams();
   const constructionId = params["con-id"] as string;
 
@@ -21,6 +21,7 @@ export function useDetailFunc() {
       return await getDecisionByPer(constructionId, "KQ_KH_LCNT");
     },
     enabled: !hasFetched.current,
+    retry: false,
   });
 
   const storeApi = edit_kq_kh_lcnt_store;

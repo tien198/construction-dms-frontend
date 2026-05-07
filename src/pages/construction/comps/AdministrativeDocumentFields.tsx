@@ -1,9 +1,9 @@
 import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
 import DecisionSelectionDialog from "./decision-selection-dialog";
-import type { StoreApiInject } from "../store-factory/store-api-inject.type";
+import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 import { useEffect } from "react";
-import type { Decision } from "@/types";
+import type { Decision } from "@/types/domain";
 
 type Props = {
   title: string;
@@ -34,7 +34,7 @@ export function AdministrativeDocumentFields({
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
-          htmlFor="no"
+          id="no"
           label="Số T.Tr (No)"
           placeholder="01/TTr-..."
           value={sub.no}
@@ -43,7 +43,7 @@ export function AdministrativeDocumentFields({
         />
 
         <FormField
-          htmlFor="no"
+          id="no"
           label="Số QĐ (No)"
           placeholder="01/QĐ-..."
           value={sub.directly_decision.no}
@@ -52,7 +52,7 @@ export function AdministrativeDocumentFields({
         />
         <span />
         <FormField
-          htmlFor="date"
+          id="date"
           label="Ngày ban hành (Date)"
           type="date"
           value={sub.date}
@@ -64,7 +64,7 @@ export function AdministrativeDocumentFields({
           <DecisionSelectionDialog
             storeApi={storeApi}
             fieldName="pursuant_to_dec_tct_id"
-            htmlFor="dec-tct"
+            id="dec-tct"
             label="Căn cứ quyết định TCT"
             placeholder="Quyết định TCT"
             disabled={disabled}
@@ -77,7 +77,7 @@ export function AdministrativeDocumentFields({
           <DecisionSelectionDialog
             storeApi={storeApi}
             fieldName="pursuant_to_dec_ttmn_id"
-            htmlFor="dec-ttmn"
+            id="dec-ttmn"
             label="Căn cứ quyết định TTMN"
             placeholder="Quyết định TTMN"
             disabled={disabled}

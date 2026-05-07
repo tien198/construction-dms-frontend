@@ -1,11 +1,17 @@
-import type { Decision } from "@/types";
-import type { SubmissionPost } from "../types/submission-post.type";
-import type { ConstructionInfoSnapshotPost } from "../types/construction-info-snapshot-post.type";
+import type { Decision, Submission } from "@/types/domain";
+import type { SubmissionPost } from "@/types/submission-post/submission-post.type";
+import type { ConstructionInfoSnapshotPost } from "@/types/submission-post/construction-info-snapshot-post.type";
 
-export function decisionToSubmissionPost(decision: Decision): SubmissionPost {
-  const submission = decision.submission;
+/**
+ * @param specificSubmission passed when existing many Submissions in the Decision.
+ */
+export function decisionToSubmissionPost(
+  decision: Decision,
+  specificSubmission?: Submission,
+): SubmissionPost {
+  const submission = specificSubmission ?? decision.submissions[0];
 
-  const constructionInfor: ConstructionInfoSnapshotPost | undefined =
+  const constructionInfor: ConstructionInfoSnapshotPost | null =
     submission.construction_info_snapshot
       ? {
           id: submission.id ?? "",
@@ -21,19 +27,19 @@ export function decisionToSubmissionPost(decision: Decision): SubmissionPost {
           repair_scope: submission.construction_info_snapshot.repair_scope,
           est_cost: submission.construction_info_snapshot.est_cost,
           est_cost_str: submission.construction_info_snapshot.est_cost_str,
-
-          bid_package_snapshots:
-            submission.construction_info_snapshot.bid_package_snapshots ?? [],
         }
-      : undefined;
+      : null;
+
+  const bidPackages = submission.bid_package_snapshots ?? null;
 
   return {
     id: submission.id ?? "",
     no: submission.no,
     level: submission.level,
     date: submission.date,
-    is_changed_construction_info: submission.is_changed_construction_info,
+
     construction_info_snapshot: constructionInfor,
+    bid_package_snapshots: bidPackages,
 
     directly_decision: {
       no: decision.no,

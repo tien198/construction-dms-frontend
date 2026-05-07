@@ -3,7 +3,7 @@ import { FormText } from "@/components/form-ui/form-text";
 import { FormField } from "@/components/form-ui/form-field";
 import { BidPackageSideDrawer } from "./BidPackageDrawer";
 import { useStore } from "zustand";
-import type { StoreApiInject } from "../store-factory/store-api-inject.type";
+import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 
 type Props = StoreApiInject;
 
@@ -26,7 +26,7 @@ export function ConstructionInfoSnapshotForm({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Name */}
         <FormField
-          htmlFor="name"
+          id="name"
           label="Tên công trình"
           placeholder="Tên công trình"
           fullWidth
@@ -39,7 +39,7 @@ export function ConstructionInfoSnapshotForm({
 
         {/* est_cost */}
         <FormField
-          htmlFor="est_cost"
+          id="est_cost"
           label="Chi phí sửa chữa dự kiến (số)"
           type="number"
           placeholder="0"
@@ -55,7 +55,7 @@ export function ConstructionInfoSnapshotForm({
 
         {/* est_cost string */}
         <FormField
-          htmlFor="est_cost-str"
+          id="est_cost-str"
           label="Chi phí sửa chữa dự kiến (chữ)"
           placeholder="Một tỷ đồng"
           value={infor.est_cost_str}
@@ -68,7 +68,7 @@ export function ConstructionInfoSnapshotForm({
         {/* Estimated cost */}
         {/* 
         <FormField
-          htmlFor="est-cost"
+          id="est-cost"
           label="Dự toán (số)"
           type="number"
           placeholder="0"
@@ -86,7 +86,7 @@ export function ConstructionInfoSnapshotForm({
         {/* Estimated cost string */}
         {/* 
         <FormField
-          htmlFor="est-cost-str"
+          id="est-cost-str"
           label="Dự toán (chữ)"
           placeholder="Một tỷ đồng"
           value={infor.est_cost_str}
@@ -99,7 +99,7 @@ export function ConstructionInfoSnapshotForm({
 
         {/* Source of funds */}
         <FormField
-          htmlFor="source"
+          id="source"
           label="Nguồn vốn"
           placeholder="2026"
           value={infor.source_of_funds}
@@ -116,7 +116,7 @@ export function ConstructionInfoSnapshotForm({
 
         {/* Start date */}
         <FormField
-          htmlFor="start-date"
+          id="start-date"
           label="Ngày bắt đầu thực hiện"
           type="date"
           value={infor.impl_start_date}
@@ -131,7 +131,7 @@ export function ConstructionInfoSnapshotForm({
 
         {/* End date */}
         <FormField
-          htmlFor="end-date"
+          id="end-date"
           label="Ngày kết thúc thực hiện"
           type="date"
           value={infor.impl_end_date}
@@ -143,7 +143,7 @@ export function ConstructionInfoSnapshotForm({
 
         {/* Existing condition */}
         <FormText
-          htmlFor="existing-condition"
+          id="existing-condition"
           label="Hiện trạng công trình"
           placeholder="Mô tả hiện trạng..."
           fullWidth
@@ -159,7 +159,7 @@ export function ConstructionInfoSnapshotForm({
 
         {/* Repair scope */}
         <FormText
-          htmlFor="repair-scope"
+          id="repair-scope"
           label="Phạm vi sửa chữa"
           className="bg-accent"
           placeholder="Phạm vi công việc sửa chữa..."

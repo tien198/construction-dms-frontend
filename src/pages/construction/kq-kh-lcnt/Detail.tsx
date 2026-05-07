@@ -1,14 +1,14 @@
-import { useDetailFunc } from "./hooks/detail-hook";
+import { useDetail } from "./hooks/detail-hook";
 import { NotfoundDecicion } from "../comps/layout/notfound-decision";
-import { DetailComp } from "./comps/Detail";
-import { isCreatingStoreFactory } from "../store-factory/is-creating-store-factory";
+import { DetailSection } from "./sections/detail-section";
+import { isCreatingStoreFactory } from "../../../store-factory/is-creating-store-factory";
 import { useStore } from "zustand";
 import { Navigate } from "react-router";
 
 const isCreatingStore = isCreatingStoreFactory(false);
 
 export function Detail() {
-  const { data, isLoading, storeApi, constructionId } = useDetailFunc();
+  const { data, isLoading, storeApi, constructionId } = useDetail();
   const { isCreating, toggleIsCreating } = useStore(
     isCreatingStore,
     (state) => state,
@@ -37,5 +37,5 @@ export function Detail() {
   }
 
   // Detail also Edit form if `isEdit` is true
-  return <DetailComp storeApi={storeApi} data={data.result} />;
+  return <DetailSection storeApi={storeApi} data={data.result} />;
 }

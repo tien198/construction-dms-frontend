@@ -1,6 +1,6 @@
 import { AdministrativeDocumentFields } from "./AdministrativeDocumentFields";
-import type { StoreApiInject } from "../store-factory/store-api-inject.type";
-import type { Decision } from "@/types";
+import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
+import type { Decision } from "@/types/domain";
 
 type Props = { decision?: Decision } & StoreApiInject;
 

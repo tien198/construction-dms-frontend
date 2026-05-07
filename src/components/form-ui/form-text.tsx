@@ -4,7 +4,7 @@ import type { ComponentProps } from "react";
 
 export type FormTextProps = {
   /** The id to link the label's htmlFor to the textarea */
-  htmlFor: string;
+  id: string;
   /** Label text */
   label: string;
   /** When true adds `sm:col-span-2` so the field spans full width on ≥sm grids */
@@ -16,11 +16,11 @@ export type FormTextProps = {
  *
  * Usage:
  * ```tsx
- * <FormText htmlFor="my-textarea" label="Mô tả" placeholder="…" value={v} onChange={…} />
+ * <FormText id="my-textarea" label="Mô tả" placeholder="…" value={v} onChange={…} />
  * ```
  */
 export function FormText({
-  htmlFor,
+  id,
   label,
   fullWidth = false,
   disabled = false,
@@ -30,9 +30,9 @@ export function FormText({
     <div
       className={`flex flex-col gap-1.5${fullWidth ? " sm:col-span-2" : ""}`}
     >
-      <Label htmlFor={htmlFor}>{label}</Label>
+      <Label htmlFor={id}>{label}</Label>
       <Textarea
-        id={htmlFor}
+        id={id}
         disabled={disabled}
         {...props}
         className={`bg-card ${disabled ? " text-black disabled:opacity-100" : "border-primary outline-2 outline-primary"}${props.className ? ` ${props.className}` : ""}`}

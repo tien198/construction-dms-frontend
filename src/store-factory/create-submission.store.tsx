@@ -2,10 +2,11 @@ import { createStore, type StoreApi } from "zustand";
 import { setValueByPath } from "@/lib/setValByPath";
 
 import type { CreateSubmissionStore } from "./create-submission.store.type";
-import type { ConstructionPeriod } from "@/types/construction.type";
-import type { BidPackageSnapshotPost } from "../types/bid-package-snapshot-post.type";
-import type { BidPackageType } from "@/types/bid-package-snapshot.type";
-import type { ConstructionInfoSnapshotPost } from "../types/construction-info-snapshot-post.type";
+import type { ConstructionPeriod } from "@/types/domain/construction.type";
+import type { BidPackageSnapshotPost } from "@/types/submission-post/bid-package-snapshot-post.type";
+import type { BidPackageType } from "@/types/domain/bid-package-snapshot.type";
+import type { ConstructionInfoSnapshotPost } from "@/types/submission-post/construction-info-snapshot-post.type";
+import type { SubmissionPost } from "@/types/submission-post/submission-post.type";
 
 import { initialStateGeneration } from "./initial-state";
 
@@ -14,7 +15,7 @@ export function submission_store_factory(
 ): StoreApi<CreateSubmissionStore> {
   return createStore<CreateSubmissionStore>((set) => ({
     // default submission is TV
-    submission: initialStateGeneration(period),
+    submission: initialStateGeneration(period) as SubmissionPost,
 
     setField: (field, value) =>
       set((state) => {
@@ -33,18 +34,19 @@ export function submission_store_factory(
     ) {
       set((state) => {
         const shallowStore = { ...state };
-        const conInfor = shallowStore.submission.construction_info_snapshot;
-        const bpIndex = conInfor!.bid_package_snapshots.findIndex(
-          (bp) => bp.type === type,
-        );
+        const bidPackages = shallowStore.submission?.bid_package_snapshots;
+        if (!bidPackages) {
+          return state;
+        }
+        const bpIndex = bidPackages.findIndex((bp) => bp.type === type);
         if (bpIndex < 0) {
           return state;
         }
-        const bp = conInfor!.bid_package_snapshots[bpIndex];
+        const bp = bidPackages[bpIndex];
         const bpShallow = { ...bp };
         bpShallow[field] = value;
 
-        conInfor!.bid_package_snapshots[bpIndex] = bpShallow;
+        bidPackages[bpIndex] = bpShallow;
         return shallowStore;
       });
     },

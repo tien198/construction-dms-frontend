@@ -3,7 +3,7 @@ import { Input } from "../ui/input";
 
 export type FormFieldProps = {
   /** The id to link the label's htmlFor to the form control */
-  htmlFor: string;
+  id: string;
   /** Label text */
   label: string;
   /** When true adds `sm:col-span-2` so the field spans full width on ≥sm grids */
@@ -22,7 +22,7 @@ export type FormFieldProps = {
  * ```
  */
 export function FormField({
-  htmlFor,
+  id,
   label,
   fullWidth = false,
   disabled = false,
@@ -32,9 +32,9 @@ export function FormField({
     <div
       className={`flex flex-col gap-1.5${fullWidth ? " sm:col-span-2" : ""}`}
     >
-      <Label htmlFor={htmlFor}>{label}</Label>
+      <Label htmlFor={id}>{label}</Label>
       <Input
-        id={htmlFor}
+        id={id}
         disabled={disabled}
         {...props}
         className={`bg-card${disabled ? " text-black disabled:opacity-100" : " border-primary outline-2 outline-primary"}${props.className ? ` ${props.className}` : ""}`}

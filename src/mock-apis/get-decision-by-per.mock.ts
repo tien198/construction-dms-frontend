@@ -1,4 +1,4 @@
-import type { Decision } from "@/types";
+import type { Decision } from "@/types/domain";
 import { getConstructionById_mock } from "./get-construction-by-id";
 
 export async function getDecisionByPer_mock(

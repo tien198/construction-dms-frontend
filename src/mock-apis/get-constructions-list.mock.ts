@@ -1,4 +1,4 @@
-import type { Construction } from "@/types";
+import type { Construction } from "@/types/domain";
 
 export async function getConstructions_mock(): Promise<Construction[]> {
   return [
@@ -18,31 +18,31 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           pursuant_to_dec_ttmn: null,
           period: "KH_LCNT",
 
-          submission: {
-            id: "sub-1",
-            no: "SUB-001",
-            level: "Sở",
-            date: "2024-01-09",
-            pursuant_to_dec_tct: {
-              id: "dec-0",
-              no: "001/QĐ-TCT",
-              date: "2024-01-10",
-            },
-            pursuant_to_dec_ttmn: null,
-            is_changed_construction_info: false,
+          submissions: [
+            {
+              id: "sub-1",
+              no: "SUB-001",
+              level: "Sở",
+              date: "2024-01-09",
+              pursuant_to_dec_tct: {
+                id: "dec-0",
+                no: "001/QĐ-TCT",
+                date: "2024-01-10",
+              },
+              pursuant_to_dec_ttmn: null,
 
-            construction_info_snapshot: {
-              id: "1",
-              name: "Sửa chữa Trường Tiểu học A",
-              source_of_funds: "Ngân sách tỉnh",
-              impl_start_date: "2024-02-01",
-              impl_end_date: "2024-08-01",
-              existing_condition_of_the_structure: "Công trình xuống cấp",
-              repair_scope:
-                "Sửa mái và tường, Sửa mái và tường, Sửa mái và tường,  Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường,",
-              est_cost: 1900000000,
-              est_cost_str: "1.9 tỷ",
-
+              construction_info_snapshot: {
+                id: "1",
+                name: "Sửa chữa Trường Tiểu học A",
+                source_of_funds: "Ngân sách tỉnh",
+                impl_start_date: "2024-02-01",
+                impl_end_date: "2024-08-01",
+                existing_condition_of_the_structure: "Công trình xuống cấp",
+                repair_scope:
+                  "Sửa mái và tường, Sửa mái và tường, Sửa mái và tường,  Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường,",
+                est_cost: 1900000000,
+                est_cost_str: "1.9 tỷ",
+              },
               bid_package_snapshots: [
                 {
                   id: "1",
@@ -74,7 +74,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
                 },
               ],
             },
-          },
+          ],
         },
         {
           id: "dec-1",
@@ -89,19 +89,22 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           pursuant_to_dec_ttmn: null,
           period: "KH_LCNT",
 
-          submission: {
-            id: "sub-1",
-            no: "02/TTr-LCQ",
-            level: "Sở",
-            date: "2026-01-09",
-            pursuant_to_dec_tct: {
-              id: "dec-0",
-              no: "001/QĐ-TCT",
-              date: "2024-01-10",
+          submissions: [
+            {
+              id: "sub-1",
+              no: "02/TTr-LCQ",
+              level: "Sở",
+              date: "2026-01-09",
+              pursuant_to_dec_tct: {
+                id: "dec-0",
+                no: "001/QĐ-TCT",
+                date: "2024-01-10",
+              },
+              pursuant_to_dec_ttmn: null,
+              construction_info_snapshot: null,
+              bid_package_snapshots: null,
             },
-            pursuant_to_dec_ttmn: null,
-            is_changed_construction_info: false,
-          },
+          ],
         },
         {
           id: "dec-1",
@@ -116,30 +119,30 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           pursuant_to_dec_ttmn: null,
           period: "BCKTKT",
 
-          submission: {
-            id: "sub-1",
-            no: "02/TTr-LCQ",
-            level: "Sở",
-            date: "2026-01-09",
-            pursuant_to_dec_tct: {
-              id: "dec-0",
-              no: "001/QĐ-TCT",
-              date: "2024-01-10",
-            },
-            pursuant_to_dec_ttmn: null,
-            is_changed_construction_info: false,
-            construction_info_snapshot: {
-              id: "1",
-              name: "Sửa chữa Trường Tiểu học A",
-              source_of_funds: "Ngân sách tỉnh",
-              impl_start_date: "2024-02-01",
-              impl_end_date: "2024-08-01",
-              existing_condition_of_the_structure: "Công trình xuống cấp",
-              repair_scope:
-                "Sửa mái và tường, Sửa mái và tường, Sửa mái và tường,  Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường,",
-              est_cost: 1900000000,
-              est_cost_str: "1.9 tỷ",
-
+          submissions: [
+            {
+              id: "sub-1",
+              no: "02/TTr-LCQ",
+              level: "Sở",
+              date: "2026-01-09",
+              pursuant_to_dec_tct: {
+                id: "dec-0",
+                no: "001/QĐ-TCT",
+                date: "2024-01-10",
+              },
+              pursuant_to_dec_ttmn: null,
+              construction_info_snapshot: {
+                id: "1",
+                name: "Sửa chữa Trường Tiểu học A",
+                source_of_funds: "Ngân sách tỉnh",
+                impl_start_date: "2024-02-01",
+                impl_end_date: "2024-08-01",
+                existing_condition_of_the_structure: "Công trình xuống cấp",
+                repair_scope:
+                  "Sửa mái và tường, Sửa mái và tường, Sửa mái và tường,  Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường, Sửa mái và tường,",
+                est_cost: 1900000000,
+                est_cost_str: "1.9 tỷ",
+              },
               bid_package_snapshots: [
                 {
                   id: "1",
@@ -171,7 +174,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
                 },
               ],
             },
-          },
+          ],
         },
       ],
     },
@@ -187,26 +190,26 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           pursuant_to_dec_ttmn: null,
           period: "KH_LCNT",
 
-          submission: {
-            id: "sub-2",
-            no: "SUB-002",
-            level: "Sở",
-            date: "2024-03-10",
-            is_changed_construction_info: false,
-            pursuant_to_dec_tct: null,
-            pursuant_to_dec_ttmn: null,
+          submissions: [
+            {
+              id: "sub-2",
+              no: "SUB-002",
+              level: "Sở",
+              date: "2024-03-10",
+              pursuant_to_dec_tct: null,
+              pursuant_to_dec_ttmn: null,
 
-            construction_info_snapshot: {
-              id: "2",
-              name: "Nâng cấp đường nội thị",
-              source_of_funds: "Ngân sách thành phố",
-              impl_start_date: "2024-04-01",
-              impl_end_date: "2024-12-01",
-              existing_condition_of_the_structure: "Đường hư hỏng",
-              repair_scope: "Nâng cấp mặt đường",
-              est_cost: 4800000000,
-              est_cost_str: "4.8 tỷ",
-
+              construction_info_snapshot: {
+                id: "2",
+                name: "Nâng cấp đường nội thị",
+                source_of_funds: "Ngân sách thành phố",
+                impl_start_date: "2024-04-01",
+                impl_end_date: "2024-12-01",
+                existing_condition_of_the_structure: "Đường hư hỏng",
+                repair_scope: "Nâng cấp mặt đường",
+                est_cost: 4800000000,
+                est_cost_str: "4.8 tỷ",
+              },
               bid_package_snapshots: [
                 {
                   id: "3",
@@ -238,7 +241,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
                 },
               ],
             },
-          },
+          ],
         },
         {
           id: "dec-3",
@@ -249,26 +252,26 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           pursuant_to_dec_ttmn: null,
           period: "KH_LCNT",
 
-          submission: {
-            id: "sub-3",
-            no: "SUB-003",
-            level: "Sở",
-            date: "2024-03-10",
-            is_changed_construction_info: false,
-            pursuant_to_dec_tct: null,
-            pursuant_to_dec_ttmn: null,
+          submissions: [
+            {
+              id: "sub-3",
+              no: "SUB-003",
+              level: "Sở",
+              date: "2024-03-10",
+              pursuant_to_dec_tct: null,
+              pursuant_to_dec_ttmn: null,
 
-            construction_info_snapshot: {
-              id: "2",
-              name: "Nâng cấp đường nội thị",
-              source_of_funds: "Ngân sách thành phố",
-              impl_start_date: "2024-04-01",
-              impl_end_date: "2024-12-01",
-              existing_condition_of_the_structure: "Đường hư hỏng",
-              repair_scope: "Nâng cấp mặt đường",
-              est_cost: 4800000000,
-              est_cost_str: "4.8 tỷ",
-
+              construction_info_snapshot: {
+                id: "2",
+                name: "Nâng cấp đường nội thị",
+                source_of_funds: "Ngân sách thành phố",
+                impl_start_date: "2024-04-01",
+                impl_end_date: "2024-12-01",
+                existing_condition_of_the_structure: "Đường hư hỏng",
+                repair_scope: "Nâng cấp mặt đường",
+                est_cost: 4800000000,
+                est_cost_str: "4.8 tỷ",
+              },
               bid_package_snapshots: [
                 {
                   id: "3",
@@ -300,7 +303,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
                 },
               ],
             },
-          },
+          ],
         },
       ],
     },

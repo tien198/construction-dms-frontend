@@ -6,17 +6,16 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { BidPackageSnapshotForm } from "./BidPackageSnapshotForm";
+import { BidPackage } from "./BidPackage";
 import { useStore } from "zustand";
-import type { StoreApiInject } from "../store-factory/store-api-inject.type";
+import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 
 type Props = StoreApiInject;
 
 export function BidPackageSideDrawer({ storeApi, disabled = false }: Props) {
   const bidPackagesList = useStore(
     storeApi,
-    (state) =>
-      state.submission.construction_info_snapshot!.bid_package_snapshots,
+    (state) => state.submission.bid_package_snapshots,
   );
 
   return (
@@ -34,7 +33,7 @@ export function BidPackageSideDrawer({ storeApi, disabled = false }: Props) {
           </DrawerHeader>
           <div className="grid grid-cols-2 gap-12 p-4 pb-14">
             {bidPackagesList?.map((_, id) => (
-              <BidPackageSnapshotForm
+              <BidPackage
                 key={id}
                 index={id}
                 storeApi={storeApi}

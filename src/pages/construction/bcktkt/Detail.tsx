@@ -1,7 +1,7 @@
 import { useDetailFunc } from "./hooks/detail-hook";
 import { NotfoundDecicion } from "../comps/layout/notfound-decision";
 import { DetailComp } from "./comps/Detail";
-import { isCreatingStoreFactory } from "../store-factory/is-creating-store-factory";
+import { isCreatingStoreFactory } from "../../../store-factory/is-creating-store-factory";
 import { useStore } from "zustand";
 import { Navigate } from "react-router";
 

@@ -1,4 +1,4 @@
-import type { ConstructionPeriod } from "@/types/construction.type";
+import type { ConstructionPeriod } from "@/types/domain/construction.type";
 import { AddButton } from "./add-btn";
 
 type Props = {

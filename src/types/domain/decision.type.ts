@@ -4,5 +4,5 @@ import type { Submission } from "./submission.type";
 
 export interface Decision extends AdministrativeDocument {
   period: ConstructionPeriod;
-  submission: Submission;
+  submissions: Submission[];
 }

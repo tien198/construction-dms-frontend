@@ -7,14 +7,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import type { AdministrativeDocument } from "@/types";
+import type { AdministrativeDocument } from "@/types/domain";
 import { DecisionList } from "./DecisionList";
 import { useStore } from "zustand";
 import { useState } from "react";
-import type { StoreApiInject } from "../store-factory/store-api-inject.type";
-import type { SubmissionPost } from "../types/submission-post.type";
+import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
+import type { SubmissionPost } from "../../../types/submission-post/submission-post.type";
 import { FormField } from "@/components/form-ui/form-field";
-import type { DecisionRef } from "@/types/administrative-document.type";
+import type { DecisionRef } from "@/types/domain/administrative-document.type";
 
 export type DecisionResponse = Pick<
   AdministrativeDocument,
@@ -23,7 +23,7 @@ export type DecisionResponse = Pick<
 
 export type FormFieldProps = {
   /** The id to link the label's htmlFor to the form control */
-  htmlFor: string;
+  id: string;
   /** Label text */
   label: string;
   /** When true adds `sm:col-span-2` so the field spans full width on ≥sm grids */
@@ -35,7 +35,7 @@ export type FormFieldProps = {
   React.InputHTMLAttributes<HTMLInputElement>;
 
 export default function DecisionSelectionDialog({
-  htmlFor,
+  id,
   label,
   placeholder,
   fieldName,
@@ -57,7 +57,7 @@ export default function DecisionSelectionDialog({
       <DialogOverlay className="bg-black/60" />
       <DialogTrigger disabled={disabled}>
         <FormField
-          htmlFor={htmlFor}
+          id={id}
           label={label}
           value={dec?.no ?? ""}
           placeholder={placeholder ?? "Chọn quyết định"}

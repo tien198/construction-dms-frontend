@@ -3,11 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 
 import { edit_tv_tt_store } from "../edit-store";
 import { useParams, useSubmit } from "react-router";
-import type { Decision } from "@/types";
-import { getDecisionByPer } from "../../api/get-decision-by-per.api";
+import type { Decision } from "@/types/domain";
+import { getDecisionByPer } from "../../../../api/get-decision-by-per.api";
 import { useStore } from "zustand";
-import { decisionToSubmissionPost } from "../../ultil/decision-to-submision-post";
-import type { SubmissionPost } from "../../types/submission-post.type";
+import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
+import type { SubmissionPost } from "../../../../types/submission-post/submission-post.type";
 import type { ResResult } from "@/lib/type/response-result.tyoe";
 
 export function useDetail() {

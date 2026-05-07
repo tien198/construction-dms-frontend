@@ -11,10 +11,10 @@ import {
 import { ConstructionInfoSnapshotForm } from "../../comps/ConstructionInfoSnapshotForm";
 import { useSubmit } from "react-router";
 import { useStore, type StoreApi } from "zustand";
-import type { CreateSubmissionStore } from "../../store-factory/create-submission.store.type";
-import type { Decision } from "@/types";
-import { decisionToSubmissionPost } from "../../ultil/decision-to-submision-post";
-import { isEditingStoreFactory } from "../../store-factory/is-editing-store-factory";
+import type { CreateSubmissionStore } from "../../../../store-factory/create-submission.store.type";
+import type { Decision } from "@/types/domain";
+import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
+import { isEditingStoreFactory } from "../../../../store-factory/is-editing-store-factory";
 
 type Props = {
   storeApi: StoreApi<CreateSubmissionStore>;
@@ -24,7 +24,7 @@ type Props = {
 const isEditingStore = isEditingStoreFactory();
 
 // Detail also Edit form if `isEdit` is true
-export function DetailComp({ data, storeApi }: Props) {
+export function DetailSection({ data, storeApi }: Props) {
   const { isEditing, toggleIsEditing } = useStore(
     isEditingStore,
     (state) => state,

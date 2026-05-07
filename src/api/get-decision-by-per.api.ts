@@ -1,8 +1,8 @@
-import type { Decision } from "@/types";
+import type { Decision } from "@/types/domain";
 
 import { GET_DECISION_BY_PER } from "@/lib/api-list/document-api-list";
 import type { ResResult } from "@/lib/type/response-result.tyoe";
-import type { ConstructionPeriod } from "@/types/construction.type";
+import type { ConstructionPeriod } from "@/types/domain/construction.type";
 
 export async function getDecisionByPer(
   conId: string,

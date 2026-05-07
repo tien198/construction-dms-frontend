@@ -5,27 +5,26 @@ import { Trash2Icon } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
-import type { StoreApiInject } from "../store-factory/store-api-inject.type";
+import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 
 type Props = {
   index: number;
 } & StoreApiInject;
 
-export function BidPackageSnapshotForm({
-  index,
-  storeApi,
-  disabled = false,
-}: Props) {
+export function BidPackage({ index, storeApi, disabled = false }: Props) {
   const bp = useStore(
     storeApi,
-    (state) =>
-      state.submission.construction_info_snapshot!.bid_package_snapshots[index],
+    (state) => state.submission.bid_package_snapshots?.[index],
   );
 
   const setBidPackageField = useStore(
     storeApi,
     (state) => state.setBidPackageField,
   );
+
+  if (!bp) {
+    return <></>;
+  }
 
   return (
     <div className="relative w-full rounded-lg border border-border bg-muted/30 p-4">
@@ -82,7 +81,7 @@ export function BidPackageSnapshotForm({
         <span />
         {/* est_cost */}
         <FormField
-          htmlFor="est_cost"
+          id="est_cost"
           label="Giá thầu (số)"
           type="number"
           placeholder="0"
@@ -95,7 +94,7 @@ export function BidPackageSnapshotForm({
 
         {/* est_cost string */}
         <FormField
-          htmlFor="est_cost-str"
+          id="est_cost-str"
           label="Giá thầu (chữ)"
           placeholder="Một tỷ đồng"
           value={bp.est_cost_str}
@@ -136,7 +135,7 @@ export function BidPackageSnapshotForm({
 
         {/* Bidder selection time */}
         <FormField
-          htmlFor="sel-time"
+          id="sel-time"
           label="Thời gian chọn thầu"
           type="date"
           value={bp.bidder_selection_time}
@@ -156,7 +155,7 @@ export function BidPackageSnapshotForm({
 
         {/* Duration */}
         <FormField
-          htmlFor="duration"
+          id="duration"
           label="Thời gian thực hiện"
           placeholder="10 ngày"
           value={bp.duration}
@@ -168,7 +167,7 @@ export function BidPackageSnapshotForm({
 
         {/* Successful bidder ID */}
         <FormField
-          htmlFor="bidder"
+          id="bidder"
           label="Nhà trúng thầu"
           placeholder="Chọn nhà thầu"
           value={bp.successful_bidder_id ?? ""}

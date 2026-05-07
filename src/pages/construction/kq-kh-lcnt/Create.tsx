@@ -1,9 +1,5 @@
 import { SaveIcon } from "lucide-react";
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
-import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotForm";
-import { AdministrativeDocumentFields } from "../comps/AdministrativeDocumentFields";
-import { useFetcher, useParams } from "react-router";
-import { create_kq_kh_lcnt_store } from "./store/create-store";
 import {
   FormLayout,
   FormHeader,
@@ -11,42 +7,11 @@ import {
   ActionBtns,
 } from "../comps/layout/form-layout";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getDecisionByPer } from "../api/get-decision-by-per.api";
-import { decisionToSubmissionPost } from "../ultil/decision-to-submision-post";
+import { useCreate } from "./hooks/create-hook";
+import { DecisionSection } from "./sections/decision-section";
 
 export function Create() {
-  const fetcher = useFetcher();
-  const handleSubmit = () => {
-    return fetcher.submit(null, {
-      method: "post",
-      encType: "application/json",
-      action: "tao-moi",
-    });
-  };
-
-  const handleCancel = () => {
-    //
-  };
-
-  const conId = useParams()["con-id"] as string;
-  const { data } = useQuery({
-    queryKey: ["kh-lcnt", conId],
-    queryFn: () => getDecisionByPer(conId, "KH_LCNT"),
-  });
-
-  const storeApi = create_kq_kh_lcnt_store;
-
-  useEffect(() => {
-    if (data?.result) {
-      storeApi
-        .getState()
-        .setConstructionInfo(
-          decisionToSubmissionPost(data.result).construction_info_snapshot!,
-        );
-    }
-  }, [data?.result]);
+  const { handleSubmit, handleCancel, storeApi } = useCreate();
 
   return (
     <FormLayout>
@@ -73,14 +38,15 @@ export function Create() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Administrative document fields for bcktkt */}
         <div className="flex flex-col gap-6">
-          <AdministrativeDocumentFields
+          <DecisionSection storeApi={storeApi} />
+          {/* <AdministrativeDocumentFields
             title="Tờ trình - Quyết định BCKTKT"
             type="kq_kh_lcnt"
             storeApi={storeApi}
-          />
+          /> */}
         </div>
         {/* Right: Construction info snapshot */}
-        <ConstructionInfoSnapshotForm storeApi={storeApi} />
+        {/* <ConstructionInfoSnapshotForm storeApi={storeApi} /> */}
       </div>
     </FormLayout>
   );

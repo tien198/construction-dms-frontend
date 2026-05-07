@@ -1,5 +1,3 @@
-import type { BidPackageSnapshot } from "./bid-package-snapshot.type";
-
 export interface ConstructionInfoSnapshot {
   id: string;
   name: string;
@@ -12,5 +10,4 @@ export interface ConstructionInfoSnapshot {
   // est - estimated
   est_cost: number;
   est_cost_str: string;
-  bid_package_snapshots?: BidPackageSnapshot[];
 }

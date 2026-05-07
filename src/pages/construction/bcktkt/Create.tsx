@@ -13,8 +13,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getDecisionByPer } from "../api/get-decision-by-per.api";
-import { decisionToSubmissionPost } from "../ultil/decision-to-submision-post";
+import { getDecisionByPer } from "../../../api/get-decision-by-per.api";
+import { decisionToSubmissionPost } from "../../../ultil/decision-to-submision-post";
 
 export function Create() {
   const fetcher = useFetcher();
