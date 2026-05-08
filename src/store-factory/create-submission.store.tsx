@@ -33,12 +33,14 @@ export function submission_store_factory(
       value: any,
     ) {
       set((state) => {
-        const shallowStore = { ...state };
-        const bidPackages = shallowStore.submission?.bid_package_snapshots;
+        const stateShallow = { ...state };
+        const bidPackages = stateShallow.submission.bid_package_snapshots;
         if (!bidPackages) {
           return state;
         }
-        const bpIndex = bidPackages.findIndex((bp) => bp.type === type);
+        const bpIndex = bidPackages.findIndex(
+          (bp) => bp.type.toLowerCase() === type.toLowerCase(),
+        );
         if (bpIndex < 0) {
           return state;
         }
@@ -47,7 +49,56 @@ export function submission_store_factory(
         bpShallow[field] = value;
 
         bidPackages[bpIndex] = bpShallow;
-        return shallowStore;
+        return stateShallow;
+      });
+    },
+
+    addBidPackage(type: BidPackageType, value: BidPackageSnapshotPost | null) {
+      set((state) => {
+        const stateShallow = { ...state };
+        if (!value) {
+          return state;
+        }
+
+        const bidPackages = stateShallow.submission.bid_package_snapshots;
+        if (!bidPackages) {
+          stateShallow.submission.bid_package_snapshots = value ? [value] : [];
+          return stateShallow;
+        }
+
+        const bidPackagesShallow = [...bidPackages];
+        const bpIndex = bidPackagesShallow.findIndex(
+          (bp) => bp.type.toLowerCase() === type.toLowerCase(),
+        );
+        if (bpIndex < 0) {
+          bidPackagesShallow.push(value);
+          stateShallow.submission.bid_package_snapshots = bidPackagesShallow;
+          return stateShallow;
+        }
+
+        bidPackagesShallow[bpIndex] = value;
+        stateShallow.submission.bid_package_snapshots = bidPackagesShallow;
+        return stateShallow;
+      });
+    },
+
+    removeBidPackage(type: BidPackageType) {
+      set((state) => {
+        const bidPackages = state.submission.bid_package_snapshots;
+        if (!bidPackages) {
+          return state;
+        }
+        const bpIndex = bidPackages.findIndex(
+          (bp) => bp.type.toLowerCase() === type.toLowerCase(),
+        );
+        if (bpIndex < 0) {
+          return state;
+        }
+        const stateShallow = { ...state };
+        const bidPackagesShallow = [...bidPackages];
+        bidPackagesShallow.splice(bpIndex, 1);
+        stateShallow.submission.bid_package_snapshots = bidPackagesShallow;
+        return stateShallow;
       });
     },
 

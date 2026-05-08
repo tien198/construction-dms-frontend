@@ -1,20 +1,37 @@
 import { redirect, type ActionFunctionArgs } from "react-router";
-import { create_kq_kh_lcnt_store } from "../store/create-store";
+import { tt_store } from "../store/create-store";
+import { tv_store } from "../store/create-store";
 import { POST_ADD_SUBMISSION } from "@/lib/api-list/document-api-list";
 import { genRequestInit } from "@/lib/gen-request-init";
 
 export async function createKqKhLcntAction(args: ActionFunctionArgs) {
   const conId = args.params["con-id"];
-  const state = create_kq_kh_lcnt_store.getState();
-  const submission = state.submission;
-  const submission_with_con_id = { ...submission, con_id: conId };
-  const res = await fetch(
+
+  const tv_state = tv_store.getState();
+  const tvSub = { ...tv_state.submission, con_id: conId };
+
+  const tvRes = await fetch(
     POST_ADD_SUBMISSION,
-    genRequestInit(args.request.method, JSON.stringify(submission_with_con_id)),
+    genRequestInit(args.request.method, JSON.stringify(tvSub)),
   );
 
-  if (!res.ok) {
-    alert("Lỗi khi tạo tờ trình");
+  if (!tvRes.ok) {
+    alert("Lỗi khi tạo tờ trình TV");
+    return null;
+  }
+
+  const decId = (await tvRes.json()).value as string;
+
+  const tt_state = tt_store.getState();
+  const ttSub = { ...tt_state.submission, con_id: conId };
+
+  const ttRes = await fetch(
+    POST_ADD_SUBMISSION,
+    genRequestInit(args.request.method, JSON.stringify(ttSub)),
+  );
+
+  if (!tvRes.ok || !ttRes.ok) {
+    alert("Lỗi khi tạo 2 tờ trình");
     return null;
   }
 

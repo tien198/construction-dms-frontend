@@ -3,13 +3,14 @@ import type { SubmissionPost } from "@/types/submission-post/submission-post.typ
 import type { ConstructionInfoSnapshotPost } from "@/types/submission-post/construction-info-snapshot-post.type";
 
 /**
- * @param specificSubmission passed when existing many Submissions in the Decision.
+ * @param specificSubmissionIndex passed when existing many Submissions in the Decision.
  */
 export function decisionToSubmissionPost(
   decision: Decision,
-  specificSubmission?: Submission,
+  specificSubmissionIndex?: number,
 ): SubmissionPost {
-  const submission = specificSubmission ?? decision.submissions[0];
+  const submission: Submission =
+    decision.submissions[specificSubmissionIndex ?? 0];
 
   const constructionInfor: ConstructionInfoSnapshotPost | null =
     submission.construction_info_snapshot

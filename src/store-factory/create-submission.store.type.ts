@@ -19,6 +19,13 @@ export interface CreateSubmissionStore {
     value: any,
   ): void;
 
+  addBidPackage(
+    type: BidPackageType,
+    value: BidPackageSnapshotPost | null,
+  ): void;
+
+  removeBidPackage(type: BidPackageType): void;
+
   setConstructionInfo(value: ConstructionInfoSnapshotPost): void;
 
   reset: (per: ConstructionPeriod, sub?: SubmissionPost) => void;

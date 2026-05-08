@@ -13,9 +13,9 @@ export type SubmissionPost = Omit<
   construction_info_snapshot: ConstructionInfoSnapshotPost | null;
   bid_package_snapshots: BidPackageSnapshotPost[] | null;
 
-  directly_decision: Pick<Optional<Decision, "id">, "id" | "no" | "period">;
   pursuant_to_dec_tct_id: string | null;
   pursuant_to_dec_ttmn_id: string | null;
 
+  directly_decision: Pick<Optional<Decision, "id">, "id" | "no" | "period">;
   con_id?: string;
 };

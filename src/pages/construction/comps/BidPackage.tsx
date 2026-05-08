@@ -48,6 +48,8 @@ export function BidPackage({ index, storeApi, disabled = false }: Props) {
           <Label htmlFor="type">Gói {bp.type}</Label>
         </div>
 
+        <span />
+
         {/* Bid package name */}
         {/* 
         <FormField
@@ -78,7 +80,6 @@ export function BidPackage({ index, storeApi, disabled = false }: Props) {
         />
          */}
 
-        <span />
         {/* est_cost */}
         <FormField
           id="est_cost"

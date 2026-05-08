@@ -1,0 +1,78 @@
+{
+    "result": {
+        "id": "019ddc58-e547-73df-a16f-9720ee866ecf",
+        "no": "08/QĐ-TTMN",
+        "level": "TTMN",
+        "date": "2024-03-15T07:00:00+07:00",
+        "pursuant_to_dec_tct": {
+            "id": "019d61b4-dd23-724d-8d07-954fb34b3eff",
+            "no": "01/QĐ-TCT",
+            "date": "2026-04-30T10:04:38.602+07:00"
+        },
+        "pursuant_to_dec_ttmn": {
+            "id": "019d61b4-dd23-724d-8d07-954fb34b3eff",
+            "no": "01/QĐ-TCT",
+            "date": "2026-04-30T10:04:38.602+07:00"
+        },
+        "period": "KH_LCNT",
+        "submissions": [
+            {
+                "id": "019ddc58-e547-73df-a16f-9006272fa0b3",
+                "no": "12/QĐ-UBND",
+                "level": "UBND",
+                "date": "2024-03-15T07:00:00+07:00",
+                "pursuant_to_dec_tct": {
+                    "id": "019d61b4-dd23-724d-8d07-954fb34b3eff",
+                    "no": "01/QĐ-TCT",
+                    "date": "2026-04-30T10:04:38.602+07:00"
+                },
+                "pursuant_to_dec_ttmn": {
+                    "id": "019d61b4-dd23-724d-8d07-954fb34b3eff",
+                    "no": "01/QĐ-TCT",
+                    "date": "2026-04-30T10:04:38.602+07:00"
+                },
+                "construction_info_snapshot": {
+                    "id": "019ddc58-e547-73df-a16f-8ca2ad3c08b2",
+                    "name": "Trường Tiểu học Phước Bình",
+                    "source_of_funds": "Ngân sách nhà nước",
+                    "impl_start_date": "2024-04-01T07:00:00+07:00",
+                    "impl_end_date": "2025-03-31T07:00:00+07:00",
+                    "existing_condition_of_the_structure": "Công trình xuống cấp nghiêm trọng, tường nứt, mái dột, nền lún không đều",
+                    "repair_scope": "Sửa chữa toàn bộ hệ thống mái, tường bao, sơn lại nội ngoại thất, thay thế hệ thống điện và cấp thoát nước",
+                    "est_cost": 4500000000,
+                    "est_cost_str": "4.500.000.000"
+                },
+                "bid_package_snapshots": [
+                    {
+                        "id": "019ddc58-e546-769f-8b99-eb6f65c94daf",
+                        "type": "TV",
+                        "project_owner": "Ban Quản lý Dự án huyện Bình Chánh",
+                        "name": "Gói thầu tư vấn thiết kế và giám sát thi công",
+                        "short_desc": "Tư vấn khảo sát, lập hồ sơ thiết kế bản vẽ thi công và giám sát thi công sửa chữa",
+                        "est_cost": 180000000,
+                        "est_cost_str": "180.000.000",
+                        "bidder_selection_time": "2024-03-20T07:00:00+07:00",
+                        "bidder_selection_method": "Chỉ định thầu",
+                        "successful_bidder_id": "55",
+                        "duration": "10 tháng",
+                        "is_completed": false
+                    },
+                    {
+                        "id": "019ddc58-e546-769f-8b99-ef26ca42b915",
+                        "type": "TT",
+                        "project_owner": "Ban Quản lý Dự án huyện Bình Chánh",
+                        "name": "Gói thầu thi công sửa chữa, cải tạo công trình",
+                        "short_desc": "Thi công sửa chữa toàn bộ hạng mục theo hồ sơ thiết kế được duyệt",
+                        "est_cost": 4320000000,
+                        "est_cost_str": "4.320.000.000",
+                        "bidder_selection_time": "2024-04-10T07:00:00+07:00",
+                        "bidder_selection_method": "Đấu thầu rộng rãi",
+                        "successful_bidder_id": "78",
+                        "duration": "8 tháng",
+                        "is_completed": false
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -11,7 +11,21 @@ import { useCreate } from "./hooks/create-hook";
 import { DecisionSection } from "./sections/decision-section";
 
 export function Create() {
-  const { handleSubmit, handleCancel, storeApi } = useCreate();
+  const {
+    queryResult,
+    handleSubmit,
+    handleCancel,
+    tv_store_api,
+    tt_store_api,
+  } = useCreate();
+
+  if (queryResult.isLoading) {
+    return (
+      <div className="w-screen h-screen flex items-center justify-center">
+        Đang tải ...
+      </div>
+    );
+  }
 
   return (
     <FormLayout>
@@ -38,7 +52,7 @@ export function Create() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Administrative document fields for bcktkt */}
         <div className="flex flex-col gap-6">
-          <DecisionSection storeApi={storeApi} />
+          <DecisionSection storeApi={tv_store_api} />
           {/* <AdministrativeDocumentFields
             title="Tờ trình - Quyết định BCKTKT"
             type="kq_kh_lcnt"

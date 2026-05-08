@@ -13,10 +13,14 @@ export function ConstructionInfoSnapshotForm({
 }: Props) {
   const infor = useStore(
     storeApi,
-    (state) => state.submission.construction_info_snapshot!,
+    (state) => state.submission.construction_info_snapshot,
   );
 
   const setField = useStore(storeApi, (state) => state.setField);
+
+  if (!infor) {
+    return <div>Chưa có thông tin công trình.</div>;
+  }
 
   return (
     <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground">
