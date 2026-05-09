@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getDecisionByPer } from "../../../../api/get-decision-by-per.api";
 import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
-import { tt_store, tv_store } from "../store/create-store";
+import { tt_store, tv_store } from "../store/create-submission-store";
 
 export function useCreate() {
   const fetcher = useFetcher();

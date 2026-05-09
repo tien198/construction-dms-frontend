@@ -1,6 +1,6 @@
 import { redirect, type ActionFunctionArgs } from "react-router";
-import { tt_store } from "../store/create-store";
-import { tv_store } from "../store/create-store";
+import { tt_store } from "../store/create-submission-store";
+import { tv_store } from "../store/create-submission-store";
 import { POST_ADD_SUBMISSION } from "@/lib/api-list/document-api-list";
 import { genRequestInit } from "@/lib/gen-request-init";
 
