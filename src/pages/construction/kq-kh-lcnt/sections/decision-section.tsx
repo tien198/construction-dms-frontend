@@ -1,19 +1,16 @@
 import { FormField } from "@/components/form-ui/form-field";
-import type { StoreApiInject } from "../../../../store-factory/store-api-inject.type";
 import { useStore } from "zustand";
-import DecisionSelectionDialog from "../../comps/decision-selection-dialog";
+import { DecisionSelectionDialog } from "../comp/decision-selection-dialog";
+import { decision_store } from "../store/create-decision-store";
 
-type Props = { disabled?: boolean } & StoreApiInject;
+type Props = { disabled?: boolean };
 
-export function DecisionSection({ storeApi, disabled }: Props) {
-  const decNo = useStore(
-    storeApi,
-    (state) => state.submission.directly_decision.no,
-  );
-  const setField = useStore(storeApi, (state) => state.setField);
+export function DecisionSection({ disabled }: Props) {
+  const decNo = useStore(decision_store, (state) => state.decision.no);
+  const setField = useStore(decision_store, (state) => state.setField);
 
   function changeDecNoHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    setField("directly_decision.no", e.target.value);
+    setField("no", e.target.value);
   }
 
   return (
@@ -27,8 +24,8 @@ export function DecisionSection({ storeApi, disabled }: Props) {
           fullWidth
         />
         <DecisionSelectionDialog
-          storeApi={storeApi}
-          fieldName="pursuant_to_dec_tct_id"
+          storeApi={decision_store}
+          fieldName="pursuant_to_dec_tct.id"
           id="dec-tct"
           label="Căn cứ quyết định TCT"
           placeholder="Quyết định TCT"
@@ -36,8 +33,8 @@ export function DecisionSection({ storeApi, disabled }: Props) {
           isFindTCT
         />
         <DecisionSelectionDialog
-          storeApi={storeApi}
-          fieldName="pursuant_to_dec_ttmn_id"
+          storeApi={decision_store}
+          fieldName="pursuant_to_dec_ttmn.id"
           id="dec-ttmn"
           label="Căn cứ quyết định TTMN"
           placeholder="Quyết định TTMN"

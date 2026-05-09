@@ -8,13 +8,13 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import type { AdministrativeDocument } from "@/types/domain";
-import { DecisionList } from "./DecisionList";
-import { useStore } from "zustand";
+import { DecisionList } from "@/pages/construction/comps/DecisionList";
+import { useStore, type StoreApi } from "zustand";
 import { useState } from "react";
-import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
-import type { SubmissionPost } from "../../../types/submission-post/submission-post.type";
 import { FormField } from "@/components/form-ui/form-field";
 import type { DecisionRef } from "@/types/domain/administrative-document.type";
+import type { CreateDecisionStore } from "../store/create-decision-store";
+import type { RecursivePath } from "@/lib/type/recursion";
 
 export type DecisionResponse = Pick<
   AdministrativeDocument,
@@ -28,13 +28,13 @@ export type FormFieldProps = {
   label: string;
   /** When true adds `sm:col-span-2` so the field spans full width on ≥sm grids */
   placeholder?: string;
-  fieldName: "pursuant_to_dec_tct_id" | "pursuant_to_dec_ttmn_id";
+  fieldName: RecursivePath<AdministrativeDocument>;
   selectedDec?: DecisionRef | null;
   isFindTCT?: boolean;
-} & StoreApiInject &
-  React.InputHTMLAttributes<HTMLInputElement>;
+  storeApi: StoreApi<CreateDecisionStore>;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
-export default function DecisionSelectionDialog({
+export function DecisionSelectionDialog({
   id,
   label,
   placeholder,
@@ -49,7 +49,7 @@ export default function DecisionSelectionDialog({
 
   function handleSetDec(dec: DecisionResponse) {
     setDec(dec);
-    setField(fieldName as keyof SubmissionPost, dec.id);
+    setField(fieldName, dec.id);
   }
 
   return (

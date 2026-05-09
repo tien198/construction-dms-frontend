@@ -17,11 +17,11 @@ export function submission_store_factory(
     // default submission is TV
     submission: initialStateGeneration(period) as SubmissionPost,
 
-    setField: (field, value) =>
+    setField: (fieldPath, value) =>
       set((state) => {
         const shallowSubmission = setValueByPath(
           state.submission,
-          field,
+          fieldPath,
           value,
         );
         return { ...state, submission: shallowSubmission };

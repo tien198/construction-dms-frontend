@@ -10,6 +10,7 @@ export async function createKqKhLcntAction(args: ActionFunctionArgs) {
   const tv_state = tv_store.getState();
   const tvSub = { ...tv_state.submission, con_id: conId };
 
+  // create TV first
   const tvRes = await fetch(
     POST_ADD_SUBMISSION,
     genRequestInit(args.request.method, JSON.stringify(tvSub)),
@@ -20,10 +21,18 @@ export async function createKqKhLcntAction(args: ActionFunctionArgs) {
     return null;
   }
 
+  // then, get decision_id, create TT according existing decision
   const decId = (await tvRes.json()).value as string;
 
   const tt_state = tt_store.getState();
-  const ttSub = { ...tt_state.submission, con_id: conId };
+  const ttSub = {
+    ...tt_state.submission,
+    directly_decision: {
+      ...tt_state.submission.directly_decision,
+      id: decId,
+    },
+  };
+  console.log(tvSub, ttSub);
 
   const ttRes = await fetch(
     POST_ADD_SUBMISSION,

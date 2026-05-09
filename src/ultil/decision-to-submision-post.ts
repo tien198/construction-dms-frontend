@@ -1,6 +1,7 @@
 import type { Decision, Submission } from "@/types/domain";
 import type { SubmissionPost } from "@/types/submission-post/submission-post.type";
 import type { ConstructionInfoSnapshotPost } from "@/types/submission-post/construction-info-snapshot-post.type";
+import type { BidPackageSnapshotPost } from "@/types/submission-post/bid-package-snapshot-post.type";
 
 /**
  * @param specificSubmissionIndex passed when existing many Submissions in the Decision.
@@ -31,7 +32,11 @@ export function decisionToSubmissionPost(
         }
       : null;
 
-  const bidPackages = submission.bid_package_snapshots ?? null;
+  const bidPackages: BidPackageSnapshotPost[] | null =
+    submission.bid_package_snapshots?.map((bp) => ({
+      ...bp,
+      id: null,
+    })) ?? null;
 
   return {
     id: submission.id ?? "",

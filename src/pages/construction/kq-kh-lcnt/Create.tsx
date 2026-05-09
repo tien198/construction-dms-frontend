@@ -15,8 +15,8 @@ export function Create() {
     queryResult,
     handleSubmit,
     handleCancel,
-    tv_store_api,
-    tt_store_api,
+    // tv_store_api,
+    // tt_store_api,
   } = useCreate();
 
   if (queryResult.isLoading) {
@@ -52,7 +52,7 @@ export function Create() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Administrative document fields for bcktkt */}
         <div className="flex flex-col gap-6">
-          <DecisionSection storeApi={tv_store_api} />
+          <DecisionSection />
           {/* <AdministrativeDocumentFields
             title="Tờ trình - Quyết định BCKTKT"
             type="kq_kh_lcnt"

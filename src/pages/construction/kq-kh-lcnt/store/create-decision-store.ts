@@ -1,12 +1,16 @@
 import type { AdministrativeDocument } from "@/types/domain/administrative-document.type";
 import { createStore } from "zustand";
 import { produce } from "immer";
+import { tt_store, tv_store } from "./create-submission-store";
+import type { CreateSubmissionStore } from "@/store-factory/create-submission.store.type";
+import type { RecursivePath } from "@/lib/type/recursion";
+import { setValueByPath } from "@/lib/setValByPath";
 
-interface DecisionStore {
+export interface CreateDecisionStore {
   decision: AdministrativeDocument;
-  setField: <K extends keyof AdministrativeDocument>(
-    field: K,
-    value: AdministrativeDocument[K],
+  setField: <K extends RecursivePath<AdministrativeDocument>>(
+    fieldPath: K,
+    value: any,
   ) => void;
 }
 
@@ -19,12 +23,30 @@ const initialState: AdministrativeDocument = {
   pursuant_to_dec_ttmn: null,
 };
 
-export const decision_store = createStore<DecisionStore>((set) => ({
+export const decision_store = createStore<CreateDecisionStore>((set) => ({
   decision: initialState,
-  setField: (field, value) =>
-    set(
-      produce((state: DecisionStore) => {
-        state.decision[field] = value;
-      }),
-    ),
+  setField: (fieldPath, value) =>
+    set((state) => ({
+      ...state,
+      decision: setValueByPath(state.decision, fieldPath, value),
+    })),
 }));
+
+decision_store.subscribe((state) => {
+  const { decision } = state;
+
+  const updateSubmission = produce((draft: CreateSubmissionStore) => {
+    draft.submission.pursuant_to_dec_tct_id =
+      decision.pursuant_to_dec_tct?.id ?? null;
+    draft.submission.pursuant_to_dec_ttmn_id =
+      decision.pursuant_to_dec_ttmn?.id ?? null;
+    draft.submission.directly_decision = {
+      id: decision.id,
+      no: decision.no,
+      period: "KQ_KH_LCNT",
+    };
+  });
+
+  tv_store.setState(updateSubmission);
+  tt_store.setState(updateSubmission);
+});
