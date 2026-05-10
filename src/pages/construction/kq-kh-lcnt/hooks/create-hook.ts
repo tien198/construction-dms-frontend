@@ -46,7 +46,5 @@ export function useCreate() {
     queryResult,
     handleSubmit,
     handleCancel,
-    tv_store_api,
-    tt_store_api,
   };
 }

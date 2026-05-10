@@ -9,15 +9,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { useCreate } from "./hooks/create-hook";
 import { DecisionSection } from "./sections/decision-section";
+import { tv_store, tt_store } from "./store/create-submission-store";
+import { SubmissionDetail } from "./sections/submission-detail";
 
 export function Create() {
-  const {
-    queryResult,
-    handleSubmit,
-    handleCancel,
-    // tv_store_api,
-    // tt_store_api,
-  } = useCreate();
+  const { queryResult, handleSubmit, handleCancel } = useCreate();
 
   if (queryResult.isLoading) {
     return (
@@ -49,18 +45,11 @@ export function Create() {
         </ActionBtns>
       </FormHeader>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left: Administrative document fields for bcktkt */}
-        <div className="flex flex-col gap-6">
-          <DecisionSection />
-          {/* <AdministrativeDocumentFields
-            title="Tờ trình - Quyết định BCKTKT"
-            type="kq_kh_lcnt"
-            storeApi={storeApi}
-          /> */}
-        </div>
-        {/* Right: Construction info snapshot */}
-        {/* <ConstructionInfoSnapshotForm storeApi={storeApi} /> */}
+        <DecisionSection />
+        <SubmissionDetail storeApi={tt_store} disabled />
+        <SubmissionDetail storeApi={tv_store} disabled />
       </div>
     </FormLayout>
   );

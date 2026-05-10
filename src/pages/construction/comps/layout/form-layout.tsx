@@ -6,7 +6,9 @@ type FormLayoutProps = PropsWithChildren & {
 
 export function FormLayout({ children, className }: FormLayoutProps) {
   return (
-    <div className={`w-full border p-6 shadow-sm md:p-8 ${className ?? ""}`}>
+    <div
+      className={`w-full border p-6 shadow-sm md:p-8 md:pb-26 ${className ?? ""}`}
+    >
       {children}
     </div>
   );
