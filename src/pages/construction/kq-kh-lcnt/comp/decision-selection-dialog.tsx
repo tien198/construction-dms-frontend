@@ -10,7 +10,7 @@ import {
 import type { AdministrativeDocument } from "@/types/domain";
 import { DecisionList } from "@/pages/construction/comps/DecisionList";
 import { useStore, type StoreApi } from "zustand";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FormField } from "@/components/form-ui/form-field";
 import type { DecisionRef } from "@/types/domain/administrative-document.type";
 import type { CreateDecisionStore } from "../store/create-decision-store";
@@ -47,10 +47,27 @@ export function DecisionSelectionDialog({
   const [dec, setDec] = useState<DecisionResponse | null>(selectedDec ?? null);
   const setField = useStore(storeApi, (state) => state.setField);
 
-  function handleSetDec(dec: DecisionResponse) {
-    setDec(dec);
-    setField(fieldName, dec.id);
-  }
+  const handleSetDec = useCallback(
+    (dec: DecisionResponse) => {
+      setDec(dec);
+      setField(fieldName, dec.id);
+    },
+    [fieldName, setField, setDec],
+  );
+
+  // Only on mount
+  useEffect(() => {
+    if (selectedDec) {
+      handleSetDec(selectedDec);
+    }
+  }, []);
+
+  // reset state when prop change
+  // useEffect(() => {
+  //   if (selectedDec) {
+  //     setDec(selectedDec);
+  //   }
+  // }, [selectedDec?.id, setDec]);
 
   return (
     <Dialog>

@@ -46,10 +46,9 @@ export function Create() {
       </FormHeader>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Left: Administrative document fields for bcktkt */}
         <DecisionSection />
-        <SubmissionDetail storeApi={tt_store} disabled />
-        <SubmissionDetail storeApi={tv_store} disabled />
+        <SubmissionDetail storeApi={tt_store} />
+        <SubmissionDetail storeApi={tv_store} />
       </div>
     </FormLayout>
   );

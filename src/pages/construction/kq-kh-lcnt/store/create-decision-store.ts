@@ -12,6 +12,7 @@ export interface CreateDecisionStore {
     fieldPath: K,
     value: any,
   ) => void;
+  reset: (decision: AdministrativeDocument) => void;
 }
 
 const initialState: AdministrativeDocument = {
@@ -23,6 +24,7 @@ const initialState: AdministrativeDocument = {
   pursuant_to_dec_ttmn: null,
 };
 
+// used for both create and edit ( we will not create if it exist already )
 export const decision_store = createStore<CreateDecisionStore>((set) => ({
   decision: initialState,
   setField: (fieldPath, value) =>
@@ -30,6 +32,13 @@ export const decision_store = createStore<CreateDecisionStore>((set) => ({
       ...state,
       decision: setValueByPath(state.decision, fieldPath, value),
     })),
+  reset: (decision: AdministrativeDocument) => {
+    set(
+      produce((draft: CreateDecisionStore) => {
+        draft.decision = decision;
+      }),
+    );
+  },
 }));
 
 decision_store.subscribe((state) => {

@@ -1,4 +1,4 @@
-import { useFetcher, useParams } from "react-router";
+import { useFetcher, useNavigate, useParams } from "react-router";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getDecisionByPer } from "../../../../api/get-decision-by-per.api";
@@ -14,8 +14,9 @@ export function useCreate() {
     });
   };
 
+  const nav = useNavigate();
   const handleCancel = () => {
-    //
+    nav(-1);
   };
 
   // query data from previous period decision

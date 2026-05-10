@@ -1,95 +1,46 @@
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
-import { SaveIcon, EditIcon } from "lucide-react";
+import { SaveIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AdministrativeDocumentFields } from "../../comps/AdministrativeDocumentFields";
 import {
   FormLayout,
   FormHeader,
   FormTitle,
   ActionBtns,
 } from "../../comps/layout/form-layout";
-import { ConstructionInfoSnapshotForm } from "../../comps/ConstructionInfoSnapshotForm";
-import { useSubmit } from "react-router";
-import { useStore, type StoreApi } from "zustand";
-import type { CreateSubmissionStore } from "../../../../store-factory/create-submission.store.type";
-import type { Decision } from "@/types/domain";
-import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
-import { isEditingStoreFactory } from "../../../../store-factory/is-editing-store-factory";
-
-type Props = {
-  storeApi: StoreApi<CreateSubmissionStore>;
-  data: Decision;
-};
-
-const isEditingStore = isEditingStoreFactory();
+import { useEdit } from "../hooks/edit-hook";
+import { DecisionSection } from "./decision-section";
+import { SubmissionDetail } from "./submission-detail";
+import { edit_tt_store, edit_tv_store } from "../store/edit-store";
 
 // Detail also Edit form if `isEdit` is true
-export function DetailSection({ data, storeApi }: Props) {
-  const { isEditing, toggleIsEditing } = useStore(
-    isEditingStore,
-    (state) => state,
-  );
-  const disabled = !isEditing;
-
-  const isEditToggle = () => {
-    if (isEditing) {
-      const isConfirm = confirm(
-        "Hủy chỉnh sửa sẽ đưa tất cả giá trị về lại ban đầu",
-      );
-      if (isConfirm) {
-        toggleIsEditing();
-        storeApi.getState().reset("KQ_KH_LCNT", decisionToSubmissionPost(data));
-      }
-    } else {
-      toggleIsEditing();
-    }
-  };
-
-  const submit = useSubmit();
-
-  const handleSubmit = () => {
-    toggleIsEditing(false);
-    submit(null, {
-      method: "PUT",
-      encType: "application/json",
-      action: "chinh-sua",
-    });
-  };
-
+export function DetailSection() {
+  const { disabled, isEditingToggle, handleSubmit } = useEdit();
   return (
     <FormLayout>
       <FormHeader>
         <FormTitle
-          title="Chi tiết KQ KH LCNT"
-          description="Thông tin chi tiết của báo cáo khảo sát thiết kế."
+          title="Tạo KQ KH LCNT"
+          description="Nhập thông tin KQ KH LCNT."
         />
         <ActionBtns>
-          <Button variant="outline" onClick={isEditToggle}>
-            <EditIcon className="mr-2 h-4 w-4" />
-            {disabled ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
+          <Button
+            variant="outline"
+            className="bg-accent text-accent-foreground hover:bg-destructive hover:text-white"
+            onClick={() => isEditingToggle()}
+          >
+            {disabled ? "Chỉnh sửa" : "Hủy"}
           </Button>
-          {isEditing && (
-            <StickyRevealButton onClick={handleSubmit}>
-              <SaveIcon className="mr-2 h-4 w-4" />
-              Lưu BCKTKT
-            </StickyRevealButton>
-          )}
+          <StickyRevealButton onClick={() => handleSubmit()}>
+            <SaveIcon className="mr-2 h-4 w-4" />
+            Lưu KQ KH LCNT
+          </StickyRevealButton>
         </ActionBtns>
       </FormHeader>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Left: Administrative document fields for bcktkt */}
-        <div className="flex flex-col gap-6">
-          <AdministrativeDocumentFields
-            title="Tờ trình - Quyết định KQ KH LCNT"
-            type="kq_kh_lcnt"
-            storeApi={storeApi}
-            disabled={disabled}
-            decision={data}
-          />
-        </div>
-        {/* Right: Construction info snapshot */}
-        <ConstructionInfoSnapshotForm storeApi={storeApi} disabled={disabled} />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <DecisionSection disabled />
+        <SubmissionDetail storeApi={edit_tv_store} disabled={disabled} />
+        <SubmissionDetail storeApi={edit_tt_store} disabled={disabled} />
       </div>
     </FormLayout>
   );

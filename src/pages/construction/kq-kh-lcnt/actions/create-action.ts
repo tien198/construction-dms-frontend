@@ -44,5 +44,5 @@ export async function createKqKhLcntAction(args: ActionFunctionArgs) {
     return null;
   }
 
-  return redirect(`/cong-trinh/bcktkt/${conId}`);
+  return redirect(`/cong-trinh/kq-kh-lcnt/${conId}`);
 }

@@ -8,7 +8,7 @@ import { Navigate } from "react-router";
 const isCreatingStore = isCreatingStoreFactory(false);
 
 export function Detail() {
-  const { data, isLoading, storeApi, constructionId } = useDetail();
+  const { data, isLoading, constructionId } = useDetail();
   const { isCreating, toggleIsCreating } = useStore(
     isCreatingStore,
     (state) => state,
@@ -37,5 +37,5 @@ export function Detail() {
   }
 
   // Detail also Edit form if `isEdit` is true
-  return <DetailSection storeApi={storeApi} data={data.result} />;
+  return <DetailSection />;
 }

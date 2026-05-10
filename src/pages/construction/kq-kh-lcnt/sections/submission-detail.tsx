@@ -4,14 +4,14 @@ import type { StoreApiInject } from "../../../../store-factory/store-api-inject.
 import type { PropsWithChildren } from "react";
 import { FormField } from "@/components/form-ui/form-field";
 
-export function SubmissionDetail({ storeApi }: StoreApiInject) {
+export function SubmissionDetail({ storeApi, disabled }: StoreApiInject) {
   return (
     <div className="col-span-2 grid grid-cols-2 gap-6 border border-border rounded-4xl py-4 px-3 bg-brand">
       <SideEl>
-        <SubmissionSideEl storeApi={storeApi} />
+        <SubmissionSideEl storeApi={storeApi} disabled={disabled} />
       </SideEl>
       <SideEl>
-        <BidPackage index={0} storeApi={storeApi} />
+        <BidPackage index={0} storeApi={storeApi} disabled={disabled} />
       </SideEl>
     </div>
   );

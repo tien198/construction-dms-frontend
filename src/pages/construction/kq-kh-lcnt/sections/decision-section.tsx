@@ -8,6 +8,14 @@ type Props = { disabled?: boolean };
 export function DecisionSection({ disabled }: Props) {
   const decNo = useStore(decision_store, (state) => state.decision.no);
   const setField = useStore(decision_store, (state) => state.setField);
+  const dec_tct = useStore(
+    decision_store,
+    (state) => state.decision.pursuant_to_dec_tct,
+  );
+  const dec_ttmn = useStore(
+    decision_store,
+    (state) => state.decision.pursuant_to_dec_ttmn,
+  );
 
   function changeDecNoHandler(e: React.ChangeEvent<HTMLInputElement>) {
     setField("no", e.target.value);
@@ -21,6 +29,7 @@ export function DecisionSection({ disabled }: Props) {
           label="Quyết định số"
           value={decNo}
           onChange={changeDecNoHandler}
+          disabled={disabled}
           fullWidth
         />
         <DecisionSelectionDialog
@@ -30,6 +39,7 @@ export function DecisionSection({ disabled }: Props) {
           label="Căn cứ quyết định TCT"
           placeholder="Quyết định TCT"
           disabled={disabled}
+          selectedDec={dec_tct}
           isFindTCT
         />
         <DecisionSelectionDialog
@@ -39,6 +49,7 @@ export function DecisionSection({ disabled }: Props) {
           label="Căn cứ quyết định TTMN"
           placeholder="Quyết định TTMN"
           disabled={disabled}
+          selectedDec={dec_ttmn}
         />
       </div>
     </div>
