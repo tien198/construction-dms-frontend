@@ -3,7 +3,7 @@ import type { SubmissionPost } from "../types/submission-post/submission-post.ty
 
 function initialStateGeneration(period: ConstructionPeriod): SubmissionPost {
   return {
-    no: "-",
+    no: "",
     level: "",
     date: new Date(Date.now()).toISOString(),
     pursuant_to_dec_tct_id: null,

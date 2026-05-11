@@ -45,7 +45,7 @@ export function useCreate() {
 
       const decision: Partial<AdministrativeDocument> = {
         pursuant_to_dec_tct: queryResult.data.result.pursuant_to_dec_tct,
-        pursuant_to_dec_ttmn: queryResult.data.result.pursuant_to_dec_ttmn,
+        pursuant_to_dec_ttmn: queryResult.data.result,
       };
 
       decision_store.getState().reset(decision);
