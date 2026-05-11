@@ -47,8 +47,8 @@ export function Create() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <DecisionSection />
-        <SubmissionDetail storeApi={tt_store} />
         <SubmissionDetail storeApi={tv_store} />
+        <SubmissionDetail storeApi={tt_store} />
       </div>
     </FormLayout>
   );

@@ -45,29 +45,30 @@ export function DecisionSelectionDialog({
   isFindTCT = false,
 }: FormFieldProps) {
   const [dec, setDec] = useState<DecisionResponse | null>(selectedDec ?? null);
+
   const setField = useStore(storeApi, (state) => state.setField);
 
   const handleSetDec = useCallback(
     (dec: DecisionResponse) => {
       setDec(dec);
-      setField(fieldName, dec.id);
+      setField(fieldName, dec);
     },
     [fieldName, setField, setDec],
   );
 
-  // Only on mount
+  // used for create
   useEffect(() => {
     if (selectedDec) {
       handleSetDec(selectedDec);
     }
   }, []);
 
-  // reset state when prop change
-  // useEffect(() => {
-  //   if (selectedDec) {
-  //     setDec(selectedDec);
-  //   }
-  // }, [selectedDec?.id, setDec]);
+  // used for detail
+  useEffect(() => {
+    if (selectedDec) {
+      setDec(selectedDec);
+    }
+  }, [selectedDec, setDec]);
 
   return (
     <Dialog>

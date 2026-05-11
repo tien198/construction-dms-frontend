@@ -12,7 +12,7 @@ export interface CreateDecisionStore {
     fieldPath: K,
     value: any,
   ) => void;
-  reset: (decision: AdministrativeDocument) => void;
+  reset: (decision: Partial<AdministrativeDocument>) => void;
 }
 
 const initialState: AdministrativeDocument = {
@@ -32,10 +32,10 @@ export const decision_store = createStore<CreateDecisionStore>((set) => ({
       ...state,
       decision: setValueByPath(state.decision, fieldPath, value),
     })),
-  reset: (decision: AdministrativeDocument) => {
+  reset: (decision: Partial<AdministrativeDocument>) => {
     set(
       produce((draft: CreateDecisionStore) => {
-        draft.decision = decision;
+        draft.decision = { ...initialState, ...decision };
       }),
     );
   },

@@ -72,12 +72,18 @@ export function submission_store_factory(
         );
         if (bpIndex < 0) {
           bidPackagesShallow.push(value);
-          stateShallow.submission.bid_package_snapshots = bidPackagesShallow;
+          stateShallow.submission = {
+            ...stateShallow.submission,
+            bid_package_snapshots: bidPackagesShallow,
+          };
           return stateShallow;
         }
 
         bidPackagesShallow[bpIndex] = value;
-        stateShallow.submission.bid_package_snapshots = bidPackagesShallow;
+        stateShallow.submission = {
+          ...stateShallow.submission,
+          bid_package_snapshots: bidPackagesShallow,
+        };
         return stateShallow;
       });
     },

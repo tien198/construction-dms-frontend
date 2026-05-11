@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getDecisionByPer } from "../../../../api/get-decision-by-per.api";
 import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
 import { tt_store, tv_store } from "../store/create-submission-store";
+import { decision_store } from "../store/create-decision-store";
+import type { AdministrativeDocument } from "@/types/domain";
 
 export function useCreate() {
   const fetcher = useFetcher();
@@ -40,8 +42,15 @@ export function useCreate() {
 
       tv_store_api.getState().addBidPackage("TV", tv);
       tt_store_api.getState().addBidPackage("TT", tt);
+
+      const decision: Partial<AdministrativeDocument> = {
+        pursuant_to_dec_tct: queryResult.data.result.pursuant_to_dec_tct,
+        pursuant_to_dec_ttmn: queryResult.data.result.pursuant_to_dec_ttmn,
+      };
+
+      decision_store.getState().reset(decision);
     }
-  }, [queryResult.data?.result]);
+  }, [queryResult.data]);
 
   return {
     queryResult,

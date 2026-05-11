@@ -34,7 +34,7 @@ export function DecisionSection({ disabled }: Props) {
         />
         <DecisionSelectionDialog
           storeApi={decision_store}
-          fieldName="pursuant_to_dec_tct.id"
+          fieldName="pursuant_to_dec_tct"
           id="dec-tct"
           label="Căn cứ quyết định TCT"
           placeholder="Quyết định TCT"
@@ -44,7 +44,7 @@ export function DecisionSection({ disabled }: Props) {
         />
         <DecisionSelectionDialog
           storeApi={decision_store}
-          fieldName="pursuant_to_dec_ttmn.id"
+          fieldName="pursuant_to_dec_ttmn"
           id="dec-ttmn"
           label="Căn cứ quyết định TTMN"
           placeholder="Quyết định TTMN"
