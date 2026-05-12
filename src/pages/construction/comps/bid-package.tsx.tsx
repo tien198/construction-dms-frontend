@@ -1,11 +1,8 @@
-/*
-import { Button } from "@/components/ui/button";
-import { Trash2Icon } from "lucide-react";
-*/
 import { Label } from "@/components/ui/label";
 import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
+import { DatePicker } from "@/components/form-ui/date-picker";
 
 type Props = {
   index: number;
@@ -28,18 +25,6 @@ export function BidPackage({ index, storeApi, disabled = false }: Props) {
 
   return (
     <div className="relative w-full rounded-lg border border-border bg-muted/30 p-4">
-      {/* Remove button */}
-      {/* 
-      <Button
-        type="button"
-        variant="ghost"
-        size="icon-sm"
-        className="absolute right-3 top-3 text-muted-foreground hover:text-destructive"
-        aria-label="Xoá gói thầu"
-      >
-        <Trash2Icon />
-      </Button>
- */}
       <div className="h-6" />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -135,13 +120,16 @@ export function BidPackage({ index, storeApi, disabled = false }: Props) {
 */}
 
         {/* Bidder selection time */}
-        <FormField
+        <DatePicker
           id="sel-time"
           label="Thời gian chọn thầu"
-          type="date"
-          value={bp.bidder_selection_time}
-          onChange={(e) =>
-            setBidPackageField(bp.type, "bidder_selection_time", e.target.value)
+          date={
+            bp.bidder_selection_time
+              ? new Date(bp.bidder_selection_time)
+              : undefined
+          }
+          setDate={(date) =>
+            setBidPackageField(bp.type, "bidder_selection_time", date)
           }
           disabled={disabled}
         />

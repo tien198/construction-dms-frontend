@@ -1,14 +1,14 @@
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { SaveIcon, EditIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AdministrativeDocumentFields } from "../../comps/AdministrativeDocumentFields";
+import { AdministrativeDocumentFields } from "../../comps/administrative-document";
 import {
   FormLayout,
   FormHeader,
   FormTitle,
   ActionBtns,
 } from "../../comps/layout/form-layout";
-import { ConstructionInfoSnapshotForm } from "../../comps/ConstructionInfoSnapshotForm";
+import { ConstructionInfoSnapshotForm } from "../../comps/construction-info-snapshot-form";
 import { useSubmit } from "react-router";
 import { useStore, type StoreApi } from "zustand";
 import type { CreateSubmissionStore } from "../../../../store-factory/create-submission.store.type";

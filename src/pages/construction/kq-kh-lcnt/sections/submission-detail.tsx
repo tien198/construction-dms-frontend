@@ -1,8 +1,9 @@
-import { BidPackage } from "../../comps/BidPackage";
+import { BidPackage } from "../../comps/bid-package.tsx";
 import { useStore } from "zustand";
 import type { StoreApiInject } from "../../../../store-factory/store-api-inject.type";
 import type { PropsWithChildren } from "react";
 import { FormField } from "@/components/form-ui/form-field";
+import { DatePicker } from "@/components/form-ui/date-picker";
 
 export function SubmissionDetail({ storeApi, disabled }: StoreApiInject) {
   return (
@@ -44,12 +45,11 @@ function SubmissionSideEl(props: StoreApiInject) {
         fullWidth
       />
       <span />
-      <FormField
+      <DatePicker
         id="date"
         label="Ngày"
-        type="date"
-        value={sub.date}
-        onChange={(e) => setField("date", e.target.value)}
+        date={sub.date ? new Date(sub.date) : undefined}
+        setDate={(date) => setField("date", date)}
         disabled={disabled}
       />
     </div>

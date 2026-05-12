@@ -48,7 +48,13 @@ export function submission_store_factory(
         const bpShallow = { ...bp };
         bpShallow[field] = value;
 
-        bidPackages[bpIndex] = bpShallow;
+        const bidPackagesShallow = [...bidPackages];
+        bidPackagesShallow[bpIndex] = bpShallow;
+
+        stateShallow.submission = {
+          ...state.submission,
+          bid_package_snapshots: bidPackagesShallow,
+        };
         return stateShallow;
       });
     },

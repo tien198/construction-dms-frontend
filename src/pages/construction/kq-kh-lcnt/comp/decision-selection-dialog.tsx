@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import type { AdministrativeDocument } from "@/types/domain";
-import { DecisionList } from "@/pages/construction/comps/DecisionList";
+import { DecisionList } from "@/pages/construction/comps/decision-list";
 import { useStore, type StoreApi } from "zustand";
 import { useCallback, useEffect, useState } from "react";
 import { FormField } from "@/components/form-ui/form-field";

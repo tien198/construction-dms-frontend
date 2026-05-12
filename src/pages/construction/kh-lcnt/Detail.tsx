@@ -1,8 +1,8 @@
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { SaveIcon, EditIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { DocumentSide } from "../comps/DocumentSide";
-import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotForm";
+import { DocumentSide } from "../comps/document-side";
+import { ConstructionInfoSnapshotForm } from "../comps/construction-info-snapshot-form";
 import {
   FormLayout,
   FormHeader,

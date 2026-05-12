@@ -6,7 +6,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { BidPackage } from "./BidPackage";
+import { BidPackage } from "./bid-package.tsx";
 import { useStore } from "zustand";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 

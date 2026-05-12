@@ -4,6 +4,7 @@ import DecisionSelectionDialog from "./decision-selection-dialog";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 import { useEffect } from "react";
 import type { Decision } from "@/types/domain";
+import { DatePicker } from "@/components/form-ui/date-picker";
 
 type Props = {
   title: string;
@@ -51,12 +52,12 @@ export function AdministrativeDocumentFields({
           disabled={disabled}
         />
         <span />
-        <FormField
-          id="date"
-          label="Ngày ban hành (Date)"
-          type="date"
-          value={sub.date}
-          onChange={(e) => setField("date", e.target.value)}
+
+        <DatePicker
+          id="issue-date"
+          date={sub.date ? new Date(sub.date) : undefined}
+          setDate={(date) => setField("date", date)}
+          label="Ngày ban hành"
           disabled={disabled}
         />
 

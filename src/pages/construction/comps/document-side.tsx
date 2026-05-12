@@ -1,4 +1,4 @@
-import { AdministrativeDocumentFields } from "./AdministrativeDocumentFields";
+import { AdministrativeDocumentFields } from "./administrative-document";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 import type { Decision } from "@/types/domain";
 

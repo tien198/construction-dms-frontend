@@ -1,9 +1,10 @@
 import { Separator } from "@/components/ui/separator";
 import { FormText } from "@/components/form-ui/form-text";
 import { FormField } from "@/components/form-ui/form-field";
-import { BidPackageSideDrawer } from "./BidPackageDrawer";
+import { BidPackageSideDrawer } from "./bid-package-drawer";
 import { useStore } from "zustand";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
+import { DatePicker } from "@/components/form-ui/date-picker";
 
 type Props = StoreApiInject;
 
@@ -69,38 +70,6 @@ export function ConstructionInfoSnapshotForm({
           disabled={disabled}
         />
 
-        {/* Estimated cost */}
-        {/* 
-        <FormField
-          id="est-cost"
-          label="Dự toán (số)"
-          type="number"
-          placeholder="0"
-          value={infor.est_cost}
-          onChange={(e) =>
-            setField(
-              "construction_infor_snapshot.est_cost",
-              Number(e.target.value),
-            )
-          }
-          disabled={disabled}
-        />
-         */}
-
-        {/* Estimated cost string */}
-        {/* 
-        <FormField
-          id="est-cost-str"
-          label="Dự toán (chữ)"
-          placeholder="Một tỷ đồng"
-          value={infor.est_cost_str}
-          onChange={(e) =>
-            setField("construction_infor_snapshot.est_cost_str", e.target.value)
-          }
-          disabled={disabled}
-        />
-         */}
-
         {/* Source of funds */}
         <FormField
           id="source"
@@ -119,28 +88,25 @@ export function ConstructionInfoSnapshotForm({
         <Separator className="col-span-2" />
 
         {/* Start date */}
-        <FormField
+        <DatePicker
           id="start-date"
           label="Ngày bắt đầu thực hiện"
-          type="date"
-          value={infor.impl_start_date}
-          onChange={(e) =>
-            setField(
-              "construction_info_snapshot.impl_start_date",
-              e.target.value,
-            )
+          date={
+            infor.impl_start_date ? new Date(infor.impl_start_date) : undefined
+          }
+          setDate={(date) =>
+            setField("construction_info_snapshot.impl_start_date", date)
           }
           disabled={disabled}
         />
 
         {/* End date */}
-        <FormField
+        <DatePicker
           id="end-date"
           label="Ngày kết thúc thực hiện"
-          type="date"
-          value={infor.impl_end_date}
-          onChange={(e) =>
-            setField("construction_info_snapshot.impl_end_date", e.target.value)
+          date={infor.impl_end_date ? new Date(infor.impl_end_date) : undefined}
+          setDate={(date) =>
+            setField("construction_info_snapshot.impl_end_date", date)
           }
           disabled={disabled}
         />

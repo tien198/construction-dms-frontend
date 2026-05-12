@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 // import { getConstructions } from "@/mock-apis/get-constructions-list.mock";
-import { ConstructionCard } from "./comps/ConstructionCard";
-import { FloatingAddButton } from "./comps/FloatingAddButton";
+import { ConstructionCard } from "./comps/construction-card";
+import { FloatingAddButton } from "./comps/floating-add-button";
 import { AddButton } from "../comps/layout/add-btn";
 import { useNavigate } from "react-router";
 import { getConstructions } from "./api/get-constructions-list.api";

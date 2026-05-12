@@ -1,7 +1,7 @@
 import { SaveIcon } from "lucide-react";
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
-import { ConstructionInfoSnapshotForm } from "../comps/ConstructionInfoSnapshotForm";
-import { AdministrativeDocumentFields } from "../comps/AdministrativeDocumentFields";
+import { ConstructionInfoSnapshotForm } from "../comps/construction-info-snapshot-form";
+import { AdministrativeDocumentFields } from "../comps/administrative-document";
 import { useFetcher, useParams } from "react-router";
 import { create_bcktkt_store } from "./store/create-store";
 import {

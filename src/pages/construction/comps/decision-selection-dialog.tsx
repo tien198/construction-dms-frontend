@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import type { AdministrativeDocument } from "@/types/domain";
-import { DecisionList } from "./DecisionList";
+import { DecisionList } from "./decision-list";
 import { useStore } from "zustand";
 import { useState } from "react";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";

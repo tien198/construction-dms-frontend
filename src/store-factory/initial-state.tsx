@@ -5,7 +5,7 @@ function initialStateGeneration(period: ConstructionPeriod): SubmissionPost {
   return {
     no: "",
     level: "",
-    date: new Date(Date.now()).toISOString(),
+    date: "",
     pursuant_to_dec_tct_id: null,
     pursuant_to_dec_ttmn_id: null,
     construction_info_snapshot: null,
