@@ -1,4 +1,4 @@
-import type { Construction } from "@/types/domain";
+import type { Construction } from "@/types/domain/construction.type";
 
 export async function getConstructions_mock(): Promise<Construction[]> {
   return [

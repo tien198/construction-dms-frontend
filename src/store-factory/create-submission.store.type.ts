@@ -2,7 +2,7 @@ import type { RecursivePath } from "@/lib/type/recursion";
 import type { SubmissionPost } from "@/types/submission-post/submission-post.type";
 import type { BidPackageSnapshotPost } from "@/types/submission-post/bid-package-snapshot-post.type";
 import type { ConstructionPeriod } from "@/types/domain/construction.type";
-import type { BidPackageType } from "@/types/domain/bid-package-snapshot.type";
+import type { BidPackageType } from "@/types/domain/decision/bid-package-snapshot.type";
 import type { ConstructionInfoSnapshotPost } from "@/types/submission-post/construction-info-snapshot-post.type";
 
 export interface CreateSubmissionStore {

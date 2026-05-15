@@ -12,7 +12,7 @@ import { DecisionList } from "@/pages/construction/comps/decision-list";
 import { useStore, type StoreApi } from "zustand";
 import { useCallback, useEffect, useState } from "react";
 import { FormField } from "@/components/form-ui/form-field";
-import type { DecisionRef } from "@/types/domain/administrative-document.type";
+import type { DecisionRef } from "@/types/domain/decision/administrative-document.type";
 import type { CreateDecisionStore } from "../store/create-decision-store";
 import type { RecursivePath } from "@/lib/type/recursion";
 

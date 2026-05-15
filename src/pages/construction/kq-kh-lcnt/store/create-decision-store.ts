@@ -1,4 +1,4 @@
-import type { AdministrativeDocument } from "@/types/domain/administrative-document.type";
+import type { AdministrativeDocument } from "@/types/domain/decision/administrative-document.type";
 import { createStore } from "zustand";
 import { produce } from "immer";
 import { tt_store, tv_store } from "./create-submission-store";

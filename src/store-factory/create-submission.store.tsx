@@ -4,7 +4,7 @@ import { setValueByPath } from "@/lib/setValByPath";
 import type { CreateSubmissionStore } from "./create-submission.store.type";
 import type { ConstructionPeriod } from "@/types/domain/construction.type";
 import type { BidPackageSnapshotPost } from "@/types/submission-post/bid-package-snapshot-post.type";
-import type { BidPackageType } from "@/types/domain/bid-package-snapshot.type";
+import type { BidPackageType } from "@/types/domain/decision/bid-package-snapshot.type";
 import type { ConstructionInfoSnapshotPost } from "@/types/submission-post/construction-info-snapshot-post.type";
 import type { SubmissionPost } from "@/types/submission-post/submission-post.type";
 

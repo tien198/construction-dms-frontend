@@ -1,6 +1,8 @@
-export type { AdministrativeDocument } from "./administrative-document.type";
-export type { BidPackageSnapshot } from "./bid-package-snapshot.type";
+export type { AdministrativeDocument } from "./decision/administrative-document.type";
+export type { BidPackageSnapshot } from "./decision/bid-package-snapshot.type";
+export type { ConstructionInfoSnapshot } from "./decision/construction-info-snapshot.type";
+export type { Decision } from "./decision/decision.type";
+export type { Submission } from "./decision/submission.type";
+
 export type { Construction } from "./construction.type";
-export type { ConstructionInfoSnapshot } from "./construction-info-snapshot.type";
-export type { Decision } from "./decision.type";
-export type { Submission } from "./submission.type";
+export type { Bidder } from "./bidder.type";

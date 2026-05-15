@@ -14,7 +14,7 @@ import { useState } from "react";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 import type { SubmissionPost } from "../../../types/submission-post/submission-post.type";
 import { FormField } from "@/components/form-ui/form-field";
-import type { DecisionRef } from "@/types/domain/administrative-document.type";
+import type { DecisionRef } from "@/types/domain/decision/administrative-document.type";
 
 export type DecisionResponse = Pick<
   AdministrativeDocument,

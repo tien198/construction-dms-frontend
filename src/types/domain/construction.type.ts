@@ -1,4 +1,4 @@
-import type { Decision } from "./decision.type";
+import type { Decision } from "./decision/decision.type";
 
 export interface Construction {
   id: string;
