@@ -3,6 +3,7 @@ import { Home } from "@/pages/construction/home/Home";
 
 import { createBrowserRouter } from "react-router";
 import { constructionRoute } from "./construction-route";
+import { bidderRoute } from "./bidder-route";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       constructionRoute,
+      bidderRoute,
     ],
   },
 ]);

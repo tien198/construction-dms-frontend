@@ -1,5 +1,5 @@
 export type Bidder = {
-  id: string;
+  id?: string | null;
   name: string;
   address: string;
   representative_name: string;

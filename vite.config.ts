@@ -5,7 +5,7 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  loadEnv(mode, process.cwd(), "VITE_")
+  loadEnv(mode, process.cwd(), "VITE_");
   return {
     plugins: [react(), tailwindcss()],
     resolve: {
@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      open: true,
+      open: "/nha-thau/tao-moi",
     },
   };
 });

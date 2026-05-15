@@ -24,7 +24,7 @@ export function ConstructionInfoSnapshotForm({
   }
 
   return (
-    <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground">
+    <div className="bg-brand relative rounded-4xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground">
       <p className="mb-6 text-sm font-semibold text-foreground">
         Thông tin công trình
       </p>

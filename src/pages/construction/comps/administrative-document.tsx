@@ -30,7 +30,7 @@ export function AdministrativeDocumentFields({
   }, [type, setField]);
 
   return (
-    <div className="bg-brand relative rounded-xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
+    <div className="bg-brand relative rounded-4xl border border-border bg-card p-5 shadow-xl shadow-accent-foreground flex flex-col gap-0">
       <p className="mb-6 text-sm font-semibold text-foreground">{title}</p>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
