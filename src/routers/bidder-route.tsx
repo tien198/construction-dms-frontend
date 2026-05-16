@@ -10,6 +10,10 @@ export const bidderRoute: RouteObject = {
   ),
   children: [
     {
+      index: true,
+      element: <Bidder.List />,
+    },
+    {
       path: ":id",
       element: <Bidder.Detail />,
     },

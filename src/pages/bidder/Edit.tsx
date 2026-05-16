@@ -1,3 +1,3 @@
 export function Edit() {
-  return <></>;
+  return <div>Sửa</div>;
 }
