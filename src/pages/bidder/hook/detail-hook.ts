@@ -58,11 +58,11 @@ export function useDetail() {
 
   const fetcher = useFetcher();
 
-  function handleSubmit(e: SyntheticEvent) {
+  function handleSubmitEdit(e: SyntheticEvent) {
     e.preventDefault();
     fetcher.submit(null, {
       action: "/nha-thau/chinh-sua/" + query?.data?.result?.id,
-      method: "post",
+      method: "put",
     });
     toggleIsEditing(false);
   }
@@ -71,6 +71,6 @@ export function useDetail() {
     query,
     isEditing,
     isEditingToggle,
-    handleSubmit,
+    handleSubmitEdit,
   };
 }

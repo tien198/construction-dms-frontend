@@ -27,7 +27,6 @@ export const bidderRoute: RouteObject = {
     },
     {
       path: "chinh-sua/:id",
-      element: <Bidder.Edit />,
       action: (args) =>
         import("../pages/bidder/action/edit-action").then((m) =>
           m.editAction(args),

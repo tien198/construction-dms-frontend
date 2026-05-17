@@ -6,7 +6,7 @@ import { EditIcon, SaveIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Detail() {
-  const { query, isEditing, isEditingToggle, handleSubmit } = useDetail();
+  const { query, isEditing, isEditingToggle, handleSubmitEdit } = useDetail();
 
   if (query.isLoading) {
     return (
@@ -27,7 +27,7 @@ export function Detail() {
           {!isEditing ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
         </Button>
         {isEditing && (
-          <StickyRevealButton onClick={handleSubmit}>
+          <StickyRevealButton onClick={handleSubmitEdit}>
             <SaveIcon className="h-4 w-4" />
             Lưu Tờ trình
           </StickyRevealButton>
