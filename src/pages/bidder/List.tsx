@@ -1,15 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { getBiddersListMock } from "@/mock-apis/bidder/bidder.api.mock";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Phone, Receipt, UserRound } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { AddButton } from "../construction/comps/layout/add-btn";
 import type { Bidder } from "@/types/domain";
+import { getBiddersList } from "@/api/get-bidder";
 
 export function List() {
-  const { data, isLoading, error } = useQuery({
+  const {
+    data: bidders,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["bidders"],
-    queryFn: getBiddersListMock,
+    queryFn: getBiddersList,
   });
 
   const nav = useNavigate();
@@ -21,8 +25,6 @@ export function List() {
   if (error) {
     return <div className="p-4 text-destructive">Error loading bidders</div>;
   }
-
-  const bidders = data?.result;
 
   return (
     <div className="container mx-auto p-4">

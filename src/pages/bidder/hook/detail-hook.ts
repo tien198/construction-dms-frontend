@@ -1,12 +1,5 @@
-import { getBidderByIdMock } from "@/mock-apis/bidder/bidder.api.mock";
 import { useQuery } from "@tanstack/react-query";
-import {
-  useEffect,
-  useRef,
-  type FormEvent,
-  type FormEventHandler,
-  type SyntheticEvent,
-} from "react";
+import { useEffect, useRef, type SyntheticEvent } from "react";
 import { useFetcher, useParams } from "react-router";
 import { useStore, type StoreApi } from "zustand";
 import { editBidderStore } from "../store/edit-bidder-store";
@@ -14,21 +7,22 @@ import {
   isEditingStoreFactory,
   type IsEditing,
 } from "@/store-factory/is-editing-store-factory";
+import { getBidderById } from "@/api/get-bidder";
 
 export function useDetail() {
   const id = useParams()["id"]!;
   const query = useQuery({
     queryKey: ["bidder", id],
-    queryFn: () => getBidderByIdMock(id),
+    queryFn: () => getBidderById(id),
     enabled: !!id,
   });
 
   const resetBidderStore = useStore(editBidderStore, (state) => state.reset);
   useEffect(() => {
-    if (query.data?.result) {
-      resetBidderStore(query.data.result);
+    if (query.data) {
+      resetBidderStore(query.data);
     }
-  }, [query.data?.result, resetBidderStore]);
+  }, [query.data, resetBidderStore]);
 
   const isEditRef = useRef<StoreApi<IsEditing> | null>(null);
   if (!isEditRef.current) {
@@ -47,8 +41,8 @@ export function useDetail() {
       );
       if (isConfirm) {
         toggleIsEditing();
-        if (query.data?.result) {
-          resetBidderStore(query.data.result);
+        if (query.data) {
+          resetBidderStore(query.data);
         }
       }
     } else {
@@ -61,7 +55,7 @@ export function useDetail() {
   function handleSubmitEdit(e: SyntheticEvent) {
     e.preventDefault();
     fetcher.submit(null, {
-      action: "/nha-thau/chinh-sua/" + query?.data?.result?.id,
+      action: "/nha-thau/chinh-sua/" + query?.data?.id,
       method: "put",
     });
     toggleIsEditing(false);

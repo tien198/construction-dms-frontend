@@ -34,7 +34,11 @@ export function Detail() {
         )}
       </div>
 
-      <BidderForm disabled={!isEditing} storeApi={editBidderStore} />
+      <BidderForm
+        method="put"
+        disabled={!isEditing}
+        storeApi={editBidderStore}
+      />
     </div>
   );
 }

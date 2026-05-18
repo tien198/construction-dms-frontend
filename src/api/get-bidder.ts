@@ -2,7 +2,7 @@ import { BIDDER } from "@/lib/api-list/document-api-list";
 import type { ResResult } from "@/lib/type/response-result.tyoe";
 import type { Bidder } from "@/types/domain";
 
-export async function getBidderList() {
+export async function getBiddersList() {
   const res = await fetch(BIDDER);
   if (!res.ok) {
     throw new Error(`Failed to fetch bidder`);
