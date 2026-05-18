@@ -22,6 +22,14 @@ export function DecisionList({ handleSetDec, isFindTCT }: Props) {
       isFindTCT ? getTCTDecisionsList() : getDecisionsLisOfConstruction(conId),
   });
 
+  if (query.isLoading || query.isFetching) {
+    return (
+      <div className="h-full flex items-center justify-center text-white">
+        Loading...
+      </div>
+    );
+  }
+
   if (query.isError)
     return (
       <div className="h-full flex items-center justify-center text-red-500">

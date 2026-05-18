@@ -49,10 +49,17 @@ export const constructionRoute: RouteObject = {
             ),
         },
         {
-          path: "chinh-sua",
+          path: "chinh-sua/tv",
           action: (args) =>
             import("../pages/construction/kq-kh-lcnt/actions/edit-action").then(
-              (m) => m.editKqKhLcntAction(args),
+              (m) => m.editTvAction(args),
+            ),
+        },
+        {
+          path: "chinh-sua/tt",
+          action: (args) =>
+            import("../pages/construction/kq-kh-lcnt/actions/edit-action").then(
+              (m) => m.editTtAction(args),
             ),
         },
       ],

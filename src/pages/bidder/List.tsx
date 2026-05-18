@@ -33,8 +33,15 @@ export function List() {
       </h1>
 
       {bidders?.length === 0 ? (
-        <div className="py-8 text-center text-muted-foreground border rounded-md bg-muted/20">
-          Không có dữ liệu
+        <div className="flex flex-col gap-2 justify-between items-center ">
+          <div className="py-8 w-full text-center text-muted-foreground border rounded-md bg-muted">
+            Không có nhà thầu nào
+          </div>
+          <AddButton
+            title="Thêm nhà thầu"
+            onClick={() => nav("/nha-thau/tao-moi")}
+            className="w-lg"
+          />
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

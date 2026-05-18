@@ -3,6 +3,7 @@ import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 import { DatePicker } from "@/components/form-ui/date-picker";
+import { BidderSelectionDialog } from "./bidder-selection-dialog";
 
 type Props = {
   index: number;
@@ -155,14 +156,13 @@ export function BidPackage({ index, storeApi, disabled = false }: Props) {
         />
 
         {/* Successful bidder ID */}
-        <FormField
+        <BidderSelectionDialog
+          bidPackageType={bp.type}
           id="bidder"
           label="Nhà trúng thầu"
           placeholder="Chọn nhà thầu"
-          value={bp.successful_bidder_id ?? ""}
-          onChange={(e) =>
-            setBidPackageField(bp.type, "successful_bidder_id", e.target.value)
-          }
+          selectedBidderId={bp.successful_bidder_id}
+          storeApi={storeApi}
           disabled={disabled}
         />
       </div>
