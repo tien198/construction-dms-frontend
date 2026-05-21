@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormField } from "@/components/form-ui/form-field";
 import {
   Dialog,
@@ -14,6 +14,8 @@ import { BiddersList } from "./bidders-list";
 import { useStore } from "zustand";
 import type { StoreApiInject } from "@/store-factory/store-api-inject.type";
 import type { BidPackageType } from "@/types/domain/decision/bid-package-snapshot.type";
+import { useQuery } from "@tanstack/react-query";
+import { getBiddersList } from "@/api/get-bidder";
 
 type Props = {
   id: string;
@@ -43,6 +45,34 @@ export function BidderSelectionDialog({
     setBidPackageField(bidPackageType, "successful_bidder_id", bidder.id);
   }
 
+  const query = useQuery({
+    queryKey: ["bidders"],
+    queryFn: () => getBiddersList(),
+  });
+
+  useEffect(() => {
+    const bidder = query.data?.find((bidder) => bidder.id === selectedBidderId);
+    if (bidder) {
+      handleSetBidder(bidder);
+    }
+  }, [query.data, selectedBidderId]);
+
+  if (query.isLoading || query.isFetching) {
+    return (
+      <div className="h-full flex items-center justify-center text-white">
+        Tải nhà thầu...
+      </div>
+    );
+  }
+
+  if (query.isError) {
+    return (
+      <div className="h-full flex items-center justify-center text-red-500">
+        Lỗi khi tải danh sách nhà thầu
+      </div>
+    );
+  }
+
   return (
     <Dialog>
       <DialogOverlay className="bg-black/60" />
@@ -62,8 +92,8 @@ export function BidderSelectionDialog({
           <DialogDescription></DialogDescription>
           <div className="max-h-[80vh]! min-h-96! overflow-y-auto">
             <BiddersList
+              biddersList={query.data ?? []}
               handleSetBidder={handleSetBidder}
-              selectedBidderId={selectedBidderId}
             />
           </div>
         </DialogHeader>

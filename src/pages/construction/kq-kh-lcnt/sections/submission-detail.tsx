@@ -12,8 +12,15 @@ export function SubmissionDetail({ storeApi, disabled }: StoreApiInject) {
         <SubmissionSideEl storeApi={storeApi} disabled={disabled} />
       </SideEl>
       <SideEl>
-        <BidPackage index={0} storeApi={storeApi} disabled={disabled} />
+        <BidPackage
+          index={0}
+          storeApi={storeApi}
+          disabled={disabled}
+          hasBidder
+        />
       </SideEl>
+      <span />
+      <div className="h-7 bg-accent"></div>
     </div>
   );
 }

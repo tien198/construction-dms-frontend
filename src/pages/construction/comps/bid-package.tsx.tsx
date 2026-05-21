@@ -7,9 +7,15 @@ import { BidderSelectionDialog } from "./bidder-selection-dialog";
 
 type Props = {
   index: number;
+  hasBidder?: boolean;
 } & StoreApiInject;
 
-export function BidPackage({ index, storeApi, disabled = false }: Props) {
+export function BidPackage({
+  index,
+  storeApi,
+  disabled = false,
+  hasBidder = false,
+}: Props) {
   const bp = useStore(
     storeApi,
     (state) => state.submission.bid_package_snapshots?.[index],
@@ -156,15 +162,17 @@ export function BidPackage({ index, storeApi, disabled = false }: Props) {
         />
 
         {/* Successful bidder ID */}
-        <BidderSelectionDialog
-          bidPackageType={bp.type}
-          id="bidder"
-          label="Nhà trúng thầu"
-          placeholder="Chọn nhà thầu"
-          selectedBidderId={bp.successful_bidder_id}
-          storeApi={storeApi}
-          disabled={disabled}
-        />
+        {hasBidder && (
+          <BidderSelectionDialog
+            bidPackageType={bp.type}
+            id="bidder"
+            label="Nhà trúng thầu"
+            placeholder="Chọn nhà thầu"
+            selectedBidderId={bp.successful_bidder_id}
+            storeApi={storeApi}
+            disabled={disabled}
+          />
+        )}
       </div>
     </div>
   );
