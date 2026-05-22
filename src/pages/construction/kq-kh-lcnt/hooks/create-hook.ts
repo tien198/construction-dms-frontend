@@ -33,8 +33,8 @@ export function useCreate() {
   const tt_store_api = tt_store;
 
   useEffect(() => {
-    if (queryResult.data?.result) {
-      const subPost = decisionToSubmissionPost(queryResult.data.result);
+    if (queryResult.data) {
+      const subPost = decisionToSubmissionPost(queryResult.data);
       const tv =
         subPost.bid_package_snapshots?.find((it) => it.type === "TV") ?? null;
       const tt =
@@ -44,8 +44,8 @@ export function useCreate() {
       tt_store_api.getState().addBidPackage("TT", tt);
 
       const decision: Partial<AdministrativeDocument> = {
-        pursuant_to_dec_tct: queryResult.data.result.pursuant_to_dec_tct,
-        pursuant_to_dec_ttmn: queryResult.data.result,
+        pursuant_to_dec_tct: queryResult.data.pursuant_to_dec_tct,
+        pursuant_to_dec_ttmn: queryResult.data,
       };
 
       decision_store.getState().reset(decision);

@@ -7,11 +7,12 @@ import type { ConstructionPeriod } from "@/types/domain/construction.type";
 export async function getDecisionByPer(
   conId: string,
   period: ConstructionPeriod,
-): Promise<ResResult<Decision | undefined>> {
+): Promise<Decision | null> {
   // curl -X GET http://localhost:3000/api/document/decision/019d809f-122e-77a8-ae52-2dd6998ff23a/KH_TV_TT
   const res = await fetch(`${GET_DECISION_BY_PER}/${conId}/${period}`);
   if (!res.ok) {
     throw new Error(`Failed to fetch decision for period ${period}`);
   }
-  return (await res.json()) as ResResult<Decision>;
+  const result: ResResult<Decision | null> = await res.json();
+  return result.result;
 }

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Phone, Receipt, UserRound } from "lucide-react";
 import { Link, useNavigate } from "react-router";
-import { AddButton } from "../construction/comps/layout/add-btn";
+import { AddButton } from "../../components/shared/add-btn";
 import type { Bidder } from "@/types/domain";
 import { getBiddersList } from "@/api/get-bidder";
 

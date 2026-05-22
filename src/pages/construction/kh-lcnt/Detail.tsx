@@ -33,7 +33,7 @@ export namespace KhLcnt {
       );
     }
 
-    if (!data?.result)
+    if (!data)
       return (
         <div className="p-8 text-center text-muted-foreground w-full">
           Không tồn tại công trình có id: <i>"{conId}"</i>
@@ -71,7 +71,7 @@ export namespace KhLcnt {
           <DocumentSide
             storeApi={storeApi}
             disabled={disabled}
-            decision={data.result}
+            decision={data}
           />
           {/* Right: Construction info snapshot */}
           <ConstructionInfoSnapshotForm

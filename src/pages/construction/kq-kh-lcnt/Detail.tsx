@@ -25,7 +25,7 @@ export function Detail() {
     return <Navigate to="tao-moi" replace />;
   }
 
-  if (!data || !data.result) {
+  if (!data) {
     // Notfound include Create KQ_KH_LCNT form component
     return (
       <NotfoundDecicion

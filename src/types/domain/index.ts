@@ -6,3 +6,4 @@ export type { Submission } from "./decision/submission.type";
 
 export type { Construction } from "./construction.type";
 export type { Bidder } from "./bidder.type";
+export type { Contract } from "./contract.type";

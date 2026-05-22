@@ -26,7 +26,7 @@ export function Detail() {
     return <Navigate to="tao-moi" replace />;
   }
 
-  if (!data || !data.result) {
+  if (!data) {
     // Notfound include Create BCKTKT form component
     return (
       <NotfoundDecicion
@@ -38,5 +38,5 @@ export function Detail() {
   }
 
   // Detail also Edit form if `isEdit` is true
-  return <DetailComp storeApi={storeApi} data={data.result} />;
+  return <DetailComp storeApi={storeApi} data={data} />;
 }

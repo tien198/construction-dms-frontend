@@ -30,10 +30,12 @@ export function DetailSection() {
           >
             {disabled ? "Chỉnh sửa" : "Hủy"}
           </Button>
-          <StickyRevealButton onClick={() => handleSubmit()}>
-            <SaveIcon className="mr-2 h-4 w-4" />
-            Lưu KQ KH LCNT
-          </StickyRevealButton>
+          {!disabled && (
+            <StickyRevealButton onClick={() => handleSubmit()}>
+              <SaveIcon className="mr-2 h-4 w-4" />
+              Lưu KQ KH LCNT
+            </StickyRevealButton>
+          )}
         </ActionBtns>
       </FormHeader>
 

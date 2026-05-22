@@ -1,7 +1,5 @@
 import { getDecisionByPer } from "@/api/get-decision-by-per.api";
-import type { ResResult } from "@/lib/type/response-result.tyoe";
 import { isEditingStoreFactory } from "@/store-factory/is-editing-store-factory";
-import type { Decision } from "@/types/domain";
 import { decisionToSubmissionPost } from "@/ultil/decision-to-submision-post";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useSubmit } from "react-router";
@@ -20,7 +18,7 @@ export function useEdit() {
   const params = useParams();
   const constructionId = params["con-id"] as string;
 
-  const { data } = useQuery<ResResult<Decision | undefined>>({
+  const { data } = useQuery({
     queryKey: ["kq-kh-lcnt", constructionId],
     queryFn: async () => {
       return await getDecisionByPer(constructionId, "KQ_KH_LCNT");
@@ -39,9 +37,9 @@ export function useEdit() {
       );
       if (isConfirm) {
         toggleIsEditing();
-        if (data?.result) {
-          reset_tt("KQ_KH_LCNT", decisionToSubmissionPost(data.result, 0));
-          reset_tv("KQ_KH_LCNT", decisionToSubmissionPost(data.result, 1));
+        if (data) {
+          reset_tt("KQ_KH_LCNT", decisionToSubmissionPost(data, 0));
+          reset_tv("KQ_KH_LCNT", decisionToSubmissionPost(data, 1));
         }
       }
     } else {

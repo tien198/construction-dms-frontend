@@ -16,7 +16,7 @@ export function decisionToSubmissionPost(
   const constructionInfor: ConstructionInfoSnapshotPost | null =
     submission.construction_info_snapshot
       ? {
-          id: submission.id ?? null,
+          id: null,
           name: submission.construction_info_snapshot.name,
           source_of_funds:
             submission.construction_info_snapshot.source_of_funds,
@@ -35,11 +35,11 @@ export function decisionToSubmissionPost(
   const bidPackages: BidPackageSnapshotPost[] | null =
     submission.bid_package_snapshots?.map((bp) => ({
       ...bp,
-      id: bp.id ?? null,
+      id: null,
     })) ?? null;
 
   return {
-    id: submission.id ?? null,
+    id: null,
     no: submission.no,
     level: submission.level,
     date: submission.date,

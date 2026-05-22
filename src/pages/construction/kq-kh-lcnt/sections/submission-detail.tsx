@@ -4,8 +4,26 @@ import type { StoreApiInject } from "../../../../store-factory/store-api-inject.
 import type { PropsWithChildren } from "react";
 import { FormField } from "@/components/form-ui/form-field";
 import { DatePicker } from "@/components/form-ui/date-picker";
+import { ContractSection } from "./contract-section.tsx";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router";
+import { getDecisionByPer } from "@/api/get-decision-by-per.api.ts";
 
 export function SubmissionDetail({ storeApi, disabled }: StoreApiInject) {
+  const params = useParams();
+  const constructionId = params["con-id"] as string;
+
+  const { data } = useQuery({
+    queryKey: ["kq-kh-lcnt", constructionId],
+    queryFn: async () => {
+      return await getDecisionByPer(constructionId, "KQ_KH_LCNT");
+    },
+    enabled: false,
+    retry: false,
+  });
+
+  const bidPackageId = data?.submissions[0]?.bid_package_snapshots?.[0]?.id;
+
   return (
     <div className="col-span-2 grid grid-cols-2 gap-6 border border-border rounded-4xl py-4 px-3 bg-brand">
       <SideEl>
@@ -20,7 +38,11 @@ export function SubmissionDetail({ storeApi, disabled }: StoreApiInject) {
         />
       </SideEl>
       <span />
-      <div className="h-7 bg-accent"></div>
+      {bidPackageId && disabled && (
+        <SideEl>
+          <ContractSection bidPackageId={bidPackageId} />
+        </SideEl>
+      )}
     </div>
   );
 }

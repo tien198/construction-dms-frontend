@@ -39,14 +39,14 @@ export function Create() {
   const storeApi = create_bcktkt_store;
 
   useEffect(() => {
-    if (data?.result) {
+    if (data) {
       storeApi
         .getState()
         .setConstructionInfo(
-          decisionToSubmissionPost(data.result).construction_info_snapshot!,
+          decisionToSubmissionPost(data).construction_info_snapshot!,
         );
     }
-  }, [data?.result]);
+  }, [data]);
 
   return (
     <FormLayout>

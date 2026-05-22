@@ -3,26 +3,24 @@ import { useQuery } from "@tanstack/react-query";
 
 import { edit_tv_tt_store } from "../edit-store";
 import { useParams, useSubmit } from "react-router";
-import type { Decision } from "@/types/domain";
 import { getDecisionByPer } from "../../../../api/get-decision-by-per.api";
 import { useStore } from "zustand";
 import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
 import type { SubmissionPost } from "../../../../types/submission-post/submission-post.type";
-import type { ResResult } from "@/lib/type/response-result.tyoe";
 
 export function useDetail() {
   const [isEdit, setIsEdit] = useState(false);
   const disabled = !isEdit;
   const params = useParams();
   const conId = params["con-id"] as string;
-  const { data, isLoading } = useQuery<ResResult<Decision | undefined>>({
+  const { data, isLoading } = useQuery({
     queryKey: ["kh-lcnt", conId],
     queryFn: async () => getDecisionByPer(conId, "KH_LCNT"),
   });
 
   const storeApi = edit_tv_tt_store;
   const reset = useStore(storeApi, (state) => state.reset);
-  const khDec = data?.result;
+  const khDec = data;
 
   let khSubmission: SubmissionPost | undefined;
   if (khDec) {

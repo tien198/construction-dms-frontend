@@ -1,5 +1,5 @@
 import type { ConstructionPeriod } from "@/types/domain/construction.type";
-import { AddButton } from "./add-btn";
+import { AddButton } from "../../../../components/shared/add-btn";
 
 type Props = {
   constructionId?: string;
