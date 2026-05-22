@@ -1,5 +1,5 @@
 export interface Contract {
-  id: string;
+  id: string | null;
   bid_package_id: string;
   no: string;
   signing_date: string;

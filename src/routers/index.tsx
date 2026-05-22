@@ -4,6 +4,7 @@ import { Home } from "@/pages/construction/home/Home";
 import { createBrowserRouter } from "react-router";
 import { constructionRoute } from "./construction-route";
 import { bidderRoute } from "./bidder-route";
+import { contractRoute } from "./contract-route";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
       },
       constructionRoute,
       bidderRoute,
+      contractRoute,
     ],
   },
 ]);

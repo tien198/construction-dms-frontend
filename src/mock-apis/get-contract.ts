@@ -11,7 +11,7 @@ export async function mockGetContractByBidPackageId(
       id: "contract-1",
       bid_package_id: bidPackageId,
       no: "contract-1",
-      signing_date: "2022-01-01",
+      signing_date: "2022-12-21",
     },
   };
 }

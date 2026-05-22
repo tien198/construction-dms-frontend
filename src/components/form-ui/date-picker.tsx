@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Field, FieldLabel } from "@/components/ui/field";
 import {
@@ -9,6 +8,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { format } from "date-fns";
+import { Input } from "../ui/input";
 
 type Props = {
   id: string;
@@ -16,7 +16,7 @@ type Props = {
   setDate: (date?: Date) => void;
   label?: string;
   disabled?: boolean;
-};
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 export function DatePicker({
   id,
@@ -24,6 +24,7 @@ export function DatePicker({
   setDate,
   label,
   disabled = false,
+  ...props
 }: Props) {
   const [open, setOpen] = React.useState(false);
 
@@ -32,18 +33,19 @@ export function DatePicker({
       <FieldLabel htmlFor={id}>{label ?? "Ngày"}</FieldLabel>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            id={id}
-            disabled={disabled}
-            className={
-              "w-full justify-start font-normal" +
-              (disabled ? " disabled:opacity-100" : " border-primary") +
-              (date ? "" : " opacity-70")
-            }
-          >
-            {date ? format(date, "dd/MM/yyyy") : "Chọn ngày"}
-          </Button>
+          <button disabled={disabled}>
+            <Input
+              id={id}
+              disabled={disabled}
+              className={
+                "w-full justify-start font-normal" +
+                (disabled ? " disabled:opacity-100" : " border-primary") +
+                (date ? "" : " opacity-70")
+              }
+              value={date ? format(date, "dd/MM/yyyy") : "Chọn ngày"}
+              {...props}
+            />
+          </button>
         </PopoverTrigger>
         <PopoverContent className="w-96 overflow-hidden  pb-6" align="start">
           <Calendar
