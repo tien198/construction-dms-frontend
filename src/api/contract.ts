@@ -13,7 +13,10 @@ export async function getContractsList() {
 }
 
 export async function getContractByBidPackageId(bidPackageId: string) {
-  const res = await fetch(`${CONTRACT}?bid_package_id=${bidPackageId}`);
+  // const { result: mockResult } =
+  // await mockGetContractByBidPackageId(bidPackageId);
+  // return mockResult;
+  const res = await fetch(`${CONTRACT}/query/bid-package/${bidPackageId}`);
   if (!res.ok) {
     throw new Error(
       `Failed to fetch contract with bid package id: "${bidPackageId}"`,

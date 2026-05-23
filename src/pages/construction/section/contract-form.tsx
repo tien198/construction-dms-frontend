@@ -2,47 +2,48 @@ import { useFetcher, type FetcherFormProps } from "react-router";
 import { DatePicker } from "@/components/form-ui/date-picker";
 import { FormField } from "@/components/form-ui/form-field";
 import type { Contract } from "@/types/domain";
-import { useRef } from "react";
-import { useStore, type StoreApi } from "zustand";
-import {
-  contractFormStoreFactory,
-  type ContractFormStore,
-} from "./contract-form.store.factory";
 
 type Props = {
-  contract: Contract;
+  contract: Partial<Contract>;
+  setContractField: <K extends keyof Contract>(
+    key: K,
+    value: Partial<Contract>[K],
+  ) => void;
   formFooter: () => React.ReactNode;
 } & FetcherFormProps;
 
-export function ContractForm({ contract, formFooter, ...props }: Props) {
-  const contractStoreRef = useRef<StoreApi<ContractFormStore>>(null);
-  if (!contractStoreRef.current) {
-    contractStoreRef.current = contractFormStoreFactory(contract);
-  }
-
-  const contractStore = contractStoreRef.current;
-  const { contract: contractState, setField } = useStore(
-    contractStore,
-    (state) => state,
-  );
-
+export function ContractForm({
+  contract,
+  setContractField,
+  formFooter,
+  ...props
+}: Props) {
   const fetcher = useFetcher();
   return (
     <fetcher.Form className="flex flex-col gap-5 justify-between" {...props}>
+      <input
+        type="hidden"
+        name="bid_package_id"
+        value={contract.bid_package_id}
+      />
       <FormField
         id="contract-no"
         label="Số hợp đồng"
         name="no"
-        value={contractState.no}
-        onChange={(e) => setField("no", e.target.value)}
+        value={contract.no}
+        onChange={(e) => setContractField("no", e.target.value)}
         fullWidth
       />
+      <input type="hidden" name="signing_date" value={contract.signing_date} />
       <DatePicker
         id="contract-signing-date"
         label="Ngày ký hợp đồng"
-        name="signing_date"
-        date={new Date(contractState.signing_date)}
-        setDate={(date) => setField("signing_date", date?.toISOString() ?? "")}
+        date={
+          contract.signing_date ? new Date(contract.signing_date) : undefined
+        }
+        setDate={(date) =>
+          setContractField("signing_date", date?.toISOString())
+        }
       />
       {formFooter()}
     </fetcher.Form>

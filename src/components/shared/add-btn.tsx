@@ -16,7 +16,7 @@ const iconWrapperVariants = cva("p-2 rounded-lg", {
 
 type Props = {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   iconSize?: number;
 } & VariantProps<typeof iconWrapperVariants>;
