@@ -10,6 +10,8 @@ import {
   FormTitle,
   ActionBtns,
 } from "../comps/layout/form-layout";
+import { Separator } from "@/components/ui/separator";
+import { BidPackagesList } from "../section/bid-packager-drawer/bid-packages-list";
 
 export namespace KhLcnt {
   export function Create() {
@@ -43,6 +45,8 @@ export namespace KhLcnt {
           {/* Right: Construction info snapshot */}
           <ConstructionInfoSnapshotForm storeApi={storeApi} />
         </div>
+        <Separator className="my-5" />
+        <BidPackagesList storeApi={storeApi} />
       </FormLayout>
     );
   }

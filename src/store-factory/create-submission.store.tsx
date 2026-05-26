@@ -68,7 +68,7 @@ export function submission_store_factory(
 
         const bidPackages = stateShallow.submission.bid_package_snapshots;
         if (!bidPackages) {
-          stateShallow.submission.bid_package_snapshots = value ? [value] : [];
+          stateShallow.submission.bid_package_snapshots = [value];
           return stateShallow;
         }
 

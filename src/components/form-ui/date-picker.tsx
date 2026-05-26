@@ -20,6 +20,7 @@ type Props = {
 
 export function DatePicker({
   id,
+  name,
   date,
   setDate,
   label,
@@ -31,6 +32,8 @@ export function DatePicker({
   return (
     <Field className="mx-auto gap-1">
       <FieldLabel htmlFor={id}>{label ?? "Ngày"}</FieldLabel>
+      <input type="hidden" name={name} value={date?.toISOString()} />
+
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button

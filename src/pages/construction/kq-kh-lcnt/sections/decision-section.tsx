@@ -5,7 +5,7 @@ import { decision_store } from "../store/create-decision-store";
 
 type Props = { disabled?: boolean };
 
-export function DecisionSection({ disabled }: Props) {
+export function DecisionSection({ disabled = false }: Props) {
   const decNo = useStore(decision_store, (state) => state.decision.no);
   const setField = useStore(decision_store, (state) => state.setField);
   const dec_tct = useStore(

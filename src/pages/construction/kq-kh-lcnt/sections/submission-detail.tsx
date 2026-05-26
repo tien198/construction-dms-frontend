@@ -1,10 +1,10 @@
-import { BidPackage } from "../../comps/bid-package.tsx";
+import { BidPackage } from "../../section/bid-packager-drawer/bid-package";
 import { useStore } from "zustand";
 import type { StoreApiInject } from "../../../../store-factory/store-api-inject.type";
-import type { PropsWithChildren } from "react";
 import { FormField } from "@/components/form-ui/form-field";
 import { DatePicker } from "@/components/form-ui/date-picker";
-import { ContractSection } from "../../section/contract-section.tsx";
+import { ContractSection } from "../../section/contract-section";
+import { SideEl } from "../../comps/side-element.tsx";
 
 export function SubmissionDetail({ storeApi, disabled }: StoreApiInject) {
   // const params = useParams();
@@ -41,17 +41,6 @@ export function SubmissionDetail({ storeApi, disabled }: StoreApiInject) {
           <ContractSection bidPackage={bidPackage} />
         </SideEl>
       )}
-    </div>
-  );
-}
-
-// side element
-function SideEl(props: PropsWithChildren) {
-  return (
-    <div>
-      <div className=" bg-brand bg-card p-5 shadow-xl shadow-accent-foreground rounded-xl border border-border w-full">
-        {props.children}
-      </div>
     </div>
   );
 }

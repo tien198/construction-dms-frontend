@@ -34,10 +34,10 @@ export function ContractForm({
         onChange={(e) => setContractField("no", e.target.value)}
         fullWidth
       />
-      <input type="hidden" name="signing_date" value={contract.signing_date} />
       <DatePicker
         id="contract-signing-date"
         label="Ngày ký hợp đồng"
+        name="signing_date"
         date={
           contract.signing_date ? new Date(contract.signing_date) : undefined
         }

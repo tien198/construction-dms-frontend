@@ -10,6 +10,8 @@ import {
   ActionBtns,
 } from "../comps/layout/form-layout";
 import { useDetail } from "./hook/useDetail";
+import { Separator } from "@/components/ui/separator";
+import { BidPackagesList } from "../section/bid-packager-drawer/bid-packages-list";
 
 export namespace KhLcnt {
   export function Detail() {
@@ -79,6 +81,8 @@ export namespace KhLcnt {
             disabled={disabled}
           />
         </div>
+        <Separator className="my-5" />
+        <BidPackagesList storeApi={storeApi} disabled={disabled} />
       </FormLayout>
     );
   }

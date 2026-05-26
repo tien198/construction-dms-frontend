@@ -2,8 +2,6 @@ import { SaveIcon } from "lucide-react";
 import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { ConstructionInfoSnapshotForm } from "../comps/construction-info-snapshot-form";
 import { AdministrativeDocumentFields } from "../comps/administrative-document";
-import { useFetcher, useParams } from "react-router";
-import { create_bcktkt_store } from "./store/create-store";
 import {
   FormLayout,
   FormHeader,
@@ -11,42 +9,12 @@ import {
   ActionBtns,
 } from "../comps/layout/form-layout";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getDecisionByPer } from "../../../api/get-decision-by-per.api";
-import { decisionToSubmissionPost } from "../../../ultil/decision-to-submision-post";
+import { useCreate } from "./hooks/create-hook";
+import { Separator } from "@/components/ui/separator";
+import { BidPackagesListBcktkt } from "./section/bid-ackages-list.bcktkt";
 
 export function Create() {
-  const fetcher = useFetcher();
-  const handleSubmit = () => {
-    return fetcher.submit(null, {
-      method: "post",
-      encType: "application/json",
-      action: "tao-moi",
-    });
-  };
-
-  const handleCancel = () => {
-    //
-  };
-
-  const conId = useParams()["con-id"] as string;
-  const { data } = useQuery({
-    queryKey: ["kq-kh-lcnt", conId],
-    queryFn: () => getDecisionByPer(conId, "KH_LCNT"),
-  });
-
-  const storeApi = create_bcktkt_store;
-
-  useEffect(() => {
-    if (data) {
-      storeApi
-        .getState()
-        .setConstructionInfo(
-          decisionToSubmissionPost(data).construction_info_snapshot!,
-        );
-    }
-  }, [data]);
+  const { handleSubmit, handleCancel, storeApi } = useCreate();
 
   return (
     <FormLayout>
@@ -69,7 +37,7 @@ export function Create() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Administrative document fields for bcktkt */}
-        <div className="flex flex-col gap-6">
+        <div>
           <AdministrativeDocumentFields
             title="Tờ trình - Quyết định BCKTKT"
             type="bcktkt"
@@ -79,6 +47,8 @@ export function Create() {
         {/* Right: Construction info snapshot */}
         <ConstructionInfoSnapshotForm storeApi={storeApi} />
       </div>
+      <Separator className="my-5" />
+      <BidPackagesListBcktkt storeApi={storeApi} displayContract />
     </FormLayout>
   );
 }

@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getContractByBidPackageId } from "@/api/contract";
-import { FormField } from "@/components/form-ui/form-field";
-import { DatePicker } from "@/components/form-ui/date-picker";
 import { EditContractFormDialog } from "./edit-contract-form-dialog";
 import { CreateContractFormDialog } from "./create-contract-form-dialog";
 import type { BidPackageSnapshotPost } from "@/types/submission-post/bid-package-snapshot-post.type";
+import { ContractPreliminaryInfo } from "./contract-preliminary-info";
 
 type Props = {
   bidPackage: BidPackageSnapshotPost;
@@ -22,25 +21,11 @@ export function ContractSection({ bidPackage }: Props) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <FormField
-        id="contract-no"
-        label="Số hợp đồng"
-        value={data.no}
-        disabled
-        readOnly
-      />
-      <DatePicker
-        id="contract-signing-date"
-        label="Ngày ký hợp đồng"
-        date={data.signing_date ? new Date(data.signing_date) : undefined}
-        setDate={() => {}}
-        disabled
-      />
-      <span />
+    <>
+      <ContractPreliminaryInfo bidPackageId={bidPackage.id!} />
       <div className="text-right">
         <EditContractFormDialog bidPackage={bidPackage} contract={data} />
       </div>
-    </div>
+    </>
   );
 }

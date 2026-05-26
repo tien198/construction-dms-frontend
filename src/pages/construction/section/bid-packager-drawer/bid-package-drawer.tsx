@@ -8,11 +8,18 @@ import {
 } from "@/components/ui/drawer";
 import { BidPackage } from "./bid-package.tsx";
 import { useStore } from "zustand";
-import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
+import type { StoreApiInject } from "../../../../store-factory/store-api-inject.type.ts";
+import { ContractPreliminaryInfo } from "../contract-preliminary-info.tsx";
 
-type Props = StoreApiInject;
+type Props = StoreApiInject & {
+  displayContract?: boolean;
+};
 
-export function BidPackageSideDrawer({ storeApi, disabled = false }: Props) {
+export function BidPackageSideDrawer({
+  storeApi,
+  disabled = false,
+  displayContract = false,
+}: Props) {
   const bidPackagesList = useStore(
     storeApi,
     (state) => state.submission.bid_package_snapshots,
@@ -32,13 +39,18 @@ export function BidPackageSideDrawer({ storeApi, disabled = false }: Props) {
             <DrawerTitle className="text-primary">Gói thầu</DrawerTitle>
           </DrawerHeader>
           <div className="grid grid-cols-2 gap-12 p-4 pb-14">
-            {bidPackagesList?.map((_, id) => (
-              <BidPackage
-                key={id}
-                index={id}
-                storeApi={storeApi}
-                disabled={disabled}
-              />
+            {bidPackagesList?.map((bp, id) => (
+              <div key={bp.id}>
+                <BidPackage
+                  index={id}
+                  storeApi={storeApi}
+                  disabled={disabled}
+                  displayContract={displayContract}
+                />
+                {displayContract && (
+                  <ContractPreliminaryInfo bidPackageId={bp.id} />
+                )}
+              </div>
             ))}
           </div>
         </div>

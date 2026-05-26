@@ -32,7 +32,6 @@ export async function createKqKhLcntAction(args: ActionFunctionArgs) {
       id: decId,
     },
   };
-  console.log(tvSub, ttSub);
 
   const ttRes = await fetch(
     POST_ADD_SUBMISSION,

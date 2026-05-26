@@ -1,7 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { FormText } from "@/components/form-ui/form-text";
 import { FormField } from "@/components/form-ui/form-field";
-import { BidPackageSideDrawer } from "./bid-package-drawer";
 import { useStore } from "zustand";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 import { DatePicker } from "@/components/form-ui/date-picker";
@@ -143,10 +142,14 @@ export function ConstructionInfoSnapshotForm({
       </div>
 
       {/* Bid packages */}
-      <Separator className="my-5" />
+      {/* <Separator className="my-5" />
       <div className="flex items-center justify-between mb-3">
-        <BidPackageSideDrawer storeApi={storeApi} disabled={disabled} />
-      </div>
+        <BidPackageSideDrawer
+          storeApi={storeApi}
+          disabled={disabled}
+          displayContract
+        />
+      </div> */}
       {/* 
       <div className="flex flex-col gap-3">
         <BidPackageSnapshotForm />
