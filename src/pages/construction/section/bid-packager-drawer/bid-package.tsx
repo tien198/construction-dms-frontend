@@ -9,7 +9,6 @@ import { ContractPreliminaryInfo } from "../contract-preliminary-info";
 
 type Props = {
   index: number;
-  hasBidder?: boolean;
   displayBidder?: boolean;
   displayContract?: boolean;
 } & StoreApiInject;

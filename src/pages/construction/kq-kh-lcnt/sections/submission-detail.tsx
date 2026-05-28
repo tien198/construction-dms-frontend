@@ -32,7 +32,7 @@ export function SubmissionDetail({ storeApi, disabled }: StoreApiInject) {
           index={0}
           storeApi={storeApi}
           disabled={disabled}
-          hasBidder
+          displayBidder
         />
       </SideEl>
       <span />

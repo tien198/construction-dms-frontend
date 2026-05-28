@@ -1,18 +1,14 @@
 import { useStore } from "zustand";
 import type { StoreApiInject } from "../../../../store-factory/store-api-inject.type";
 import { BidPackage } from "../../section/bid-packager-drawer/bid-package";
-import { useEffect, useState } from "react";
-import type { BidPackageSnapshotPost } from "@/types/submission-post/bid-package-snapshot-post.type";
 
 type Props = StoreApiInject & {
   displayContract?: boolean;
-  displayBidder?: boolean;
 };
 
 export function BidPackagesListBcktkt({
   storeApi,
   disabled,
-  displayBidder,
   displayContract,
 }: Props) {
   const bidPackagesList = useStore(
@@ -20,8 +16,17 @@ export function BidPackagesListBcktkt({
     (state) => state.submission.bid_package_snapshots,
   );
 
-  const completed = [0, 1];
-  const inProgress = [2];
+  const completed = [];
+  const inProgress = [];
+  if (bidPackagesList) {
+    for (let i = 0; i < bidPackagesList.length; i++) {
+      const bp = bidPackagesList[i];
+      if (bp.type !== "TC") completed.push(i);
+      else if (bp.type === "TC") inProgress.push(i);
+    }
+
+    completed.reverse();
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -36,7 +41,7 @@ export function BidPackagesListBcktkt({
           index={bpIndex}
           storeApi={storeApi}
           disabled
-          displayBidder={displayBidder}
+          displayBidder
           displayContract={displayContract}
         />
       ))}
@@ -51,7 +56,6 @@ export function BidPackagesListBcktkt({
           index={bpIndex}
           storeApi={storeApi}
           disabled={disabled}
-          displayBidder={displayBidder}
           displayContract={displayContract}
         />
       ))}
