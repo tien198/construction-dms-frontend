@@ -15,6 +15,8 @@ import type { CreateSubmissionStore } from "../../../../store-factory/create-sub
 import type { Decision } from "@/types/domain";
 import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
 import { isEditingStoreFactory } from "../../../../store-factory/is-editing-store-factory";
+import { Separator } from "@/components/ui/separator";
+import { BidPackagesListBcktkt } from "./bid-ackages-list.bcktkt";
 
 type Props = {
   storeApi: StoreApi<CreateSubmissionStore>;
@@ -24,7 +26,7 @@ type Props = {
 const isEditingStore = isEditingStoreFactory();
 
 // Detail also Edit form if `isEdit` is true
-export function DetailComp({ data, storeApi }: Props) {
+export function DetailSection({ data, storeApi }: Props) {
   const { isEditing, toggleIsEditing } = useStore(
     isEditingStore,
     (state) => state,
@@ -41,7 +43,7 @@ export function DetailComp({ data, storeApi }: Props) {
         storeApi.getState().reset("BCKTKT", decisionToSubmissionPost(data));
       }
     } else {
-      toggleIsEditing(false);
+      toggleIsEditing();
     }
   };
 
@@ -91,6 +93,13 @@ export function DetailComp({ data, storeApi }: Props) {
         {/* Right: Construction info snapshot */}
         <ConstructionInfoSnapshotForm storeApi={storeApi} disabled={disabled} />
       </div>
+
+      <Separator className="my-5" />
+      <BidPackagesListBcktkt
+        storeApi={storeApi}
+        displayContract
+        disabled={disabled}
+      />
     </FormLayout>
   );
 }

@@ -13,7 +13,6 @@ export function useCreate() {
     return fetcher.submit(null, {
       method: "post",
       encType: "application/json",
-      action: "tao-moi",
     });
   };
 

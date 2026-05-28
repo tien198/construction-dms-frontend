@@ -1,6 +1,6 @@
 import { useDetailFunc } from "./hooks/detail-hook";
 import { NotfoundDecicion } from "../comps/layout/notfound-decision";
-import { DetailComp } from "./section/detail-section";
+import { DetailSection } from "./section/detail-section";
 import { isCreatingStoreFactory } from "../../../store-factory/is-creating-store-factory";
 import { useStore } from "zustand";
 import { Navigate } from "react-router";
@@ -38,5 +38,5 @@ export function Detail() {
   }
 
   // Detail also Edit form if `isEdit` is true
-  return <DetailComp storeApi={storeApi} data={data} />;
+  return <DetailSection storeApi={storeApi} data={data} />;
 }
