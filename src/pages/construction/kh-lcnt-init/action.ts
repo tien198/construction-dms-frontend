@@ -20,5 +20,5 @@ export async function initConstructionAction(args: ActionFunctionArgs) {
 
   const conId = (await initRes.json()) as ConstructionIdResDto;
 
-  return redirect(`/cong-trinh/kh-lcnt/${conId}`);
+  return redirect(`/cong-trinh/kh-lcnt/${conId.value}`);
 }

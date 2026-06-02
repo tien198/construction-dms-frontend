@@ -18,18 +18,40 @@ function initialStateGeneration(period: ConstructionPeriod): SubmissionPost {
 
 function initialBidPackage(type: BidPackageType): BidPackageSnapshotPost {
   return {
-    name: "",
-    short_desc: "",
+    name: getBPNameByType(type),
+    short_desc: getShortDescByType(type),
     is_completed: false,
     type,
     est_cost: 0,
     est_cost_str: "",
-    project_owner: "",
+    project_owner: "Công ty Trực thăng Miền Nam",
     bidder_selection_time: "",
-    bidder_selection_method: "",
+    bidder_selection_method: "Chỉ định thầu rút gọn",
     duration: "",
     successful_bidder_id: "",
   };
 }
 
+// --- Export ---------------------
 export { initialStateGeneration, initialBidPackage };
+// -------------------------------
+
+function getBPNameByType(type: BidPackageType) {
+  if (type === "TV") {
+    return "Tư vấn lập BCKTKT";
+  } else if (type === "TT") {
+    return "Tư vấn Thẩm tra BCKTKT";
+  } else {
+    return "";
+  }
+}
+
+function getShortDescByType(type: BidPackageType) {
+  if (type === "TV") {
+    return "Lập bản vẽ thiết kế kỹ thuật thi công, dự toán công trình";
+  } else if (type === "TT") {
+    return "Thẩm tra bản vẽ thiết kế kỹ thuật thi công, dự toán công trình";
+  } else {
+    return "";
+  }
+}

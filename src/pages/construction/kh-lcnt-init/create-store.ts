@@ -1,6 +1,7 @@
 import { produce } from "immer";
 import { submission_store_factory } from "../../../store-factory/create-submission.store";
 import type { CreateSubmissionStore } from "@/store-factory/create-submission.store.type";
+import { initialBidPackage } from "@/store-factory/initial-state";
 
 export const create_construction_store = submission_store_factory("KH_LCNT");
 
@@ -19,34 +20,8 @@ create_construction_store.setState(
     };
 
     draft.submission.bid_package_snapshots = [
-      {
-        id: "",
-        type: "TV",
-        project_owner: "",
-        name: "",
-        short_desc: "",
-        bidder_selection_time: "",
-        bidder_selection_method: "",
-        successful_bidder_id: null,
-        duration: "",
-        is_completed: false,
-        est_cost: 0,
-        est_cost_str: "",
-      },
-      {
-        id: "",
-        type: "TT",
-        project_owner: "",
-        name: "",
-        short_desc: "",
-        bidder_selection_time: "",
-        bidder_selection_method: "",
-        successful_bidder_id: null,
-        duration: "",
-        is_completed: false,
-        est_cost: 0,
-        est_cost_str: "",
-      },
+      initialBidPackage("TV"),
+      initialBidPackage("TT"),
     ];
   }),
 );
