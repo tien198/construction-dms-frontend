@@ -40,7 +40,7 @@ export function BidPackageSideDrawer({
           </DrawerHeader>
           <div className="grid grid-cols-2 gap-12 p-4 pb-14">
             {bidPackagesList?.map((bp, id) => (
-              <div key={bp.id}>
+              <div key={bp.bid_package_id}>
                 <BidPackage
                   index={id}
                   storeApi={storeApi}
@@ -48,7 +48,7 @@ export function BidPackageSideDrawer({
                   displayContract={displayContract}
                 />
                 {displayContract && (
-                  <ContractPreliminaryInfo bidPackageId={bp.id} />
+                  <ContractPreliminaryInfo bidPackageId={bp.bid_package_id} />
                 )}
               </div>
             ))}

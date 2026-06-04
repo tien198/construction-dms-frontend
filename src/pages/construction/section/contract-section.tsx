@@ -11,9 +11,11 @@ type Props = {
 
 export function ContractSection({ bidPackage }: Props) {
   const { data } = useQuery({
-    queryKey: ["contract", bidPackage.id],
+    queryKey: ["contract", bidPackage.bid_package_id],
     queryFn: () =>
-      bidPackage.id ? getContractByBidPackageId(bidPackage.id) : null,
+      bidPackage.bid_package_id
+        ? getContractByBidPackageId(bidPackage.bid_package_id)
+        : null,
   });
 
   if (!data) {
@@ -22,7 +24,7 @@ export function ContractSection({ bidPackage }: Props) {
 
   return (
     <>
-      <ContractPreliminaryInfo bidPackageId={bidPackage.id!} />
+      <ContractPreliminaryInfo bidPackageId={bidPackage.bid_package_id!} />
       <div className="text-right">
         <EditContractFormDialog bidPackage={bidPackage} contract={data} />
       </div>

@@ -29,10 +29,10 @@ export function CreateContractFormDialog({ contract, bidPackage }: Props) {
   );
 
   useEffect(() => {
-    if (bidPackage.id) {
-      setField("bid_package_id", bidPackage.id);
+    if (bidPackage.bid_package_id) {
+      setField("bid_package_id", bidPackage.bid_package_id);
     }
-  }, [bidPackage.id, setField]);
+  }, [bidPackage.bid_package_id, setField]);
 
   return (
     <DialogWrapper
@@ -50,7 +50,7 @@ export function CreateContractFormDialog({ contract, bidPackage }: Props) {
           setContractField={setField}
           method="post"
           // pass bid_package_id to the the search param to invalid query  ["contract", bid_package_id] after mutation
-          action={`/hop-dong/tao-moi?bid_package_id=${bidPackage.id}`}
+          action={`/hop-dong/tao-moi?bid_package_id=${bidPackage.bid_package_id}`}
           formFooter={() => (
             <Button
               type="submit"

@@ -21,7 +21,7 @@ export function BidPackagesList({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {bidPackagesList?.map((bp, id) => (
         <BidPackage
-          key={bp.id}
+          key={bp.bid_package_id}
           index={id}
           storeApi={storeApi}
           disabled={disabled}

@@ -37,7 +37,7 @@ export function BidPackagesListBcktkt({
       </div>
       {completed?.map((bpIndex) => (
         <BidPackage
-          key={bidPackagesList?.[bpIndex]?.id}
+          key={bidPackagesList?.[bpIndex]?.bid_package_id}
           index={bpIndex}
           storeApi={storeApi}
           disabled
@@ -52,7 +52,7 @@ export function BidPackagesListBcktkt({
       </div>
       {inProgress?.map((bpIndex) => (
         <BidPackage
-          key={bidPackagesList?.[bpIndex]?.id}
+          key={bidPackagesList?.[bpIndex]?.bid_package_id}
           index={bpIndex}
           storeApi={storeApi}
           disabled={disabled}

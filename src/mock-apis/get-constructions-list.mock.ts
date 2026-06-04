@@ -45,7 +45,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
               },
               bid_package_snapshots: [
                 {
-                  id: "1",
+                  bid_package_id: "1",
                   type: "TV",
                   project_owner: "UBND Tỉnh",
                   name: "Tư vấn thiết kế",
@@ -59,7 +59,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
                   est_cost_str: "180 triệu",
                 },
                 {
-                  id: "2",
+                  bid_package_id: "2",
                   type: "TC",
                   project_owner: "UBND Tỉnh",
                   name: "Thi công sửa chữa",
@@ -145,7 +145,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
               },
               bid_package_snapshots: [
                 {
-                  id: "1",
+                  bid_package_id: "1",
                   type: "TV",
                   project_owner: "UBND Tỉnh",
                   name: "Tư vấn thiết kế",
@@ -159,7 +159,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
                   est_cost_str: "180 triệu",
                 },
                 {
-                  id: "2",
+                  bid_package_id: "2",
                   type: "TC",
                   project_owner: "UBND Tỉnh",
                   name: "Thi công sửa chữa",
@@ -212,7 +212,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
               },
               bid_package_snapshots: [
                 {
-                  id: "3",
+                  bid_package_id: "3",
                   type: "TV",
                   project_owner: "UBND TP",
                   name: "Tư vấn giám sát",
@@ -226,7 +226,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
                   est_cost_str: "280 triệu",
                 },
                 {
-                  id: "4",
+                  bid_package_id: "4",
                   type: "TC",
                   project_owner: "UBND TP",
                   name: "Thi công nâng cấp",
@@ -274,7 +274,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
               },
               bid_package_snapshots: [
                 {
-                  id: "3",
+                  bid_package_id: "3",
                   type: "TV",
                   project_owner: "UBND TP",
                   name: "Tư vấn giám sát",
@@ -288,7 +288,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
                   est_cost_str: "280 triệu",
                 },
                 {
-                  id: "4",
+                  bid_package_id: "4",
                   type: "TC",
                   project_owner: "UBND TP",
                   name: "Thi công nâng cấp",

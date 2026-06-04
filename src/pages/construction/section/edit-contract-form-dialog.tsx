@@ -55,7 +55,7 @@ export function EditContractFormDialog({ contract, bidPackage }: Props) {
           setContractField={setField}
           method="put"
           // pass bid_package_id to the the search param to invalid query  ["contract", bid_package_id] after mutation
-          action={`/hop-dong/chinh-sua/${contract.id}?bid_package_id=${bidPackage.id}`}
+          action={`/hop-dong/chinh-sua/${contract.id}?bid_package_id=${bidPackage.bid_package_id}`}
           formFooter={() => (
             <Button
               type="submit"

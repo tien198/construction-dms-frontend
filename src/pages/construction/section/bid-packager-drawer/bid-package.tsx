@@ -180,7 +180,9 @@ export function BidPackage({
           )}
         </div>
       </div>
-      {displayContract && <ContractPreliminaryInfo bidPackageId={bp.id} />}
+      {displayContract && (
+        <ContractPreliminaryInfo bidPackageId={bp.bid_package_id} />
+      )}
     </div>
   );
 }

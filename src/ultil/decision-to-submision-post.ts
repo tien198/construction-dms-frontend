@@ -35,7 +35,7 @@ export function decisionToSubmissionPost(
   const bidPackages: BidPackageSnapshotPost[] | null =
     submission.bid_package_snapshots?.map((bp) => ({
       ...bp,
-      id: bp.id ?? null,
+      id: bp.bid_package_id ?? null,
     })) ?? null;
 
   return {
