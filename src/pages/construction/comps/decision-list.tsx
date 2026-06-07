@@ -48,7 +48,8 @@ export function DecisionList({ handleSetDec, isFindTCT }: Props) {
             >
               <span className="font-semibold">{d.no}</span>
               <span>
-                <span className="text-gray-500">ngày:</span> {d.date}
+                <span className="text-gray-500">ngày:</span>{" "}
+                {new Date(d.date).toLocaleDateString("vi-VN")}
               </span>
             </div>
           </DialogClose>

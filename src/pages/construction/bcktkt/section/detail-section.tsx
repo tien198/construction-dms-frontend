@@ -1,5 +1,4 @@
-import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
-import { SaveIcon, EditIcon } from "lucide-react";
+import { SaveIcon, EditIcon, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AdministrativeDocumentFields } from "../../comps/administrative-document";
 import {
@@ -17,6 +16,8 @@ import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submisio
 import { isEditingStoreFactory } from "../../../../store-factory/is-editing-store-factory";
 import { Separator } from "@/components/ui/separator";
 import { BidPackagesListBcktkt } from "./bid-ackages-list.bcktkt";
+import StickyReveal from "@/components/form-ui/sticky-reveal-button";
+import { exportDocx } from "@/ultil/export-file";
 
 type Props = {
   storeApi: StoreApi<CreateSubmissionStore>;
@@ -65,18 +66,32 @@ export function DetailSection({ data, storeApi }: Props) {
           title="Chi tiết BCKTKT"
           description="Thông tin chi tiết của báo cáo khảo sát thiết kế."
         />
-        <ActionBtns>
-          <Button variant="outline" onClick={isEditToggle}>
-            <EditIcon className="mr-2 h-4 w-4" />
-            {disabled ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
-          </Button>
-          {isEditing && (
-            <StickyRevealButton onClick={handleSubmit}>
-              <SaveIcon className="mr-2 h-4 w-4" />
-              Lưu BCKTKT
-            </StickyRevealButton>
+        <StickyReveal
+          stickyEl={() => (
+            <ActionBtns>
+              <Button variant="outline" onClick={isEditToggle}>
+                <EditIcon className="mr-2 h-4 w-4" />
+                {disabled ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
+              </Button>
+              {isEditing && (
+                <Button onClick={handleSubmit}>
+                  <SaveIcon className="mr-2 h-4 w-4" />
+                  Lưu BCKTKT
+                </Button>
+              )}
+              {disabled && (
+                <Button
+                  variant="outline"
+                  className="hover:bg-primary hover:text-white"
+                  onClick={() => exportDocx(data!)}
+                >
+                  <Printer className="mr-2 h-4 w-4" />
+                  Xuất file
+                </Button>
+              )}
+            </ActionBtns>
           )}
-        </ActionBtns>
+        />
       </FormHeader>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

@@ -1,5 +1,4 @@
 import { SaveIcon } from "lucide-react";
-import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { ConstructionInfoSnapshotForm } from "../comps/construction-info-snapshot-form";
 import { AdministrativeDocumentFields } from "../comps/administrative-document";
 import {
@@ -12,27 +11,33 @@ import { Button } from "@/components/ui/button";
 import { useCreate } from "./hooks/create-hook";
 import { Separator } from "@/components/ui/separator";
 import { BidPackagesListBcktkt } from "./section/bid-ackages-list.bcktkt";
+import StickyReveal from "@/components/form-ui/sticky-reveal-button";
 
 export function Create() {
-  const { handleSubmit, handleCancel, storeApi } = useCreate();
+  const { handleSubmit, handleCancel, storeApi, decision } = useCreate();
 
   return (
     <FormLayout>
       <FormHeader>
         <FormTitle title="Tạo BCKTKT" description="Nhập thông tin BCKTKT." />
-        <ActionBtns>
-          <Button
-            variant="outline"
-            className="bg-accent text-accent-foreground hover:bg-destructive hover:text-white"
-            onClick={() => handleCancel()}
-          >
-            Hủy
-          </Button>
-          <StickyRevealButton onClick={() => handleSubmit()}>
-            <SaveIcon className="mr-2 h-4 w-4" />
-            Lưu BCKTKT
-          </StickyRevealButton>
-        </ActionBtns>
+
+        <StickyReveal
+          stickyEl={() => (
+            <ActionBtns>
+              <Button
+                variant="outline"
+                className="bg-accent text-accent-foreground hover:bg-destructive hover:text-white"
+                onClick={() => handleCancel()}
+              >
+                Hủy
+              </Button>
+              <Button onClick={() => handleSubmit()}>
+                <SaveIcon className="mr-2 h-4 w-4" />
+                Lưu BCKTKT
+              </Button>
+            </ActionBtns>
+          )}
+        />
       </FormHeader>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -42,6 +47,7 @@ export function Create() {
             title="Tờ trình - Quyết định BCKTKT"
             type="bcktkt"
             storeApi={storeApi}
+            decision={decision}
           />
         </div>
         {/* Right: Construction info snapshot */}

@@ -1,6 +1,7 @@
+import StickyReveal from "@/components/form-ui/sticky-reveal-button";
 import { BidderForm } from "./comp/bidderForm";
 import { createBidderStore } from "./store/create-bidder-store";
-import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
+import { Button } from "@/components/ui/button";
 
 export function Create() {
   return (
@@ -14,7 +15,9 @@ export function Create() {
       <BidderForm
         storeApi={createBidderStore}
         footer={() => (
-          <StickyRevealButton type="submit">Thêm Nhà Thầu</StickyRevealButton>
+          <StickyReveal
+            stickyEl={() => <Button type="submit">Thêm Nhà Thầu</Button>}
+          />
         )}
       />
     </div>

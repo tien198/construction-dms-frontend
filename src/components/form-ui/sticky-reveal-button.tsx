@@ -1,19 +1,10 @@
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  type ButtonHTMLAttributes,
-} from "react";
-import { Button } from "../ui/button";
+import React, { useEffect, useRef, useState } from "react";
 
-type StickyRevealButtonProps = {
-  children?: React.ReactNode;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+type Props = {
+  stickyEl?: () => React.ReactNode;
+};
 
-export default function StickyRevealButton({
-  children,
-  ...props
-}: StickyRevealButtonProps) {
+export default function StickyReveal({ stickyEl }: Props) {
   const anchorRef = useRef<HTMLDivElement | null>(null);
   const [showFixedButton, setShowFixedButton] = useState(false);
 
@@ -45,15 +36,11 @@ export default function StickyRevealButton({
           showFixedButton ? "top-1 opacity-100" : "-top-20 opacity-0",
         ].join(" ")}
       >
-        <Button {...props} className="p-4 self-start sm:self-auto">
-          {children}
-        </Button>
+        <div className="p-4">{stickyEl?.()}</div>
       </div>
 
       <div ref={anchorRef}>
-        <Button {...props} className="p-4 self-start sm:self-auto">
-          {children}
-        </Button>
+        <div className="p-4">{stickyEl?.()}</div>
       </div>
     </>
   );

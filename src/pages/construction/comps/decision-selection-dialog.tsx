@@ -10,7 +10,7 @@ import {
 import type { AdministrativeDocument } from "@/types/domain";
 import { DecisionList } from "./decision-list";
 import { useStore } from "zustand";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 import type { SubmissionPost } from "../../../types/submission-post/submission-post.type";
 import { FormField } from "@/components/form-ui/form-field";
@@ -34,7 +34,7 @@ export type FormFieldProps = {
 } & StoreApiInject &
   React.InputHTMLAttributes<HTMLInputElement>;
 
-export default function DecisionSelectionDialog({
+export function DecisionSelectionDialog({
   id,
   label,
   placeholder,
@@ -45,12 +45,27 @@ export default function DecisionSelectionDialog({
   isFindTCT = false,
 }: FormFieldProps) {
   const [dec, setDec] = useState<DecisionResponse | null>(selectedDec ?? null);
+
   const setField = useStore(storeApi, (state) => state.setField);
 
   function handleSetDec(dec: DecisionResponse) {
     setDec(dec);
     setField(fieldName as keyof SubmissionPost, dec.id);
   }
+
+  // used for create
+  useEffect(() => {
+    if (selectedDec) {
+      handleSetDec(selectedDec);
+    }
+  }, []);
+
+  // used for detail
+  useEffect(() => {
+    if (selectedDec) {
+      setDec(selectedDec);
+    }
+  }, [selectedDec, setDec]);
 
   return (
     <Dialog>

@@ -1,5 +1,4 @@
-import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
-import { SaveIcon, EditIcon } from "lucide-react";
+import { SaveIcon, EditIcon, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DocumentSide } from "../comps/document-side";
 import { ConstructionInfoSnapshotForm } from "../comps/construction-info-snapshot-form";
@@ -12,6 +11,11 @@ import {
 import { useDetail } from "./hook/useDetail";
 import { Separator } from "@/components/ui/separator";
 import { BidPackagesList } from "../section/bid-packager-drawer/bid-packages-list";
+import StickyReveal from "@/components/form-ui/sticky-reveal-button";
+import { genDocument } from "@/api/gen-document";
+import { useStore } from "zustand";
+import type { Decision } from "@/types/domain";
+import { exportDocx } from "@/ultil/export-file";
 
 export namespace KhLcnt {
   export function Detail() {
@@ -26,6 +30,8 @@ export namespace KhLcnt {
       submit,
       storeApi,
     } = useDetail();
+
+    const subId = useStore(storeApi, (state) => state.submission.id);
 
     if (isLoading) {
       return (
@@ -54,18 +60,32 @@ export namespace KhLcnt {
             title="Kế hoạch LCNT"
             description="Thông tin chi tiết của kế hoạch LCNT."
           />
-          <ActionBtns>
-            <Button variant="outline" onClick={isEditToggle}>
-              <EditIcon className="mr-2 h-4 w-4" />
-              {disabled ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
-            </Button>
-            {isEdit && (
-              <StickyRevealButton onClick={handleSubmit}>
-                <SaveIcon className="mr-2 h-4 w-4" />
-                Lưu Tờ trình
-              </StickyRevealButton>
+          <StickyReveal
+            stickyEl={() => (
+              <ActionBtns>
+                <Button variant="outline" onClick={isEditToggle}>
+                  <EditIcon className="mr-2 h-4 w-4" />
+                  {disabled ? "Chỉnh sửa" : "Hủy"}
+                </Button>
+                {isEdit && (
+                  <Button onClick={handleSubmit}>
+                    <SaveIcon className="mr-2 h-4 w-4" />
+                    Lưu Tờ trình
+                  </Button>
+                )}
+                {disabled && (
+                  <Button
+                    variant="outline"
+                    className="hover:bg-primary hover:text-white"
+                    onClick={() => exportDocx(data)}
+                  >
+                    <Printer className="mr-2 h-4 w-4" />
+                    Xuất file
+                  </Button>
+                )}
+              </ActionBtns>
             )}
-          </ActionBtns>
+          />
         </FormHeader>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

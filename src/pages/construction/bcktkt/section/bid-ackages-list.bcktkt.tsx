@@ -25,7 +25,7 @@ export function BidPackagesListBcktkt({
       else if (bp.type === "TC") inProgress.push(i);
     }
 
-    completed.reverse();
+    // completed.reverse();
   }
 
   return (
@@ -40,7 +40,6 @@ export function BidPackagesListBcktkt({
           key={bidPackagesList?.[bpIndex]?.bid_package_id}
           index={bpIndex}
           storeApi={storeApi}
-          disabled
           displayBidder
           displayContract={displayContract}
         />

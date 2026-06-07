@@ -1,9 +1,9 @@
 import { BidderForm } from "./comp/bidderForm";
 import { editBidderStore } from "./store/edit-bidder-store";
 import { useDetail } from "./hook/detail-hook";
-import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { EditIcon, SaveIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import StickyReveal from "@/components/form-ui/sticky-reveal-button";
 
 export function Detail() {
   const { query, isEditing, isEditingToggle, handleSubmitEdit } = useDetail();
@@ -22,16 +22,23 @@ export function Detail() {
         <h1 className="mb-1 text-2xl font-semibold text-balance">
           Chi tiết nhà thầu
         </h1>
-        <Button variant="outline" onClick={isEditingToggle}>
-          <EditIcon className="h-4 w-4" />
-          {!isEditing ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
-        </Button>
-        {isEditing && (
-          <StickyRevealButton onClick={handleSubmitEdit}>
-            <SaveIcon className="h-4 w-4" />
-            Lưu Tờ trình
-          </StickyRevealButton>
-        )}
+
+        <StickyReveal
+          stickyEl={() => (
+            <>
+              <Button variant="outline" onClick={isEditingToggle}>
+                <EditIcon className="h-4 w-4" />
+                {!isEditing ? "Bật chỉnh sửa" : "Tắt chỉnh sửa"}
+              </Button>
+              {isEditing && (
+                <Button onClick={handleSubmitEdit}>
+                  <SaveIcon className="h-4 w-4" />
+                  Lưu Tờ trình
+                </Button>
+              )}
+            </>
+          )}
+        />
       </div>
 
       <BidderForm

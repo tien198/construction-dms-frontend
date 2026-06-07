@@ -1,5 +1,4 @@
 import { SaveIcon } from "lucide-react";
-import StickyRevealButton from "@/components/form-ui/sticky-reveal-button";
 import { ConstructionInfoSnapshotForm } from "../comps/construction-info-snapshot-form";
 import { DocumentSide } from "../comps/document-side";
 import { useFetcher } from "react-router";
@@ -12,6 +11,8 @@ import {
 } from "../comps/layout/form-layout";
 import { Separator } from "@/components/ui/separator";
 import { BidPackagesList } from "../section/bid-packager-drawer/bid-packages-list";
+import StickyReveal from "@/components/form-ui/sticky-reveal-button";
+import { Button } from "@/components/ui/button";
 
 export namespace KhLcnt {
   export function Create() {
@@ -32,10 +33,14 @@ export namespace KhLcnt {
             description="Nhập thông tin chi tiết để khởi tạo Tờ trình."
           />
           <ActionBtns>
-            <StickyRevealButton onClick={() => handleSubmit()}>
-              <SaveIcon className="mr-2 h-4 w-4" />
-              Lưu Tờ trình
-            </StickyRevealButton>
+            <StickyReveal
+              stickyEl={() => (
+                <Button onClick={() => handleSubmit()}>
+                  <SaveIcon className="mr-2 h-4 w-4" />
+                  Lưu Tờ trình
+                </Button>
+              )}
+            />
           </ActionBtns>
         </FormHeader>
 

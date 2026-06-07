@@ -1,6 +1,6 @@
 import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
-import DecisionSelectionDialog from "./decision-selection-dialog";
+import { DecisionSelectionDialog } from "./decision-selection-dialog";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 import { useEffect } from "react";
 import type { Decision } from "@/types/domain";
@@ -9,7 +9,7 @@ import { DatePicker } from "@/components/form-ui/date-picker";
 type Props = {
   title: string;
   type: "kh_lcnt" | "kq_kh_lcnt" | "bcktkt";
-  decision?: Decision;
+  decision?: Decision | null;
 } & StoreApiInject;
 
 export function AdministrativeDocumentFields({

@@ -43,6 +43,8 @@ export function useCreate() {
       tv_store_api.getState().addBidPackage("TV", tv);
       tt_store_api.getState().addBidPackage("TT", tt);
 
+      // Both tv and tt are belong to the same decision,
+      // So that, merge them into one state to avoid duplicate re-render.
       const decision: Partial<AdministrativeDocument> = {
         pursuant_to_dec_tct: queryResult.data.pursuant_to_dec_tct,
         pursuant_to_dec_ttmn: queryResult.data,

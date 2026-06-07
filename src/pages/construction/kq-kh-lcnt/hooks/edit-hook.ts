@@ -59,6 +59,7 @@ export function useEdit() {
   };
 
   return {
+    decision: data,
     disabled,
     isEditingToggle,
     handleSubmit,
