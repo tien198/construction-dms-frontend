@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      open: "/cong-trinh/bcktkt/019e1759-6c47-75e4-beba-c214baf7305b/tao-moi",
+      open: "/cong-trinh",
     },
   };
 });

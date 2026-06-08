@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { edit_tv_tt_store } from "../edit-store";
@@ -22,14 +22,14 @@ export function useDetail() {
   const reset = useStore(storeApi, (state) => state.reset);
   const khDec = data;
 
-  let khSubmission: SubmissionPost | undefined;
-  if (khDec) {
-    khSubmission = decisionToSubmissionPost(khDec);
-  }
+  const khSubmission: SubmissionPost | undefined = useMemo(
+    () => (khDec ? decisionToSubmissionPost(khDec) : undefined),
+    [khDec],
+  );
 
   useEffect(() => {
     if (khSubmission) reset("KH_LCNT", khSubmission);
-  });
+  }, [khDec]);
 
   const isEditToggle = () => {
     if (isEdit) {

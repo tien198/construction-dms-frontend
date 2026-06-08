@@ -57,7 +57,7 @@ export function DetailSection() {
       </FormHeader>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <DecisionSection disabled />
+        <DecisionSection disabled={disabled} />
         <SubmissionDetail storeApi={edit_tv_store} disabled={disabled} />
         <SubmissionDetail storeApi={edit_tt_store} disabled={disabled} />
       </div>

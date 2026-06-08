@@ -12,9 +12,6 @@ import { useDetail } from "./hook/useDetail";
 import { Separator } from "@/components/ui/separator";
 import { BidPackagesList } from "../section/bid-packager-drawer/bid-packages-list";
 import StickyReveal from "@/components/form-ui/sticky-reveal-button";
-import { genDocument } from "@/api/gen-document";
-import { useStore } from "zustand";
-import type { Decision } from "@/types/domain";
 import { exportDocx } from "@/ultil/export-file";
 
 export namespace KhLcnt {
@@ -30,8 +27,6 @@ export namespace KhLcnt {
       submit,
       storeApi,
     } = useDetail();
-
-    const subId = useStore(storeApi, (state) => state.submission.id);
 
     if (isLoading) {
       return (
@@ -50,7 +45,7 @@ export namespace KhLcnt {
 
     const handleSubmit = () => {
       setIsEdit(false);
-      submit(null, { method: "PUT", encType: "application/json" });
+      submit(null, { method: "POST", encType: "application/json" });
     };
 
     return (

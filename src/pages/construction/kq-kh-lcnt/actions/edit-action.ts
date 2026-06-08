@@ -16,7 +16,7 @@ export async function editTvAction(args: ActionFunctionArgs) {
   );
 
   if (!tvRes.ok) {
-    alert("Lỗi khi tạo tờ trình TV");
+    alert("Lỗi khi sửa tờ trình TV");
     return null;
   }
 
@@ -34,7 +34,7 @@ export async function editTtAction(args: ActionFunctionArgs) {
   );
 
   if (!ttRes.ok) {
-    alert("Lỗi khi tạo tờ trình TV");
+    alert("Lỗi khi sửa tờ trình TV");
     return null;
   }
 
