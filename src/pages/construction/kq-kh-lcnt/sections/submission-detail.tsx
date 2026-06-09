@@ -5,33 +5,47 @@ import { FormField } from "@/components/form-ui/form-field";
 import { DatePicker } from "@/components/form-ui/date-picker";
 import { ContractSection } from "../../section/contract-section";
 import { SideEl } from "../../comps/side-element.tsx";
+import { EditIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-export function SubmissionDetail({ storeApi, disabled }: StoreApiInject) {
-  // const params = useParams();
-  // const constructionId = params["con-id"] as string;
+type SubmissionDetailProps = StoreApiInject & {
+  isEditing: boolean;
+  onToggleEditing: () => void;
+  editAction: () => React.ReactNode;
+};
 
-  // const { data } = useQuery({
-  //   queryKey: ["kq-kh-lcnt", constructionId],
-  //   queryFn: async () => {
-  //     return await getDecisionByPer(constructionId, "KQ_KH_LCNT");
-  //   },
-  //   enabled: false,
-  //   retry: false,
-  // });
-
+export function SubmissionDetail({
+  storeApi,
+  disabled,
+  isEditing,
+  onToggleEditing,
+  editAction,
+}: SubmissionDetailProps) {
   const sub = useStore(storeApi, (state) => state.submission);
   const bidPackage = sub.bid_package_snapshots?.[0];
 
   return (
     <div className="col-span-2 grid grid-cols-2 gap-6 border border-border rounded-4xl py-4 px-3 bg-brand">
+      <div className="col-span-2 flex justify-end px-3 gap-3 items-center">
+        {!disabled && (
+          <EditToggleBtn
+            isEditing={isEditing}
+            onToggleEditing={onToggleEditing}
+          />
+        )}
+        {isEditing && editAction()}
+      </div>
       <SideEl>
-        <SubmissionSideEl storeApi={storeApi} disabled={disabled} />
+        <SubmissionSideEl
+          storeApi={storeApi}
+          disabled={disabled || !isEditing}
+        />
       </SideEl>
       <SideEl>
         <BidPackage
           index={0}
           storeApi={storeApi}
-          disabled={disabled}
+          disabled={disabled || !isEditing}
           displayBidder
         />
       </SideEl>
@@ -69,5 +83,24 @@ function SubmissionSideEl(props: StoreApiInject) {
         disabled={disabled}
       />
     </div>
+  );
+}
+
+type ToggleBtnProps = {
+  isEditing: boolean;
+  onToggleEditing: () => void;
+};
+
+function EditToggleBtn({ isEditing, onToggleEditing }: ToggleBtnProps) {
+  return (
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={onToggleEditing}
+      className={`hover:text-white hover:bg-primary ${isEditing && "text-destructive hover:bg-destructive hover:text-white"}`}
+    >
+      <EditIcon className="mr-2 h-4 w-4" />
+      {isEditing ? "Hủy" : "Chỉnh sửa"}
+    </Button>
   );
 }

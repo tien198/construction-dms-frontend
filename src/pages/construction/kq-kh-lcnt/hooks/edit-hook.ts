@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams, useSubmit } from "react-router";
 import { useStore } from "zustand";
 import { edit_tt_store, edit_tv_store } from "../store/edit-store";
+import { decision_store } from "../store/create-decision-store";
 
 const isEditingStore = isEditingStoreFactory();
 
@@ -27,20 +28,18 @@ export function useEdit() {
     retry: false,
   });
 
+  const reset_decision = useStore(decision_store, (state) => state.reset);
+
   const reset_tt = useStore(edit_tt_store, (state) => state.reset);
   const reset_tv = useStore(edit_tv_store, (state) => state.reset);
 
-  const isEditingToggle = () => {
+  const isDecEditingToggle = () => {
     if (isEditing) {
-      const isConfirm = confirm(
-        "Hủy chỉnh sửa sẽ đưa tất cả giá trị về lại ban đầu",
-      );
-      if (isConfirm) {
-        toggleIsEditing();
-        if (data) {
-          reset_tt("KQ_KH_LCNT", decisionToSubmissionPost(data, 0));
-          reset_tv("KQ_KH_LCNT", decisionToSubmissionPost(data, 1));
-        }
+      toggleIsEditing();
+      if (data) {
+        reset_tv("KQ_KH_LCNT", decisionToSubmissionPost(data, 0));
+        reset_tt("KQ_KH_LCNT", decisionToSubmissionPost(data, 1));
+        reset_decision(data);
       }
     } else {
       toggleIsEditing();
@@ -61,7 +60,7 @@ export function useEdit() {
   return {
     decision: data,
     disabled,
-    isEditingToggle,
+    isDecEditingToggle,
     handleSubmit,
   };
 }
