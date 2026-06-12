@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      open: "/cong-trinh",
+      open: "/",
     },
   };
 });

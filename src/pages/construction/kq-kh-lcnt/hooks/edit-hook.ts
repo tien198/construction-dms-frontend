@@ -2,16 +2,16 @@ import { getDecisionByPer } from "@/api/get-decision-by-per.api";
 import { isEditingStoreFactory } from "@/store-factory/is-editing-store-factory";
 import { decisionToSubmissionPost } from "@/ultil/decision-to-submision-post";
 import { useQuery } from "@tanstack/react-query";
-import { useParams, useSubmit } from "react-router";
+import { useParams } from "react-router";
 import { useStore } from "zustand";
 import { edit_tt_store, edit_tv_store } from "../store/edit-store";
 import { decision_store } from "../store/create-decision-store";
 
-const isEditingStore = isEditingStoreFactory();
+export const isDecEditingStore = isEditingStoreFactory();
 
 export function useEdit() {
   const { isEditing, toggleIsEditing } = useStore(
-    isEditingStore,
+    isDecEditingStore,
     (state) => state,
   );
   const disabled = !isEditing;
@@ -46,21 +46,9 @@ export function useEdit() {
     }
   };
 
-  const submit = useSubmit();
-
-  const handleSubmit = () => {
-    toggleIsEditing(false);
-    submit(null, {
-      method: "PUT",
-      encType: "application/json",
-      action: "chinh-sua",
-    });
-  };
-
   return {
     decision: data,
     disabled,
     isDecEditingToggle,
-    handleSubmit,
   };
 }

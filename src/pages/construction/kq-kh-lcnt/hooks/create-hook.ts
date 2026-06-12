@@ -34,11 +34,15 @@ export function useCreate() {
 
   useEffect(() => {
     if (queryResult.data) {
-      const subPost = decisionToSubmissionPost(queryResult.data);
+      const kh_lcnt_submission = decisionToSubmissionPost(queryResult.data);
       const tv =
-        subPost.bid_package_snapshots?.find((it) => it.type === "TV") ?? null;
+        kh_lcnt_submission.bid_package_snapshots?.find(
+          (it) => it.type === "TV",
+        ) ?? null;
       const tt =
-        subPost.bid_package_snapshots?.find((it) => it.type === "TT") ?? null;
+        kh_lcnt_submission.bid_package_snapshots?.find(
+          (it) => it.type === "TT",
+        ) ?? null;
 
       tv_store_api.getState().addBidPackage("TV", tv);
       tt_store_api.getState().addBidPackage("TT", tt);

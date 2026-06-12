@@ -14,17 +14,21 @@ import StickyReveal from "@/components/form-ui/sticky-reveal-button";
 import { exportDocx } from "@/ultil/export-file";
 import { useDetailIsEditingToggle } from "../hooks/detail-is-editing-toggle";
 import { SaveBtn } from "@/components/form-ui/save-btn";
+import { useEditSubmission } from "../hooks/edit-submission-hook";
 
 // Detail also Edit form if `isEdit` is true
 export function DetailSection() {
-  const { disabled, isDecEditingToggle, handleSubmit, decision } = useEdit();
-
+  const { disabled, isDecEditingToggle, decision } = useEdit();
   const {
     isTvEditing,
     isTtEditing,
     handleToggleTvEditing,
     handleToggleTtEditing,
   } = useDetailIsEditingToggle(isDecEditingToggle, decision);
+  const { handleSubmitTv, handleSubmitTt } = useEditSubmission(
+    handleToggleTvEditing,
+    handleToggleTtEditing,
+  );
 
   return (
     <FormLayout>
@@ -36,7 +40,7 @@ export function DetailSection() {
         <StickyRevealActions
           isEditingToggle={isDecEditingToggle}
           disabled={disabled}
-          handleSubmit={handleSubmit}
+          // handleSubmit={handleSubmit}
           decision={decision}
         />
       </FormHeader>
@@ -47,18 +51,36 @@ export function DetailSection() {
           storeApi={edit_tv_store}
           disabled={disabled}
           isEditing={isTvEditing}
-          onToggleEditing={handleToggleTvEditing}
           editAction={() => (
-            <SaveBtn onClick={() => alert("OK")}>Lưu TV</SaveBtn>
+            <>
+              {!disabled && (
+                <EditToggleBtn
+                  isEditing={isTvEditing}
+                  onToggleEditing={() => handleToggleTvEditing()}
+                />
+              )}
+              {isTvEditing && (
+                <SaveBtn onClick={handleSubmitTv}>Lưu TV</SaveBtn>
+              )}
+            </>
           )}
         />
         <SubmissionDetail
           storeApi={edit_tt_store}
           disabled={disabled}
           isEditing={isTtEditing}
-          onToggleEditing={handleToggleTtEditing}
           editAction={() => (
-            <SaveBtn onClick={() => alert("OK")}>Lưu TT</SaveBtn>
+            <>
+              {!disabled && (
+                <EditToggleBtn
+                  isEditing={isTtEditing}
+                  onToggleEditing={() => handleToggleTtEditing()}
+                />
+              )}
+              {isTtEditing && (
+                <SaveBtn onClick={handleSubmitTt}>Lưu TT</SaveBtn>
+              )}
+            </>
           )}
         />
       </div>
@@ -69,14 +91,12 @@ export function DetailSection() {
 type StickyProps = {
   isEditingToggle: () => void;
   disabled: boolean;
-  handleSubmit: () => void;
   decision: any;
 };
 
 function StickyRevealActions({
   isEditingToggle,
   disabled,
-  handleSubmit,
   decision,
 }: StickyProps) {
   return (
@@ -95,12 +115,12 @@ function StickyRevealActions({
             <EditIcon className="mr-2 h-4 w-4" />
             {disabled ? "Chỉnh sửa" : "Hủy"}
           </Button>
-          {!disabled && (
+          {/* {!disabled && (
             <Button onClick={() => handleSubmit()}>
               <SaveIcon className="mr-2 h-4 w-4" />
               Lưu KQ KH LCNT
             </Button>
-          )}
+          )} */}
           {disabled && (
             <Button
               variant="outline"
@@ -114,5 +134,24 @@ function StickyRevealActions({
         </ActionBtns>
       )}
     />
+  );
+}
+
+type ToggleBtnProps = {
+  isEditing: boolean;
+  onToggleEditing: () => void;
+};
+
+function EditToggleBtn({ isEditing, onToggleEditing }: ToggleBtnProps) {
+  return (
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={onToggleEditing}
+      className={`hover:text-white hover:bg-primary ${isEditing && "text-destructive hover:bg-destructive hover:text-white"}`}
+    >
+      <EditIcon className="mr-2 h-4 w-4" />
+      {isEditing ? "Hủy" : "Chỉnh sửa"}
+    </Button>
   );
 }

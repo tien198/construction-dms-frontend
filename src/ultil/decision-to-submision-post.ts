@@ -32,11 +32,9 @@ export function decisionToSubmissionPost(
         }
       : null;
 
-  const bidPackages: BidPackageSnapshotPost[] | null =
-    submission.bid_package_snapshots?.map((bp) => ({
-      ...bp,
-      id: bp.bid_package_id ?? null,
-    })) ?? null;
+  const bidPackages: BidPackageSnapshotPost[] | null = specificSubmissionIndex
+    ? (submission.bid_package_snapshots?.slice(0, 1) ?? null)
+    : (submission.bid_package_snapshots ?? null);
 
   return {
     id: submission.id ?? null,
@@ -55,5 +53,6 @@ export function decisionToSubmissionPost(
 
     pursuant_to_dec_tct_id: decision.pursuant_to_dec_tct?.id ?? null,
     pursuant_to_dec_ttmn_id: decision.pursuant_to_dec_ttmn?.id ?? null,
+    con_id: decision.construction_id,
   };
 }

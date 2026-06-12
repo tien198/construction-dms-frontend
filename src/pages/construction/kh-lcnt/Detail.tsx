@@ -45,7 +45,7 @@ export namespace KhLcnt {
 
     const handleSubmit = () => {
       setIsEdit(false);
-      submit(null, { method: "POST", encType: "application/json" });
+      submit(null, { method: "PUT", encType: "application/json" });
     };
 
     return (

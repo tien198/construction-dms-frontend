@@ -5,20 +5,16 @@ import { FormField } from "@/components/form-ui/form-field";
 import { DatePicker } from "@/components/form-ui/date-picker";
 import { ContractSection } from "../../section/contract-section";
 import { SideEl } from "../../comps/side-element.tsx";
-import { EditIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 type SubmissionDetailProps = StoreApiInject & {
-  isEditing: boolean;
-  onToggleEditing: () => void;
-  editAction: () => React.ReactNode;
+  isEditing?: boolean;
+  editAction?: () => React.ReactNode;
 };
 
 export function SubmissionDetail({
   storeApi,
-  disabled,
-  isEditing,
-  onToggleEditing,
+  disabled = false,
+  isEditing = true,
   editAction,
 }: SubmissionDetailProps) {
   const sub = useStore(storeApi, (state) => state.submission);
@@ -27,13 +23,7 @@ export function SubmissionDetail({
   return (
     <div className="col-span-2 grid grid-cols-2 gap-6 border border-border rounded-4xl py-4 px-3 bg-brand">
       <div className="col-span-2 flex justify-end px-3 gap-3 items-center">
-        {!disabled && (
-          <EditToggleBtn
-            isEditing={isEditing}
-            onToggleEditing={onToggleEditing}
-          />
-        )}
-        {isEditing && editAction()}
+        {!disabled && editAction?.()}
       </div>
       <SideEl>
         <SubmissionSideEl
@@ -83,24 +73,5 @@ function SubmissionSideEl(props: StoreApiInject) {
         disabled={disabled}
       />
     </div>
-  );
-}
-
-type ToggleBtnProps = {
-  isEditing: boolean;
-  onToggleEditing: () => void;
-};
-
-function EditToggleBtn({ isEditing, onToggleEditing }: ToggleBtnProps) {
-  return (
-    <Button
-      variant="outline"
-      size="sm"
-      onClick={onToggleEditing}
-      className={`hover:text-white hover:bg-primary ${isEditing && "text-destructive hover:bg-destructive hover:text-white"}`}
-    >
-      <EditIcon className="mr-2 h-4 w-4" />
-      {isEditing ? "Hủy" : "Chỉnh sửa"}
-    </Button>
   );
 }

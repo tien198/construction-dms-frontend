@@ -3,12 +3,14 @@ import { tt_store } from "../store/create-submission-store";
 import { tv_store } from "../store/create-submission-store";
 import { POST_ADD_SUBMISSION } from "@/lib/api-list/document-api-list";
 import { genRequestInit } from "@/lib/gen-request-init";
+import { produce } from "immer";
 
 export async function createKqKhLcntAction(args: ActionFunctionArgs) {
   const conId = args.params["con-id"];
 
-  const tv_state = tv_store.getState();
-  const tvSub = { ...tv_state.submission, con_id: conId };
+  const tvSub = produce(tv_store.getState().submission, (draft) => {
+    draft.con_id = conId!;
+  });
 
   // create TV first
   const tvRes = await fetch(
@@ -24,14 +26,10 @@ export async function createKqKhLcntAction(args: ActionFunctionArgs) {
   // then, get decision_id, create TT according existing decision
   const decId = (await tvRes.json()).value as string;
 
-  const tt_state = tt_store.getState();
-  const ttSub = {
-    ...tt_state.submission,
-    directly_decision: {
-      ...tt_state.submission.directly_decision,
-      id: decId,
-    },
-  };
+  const ttSub = produce(tt_store.getState().submission, (draft) => {
+    draft.directly_decision.id = decId;
+    draft.con_id = conId!;
+  });
 
   const ttRes = await fetch(
     POST_ADD_SUBMISSION,

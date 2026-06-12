@@ -17,5 +17,5 @@ export type SubmissionPost = Omit<
   pursuant_to_dec_ttmn_id: string | null;
 
   directly_decision: Pick<Optional<Decision, "id">, "id" | "no" | "period">;
-  con_id?: string;
+  con_id: string;
 };

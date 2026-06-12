@@ -2,6 +2,7 @@ const BASE = import.meta.env.VITE_API_URL;
 
 export const POST_INIT_CONSTRUCTION = BASE + "/document/init-construction";
 export const POST_ADD_SUBMISSION = BASE + "/document/add-submission";
+export const PUT_EDIT_SUBMISSION = BASE + "/document/edit-submission";
 
 export const GET_CONSTRUCTIONS_LIST = BASE + "/document/constructions-list";
 export const GET_DECISIONS_LIST_OF_CONSTRUCTION =
