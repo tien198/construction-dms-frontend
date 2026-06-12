@@ -24,7 +24,7 @@ export function DetailSection() {
     isTtEditing,
     handleToggleTvEditing,
     handleToggleTtEditing,
-  } = useDetailIsEditingToggle(isDecEditingToggle, decision);
+  } = useDetailIsEditingToggle(decision);
   const { handleSubmitTv, handleSubmitTt } = useEditSubmission(
     handleToggleTvEditing,
     handleToggleTtEditing,

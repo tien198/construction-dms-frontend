@@ -3,18 +3,21 @@ import { useStore } from "zustand";
 import { edit_tt_store, edit_tv_store } from "../store/edit-store";
 import type { Decision } from "@/types/domain";
 import { decisionToSubmissionPost } from "@/ultil/decision-to-submision-post";
+import { isDecEditingStore } from "./edit-hook";
 
 export type ToggleEditingProps = {
   isCascadingDec?: boolean;
   isNeedConfirm?: boolean;
 };
 
-export function useDetailIsEditingToggle(
-  isDecEditingToggle: (setTo?: boolean) => void,
-  initialDec?: Decision | null,
-) {
+export function useDetailIsEditingToggle(initialDec?: Decision | null) {
   const [isTvEditing, setIsTvEditing] = useState(false);
   const [isTtEditing, setIsTtEditing] = useState(false);
+
+  const { toggleIsEditing: isDecEditingToggle } = useStore(
+    isDecEditingStore,
+    (state) => state,
+  );
 
   const reset_tt = useStore(edit_tt_store, (state) => state.reset);
   const reset_tv = useStore(edit_tv_store, (state) => state.reset);

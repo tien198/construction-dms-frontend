@@ -9,7 +9,8 @@ export async function editTvAction(args: ActionFunctionArgs) {
 
   const tvSub = edit_tv_store.getState().submission;
 
-  console.log(tvSub);
+  console.log("tv", tvSub);
+
   const tvRes = await fetch(
     PUT_EDIT_SUBMISSION,
     genRequestInit(args.request.method, JSON.stringify(tvSub)),
@@ -29,7 +30,8 @@ export async function editTtAction(args: ActionFunctionArgs) {
   const conId = args.params["con-id"];
   const ttSub = edit_tt_store.getState().submission;
 
-  console.log(ttSub);
+  console.log("tt", ttSub);
+
   const ttRes = await fetch(
     PUT_EDIT_SUBMISSION,
     genRequestInit(args.request.method, JSON.stringify(ttSub)),
