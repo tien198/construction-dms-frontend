@@ -41,6 +41,7 @@ export function BidPackagesListBcktkt({
           index={bpIndex}
           storeApi={storeApi}
           displayBidder
+          disabled
           displayContract={displayContract}
         />
       ))}

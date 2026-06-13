@@ -7,12 +7,14 @@ import type { RecursivePath } from "@/lib/type/recursion";
 import { setValueByPath } from "@/lib/setValByPath";
 
 export interface CreateDecisionStore {
+  isEdit: boolean;
   decision: AdministrativeDocument;
   setField: <K extends RecursivePath<AdministrativeDocument>>(
     fieldPath: K,
     value: any,
   ) => void;
   reset: (decision: Partial<AdministrativeDocument>) => void;
+  resetIsEdit: () => void;
 }
 
 const initialState: AdministrativeDocument = {
@@ -26,11 +28,13 @@ const initialState: AdministrativeDocument = {
 
 // used for both create and edit ( we will not create if it exist already )
 export const decision_store = createStore<CreateDecisionStore>((set) => ({
+  isEdit: false,
   decision: initialState,
   setField: (fieldPath, value) =>
     set((state) => ({
       ...state,
       decision: setValueByPath(state.decision, fieldPath, value),
+      isEdit: true,
     })),
   reset: (decision: Partial<AdministrativeDocument>) => {
     set(
@@ -38,6 +42,12 @@ export const decision_store = createStore<CreateDecisionStore>((set) => ({
         draft.decision = { ...initialState, ...decision };
       }),
     );
+  },
+  resetIsEdit: () => {
+    set((state) => ({
+      ...state,
+      isEdit: false,
+    }));
   },
 }));
 

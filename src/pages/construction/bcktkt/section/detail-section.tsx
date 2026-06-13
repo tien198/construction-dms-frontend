@@ -8,7 +8,7 @@ import {
   ActionBtns,
 } from "../../comps/layout/form-layout";
 import { ConstructionInfoSnapshotForm } from "../../comps/construction-info-snapshot-form";
-import { useSubmit } from "react-router";
+import { useFetcher, useSubmit } from "react-router";
 import { useStore, type StoreApi } from "zustand";
 import type { CreateSubmissionStore } from "../../../../store-factory/create-submission.store.type";
 import type { Decision } from "@/types/domain";
@@ -48,11 +48,11 @@ export function DetailSection({ data, storeApi }: Props) {
     }
   };
 
-  const submit = useSubmit();
+  const fetcher = useFetcher();
 
   const handleSubmit = () => {
     toggleIsEditing(false);
-    submit(null, {
+    fetcher.submit(null, {
       method: "PUT",
       encType: "application/json",
       action: "chinh-sua",
