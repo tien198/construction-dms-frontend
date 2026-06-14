@@ -4,6 +4,7 @@ import { KhLcnt as KhLcntInit } from "@/pages/construction/kh-lcnt-init/Construc
 import { KhLcnt } from "@/pages/construction/kh-lcnt/Detail";
 import KqKhLcnt from "@/pages/construction/kq-kh-lcnt";
 import Bcktkt from "@/pages/construction/bcktkt";
+import { List } from "@/pages/construction/constructions-list/List";
 
 export const constructionRoute: RouteObject = {
   path: "/cong-trinh",
@@ -14,6 +15,10 @@ export const constructionRoute: RouteObject = {
     </>
   ),
   children: [
+    {
+      index: true,
+      element: <List />,
+    },
     {
       path: "tao-moi",
       element: <KhLcntInit.Create />,

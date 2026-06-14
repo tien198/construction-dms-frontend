@@ -4,6 +4,7 @@ import { FormField } from "@/components/form-ui/form-field";
 import { Form, type FormProps } from "react-router";
 import { useStore } from "zustand";
 import { forwardRef } from "react";
+import { FormText } from "@/components/form-ui/form-text";
 
 type Props = {
   storeApi: BidderStoreApi;
@@ -18,7 +19,8 @@ export const BidderForm = forwardRef<HTMLFormElement, Props>(
     const setField = useStore(storeApi, (state) => state.setField);
 
     const handleChange =
-      (field: keyof Bidder) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      (field: keyof Bidder) =>
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setField(field, e.target.value);
       };
 
@@ -53,11 +55,26 @@ export const BidderForm = forwardRef<HTMLFormElement, Props>(
             />
 
             <FormField
+              fullWidth
+              id="bidder-tax-id"
+              label="Mã số thuế"
+              name="tax_id"
+              required
+              placeholder="0123456789…"
+              autoComplete="off"
+              spellCheck={false}
+              inputMode="numeric"
+              value={bidder.tax_id}
+              onChange={handleChange("tax_id")}
+              disabled={disabled}
+            />
+
+            <FormText
+              fullWidth
               id="bidder-address"
               label="Địa chỉ"
               name="address"
               required
-              fullWidth
               placeholder="Số nhà, đường, phường/xã…"
               autoComplete="street-address"
               value={bidder.address}
@@ -103,27 +120,14 @@ export const BidderForm = forwardRef<HTMLFormElement, Props>(
         {/* ── Section: Tài chính & Liên lạc ────────────────────── */}
         <fieldset className="mb-8">
           <legend className="mb-4 text-base font-medium">
-            Tài Chính &amp; Liên Lạc
+            Tài khoản ngân hàng
           </legend>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <FormField
-              id="bidder-tax-id"
-              label="Mã số thuế"
-              name="tax_id"
-              required
-              placeholder="0123456789…"
-              autoComplete="off"
-              spellCheck={false}
-              inputMode="numeric"
-              value={bidder.tax_id}
-              onChange={handleChange("tax_id")}
-              disabled={disabled}
-            />
-
-            <FormField
+              fullWidth
               id="bidder-bank-account-number"
-              label="Số tài khoản ngân hàng"
+              label="Số tài khoản"
               name="bank_account_number"
               required
               placeholder="19034567890123…"
@@ -132,6 +136,30 @@ export const BidderForm = forwardRef<HTMLFormElement, Props>(
               inputMode="numeric"
               value={bidder.bank_account_number}
               onChange={handleChange("bank_account_number")}
+              disabled={disabled}
+            />
+
+            <FormField
+              id="bidder-bank-name"
+              label="Tên ngân hàng"
+              name="bank_name"
+              required
+              placeholder="Sacombank"
+              autoComplete="off"
+              value={bidder.bank_name}
+              onChange={handleChange("bank_name")}
+              disabled={disabled}
+            />
+
+            <FormField
+              id="bidder-bank-branch"
+              label="Chi nhánh ngân hàng"
+              name="bank_branch"
+              required
+              placeholder="Vũng Tàu"
+              autoComplete="off"
+              value={bidder.bank_branch}
+              onChange={handleChange("bank_branch")}
               disabled={disabled}
             />
 

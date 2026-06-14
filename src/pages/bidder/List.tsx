@@ -28,7 +28,8 @@ export function List() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold tracking-tight mb-6">
+      {/* <h1 className="text-2xl font-bold tracking-tight mb-6"> */}
+      <h1 className="text-2xl font-bold tracking-tight text-primary text-shadow-md text-shadow-accent-foreground mb-4">
         Danh sách nhà thầu
       </h1>
 

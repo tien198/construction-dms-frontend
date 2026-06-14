@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 // import { getConstructions } from "@/mock-apis/get-constructions-list.mock";
 import { ConstructionCard } from "./comps/construction-card";
-import { FloatingAddButton } from "./comps/floating-add-button";
 import { AddButton } from "../../../components/shared/add-btn";
 import { useNavigate } from "react-router";
 import { getConstructions } from "./api/get-constructions-list.api";
 
-export function Home() {
+export function List() {
   const {
     data: constructions,
     isLoading,
@@ -22,10 +21,17 @@ export function Home() {
     nav("/cong-trinh/tao-moi");
   };
 
-  if (isLoading) return <div className="p-4">Loading constructions...</div>;
+  if (isLoading)
+    return (
+      <div className="p-4 flex items-center justify-center text-white">
+        Loading constructions...
+      </div>
+    );
   if (error)
     return (
-      <div className="p-4 text-destructive">Error loading constructions</div>
+      <div className="p-4 flex items-center justify-center text-destructive">
+        Error loading constructions
+      </div>
     );
 
   return (
@@ -39,7 +45,7 @@ export function Home() {
         ))}
         <AddButton title="Thêm công trình" onClick={handleAddConstruction} />
       </div>
-      <FloatingAddButton onClick={handleAddConstruction} />
+      {/* <FloatingAddButton onClick={handleAddConstruction} /> */}
     </div>
   );
 }

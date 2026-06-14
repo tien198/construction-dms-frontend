@@ -7,6 +7,6 @@ export async function getDecisionByPer_mock(
 ): Promise<Decision | undefined> {
   const con = await getConstructionById_mock(conId);
   if (!con) return undefined;
-  const dec = con.decisions.find((d) => d.period === per);
+  const dec = con.decisions.find((d: Decision) => d.period === per);
   return dec;
 }

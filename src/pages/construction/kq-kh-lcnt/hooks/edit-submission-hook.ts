@@ -1,6 +1,4 @@
 import { useFetcher } from "react-router";
-import { useStore } from "zustand";
-import { isDecEditingStore } from "./edit-hook";
 import type { ToggleEditingProps } from "./detail-is-editing-toggle";
 
 export function useEditSubmission(
@@ -8,10 +6,6 @@ export function useEditSubmission(
   handleToggleTtEditing: (isCascadingDec?: ToggleEditingProps) => void,
 ) {
   const fetcher = useFetcher();
-  const toggleIsDecEditing = useStore(
-    isDecEditingStore,
-    (state) => state.toggleIsEditing,
-  );
 
   const handleSubmitTv = () => {
     handleToggleTvEditing({ isNeedConfirm: false });

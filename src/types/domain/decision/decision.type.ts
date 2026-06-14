@@ -3,7 +3,7 @@ import type { ConstructionPeriod } from "../construction.type";
 import type { Submission } from "./submission.type";
 
 export interface Decision extends AdministrativeDocument {
-  construction_id: string;
   period: ConstructionPeriod;
+  construction_id: string;
   submissions: Submission[];
 }

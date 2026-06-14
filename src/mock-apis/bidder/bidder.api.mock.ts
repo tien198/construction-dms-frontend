@@ -11,6 +11,8 @@ export async function getBiddersListMock(): Promise<ResResult<Bidder[]>> {
         representative_name: "Tien",
         representative_position: "Giám đốc",
         bank_account_number: "123456789",
+        bank_name: "Sacombank",
+        bank_branch: "Vũng Tàu",
         tax_id: "123456789",
         phone_number: "123456789",
         email: "tienvn998@gmail.com",

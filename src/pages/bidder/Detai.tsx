@@ -17,7 +17,7 @@ export function Detail() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-12 py-16 bg-white rounded-[2.5rem] shadow-2xl shadow-accent-foreground ">
+    <div className="mx-auto max-w-3xl md:w-3xl px-12 py-16 bg-white rounded-[2.5rem] shadow-2xl shadow-accent-foreground ">
       <div className="flex items-center justify-between">
         <h1 className="mb-1 text-2xl font-semibold text-balance">
           Chi tiết nhà thầu

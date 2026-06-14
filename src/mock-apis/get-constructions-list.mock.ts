@@ -17,6 +17,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           },
           pursuant_to_dec_ttmn: null,
           period: "KH_LCNT",
+          construction_id: "construction-1",
 
           submissions: [
             {
@@ -88,6 +89,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           },
           pursuant_to_dec_ttmn: null,
           period: "KH_LCNT",
+          construction_id: "construction-2",
 
           submissions: [
             {
@@ -118,6 +120,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           },
           pursuant_to_dec_ttmn: null,
           period: "BCKTKT",
+          construction_id: "construction-3",
 
           submissions: [
             {
@@ -189,6 +192,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           pursuant_to_dec_tct: null,
           pursuant_to_dec_ttmn: null,
           period: "KH_LCNT",
+          construction_id: "construction-4",
 
           submissions: [
             {
@@ -251,6 +255,7 @@ export async function getConstructions_mock(): Promise<Construction[]> {
           pursuant_to_dec_tct: null,
           pursuant_to_dec_ttmn: null,
           period: "KH_LCNT",
+          construction_id: "construction-5",
 
           submissions: [
             {

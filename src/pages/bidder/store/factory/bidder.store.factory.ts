@@ -10,6 +10,8 @@ const initial: Bidder = {
   representative_name: "",
   representative_position: "",
   bank_account_number: "",
+  bank_name: "Sacombank",
+  bank_branch: "Vũng Tàu",
   tax_id: "",
   phone_number: "",
   email: "",

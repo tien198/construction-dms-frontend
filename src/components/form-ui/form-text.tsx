@@ -9,6 +9,7 @@ export type FormTextProps = {
   label: string;
   /** When true adds `sm:col-span-2` so the field spans full width on ≥sm grids */
   fullWidth?: boolean;
+  // } & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 } & ComponentProps<typeof Textarea>;
 
 /**

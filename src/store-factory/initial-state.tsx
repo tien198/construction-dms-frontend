@@ -13,6 +13,7 @@ function initialStateGeneration(period: ConstructionPeriod): SubmissionPost {
     construction_info_snapshot: null,
     bid_package_snapshots: null,
     directly_decision: { no: "", period: period },
+    con_id: "",
   };
 }
 
@@ -29,6 +30,7 @@ function initialBidPackage(type: BidPackageType): BidPackageSnapshotPost {
     bidder_selection_method: "Chỉ định thầu rút gọn",
     duration: "",
     successful_bidder_id: "",
+    bid_package_id: "",
   };
 }
 
