@@ -13,11 +13,12 @@ type Link = {
   title: string;
 };
 
-export function Period_Nav() {
+export function Period_Nav({ isScroll = true }: { isScroll?: boolean }) {
   const params = useParams();
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    if (!isScroll) return;
     let lastScrollY = window.scrollY;
 
     const handleScroll = () => {

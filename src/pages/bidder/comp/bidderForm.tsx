@@ -81,6 +81,34 @@ export const BidderForm = forwardRef<HTMLFormElement, Props>(
               onChange={handleChange("address")}
               disabled={disabled}
             />
+
+            <FormField
+              id="bidder-phone-number"
+              label="Số điện thoại"
+              name="phone_number"
+              type="tel"
+              required
+              placeholder="0912 345 678…"
+              autoComplete="tel"
+              inputMode="tel"
+              value={bidder.phone_number}
+              onChange={handleChange("phone_number")}
+              disabled={disabled}
+            />
+
+            <FormField
+              id="bidder-email"
+              label="Email"
+              name="email"
+              type="email"
+              required
+              placeholder="contact@company.vn…"
+              autoComplete="email"
+              spellCheck={false}
+              value={bidder.email}
+              onChange={handleChange("email")}
+              disabled={disabled}
+            />
           </div>
         </fieldset>
 
@@ -160,34 +188,6 @@ export const BidderForm = forwardRef<HTMLFormElement, Props>(
               autoComplete="off"
               value={bidder.bank_branch}
               onChange={handleChange("bank_branch")}
-              disabled={disabled}
-            />
-
-            <FormField
-              id="bidder-phone-number"
-              label="Số điện thoại"
-              name="phone_number"
-              type="tel"
-              required
-              placeholder="0912 345 678…"
-              autoComplete="tel"
-              inputMode="tel"
-              value={bidder.phone_number}
-              onChange={handleChange("phone_number")}
-              disabled={disabled}
-            />
-
-            <FormField
-              id="bidder-email"
-              label="Email"
-              name="email"
-              type="email"
-              required
-              placeholder="contact@company.vn…"
-              autoComplete="email"
-              spellCheck={false}
-              value={bidder.email}
-              onChange={handleChange("email")}
               disabled={disabled}
             />
           </div>

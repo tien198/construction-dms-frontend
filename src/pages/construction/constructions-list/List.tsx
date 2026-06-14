@@ -24,13 +24,13 @@ export function List() {
   if (isLoading)
     return (
       <div className="p-4 flex items-center justify-center text-white">
-        Loading constructions...
+        Đang tải danh sách Công Trình...
       </div>
     );
   if (error)
     return (
-      <div className="p-4 flex items-center justify-center text-destructive">
-        Error loading constructions
+      <div className="p-4 flex items-center justify-center bg-accent text-destructive">
+        Lỗi khi tải danh sách Công Trình
       </div>
     );
 

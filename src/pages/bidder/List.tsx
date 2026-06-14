@@ -19,11 +19,19 @@ export function List() {
   const nav = useNavigate();
 
   if (isLoading) {
-    return <div className="p-4">Loading bidders...</div>;
+    return (
+      <div className="p-4 flex items-center justify-center text-white">
+        Đang tải danh sách Nhà Thầu...
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="p-4 text-destructive">Error loading bidders</div>;
+    return (
+      <div className="p-4 flex items-center justify-center bg-accent text-destructive">
+        Lỗi khi tải danh sách Nhà Thầu
+      </div>
+    );
   }
 
   return (
@@ -65,19 +73,17 @@ type BidderCardProps = {
 function BidderCard({ bidder }: BidderCardProps) {
   return (
     <Link to={`/nha-thau/${bidder.id}`}>
-      <Card className="transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
+      <Card className="transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer h-full justify-between">
         <CardHeader className="border-b border-border/40">
           <CardTitle className="text-lg font-semibold flex items-center gap-2">
             <Building2 className="w-5 h-5 text-primary shrink-0" />
-            <span className="truncate" title={bidder.name}>
-              {bidder.name}
-            </span>
+            <span title={bidder.name}>{bidder.name}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="grid gap-3">
           <div className="flex items-start gap-2 text-sm">
             <UserRound className="w-4 h-4 mt-0.5 text-muted-foreground shrink-0" />
-            <div className="truncate">
+            <div>
               <span className="font-medium text-muted-foreground">
                 Người đại diện:
               </span>{" "}
@@ -86,7 +92,7 @@ function BidderCard({ bidder }: BidderCardProps) {
           </div>
           <div className="flex items-start gap-2 text-sm">
             <Receipt className="w-4 h-4 mt-0.5 text-muted-foreground shrink-0" />
-            <div className="truncate">
+            <div>
               <span className="font-medium text-muted-foreground">
                 Mã số thuế:
               </span>{" "}
@@ -95,7 +101,7 @@ function BidderCard({ bidder }: BidderCardProps) {
           </div>
           <div className="flex items-start gap-2 text-sm">
             <Phone className="w-4 h-4 mt-0.5 text-muted-foreground shrink-0" />
-            <div className="truncate">
+            <div>
               <span className="font-medium text-muted-foreground">
                 Số điện thoại:
               </span>{" "}
