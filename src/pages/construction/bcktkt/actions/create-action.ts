@@ -7,8 +7,12 @@ import { produce } from "immer";
 export async function createBcktktAction(args: ActionFunctionArgs) {
   const conId = args.params["con-id"];
   const state = create_bcktkt_store.getState();
-  const submission = produce(state.submission, (draft) => {
+  const submission = produce(state.submission!, (draft) => {
     draft.con_id = conId!;
+    draft.bid_package_snapshots =
+      draft.bid_package_snapshots?.filter(
+        (snapshot) => snapshot.type === "TC",
+      ) ?? null;
   });
 
   const res = await fetch(
