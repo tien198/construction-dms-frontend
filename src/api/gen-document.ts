@@ -4,7 +4,9 @@ export async function genDocument(
   subId: string,
   type: "submission" | "decision" = "submission",
 ) {
-  const res = await fetch(`${GEN_DOCUMENT}/${subId}?type=${type}`);
+  const res = await fetch(
+    `${GEN_DOCUMENT}/${subId}?type=${type}&is-preview=true`,
+  );
   if (!res.ok) {
     throw new Error(`Failed to fetch document ${subId}`);
   }

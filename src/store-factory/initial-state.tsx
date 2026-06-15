@@ -43,6 +43,8 @@ function getBPNameByType(type: BidPackageType) {
     return "Tư vấn lập BCKTKT";
   } else if (type === "TT") {
     return "Tư vấn Thẩm tra BCKTKT";
+  } else if (type === "TC") {
+    return "Thi công sửa chữa";
   } else {
     return "";
   }
@@ -53,6 +55,8 @@ function getShortDescByType(type: BidPackageType) {
     return "Lập bản vẽ thiết kế kỹ thuật thi công, dự toán công trình";
   } else if (type === "TT") {
     return "Thẩm tra bản vẽ thiết kế kỹ thuật thi công, dự toán công trình";
+  } else if (type === "TC") {
+    return "Thực hiện công tác sửa chữa theo hồ sơ thiết kế, dự toán";
   } else {
     return "";
   }
