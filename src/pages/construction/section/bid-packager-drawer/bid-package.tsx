@@ -6,6 +6,7 @@ import type { StoreApiInject } from "../../../../store-factory/store-api-inject.
 import { DatePicker } from "@/components/form-ui/date-picker";
 import { BidderSelectionDialog } from "../../comps/bidder-selection-dialog";
 import { ContractPreliminaryInfo } from "../contract-preliminary-info";
+import { monthFormat } from "@/ultil/month-format";
 
 type Props = {
   index: number;
@@ -132,19 +133,28 @@ export function BidPackage({
 */}
 
           {/* Bidder selection time */}
-          <DatePicker
-            id="sel-time"
-            label="Thời gian chọn thầu"
-            date={
-              bp.bidder_selection_time
-                ? new Date(bp.bidder_selection_time)
-                : undefined
-            }
-            setDate={(date) =>
-              setBidPackageField(bp.type, "bidder_selection_time", date)
-            }
-            disabled={disabled}
-          />
+          <div className="col-span-2 text-sm grid grid-cols-2 gap-6 items-center flex-1">
+            <div>
+              <p className=" font-medium">
+                Thời gian bắt đầu tổ chức lựa chọn nhà thầu:
+              </p>
+              <p className="bg-accent rounded-xl px-6 py-1 border">
+                {monthFormat(bp.bidder_selection_time)}
+              </p>
+            </div>
+            <DatePicker
+              id="sel-time"
+              date={
+                bp.bidder_selection_time
+                  ? new Date(bp.bidder_selection_time)
+                  : undefined
+              }
+              setDate={(date) =>
+                setBidPackageField(bp.type, "bidder_selection_time", date)
+              }
+              disabled={disabled}
+            />
+          </div>
 
           {/* Bidder selection method */}
           {/* <FormField

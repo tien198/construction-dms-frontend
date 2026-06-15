@@ -4,6 +4,7 @@ import { FormField } from "@/components/form-ui/form-field";
 import { useStore } from "zustand";
 import type { StoreApiInject } from "../../../store-factory/store-api-inject.type";
 import { DatePicker } from "@/components/form-ui/date-picker";
+import { monthFormat } from "@/ultil/month-format";
 
 type Props = StoreApiInject;
 
@@ -86,6 +87,15 @@ export function ConstructionInfoSnapshotForm({
         <span />
         <Separator className="col-span-2" />
 
+        <div className="col-span-2 text-sm flex gap-6 items-center flex-1">
+          <p className=" font-medium">
+            Thời gian thực hiện (dựa trên ngày bắt đầu và kết thúc):
+          </p>
+          <p className="bg-accent rounded-xl px-6 py-1 border">
+            {implDurationFormat(infor.impl_start_date, infor.impl_end_date)}
+          </p>
+        </div>
+
         {/* Start date */}
         <DatePicker
           id="start-date"
@@ -156,4 +166,24 @@ export function ConstructionInfoSnapshotForm({
       </div> */}
     </div>
   );
+}
+
+function implDurationFormat(
+  startDate: string | null = null,
+  endDate: string | null = null,
+): string {
+  let cta = "";
+  if (!startDate && !endDate) {
+    cta = "Chọn ngày bắt đầu và kết thúc";
+  } else if (!startDate) {
+    cta = "Chọn ngày bắt đầu";
+  } else if (!endDate) {
+    cta = "Chọn ngày kết thúc";
+  }
+  if (!startDate || !endDate) return cta;
+
+  const startMonth = monthFormat(startDate).toLowerCase();
+  const endMonth = monthFormat(endDate).toLowerCase();
+  const endYear = new Date(endDate).getFullYear();
+  return `Từ ${startMonth} - ${endMonth} năm ${endYear}`;
 }
