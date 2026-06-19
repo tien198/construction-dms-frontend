@@ -1,6 +1,8 @@
 import { type ActionFunctionArgs } from "react-router";
-import { tt_store } from "../store/create-submission-store";
-import { tv_store } from "../store/create-submission-store";
+import {
+  create_tt_store,
+  create_tv_store,
+} from "../store/create-submission-store";
 import { POST_ADD_SUBMISSION } from "@/lib/api-list/document-api-list";
 import { genRequestInit } from "@/lib/gen-request-init";
 import { produce } from "immer";
@@ -13,7 +15,7 @@ export async function createTvAction(
 ): Promise<CreateActionResult> {
   const conId = args.params["con-id"];
 
-  const tvSub = produce(tv_store.getState().submission, (draft) => {
+  const tvSub = produce(create_tv_store.getState().submission, (draft) => {
     draft.con_id = conId!;
   });
 
@@ -35,7 +37,7 @@ export async function createTtAction(
 ): Promise<CreateActionResult> {
   const conId = args.params["con-id"];
 
-  const ttSub = produce(tt_store.getState().submission, (draft) => {
+  const ttSub = produce(create_tt_store.getState().submission, (draft) => {
     draft.con_id = conId!;
   });
   console.log(ttSub);

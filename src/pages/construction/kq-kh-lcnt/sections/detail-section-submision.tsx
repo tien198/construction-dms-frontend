@@ -21,7 +21,7 @@ export function SubmissionDetail({
   const bidPackage = sub.bid_package_snapshots?.[0];
 
   return (
-    <div className="col-span-2 grid grid-cols-2 gap-6 border border-border rounded-4xl py-4 px-3 bg-brand">
+    <div className="col-span-2 grid grid-cols-2 gap-6 border border-border rounded-4xl py-4 px-3 bg-bran animate-in fade-in duration-500">
       <div className="col-span-2 flex justify-end px-3 gap-3 items-center">
         {!disabled && editAction?.()}
       </div>

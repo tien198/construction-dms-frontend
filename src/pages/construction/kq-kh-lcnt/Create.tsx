@@ -7,7 +7,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { useCreate } from "./hooks/create-hook";
 import { DecisionSection } from "./sections/decision-section";
-import { tv_store, tt_store } from "./store/create-submission-store";
+import {
+  create_tt_store,
+  create_tv_store,
+} from "./store/create-submission-store";
 import { SubmissionDetail } from "./sections/detail-section-submision";
 import StickyReveal from "@/components/form-ui/sticky-reveal-button";
 import { SaveBtn } from "@/components/form-ui/save-btn";
@@ -54,7 +57,7 @@ export function Create() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <DecisionSection disabled={!isTvCreating || !isTtCreating} />
         <SubmissionDetail
-          storeApi={tv_store}
+          storeApi={create_tv_store}
           disabled={!isTvCreating}
           editAction={() => (
             <>
@@ -64,17 +67,25 @@ export function Create() {
             </>
           )}
         />
-        <SubmissionDetail
-          storeApi={tt_store}
-          disabled={!isTtCreating}
-          editAction={() => (
-            <>
-              {isTtCreating && (
-                <SaveBtn onClick={handleSubmitTt}>Lưu TT</SaveBtn>
-              )}
-            </>
-          )}
-        />
+        {!isTvCreating ? (
+          <SubmissionDetail
+            storeApi={create_tt_store}
+            disabled={!isTtCreating}
+            editAction={() => (
+              <>
+                {isTtCreating && (
+                  <SaveBtn onClick={handleSubmitTt}>Lưu TT</SaveBtn>
+                )}
+              </>
+            )}
+          />
+        ) : (
+          <div className="col-span-2 flex items-center justify-center gap-4 p-8 border border-dashed rounded-4xl border-border ">
+            <div className="bg-accent rounded-xl px-20 py-4">
+              Lưu TTr. gói TV trước để nhập TTr. gói TT
+            </div>
+          </div>
+        )}
       </div>
     </FormLayout>
   );

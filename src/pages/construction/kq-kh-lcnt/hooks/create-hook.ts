@@ -1,12 +1,11 @@
 import { useBlocker, useFetcher, useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getDecisionByPer } from "../../../../api/get-decision-by-per.api";
 import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
 import {
-  tt_store as tt_store_api,
-  tv_store,
-  tv_store as tv_store_api,
+  create_tt_store as tt_store_api,
+  create_tv_store as tv_store_api,
 } from "../store/create-submission-store";
 import { decision_store } from "../store/create-decision-store";
 import type {
@@ -15,6 +14,7 @@ import type {
   Decision,
 } from "@/types/domain";
 import { isCreatingStore } from "../Detail";
+import { queryClient } from "@/tanstack-query-client";
 
 export function useCreate() {
   const fetcher = useFetcher();
@@ -23,30 +23,36 @@ export function useCreate() {
   const [isTvCreating, setIsTvCreating] = useState(true);
   const [isTtCreating, setIsTtCreating] = useState(true);
 
-  const handleSubmitTv = async () => {
-    setIsTvCreating(false);
+  const invalidateKQ = useCallback(async () => {
+    await queryClient.invalidateQueries({
+      queryKey: ["kq-kh-lcnt", conId],
+    });
+  }, [conId, queryClient]);
 
+  const handleSubmitTv = async () => {
     await fetcher.submit(null, {
       method: "post",
       action: `tv`,
     });
+    await invalidateKQ();
+    setIsTvCreating(false);
   };
 
   const handleSubmitTt = async () => {
-    setIsTtCreating(false);
-
     await fetcher.submit(null, {
       method: "post",
       action: `tt`,
     });
+    await invalidateKQ();
+    setIsTtCreating(false);
   };
 
   useEffect(() => {
     // action return truthy (success) and falsy (failed)
     if (fetcher.data) {
       if (!isTvCreating && !isTtCreating) {
-        nav("../", { relative: "path" });
         isCreatingStore.getState().toggleIsCreating(false);
+        nav("..", { relative: "route" });
       }
     }
   }, [fetcher.data, isTvCreating, isTtCreating]);
@@ -82,7 +88,6 @@ export function useCreate() {
   });
 
   useEffect(() => {
-    isCreatingStore.getState().toggleIsCreating(true);
     let tv: BidPackageSnapshot | null = null;
     let tt: BidPackageSnapshot | null = null;
     let initialDecision: Partial<AdministrativeDocument> = {};
@@ -112,12 +117,14 @@ export function useCreate() {
           .getState()
           .addBidPackage("TV", tv_sub.bid_package_snapshots?.[0] ?? null);
         tv_store_api.getState().setAdministrative(tv_sub);
+        setIsTvCreating(false);
       }
       if (tt_sub) {
         tt_store_api
           .getState()
           .addBidPackage("TT", tt_sub.bid_package_snapshots?.[0] ?? null);
         tt_store_api.getState().setAdministrative(tt_sub);
+        setIsTtCreating(false);
       }
 
       initialDecision = {
@@ -150,6 +157,10 @@ export function useCreate() {
 
     decision_store.getState().reset(initialDecision);
   }, [KQ, queryResult.data]);
+
+  useEffect(() => {
+    isCreatingStore.getState().toggleIsCreating(true);
+  }, []);
 
   return {
     // queryResult is KH_LCNT decision (previous period)

@@ -1,10 +1,12 @@
 import type { AdministrativeDocument } from "@/types/domain/decision/administrative-document.type";
 import { createStore } from "zustand";
 import { produce } from "immer";
-import { tt_store, tv_store } from "./create-submission-store";
 import type { CreateSubmissionStore } from "@/store-factory/create-submission.store.type";
 import type { RecursivePath } from "@/lib/type/recursion";
 import { setValueByPath } from "@/lib/setValByPath";
+
+import { create_tt_store, create_tv_store } from "./create-submission-store";
+import { edit_tt_store, edit_tv_store } from "./edit-store";
 
 export interface CreateDecisionStore {
   isEdit: boolean;
@@ -73,6 +75,9 @@ decision_store.subscribe((state) => {
     };
   });
 
-  tv_store.setState(updateSubmission);
-  tt_store.setState(updateSubmission);
+  create_tv_store.setState(updateSubmission);
+  create_tt_store.setState(updateSubmission);
+
+  edit_tv_store.setState(updateSubmission);
+  edit_tt_store.setState(updateSubmission);
 });
