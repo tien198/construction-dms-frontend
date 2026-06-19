@@ -5,7 +5,7 @@ import { isCreatingStoreFactory } from "../../../store-factory/is-creating-store
 import { useStore } from "zustand";
 import { Navigate } from "react-router";
 
-const isCreatingStore = isCreatingStoreFactory(false);
+export const isCreatingStore = isCreatingStoreFactory(false);
 
 export function Detail() {
   const { data, isLoading, storeApi, constructionId } = useDetailFunc();

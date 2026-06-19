@@ -9,6 +9,7 @@ import type { ConstructionInfoSnapshotPost } from "@/types/submission-post/const
 import type { SubmissionPost } from "@/types/submission-post/submission-post.type";
 
 import { initialStateGeneration } from "./initial-state";
+import { produce } from "immer";
 
 export function submission_store_factory(
   period: ConstructionPeriod,
@@ -26,6 +27,21 @@ export function submission_store_factory(
         );
         return { ...state, submission: shallowSubmission };
       }),
+
+    setAdministrative(ad) {
+      set(
+        produce<CreateSubmissionStore>((draft) => {
+          draft.submission.id = ad.id;
+          draft.submission.no = ad.no;
+          draft.submission.level = ad.level;
+          draft.submission.date = ad.date;
+          draft.submission.pursuant_to_dec_tct_id =
+            ad.pursuant_to_dec_tct?.id ?? null;
+          draft.submission.pursuant_to_dec_ttmn_id =
+            ad.pursuant_to_dec_ttmn?.id ?? null;
+        }),
+      );
+    },
 
     setBidPackageField<K extends keyof BidPackageSnapshotPost>(
       type: BidPackageType,
@@ -63,13 +79,14 @@ export function submission_store_factory(
       set((state) => {
         const stateShallow = { ...state };
         if (!value) {
-          return state;
+          return stateShallow;
         }
 
         const bidPackages = stateShallow.submission.bid_package_snapshots;
         if (!bidPackages) {
-          stateShallow.submission.bid_package_snapshots = [value];
-          return stateShallow;
+          return produce(stateShallow, (draft) => {
+            draft.submission.bid_package_snapshots = [value];
+          });
         }
 
         const bidPackagesShallow = [...bidPackages];

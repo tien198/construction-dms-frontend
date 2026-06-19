@@ -6,7 +6,7 @@ import { decisionToSubmissionPost } from "@/ultil/decision-to-submision-post";
 import { isDecEditingStore } from "./edit-hook";
 
 export type ToggleEditingProps = {
-  isCascadingDec?: boolean;
+  // isCascadingDec?: boolean;
   isNeedConfirm?: boolean;
 };
 
@@ -23,7 +23,7 @@ export function useDetailIsEditingToggle(initialDec?: Decision | null) {
   const reset_tv = useStore(edit_tv_store, (state) => state.reset);
 
   function handleToggleTvEditing({
-    isCascadingDec = true,
+    // isCascadingDec = true,
     isNeedConfirm = true,
   }: ToggleEditingProps = {}) {
     if (isTvEditing && isNeedConfirm) {
@@ -40,13 +40,17 @@ export function useDetailIsEditingToggle(initialDec?: Decision | null) {
     } else {
       setIsTvEditing((prev) => !prev);
     }
-    if (isCascadingDec && isTvEditing && !isTtEditing) {
+    if (
+      // isCascadingDec &&
+      isTvEditing &&
+      !isTtEditing
+    ) {
       isDecEditingToggle(false);
     }
   }
 
   function handleToggleTtEditing({
-    isCascadingDec = true,
+    // isCascadingDec = true,
     isNeedConfirm = true,
   }: ToggleEditingProps = {}) {
     if (isTtEditing && isNeedConfirm) {
@@ -63,7 +67,11 @@ export function useDetailIsEditingToggle(initialDec?: Decision | null) {
     } else {
       setIsTtEditing((prev) => !prev);
     }
-    if (isCascadingDec && isTtEditing && !isTvEditing) {
+    if (
+      // isCascadingDec &&
+      isTtEditing &&
+      !isTvEditing
+    ) {
       isDecEditingToggle(false);
     }
   }

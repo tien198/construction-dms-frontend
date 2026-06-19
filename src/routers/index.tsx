@@ -1,4 +1,4 @@
-import Global_Layout from "@/components/global-layout";
+import { Global_Layout } from "@/global-layout/global-layout";
 
 import { createBrowserRouter } from "react-router";
 import { constructionRoute } from "./construction-route";

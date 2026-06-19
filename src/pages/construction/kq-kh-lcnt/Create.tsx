@@ -1,4 +1,3 @@
-import { SaveIcon } from "lucide-react";
 import {
   FormLayout,
   FormHeader,
@@ -9,12 +8,19 @@ import { Button } from "@/components/ui/button";
 import { useCreate } from "./hooks/create-hook";
 import { DecisionSection } from "./sections/decision-section";
 import { tv_store, tt_store } from "./store/create-submission-store";
-import { SubmissionDetail } from "./sections/submission-detail";
+import { SubmissionDetail } from "./sections/detail-section-submision";
 import StickyReveal from "@/components/form-ui/sticky-reveal-button";
+import { SaveBtn } from "@/components/form-ui/save-btn";
 
 export function Create() {
-  const { queryResult, handleSubmit, handleCancel } = useCreate();
-
+  const {
+    queryResult,
+    handleSubmitTv,
+    handleSubmitTt,
+    handleCancel,
+    isTvCreating,
+    isTtCreating,
+  } = useCreate();
   if (queryResult.isLoading) {
     return (
       <div className="w-screen h-screen flex items-center justify-center">
@@ -40,20 +46,35 @@ export function Create() {
               >
                 Hủy
               </Button>
-
-              <Button onClick={() => handleSubmit()}>
-                <SaveIcon className="mr-2 h-4 w-4" />
-                Lưu KQ KH LCNT
-              </Button>
             </ActionBtns>
           )}
         />
       </FormHeader>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <DecisionSection />
-        <SubmissionDetail storeApi={tv_store} />
-        <SubmissionDetail storeApi={tt_store} />
+        <DecisionSection disabled={!isTvCreating || !isTtCreating} />
+        <SubmissionDetail
+          storeApi={tv_store}
+          disabled={!isTvCreating}
+          editAction={() => (
+            <>
+              {isTvCreating && (
+                <SaveBtn onClick={handleSubmitTv}>Lưu TV</SaveBtn>
+              )}
+            </>
+          )}
+        />
+        <SubmissionDetail
+          storeApi={tt_store}
+          disabled={!isTtCreating}
+          editAction={() => (
+            <>
+              {isTtCreating && (
+                <SaveBtn onClick={handleSubmitTt}>Lưu TT</SaveBtn>
+              )}
+            </>
+          )}
+        />
       </div>
     </FormLayout>
   );

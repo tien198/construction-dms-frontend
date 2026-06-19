@@ -1,4 +1,4 @@
-import { useFetcher, useParams } from "react-router";
+import { useFetcher, useNavigate, useParams } from "react-router";
 import { create_bcktkt_store } from "../store/create-store";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -6,18 +6,23 @@ import { getDecisionByPer } from "@/api/get-decision-by-per.api";
 import { decisionToSubmissionPost } from "@/ultil/decision-to-submision-post";
 import { useStore } from "zustand";
 import { initialBidPackage } from "@/store-factory/initial-state";
+import { isCreatingStore } from "../Detail";
 
 export function useCreate() {
   const fetcher = useFetcher();
   const handleSubmit = () => {
+    isCreatingStore.getState().toggleIsCreating();
+
     return fetcher.submit(null, {
       method: "post",
       encType: "application/json",
     });
   };
 
+  const nav = useNavigate();
   const handleCancel = () => {
-    //
+    isCreatingStore.getState().toggleIsCreating();
+    nav(-1);
   };
 
   const conId = useParams()["con-id"] as string;

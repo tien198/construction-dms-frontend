@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { edit_tv_store, edit_tt_store } from "../store/edit-store";
+import {
+  edit_tv_store as tv_store_api,
+  edit_tt_store as tt_store_api,
+} from "../store/edit-store";
 import { useParams } from "react-router";
 import { useStore } from "zustand";
 import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
@@ -23,15 +26,19 @@ export function useDetail() {
 
   const reset_decision = useStore(decision_store, (state) => state.reset);
 
-  const reset_tv = useStore(edit_tv_store, (state) => state.reset);
-  const reset_tt = useStore(edit_tt_store, (state) => state.reset);
-
   useEffect(() => {
-    if (data) {
+    // if there is not enongh 2 sumbission, redirect to create page
+    if (data && data.submissions.length === 2) {
       const tv_sub = decisionToSubmissionPost(data, 0);
       const tt_sub = decisionToSubmissionPost(data, 1);
-      reset_tv("KQ_KH_LCNT", tv_sub);
-      reset_tt("KQ_KH_LCNT", tt_sub);
+      tv_store_api.getState().setAdministrative(data.submissions[0]);
+      tt_store_api.getState().setAdministrative(data.submissions[1]);
+      tv_store_api
+        .getState()
+        .addBidPackage("TC", tv_sub.bid_package_snapshots?.[0] ?? null);
+      tt_store_api
+        .getState()
+        .addBidPackage("TT", tt_sub.bid_package_snapshots?.[0] ?? null);
       reset_decision(data);
     }
   }, [data]);

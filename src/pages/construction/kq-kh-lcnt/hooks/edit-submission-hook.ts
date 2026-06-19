@@ -2,8 +2,8 @@ import { useFetcher } from "react-router";
 import type { ToggleEditingProps } from "./detail-is-editing-toggle";
 
 export function useEditSubmission(
-  handleToggleTvEditing: (isCascadingDec?: ToggleEditingProps) => void,
-  handleToggleTtEditing: (isCascadingDec?: ToggleEditingProps) => void,
+  handleToggleTvEditing: (toggleProps?: ToggleEditingProps) => void,
+  handleToggleTtEditing: (toggleProps?: ToggleEditingProps) => void,
 ) {
   const fetcher = useFetcher();
 

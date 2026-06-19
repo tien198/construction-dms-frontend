@@ -39,7 +39,14 @@ export const decision_store = createStore<CreateDecisionStore>((set) => ({
   reset: (decision: Partial<AdministrativeDocument>) => {
     set(
       produce((draft: CreateDecisionStore) => {
-        draft.decision = { ...initialState, ...decision };
+        draft.decision.id = decision.id ?? "";
+        draft.decision.no = decision.no ?? "";
+        draft.decision.level = decision.level ?? "";
+        draft.decision.date = decision.date ?? "";
+        draft.decision.pursuant_to_dec_tct =
+          decision.pursuant_to_dec_tct ?? null;
+        draft.decision.pursuant_to_dec_ttmn =
+          decision.pursuant_to_dec_ttmn ?? null;
       }),
     );
   },

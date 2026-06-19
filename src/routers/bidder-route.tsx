@@ -1,5 +1,5 @@
 import { Bidder } from "@/pages/bidder";
-import { Period_Nav } from "@/pages/construction/comps/layout/period-nav";
+import { Period_Nav } from "@/global-layout/period-nav";
 import { Outlet, type RouteObject } from "react-router";
 
 export const bidderRoute: RouteObject = {

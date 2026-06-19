@@ -1,4 +1,4 @@
-import { Period_Nav } from "@/pages/construction/comps/layout/period-nav";
+import { Period_Nav } from "@/global-layout/period-nav";
 import { Outlet, type RouteObject } from "react-router";
 import { KhLcnt as KhLcntInit } from "@/pages/construction/kh-lcnt-init/ConstructionInitializer";
 import { KhLcnt } from "@/pages/construction/kh-lcnt/Detail";
@@ -48,9 +48,19 @@ export const constructionRoute: RouteObject = {
         {
           path: "tao-moi",
           element: <KqKhLcnt.Create />,
+        },
+        {
+          path: "tao-moi/tv",
           action: (args) =>
             import("../pages/construction/kq-kh-lcnt/actions/create-action").then(
-              (m) => m.createKqKhLcntAction(args),
+              (m) => m.createTvAction(args),
+            ),
+        },
+        {
+          path: "tao-moi/tt",
+          action: (args) =>
+            import("../pages/construction/kq-kh-lcnt/actions/create-action").then(
+              (m) => m.createTtAction(args),
             ),
         },
         {

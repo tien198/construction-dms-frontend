@@ -8,7 +8,7 @@ import {
 } from "../../comps/layout/form-layout";
 import { useEdit } from "../hooks/edit-hook";
 import { DecisionSection } from "./decision-section";
-import { SubmissionDetail } from "./submission-detail";
+import { SubmissionDetail } from "./detail-section-submision";
 import { edit_tt_store, edit_tv_store } from "../store/edit-store";
 import StickyReveal from "@/components/form-ui/sticky-reveal-button";
 import { exportDocx } from "@/ultil/export-file";
@@ -18,7 +18,7 @@ import { useEditSubmission } from "../hooks/edit-submission-hook";
 
 // Detail also Edit form if `isEdit` is true
 export function DetailSection() {
-  const { disabled, isDecEditingToggle, decision } = useEdit();
+  const { decision, disabled, isDecEditingToggle } = useEdit();
   const {
     isTvEditing,
     isTtEditing,

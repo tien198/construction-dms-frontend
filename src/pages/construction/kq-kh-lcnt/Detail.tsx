@@ -5,7 +5,7 @@ import { isCreatingStoreFactory } from "../../../store-factory/is-creating-store
 import { useStore } from "zustand";
 import { Navigate } from "react-router";
 
-const isCreatingStore = isCreatingStoreFactory(false);
+export const isCreatingStore = isCreatingStoreFactory(false);
 
 export function Detail() {
   const { data, isLoading, constructionId } = useDetail();
@@ -21,7 +21,8 @@ export function Detail() {
     );
   }
 
-  if (isCreating) {
+  // if there are data but missing one submission
+  if (isCreating || (data && data.submissions.length < 2)) {
     return <Navigate to="tao-moi" replace />;
   }
 
