@@ -5,7 +5,7 @@ import {
   ActionBtns,
 } from "../comps/layout/form-layout";
 import { Button } from "@/components/ui/button";
-import { useCreate } from "./hooks/create-hook";
+import { useSetInitialData } from "./hooks/create-set-initial-data";
 import { DecisionSection } from "./sections/decision-section";
 import {
   create_tt_store,
@@ -14,16 +14,22 @@ import {
 import { SubmissionDetail } from "./sections/detail-section-submision";
 import StickyReveal from "@/components/form-ui/sticky-reveal-button";
 import { SaveBtn } from "@/components/form-ui/save-btn";
+import { useAccessAndLeaveCreatePage } from "./hooks/create-access-and-leave-page";
+import { useHandleSubmit } from "./hooks/create-handle-submit";
 
 export function Create() {
+  useAccessAndLeaveCreatePage();
   const {
-    queryResult,
     handleSubmitTv,
     handleSubmitTt,
     handleCancel,
     isTvCreating,
     isTtCreating,
-  } = useCreate();
+    setIsTvCreating,
+    setIsTtCreating,
+  } = useHandleSubmit();
+  const { queryResult } = useSetInitialData(setIsTvCreating, setIsTtCreating);
+
   if (queryResult.isLoading) {
     return (
       <div className="w-screen h-screen flex items-center justify-center">

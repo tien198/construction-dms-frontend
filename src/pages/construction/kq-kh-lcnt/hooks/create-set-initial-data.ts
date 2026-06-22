@@ -1,5 +1,5 @@
-import { useBlocker, useFetcher, useNavigate, useParams } from "react-router";
-import { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getDecisionByPer } from "../../../../api/get-decision-by-per.api";
 import { decisionToSubmissionPost } from "../../../../ultil/decision-to-submision-post";
@@ -13,69 +13,12 @@ import type {
   BidPackageSnapshot,
   Decision,
 } from "@/types/domain";
-import { isCreatingStore } from "../Detail";
-import { queryClient } from "@/tanstack-query-client";
 
-export function useCreate() {
-  const fetcher = useFetcher();
+export function useSetInitialData(
+  setIsTvCreating: React.Dispatch<React.SetStateAction<boolean>>,
+  setIsTtCreating: React.Dispatch<React.SetStateAction<boolean>>,
+) {
   const conId = useParams()["con-id"] as string;
-
-  const [isTvCreating, setIsTvCreating] = useState(true);
-  const [isTtCreating, setIsTtCreating] = useState(true);
-
-  const handleSubmitTv = async () => {
-    await fetcher.submit(null, {
-      method: "post",
-      action: `tv`,
-    });
-    setIsTvCreating(false);
-  };
-
-  const handleSubmitTt = async () => {
-    await fetcher.submit(null, {
-      method: "post",
-      action: `tt`,
-    });
-    setIsTtCreating(false);
-  };
-
-  const invalidateKQ = useCallback(
-    async (cb: Function) => {
-      await queryClient.invalidateQueries({
-        queryKey: ["kq-kh-lcnt", conId],
-      });
-      cb();
-    },
-    [conId, queryClient],
-  );
-
-  useEffect(() => {
-    // action return truthy (success) and falsy (failed)
-    if (fetcher.data) {
-      if (!isTvCreating && !isTtCreating) {
-        isCreatingStore.getState().toggleIsCreating(false);
-        invalidateKQ(() => {
-          nav("..", { relative: "route" });
-        });
-      }
-    }
-  }, [fetcher.data, isTvCreating, isTtCreating]);
-
-  const nav = useNavigate();
-  const handleCancel = () => {
-    isCreatingStore.getState().toggleIsCreating(false);
-    nav("..", { relative: "path" });
-  };
-
-  const blocker = useBlocker(
-    ({ nextLocation }) => nextLocation.pathname === "/",
-  );
-  useEffect(() => {
-    if (blocker.state === "blocked") {
-      isCreatingStore.getState().toggleIsCreating(false);
-      blocker.proceed();
-    }
-  }, [blocker.state]);
 
   // data has beean fetched in Detail page
   const { data: KQ } = useQuery<Decision | null>({
@@ -162,19 +105,8 @@ export function useCreate() {
     decision_store.getState().reset(initialDecision);
   }, [KQ, queryResult.data]);
 
-  useEffect(() => {
-    isCreatingStore.getState().toggleIsCreating(true);
-  }, []);
-
   return {
     // queryResult is KH_LCNT decision (previous period)
     queryResult,
-    handleSubmitTv,
-    handleSubmitTt,
-    handleCancel,
-    isTvCreating,
-    isTtCreating,
-    setIsTvCreating,
-    setIsTtCreating,
   };
 }

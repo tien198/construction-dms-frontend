@@ -13,7 +13,7 @@ export function useCreate() {
   const fetcher = useFetcher();
   const nav = useNavigate();
   const handleSubmit = async () => {
-    isCreatingStore.getState().toggleIsCreating();
+    isCreatingStore.getState().toggleIsCreating(false);
 
     await fetcher.submit(null, {
       method: "post",
@@ -22,8 +22,6 @@ export function useCreate() {
     await queryClient.invalidateQueries({
       queryKey: ["bcktkt", conId],
     });
-
-    nav(-1);
   };
 
   const handleCancel = () => {
@@ -47,8 +45,14 @@ export function useCreate() {
   const addBidPackage = useStore(storeApi, (state) => state.addBidPackage);
 
   useEffect(() => {
-    if (data && data.submissions?.length < 2) {
+    if (!data) {
+      alert("Tạo QĐ KQ_KH_LCNT trước khi tạo BCKTKT");
+      isCreatingStore.getState().toggleIsCreating(false);
+      nav(`/cong-trinh/kq-kh-lcnt/${conId}`);
+      return;
+    } else if (data && data.submissions?.length < 2) {
       alert("QĐ KQ_KH_LCNT phải có đủ 2 TTr trước khi tạo BCKTKT");
+      isCreatingStore.getState().toggleIsCreating(false);
       nav(`/cong-trinh/kq-kh-lcnt/${conId}`);
       return;
     }
@@ -70,7 +74,7 @@ export function useCreate() {
 
     const tt_sub = decisionToSubmissionPost(data, 1);
     if (tt_sub.bid_package_snapshots) {
-      const bp = tt_sub.bid_package_snapshots[1];
+      const bp = tt_sub.bid_package_snapshots[0];
       addBidPackage(bp.type, bp);
     }
 

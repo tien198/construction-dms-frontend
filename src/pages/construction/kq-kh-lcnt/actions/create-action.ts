@@ -6,6 +6,8 @@ import {
 import { POST_ADD_SUBMISSION } from "@/lib/api-list/document-api-list";
 import { genRequestInit } from "@/lib/gen-request-init";
 import { produce } from "immer";
+import { decision_store } from "../store/create-decision-store";
+import type { ResResult } from "@/lib/type/response-result.tyoe";
 
 type CreateActionResult = {
   isSuccess: boolean;
@@ -19,6 +21,7 @@ export async function createTvAction(
     draft.con_id = conId!;
   });
 
+  console.log(tvSub);
   // create TV first
   const tvRes = await fetch(
     POST_ADD_SUBMISSION,
@@ -29,6 +32,9 @@ export async function createTvAction(
     alert("Lỗi khi tạo tờ trình TV");
     return { isSuccess: false };
   }
+  const res = (await tvRes.json()) as ResResult<string>;
+  decision_store.getState().setField("id", res.result);
+
   return { isSuccess: true };
 }
 
@@ -46,11 +52,13 @@ export async function createTtAction(
     POST_ADD_SUBMISSION,
     genRequestInit(args.request.method, JSON.stringify(ttSub)),
   );
-  console.log(ttRes);
 
   if (!ttRes.ok) {
     alert("Lỗi khi tạo tờ trình TT");
     return { isSuccess: false };
   }
+  const res = (await ttRes.json()) as ResResult<string>;
+  decision_store.getState().setField("id", res.result);
+
   return { isSuccess: true };
 }
