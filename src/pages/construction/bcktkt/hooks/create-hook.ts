@@ -30,7 +30,7 @@ export function useCreate() {
   };
 
   const conId = useParams()["con-id"] as string;
-  const { data } = useQuery({
+  const { data, dataUpdatedAt } = useQuery({
     queryKey: ["kq-kh-lcnt", conId],
     queryFn: () => getDecisionByPer(conId, "KQ_KH_LCNT"),
     retry: false,
@@ -45,7 +45,7 @@ export function useCreate() {
   const addBidPackage = useStore(storeApi, (state) => state.addBidPackage);
 
   useEffect(() => {
-    if (!data) {
+    if (!data && dataUpdatedAt > 0) {
       alert("Tạo QĐ KQ_KH_LCNT trước khi tạo BCKTKT");
       isCreatingStore.getState().toggleIsCreating(false);
       nav(`/cong-trinh/kq-kh-lcnt/${conId}`);

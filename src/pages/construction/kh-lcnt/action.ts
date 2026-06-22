@@ -8,7 +8,7 @@ export async function editAction(args: ActionFunctionArgs) {
   const tv_sub = state.submission;
 
   const res = await fetch(
-    PUT_EDIT_SUBMISSION,
+    PUT_EDIT_SUBMISSION + "?isDecEdit=true",
     genRequestInit(args.request.method, JSON.stringify(tv_sub)),
   );
 

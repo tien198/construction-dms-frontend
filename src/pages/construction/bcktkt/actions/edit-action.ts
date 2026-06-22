@@ -15,7 +15,7 @@ export async function editBcktktAction(args: ActionFunctionArgs) {
   console.log(submission, args);
 
   const res = await fetch(
-    PUT_EDIT_SUBMISSION,
+    PUT_EDIT_SUBMISSION + "?isDecEdit=true",
     genRequestInit(args.request.method, JSON.stringify(submission)),
   );
 
