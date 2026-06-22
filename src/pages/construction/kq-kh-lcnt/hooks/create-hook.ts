@@ -23,18 +23,11 @@ export function useCreate() {
   const [isTvCreating, setIsTvCreating] = useState(true);
   const [isTtCreating, setIsTtCreating] = useState(true);
 
-  const invalidateKQ = useCallback(async () => {
-    await queryClient.invalidateQueries({
-      queryKey: ["kq-kh-lcnt", conId],
-    });
-  }, [conId, queryClient]);
-
   const handleSubmitTv = async () => {
     await fetcher.submit(null, {
       method: "post",
       action: `tv`,
     });
-    await invalidateKQ();
     setIsTvCreating(false);
   };
 
@@ -43,16 +36,27 @@ export function useCreate() {
       method: "post",
       action: `tt`,
     });
-    await invalidateKQ();
     setIsTtCreating(false);
   };
+
+  const invalidateKQ = useCallback(
+    async (cb: Function) => {
+      await queryClient.invalidateQueries({
+        queryKey: ["kq-kh-lcnt", conId],
+      });
+      cb();
+    },
+    [conId, queryClient],
+  );
 
   useEffect(() => {
     // action return truthy (success) and falsy (failed)
     if (fetcher.data) {
       if (!isTvCreating && !isTtCreating) {
         isCreatingStore.getState().toggleIsCreating(false);
-        nav("..", { relative: "route" });
+        invalidateKQ(() => {
+          nav("..", { relative: "route" });
+        });
       }
     }
   }, [fetcher.data, isTvCreating, isTtCreating]);

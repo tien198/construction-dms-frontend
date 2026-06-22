@@ -33,10 +33,9 @@ export function decisionToSubmissionPost(
       : null;
 
   // if there is specificSubmissionIndex,
-  // get only package snapshot of that submission
-  const bidPackages: BidPackageSnapshotPost[] | null = specificSubmissionIndex
-    ? (submission.bid_package_snapshots?.slice(0, 1) ?? null)
-    : (submission.bid_package_snapshots ?? null);
+  // get only one package snapshot of that submission
+  const bidPackages: BidPackageSnapshotPost[] | null =
+    submission.bid_package_snapshots ?? null;
 
   return {
     id: submission.id ?? null,
